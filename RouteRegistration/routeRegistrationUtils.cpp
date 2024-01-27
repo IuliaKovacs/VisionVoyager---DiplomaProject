@@ -1,8 +1,10 @@
 #include "routeRegistrationUtils.h"
-#include <ctime> 
 #include <iostream> 
 #include <fstream>
 #include <optional>
+#include <chrono>
+#include <iomanip>
+#include <thread>
 
 
 using namespace std; 
@@ -16,13 +18,15 @@ RouteRegistration::RouteRegistration()
 
 string RouteRegistration::get_current_timestamp()
 {
-    time_t tt; 
-    struct tm* ti; 
-    time(&tt); 
-    ti = localtime(&tt);
-    string myString = asctime(ti);
-    myString = myString.substr(0, myString.find_last_not_of(" \t\n\r") + 1); 
-    return myString; 
+    auto now = std::chrono::system_clock::now();
+
+    auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()) % 1000;
+    auto timestamp = std::chrono::system_clock::to_time_t(now);
+
+    std::stringstream ss;
+    ss << std::put_time(std::localtime(&timestamp), "%Y-%b-%d %H:%M:%S") << '.' << std::setfill('0') << std::setw(3) << ms.count();
+
+    return ss.str();
 }
 
 void RouteRegistration::set_moving_state(MovingState moving_state)
@@ -84,17 +88,19 @@ void RouteRegistration::set_register_enabled_true()
     create_route_file("Route_No_1");
 }
 
-int RouteRegistration::extract_the_seconds_between_two_commands(string command_1, string command_2)
+int RouteRegistration::extract_the_miliseconds_between_two_commands(string command_1, string command_2)
 {
-    string minutes_1 = command_1.substr(14,2);
-    string minutes_2 = command_2.substr(14,2);
-    string seconds_1 = command_1.substr(17,2);
-    string seconds_2 = command_2.substr(17,2);
-    //cout << "Command 1: Minutes: " << minutes_1 << " and seconds: " << seconds_1 << endl;
-    //cout << "Command 2: Minutes: " << minutes_2 << " and seconds: " << seconds_2 << endl;
-    int difference_in_seconds = (stoi(minutes_2) - stoi(minutes_1)) * 60 + (stoi(seconds_2) - stoi(seconds_1));
-    //cout << "Difference in seconds between first and second command: " << difference_in_seconds << endl;
-    return difference_in_seconds;
+    string minutes_1 = command_1.substr(15,2);
+    string minutes_2 = command_2.substr(15,2);
+    string seconds_1 = command_1.substr(18,2);
+    string seconds_2 = command_2.substr(18,2);
+    string miliseconds_1 = command_1.substr(21,3);
+    string miliseconds_2 = command_2.substr(21,3);
+    // cout << "Command 1: M: " << minutes_1 << ", s: " << seconds_1 << ", ms: " << miliseconds_1 << endl;
+    // cout << "Command 2: M: " << minutes_2 << ", s: " << seconds_2 << ", ms: " << miliseconds_2 << endl;
+    int difference_in_miliseconds = (stoi(minutes_2) - stoi(minutes_1)) * 60 * 1000 + (stoi(seconds_2) - stoi(seconds_1)) * 1000 + (stoi(miliseconds_2) - stoi(miliseconds_1));
+    // cout << "Difference in miliseconds between first and second command: " << difference_in_miliseconds << endl;
+    return difference_in_miliseconds;
 }
 
 void RouteRegistration::create_record_for_route()
@@ -110,9 +116,9 @@ void RouteRegistration::create_record_for_route()
 
         while (getline(Route_File,line))
         {
-            int duration_in_seconds = extract_the_seconds_between_two_commands(prev_line, line);
+            int duration_in_miliseconds = extract_the_miliseconds_between_two_commands(prev_line, line);
             Record_File << prev_line.substr(28) << endl;
-            Record_File << duration_in_seconds << endl;
+            Record_File << duration_in_miliseconds << endl;
             prev_line = line;
         }
 
@@ -150,6 +156,39 @@ void RouteRegistration::delete_duplicate_line_commands()
 
         Route_File.close();
     }
+}
+
+int main()
+{
+    RouteRegistration routeRegistration = RouteRegistration();
+
+    routeRegistration.set_register_enabled_true();
+
+    routeRegistration.register_current_move("forward", 10);
+
+    routeRegistration.register_current_move("forward", 10);
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000 * 3));
+
+    routeRegistration.register_current_move("stop");
+
+    routeRegistration.register_current_move("backward", 10);
+
+    routeRegistration.register_current_move("set_dir_servo_angle", 10);
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+    routeRegistration.register_current_move("set_cam_pan_angle", 80);
+
+    routeRegistration.register_current_move("set_camera_tilt_angle", 80);
+
+    routeRegistration.delete_duplicate_line_commands();
+
+    routeRegistration.create_record_for_route();
+
+
+    
+    return 0;
 }
 
 

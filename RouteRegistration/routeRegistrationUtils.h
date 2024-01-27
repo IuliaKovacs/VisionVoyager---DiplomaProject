@@ -31,7 +31,7 @@ public:
     string get_current_timestamp();
     void set_moving_state(MovingState moving_state);
     bool create_route_file(string route_name);
-    int extract_the_seconds_between_two_commands(string command_1, string command_2);
+    int extract_the_miliseconds_between_two_commands(string command_1, string command_2);
     void register_current_move(string move_name, optional<int> arg_value = nullopt);
     void register_speed_change(int new_speed);
     void delete_duplicate_line_commands(); 
