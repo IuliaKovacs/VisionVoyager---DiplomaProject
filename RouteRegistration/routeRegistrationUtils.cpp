@@ -3,8 +3,6 @@
 #include <iostream> 
 #include <fstream>
 #include <optional>
-/* for testing purpose*/
-#include<unistd.h>  
 
 
 using namespace std; 
@@ -13,6 +11,7 @@ using namespace std;
 RouteRegistration::RouteRegistration()
 {
     this->register_enabled = REGISTRATION_DISABLED;
+    moving_state = MovingState::STATIONARY;
 }
 
 string RouteRegistration::get_current_timestamp()
@@ -24,6 +23,11 @@ string RouteRegistration::get_current_timestamp()
     string myString = asctime(ti);
     myString = myString.substr(0, myString.find_last_not_of(" \t\n\r") + 1); 
     return myString; 
+}
+
+void RouteRegistration::set_moving_state(MovingState moving_state)
+{
+    this->moving_state = moving_state;
 }
 
 bool RouteRegistration::create_route_file(string route_name)
@@ -39,6 +43,8 @@ bool RouteRegistration::create_route_file(string route_name)
 void RouteRegistration::end_registration()
 {   
     register_current_move("stop");
+    delete_duplicate_line_commands();
+    create_record_for_route();
     this->register_enabled = REGISTRATION_DISABLED;
 }
 
@@ -60,10 +66,22 @@ void RouteRegistration::register_current_move(string move_name, optional<int> ar
     Route_File.close();
 }
 
+void RouteRegistration::register_speed_change(int new_speed)
+{
+    if (this->moving_state == MovingState::MOVING_FORWARD)
+    {
+        register_current_move("forward", new_speed);
+    }
+    else if (this->moving_state == MovingState::REVERSING)
+    {
+        register_current_move("backward", new_speed);
+    }
+}
 
 void RouteRegistration::set_register_enabled_true()
 {   
     this->register_enabled = REGISTRATION_ENABLED;
+    create_route_file("Route_No_1");
 }
 
 int RouteRegistration::extract_the_seconds_between_two_commands(string command_1, string command_2)
@@ -97,6 +115,9 @@ void RouteRegistration::create_record_for_route()
             Record_File << duration_in_seconds << endl;
             prev_line = line;
         }
+
+        Record_File << prev_line.substr(28) << endl;
+
         Route_File.close();
     }
 }
@@ -132,36 +153,3 @@ void RouteRegistration::delete_duplicate_line_commands()
 }
 
 
-/* function for test only */
-int main() 
-{ 
-    RouteRegistration routeRegistration = RouteRegistration();
-
-    routeRegistration.create_route_file("Route_No_1");
-
-    routeRegistration.set_register_enabled_true();
-
-    routeRegistration.register_current_move("forward", 10);
-
-    routeRegistration.register_current_move("forward", 10);
-
-    sleep(3);
-
-    routeRegistration.register_current_move("stop");
-
-    routeRegistration.register_current_move("backward", 10);
-
-    routeRegistration.register_current_move("set_dir_servo_angle", 10);
-
-    sleep(3);
-
-    routeRegistration.register_current_move("set_cam_pan_angle", 80);
-
-    routeRegistration.register_current_move("set_camera_tilt_angle", 80);
-
-    routeRegistration.delete_duplicate_line_commands();
-
-    routeRegistration.create_record_for_route();
-
-    return 0; 
-}

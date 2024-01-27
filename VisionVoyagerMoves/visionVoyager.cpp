@@ -11,7 +11,27 @@ VisionVoyager::VisionVoyager()
     this->dir_angle = DEFAULT_WHEEL_ANGLE;
     this->camera_tilt_angle = DEFAULT_TILT_ANGLE;
     this->camera_pan_angle = DEFAULT_PAN_ANGLE;
-    // initialize_python_embedding();
+    initialize_python_embedding();
+}
+
+int VisionVoyager::get_speed()
+{
+    return this->speed;
+}
+
+int VisionVoyager::get_dir_angle()
+{
+    return this->dir_angle;
+}
+
+int VisionVoyager::get_camera_pan_angle()
+{
+    return this->camera_pan_angle;
+}
+
+int VisionVoyager::get_camera_tilt_angle()
+{
+    return this->camera_tilt_angle;
 }
 
 void VisionVoyager::initialize_python_embedding()
