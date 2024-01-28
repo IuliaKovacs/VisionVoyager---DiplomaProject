@@ -1,3 +1,6 @@
+#ifndef ROUTE_REGISTRATION_UTILS
+#define ROUTE_REGISTRATION_UTILS
+
 #include <string>
 #include <vector>
 #include <optional>
@@ -18,24 +21,25 @@ enum class MovingState {
 
 class RouteRegistration
 {
-    bool register_enabled;
-    vector<string> route_names;  
-    /* vector<string> route_file_names; */  
-    /* @ToDo convention that the file name uses route_name with suffix .txt (?) */
-    string current_route_name;
-    MovingState moving_state;
-    
-public:
+    static bool register_enabled;
+    static string route_database_directory_path;
+    static vector<string> route_names;  
+    static string current_route_name;
+    static MovingState moving_state;
+    static string get_current_timestamp();
+    static bool create_route_file(string route_name);
+    static int extract_the_miliseconds_between_two_commands(string command_1, string command_2);
+    static void delete_duplicate_line_commands(); 
+    static void create_record_for_route(); 
 
+public:
     RouteRegistration();
-    string get_current_timestamp();
-    void set_moving_state(MovingState moving_state);
-    bool create_route_file(string route_name);
-    int extract_the_miliseconds_between_two_commands(string command_1, string command_2);
-    void register_current_move(string move_name, optional<int> arg_value = nullopt);
-    void register_speed_change(int new_speed);
-    void delete_duplicate_line_commands(); 
-    void create_record_for_route(); 
-    void end_registration();
-    void set_register_enabled_true();
+    static void set_moving_state(MovingState moving_state);
+    static void set_register_enabled_true();
+    static void register_current_move(string move_name, optional<int> arg_value = nullopt);
+    static void register_speed_change(int new_speed);
+    static void end_registration();
+ 
 };
+
+#endif  // ROUTE_REGISTRATION_UTILS

@@ -1,4 +1,3 @@
-
 #include "visionVoyager.h"
 
 namespace py = pybind11;
@@ -12,6 +11,29 @@ VisionVoyager::VisionVoyager()
     this->camera_tilt_angle = DEFAULT_TILT_ANGLE;
     this->camera_pan_angle = DEFAULT_PAN_ANGLE;
     initialize_python_embedding();
+}
+
+void VisionVoyager::set_speed(int new_speed)
+{
+    this->speed = new_speed;
+}
+
+void VisionVoyager::set_dir_angle(int new_dir_angle)
+{
+    this->dir_angle = new_dir_angle;
+    picar_python_object.attr("set_dir_servo_angle")(this->dir_angle);
+}
+
+void VisionVoyager::set_camera_tilt_angle(int new_camera_tilt_angle)
+{
+    this->camera_tilt_angle = new_camera_tilt_angle;
+    picar_python_object.attr("set_camera_tilt_angle")(this->camera_tilt_angle);
+}
+
+void VisionVoyager::set_cam_pan_angle(int new_camera_pan_angle)
+{
+    this->camera_pan_angle = new_camera_pan_angle;
+    picar_python_object.attr("set_cam_pan_angle")(this->camera_pan_angle);
 }
 
 int VisionVoyager::get_speed()
@@ -185,3 +207,4 @@ void VisionVoyager::take_photo()
 {
     /* @ToDo */
 }
+

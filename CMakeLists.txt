@@ -10,9 +10,9 @@ find_package(pybind11 REQUIRED)
 
 add_subdirectory(VisionVoyagerMoves)
 add_subdirectory(RouteRegistration)
-
+add_subdirectory(RouteRecordPlayer)
 
 add_executable(VisionVoyager mainApplication.cpp)
-target_link_libraries(VisionVoyager PRIVATE pybind11::embed curses VisionVoyagerMoves RouteRegistration)
+target_link_libraries(VisionVoyager PRIVATE pybind11::embed curses VisionVoyagerMoves RouteRegistration RouteRecordPlayer)
 
 # target_compile_definitions(VisionVoyager PRIVATE DEBUG)

@@ -5,15 +5,21 @@
 #include <chrono>
 #include <iomanip>
 #include <thread>
-
+#include <cstdio>
 
 using namespace std; 
 
 
+bool RouteRegistration::register_enabled = REGISTRATION_DISABLED;
+MovingState RouteRegistration::moving_state = MovingState::STATIONARY;
+string RouteRegistration::route_database_directory_path = "../RouteDatabase/";
+vector<string> RouteRegistration::route_names; 
+string RouteRegistration::current_route_name = "";
+
+
 RouteRegistration::RouteRegistration()
 {
-    this->register_enabled = REGISTRATION_DISABLED;
-    moving_state = MovingState::STATIONARY;
+    
 }
 
 string RouteRegistration::get_current_timestamp()
@@ -31,14 +37,14 @@ string RouteRegistration::get_current_timestamp()
 
 void RouteRegistration::set_moving_state(MovingState moving_state)
 {
-    this->moving_state = moving_state;
+    moving_state = moving_state;
 }
 
 bool RouteRegistration::create_route_file(string route_name)
 {   
-    this->current_route_name = route_name;
-    this->route_names.push_back(route_name);
-    ofstream Route_File(route_name + ".txt");
+    current_route_name = route_name;
+    route_names.push_back(route_name);
+    ofstream Route_File(route_database_directory_path + route_name + ".txt");
     Route_File.close();
     return true;
 }
@@ -49,14 +55,16 @@ void RouteRegistration::end_registration()
     register_current_move("stop");
     delete_duplicate_line_commands();
     create_record_for_route();
-    this->register_enabled = REGISTRATION_DISABLED;
+    register_enabled = REGISTRATION_DISABLED;
+    string auxFilePath = route_database_directory_path + "optimized_" + current_route_name + ".txt";
+    remove(auxFilePath.c_str());
 }
 
 
 void RouteRegistration::register_current_move(string move_name, optional<int> arg_value)
 {
     ofstream Route_File;
-    Route_File.open(this->current_route_name + ".txt", ios_base::app);
+    Route_File.open(route_database_directory_path + current_route_name + ".txt", ios_base::app);
 
     if (arg_value) 
     {
@@ -72,11 +80,11 @@ void RouteRegistration::register_current_move(string move_name, optional<int> ar
 
 void RouteRegistration::register_speed_change(int new_speed)
 {
-    if (this->moving_state == MovingState::MOVING_FORWARD)
+    if (moving_state == MovingState::MOVING_FORWARD)
     {
         register_current_move("forward", new_speed);
     }
-    else if (this->moving_state == MovingState::REVERSING)
+    else if (moving_state == MovingState::REVERSING)
     {
         register_current_move("backward", new_speed);
     }
@@ -84,7 +92,9 @@ void RouteRegistration::register_speed_change(int new_speed)
 
 void RouteRegistration::set_register_enabled_true()
 {   
-    this->register_enabled = REGISTRATION_ENABLED;
+    register_enabled = REGISTRATION_ENABLED;
+    string auxFilePath = route_database_directory_path + current_route_name + ".txt";
+    remove(auxFilePath.c_str());
     create_route_file("Route_No_1");
 }
 
@@ -106,9 +116,11 @@ int RouteRegistration::extract_the_miliseconds_between_two_commands(string comma
 void RouteRegistration::create_record_for_route()
 {
     string line, prev_line;
-    ifstream Route_File("optimized_" + current_route_name + ".txt");
+    ifstream Route_File(route_database_directory_path + "optimized_" + current_route_name + ".txt");
+    string record_name = route_database_directory_path + "record_" + current_route_name + ".txt";
+    remove(record_name.c_str()); 
     ofstream Record_File;
-    Record_File.open("record_" + current_route_name + ".txt", ios_base::trunc);
+    Record_File.open(route_database_directory_path + "record_" + current_route_name + ".txt", ios_base::trunc);
 
     if (Route_File.is_open())
     {
@@ -131,9 +143,9 @@ void RouteRegistration::create_record_for_route()
 void RouteRegistration::delete_duplicate_line_commands()
 {
     string line, prev_line;
-    ifstream Route_File(current_route_name + ".txt");
+    ifstream Route_File(route_database_directory_path + current_route_name + ".txt");
     ofstream Optimized_File;
-    Optimized_File.open("optimized_" + current_route_name + ".txt", ios_base::trunc);
+    Optimized_File.open(route_database_directory_path + "optimized_" + current_route_name + ".txt", ios_base::trunc);
 
     if (Route_File.is_open())
     {
@@ -157,38 +169,3 @@ void RouteRegistration::delete_duplicate_line_commands()
         Route_File.close();
     }
 }
-
-int main()
-{
-    RouteRegistration routeRegistration = RouteRegistration();
-
-    routeRegistration.set_register_enabled_true();
-
-    routeRegistration.register_current_move("forward", 10);
-
-    routeRegistration.register_current_move("forward", 10);
-
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000 * 3));
-
-    routeRegistration.register_current_move("stop");
-
-    routeRegistration.register_current_move("backward", 10);
-
-    routeRegistration.register_current_move("set_dir_servo_angle", 10);
-
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-
-    routeRegistration.register_current_move("set_cam_pan_angle", 80);
-
-    routeRegistration.register_current_move("set_camera_tilt_angle", 80);
-
-    routeRegistration.delete_duplicate_line_commands();
-
-    routeRegistration.create_record_for_route();
-
-
-    
-    return 0;
-}
-
-
