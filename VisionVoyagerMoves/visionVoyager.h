@@ -38,7 +38,16 @@ class VisionVoyager
     void initialize_python_embedding();
 public:
 
-    VisionVoyager();
+	VisionVoyager();
+    void set_picar_python_object(py::object picar_python_object);
+    void set_speed(int new_speed);
+    void set_dir_angle(int new_dir_angle);
+    void set_camera_tilt_angle(int new_camera_tilt_angle);
+    void set_cam_pan_angle(int new_camera_pan_angle);
+    int get_speed();
+    int get_dir_angle();
+    int get_camera_tilt_angle();
+    int get_camera_pan_angle();
     void move_forward();
     void move_backward();
     void turn_left_one_degree();
@@ -46,7 +55,6 @@ public:
     void turn_left_max();
     void turn_right_max();
     void stop();
-    void set_picar_python_object(py::object picar_python_object);
     void camera_pan_left_one_degree();
     void camera_pan_right_one_degree();
     void camera_pan_left_max();
