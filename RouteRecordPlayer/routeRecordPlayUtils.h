@@ -18,8 +18,8 @@ class RouteRecordPlayer
 
 public:
     static void setRobot(VisionVoyager* robot);
-    static void display_routes();
-    static void play_route(string route_name);    
+    static void play_route(string route_name);  
+
 };
 
 #endif //ROUTE_RECORD_PLAY_UTILS

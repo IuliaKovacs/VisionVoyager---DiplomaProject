@@ -17,6 +17,7 @@ void initilize_main_app()
     /* Enables keypad input for the standard screen */
     keypad(stdscr, TRUE); 
 
+    RouteRegistration::initialize_route_registration();
 }
 
 
@@ -51,6 +52,7 @@ int main()
 
     VisionVoyager robot = VisionVoyager();
     RouteRecordPlayer::setRobot(&robot);
+    
 
     int key;
     int loop_on = 1;    

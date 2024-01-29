@@ -1,8 +1,10 @@
 #include "routeRecordPlayUtils.h"
+#include "../RouteRegistration/routeRegistrationUtils.h"
 #include <fstream>
 #include <iostream>
 #include <thread>
 #include <chrono>
+
 
 VisionVoyager* RouteRecordPlayer::robotVisionVoyager = nullptr;
 
@@ -19,12 +21,6 @@ string RouteRecordPlayer::extract_command_name(string command)
 string RouteRecordPlayer::extract_command_argument(string command)
 {
     return command.substr(command.find('(') + 1, command.find(')'));
-}
-
-void RouteRecordPlayer::display_routes()
-{
-    //here should be displayed all the recorded routes
-    //the user will choose a route to play
 }
 
 void RouteRecordPlayer::play_command(string command_name, optional<int> command_arg)
@@ -121,3 +117,6 @@ void RouteRecordPlayer::play_route(string route_name)
         }
     }
 }
+
+
+

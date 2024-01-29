@@ -6,7 +6,10 @@
 #include <iomanip>
 #include <thread>
 #include <cstdio>
+#include <filesystem>
 
+
+namespace fs = std::filesystem;
 using namespace std; 
 
 
@@ -40,11 +43,14 @@ void RouteRegistration::set_moving_state(MovingState moving_state)
     moving_state = moving_state;
 }
 
-bool RouteRegistration::create_route_file(string route_name)
+string RouteRegistration::get_route_database_directory_path()
+{
+    return route_database_directory_path;
+}
+
+bool RouteRegistration::create_route_file()
 {   
-    current_route_name = route_name;
-    route_names.push_back(route_name);
-    ofstream Route_File(route_database_directory_path + route_name + ".txt");
+    ofstream Route_File(route_database_directory_path + current_route_name + ".txt");
     Route_File.close();
     return true;
 }
@@ -58,44 +64,80 @@ void RouteRegistration::end_registration()
     register_enabled = REGISTRATION_DISABLED;
     string auxFilePath = route_database_directory_path + "optimized_" + current_route_name + ".txt";
     remove(auxFilePath.c_str());
+    size_t foundPos = current_route_name.find("Route_No_");
+    
+    /* moving the timestamp file to another directory to keep the date and day history */
+    string sourcePath = route_database_directory_path + current_route_name + ".txt";
+    string destinationPath = route_database_directory_path + TIMESTAMP_HISTORY + current_route_name + ".txt";
+
+    if (rename(sourcePath.c_str(), destinationPath.c_str()) == 0) 
+    {
+        /* Do nothing */
+    } else 
+    {
+        throw std::runtime_error("Error moving file");
+    }
+
+    /* preparing for the next route record */
+    int aux = 0;
+    if (foundPos != std::string::npos) 
+    {
+        aux = stoi(current_route_name.substr(foundPos + 9));
+    }
+    else
+    {
+        throw std::runtime_error("There was an error in the naming of the route!");
+    }
+    aux++;
+    current_route_name = "Route_No_" + std::to_string(aux);
+    
 }
 
 
 void RouteRegistration::register_current_move(string move_name, optional<int> arg_value)
-{
-    ofstream Route_File;
-    Route_File.open(route_database_directory_path + current_route_name + ".txt", ios_base::app);
-
-    if (arg_value) 
+{   
+    if (register_enabled == false)
     {
-        Route_File << get_current_timestamp() + " -> " + move_name + "(" << arg_value.value() << ")" << endl;   
-    }          
-    else
-    {
-        Route_File << get_current_timestamp() + " -> " + move_name + "(" + ")" << endl;
+        return;
     }
-            
-    Route_File.close();
+
+    if (register_enabled == true)
+    {
+        ofstream Route_File;
+        Route_File.open(route_database_directory_path + current_route_name + ".txt", ios_base::app);
+
+        if (arg_value) 
+        {
+            Route_File << get_current_timestamp() + " -> " + move_name + "(" << arg_value.value() << ")" << endl;   
+        }          
+        else
+        {
+            Route_File << get_current_timestamp() + " -> " + move_name + "(" + ")" << endl;
+        }
+                
+        Route_File.close();
+    }
 }
 
 void RouteRegistration::register_speed_change(int new_speed)
 {
-    if (moving_state == MovingState::MOVING_FORWARD)
+    if (register_enabled == true)
     {
-        register_current_move("forward", new_speed);
-    }
-    else if (moving_state == MovingState::REVERSING)
-    {
-        register_current_move("backward", new_speed);
+        if (moving_state == MovingState::MOVING_FORWARD)
+        {
+            register_current_move("forward", new_speed);
+        }
+        else if (moving_state == MovingState::REVERSING)
+        {
+            register_current_move("backward", new_speed);
+        }
     }
 }
 
 void RouteRegistration::set_register_enabled_true()
 {   
     register_enabled = REGISTRATION_ENABLED;
-    string auxFilePath = route_database_directory_path + current_route_name + ".txt";
-    remove(auxFilePath.c_str());
-    create_route_file("Route_No_1");
+    create_route_file();
 }
 
 int RouteRegistration::extract_the_miliseconds_between_two_commands(string command_1, string command_2)
@@ -168,4 +210,57 @@ void RouteRegistration::delete_duplicate_line_commands()
 
         Route_File.close();
     }
+}
+
+
+void RouteRegistration::prepare_route_names()
+{
+    for (const auto & entry_file : fs::directory_iterator(route_database_directory_path))
+    {   
+        if (!fs::is_directory(entry_file.path()))
+        {
+            string aux_route_name = entry_file.path().filename().string();
+            aux_route_name.erase(aux_route_name.find(".txt"),4);
+            route_names.push_back(aux_route_name);
+        } 
+    }  
+}
+
+void RouteRegistration::display_possible_routes()
+{
+    for (auto route : route_names)
+    {
+        cout << route << endl;
+    }   
+}
+
+void RouteRegistration::initialize_route_registration()
+{
+    prepare_route_names();
+    current_route_name = compute_new_route_name();
+}
+
+string RouteRegistration::compute_new_route_name()
+{   
+    int max_no = 0, aux = 0;
+
+    for (auto route : route_names)
+    {
+        /* by default the route names will follow this convention "Route_No_x" where 'x' is the actual number */
+        /* the actual file/record that will have the possibility to be read and "played" will have the following name "record_Route_No_x" */
+        size_t foundPos = route.find("Route_No_");
+
+        if (foundPos != std::string::npos) {
+            aux = stoi(route.substr(foundPos + 9));
+        }
+
+        if (aux > max_no)
+        {
+            max_no = aux;
+        }
+    }  
+
+    max_no++;
+    string next_name = "Route_No_" + std::to_string(max_no);
+    return next_name;
 }
