@@ -1,6 +1,8 @@
 #include "VisionVoyagerMoves/visionVoyager.h"
 #include "RouteRegistration/routeRegistrationUtils.h"
+#include "RouteRecordPlayer/routeRecordPlayUtils.h"
 #include "KeyboardControl/keyboardControl.h"
+#include "LineFollower/lineFollower.h"
 #include <pybind11/embed.h>
 #include <pybind11/pybind11.h>
 
@@ -27,8 +29,11 @@ int main()
     VisionVoyager robot = VisionVoyager();
     RouteRecordPlayer::setRobot(&robot);
     KeyboardControl::setRobot(&robot);
-    
-    KeyboardControl::keyboard_listening_loop();
+    LineFollower::setRobot(&robot);
+
+    // KeyboardControl::keyboard_listening_loop();
+
+    LineFollower::follow_line();
 
 
     terminate_main_app();

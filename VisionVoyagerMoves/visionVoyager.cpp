@@ -208,3 +208,24 @@ void VisionVoyager::take_photo()
     /* @ToDo */
 }
 
+
+vector<int> VisionVoyager::read_grayscale_data()
+{
+    py::list py_result = this->picar_python_object.attr("get_grayscale_data")();
+    py::list py_list = py_result.cast<py::list>();
+    vector<int> grayscale_data = map_python_list_cpp_vector(py_list);
+    // py::print("Grayscale Data:", result);
+    return grayscale_data;
+}
+
+
+vector<int> VisionVoyager::map_python_list_cpp_vector(py::list py_list) 
+{
+    vector<int> cpp_vector;
+
+    for (const auto& item : py_list) {
+        cpp_vector.push_back(py::cast<int>(item));
+    }
+
+    return cpp_vector;
+}
