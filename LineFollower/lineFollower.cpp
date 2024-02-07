@@ -1,4 +1,5 @@
 #include "lineFollower.h"
+#include "../RouteRegistration/routeRegistrationUtils.h"
 
 using namespace std;
 
@@ -42,12 +43,16 @@ void LineFollower::follow_line()
         if (verify_is_in_air())
         {
             robotVisionVoyager->stop();
+            RouteRegistration::set_moving_state(MovingState::STATIONARY);
+            RouteRegistration::end_registration();
             break;
         }     
 
         cout << stop_counter << endl;
         if (verify_stop_condition())
-        {
+        {   
+            RouteRegistration::set_moving_state(MovingState::STATIONARY);
+            RouteRegistration::end_registration();
             break;
         }
 
@@ -89,6 +94,8 @@ void LineFollower::search_line()
     if (verify_is_in_air())
     {
         robotVisionVoyager->stop();
+        RouteRegistration::register_current_move("stop");
+        RouteRegistration::set_moving_state(MovingState::STATIONARY);
     }
 
     if (last_state == State::LEFT)
@@ -96,12 +103,14 @@ void LineFollower::search_line()
         robotVisionVoyager->turn_right_max();
         /* search right */
         robotVisionVoyager->move_forward();
+        RouteRegistration::register_current_move("set_dir_servo_angle", robotVisionVoyager->get_dir_angle());
     }
     else if (last_state == State::RIGHT)
     {
         robotVisionVoyager->turn_left_max();
         /* search left */
         robotVisionVoyager->move_forward();
+        RouteRegistration::register_current_move("set_dir_servo_angle", robotVisionVoyager->get_dir_angle());
     }
         
 }
@@ -158,16 +167,20 @@ void LineFollower::execute_move(State current_state)
     {
         robotVisionVoyager->turn_right_max();
         robotVisionVoyager->move_forward();
+        RouteRegistration::register_current_move("set_dir_servo_angle", robotVisionVoyager->get_dir_angle());
     }
     else if (current_state == State::RIGHT)
     {
         robotVisionVoyager->turn_left_max();
         robotVisionVoyager->move_forward();
+        RouteRegistration::register_current_move("set_dir_servo_angle", robotVisionVoyager->get_dir_angle());
     }
     else if (current_state == State::FORWARD)
     {
         robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
         robotVisionVoyager->move_forward();
+        RouteRegistration::register_current_move("forward", robotVisionVoyager->get_speed());
+        RouteRegistration::set_moving_state(MovingState::MOVING_FORWARD);
     }
     else
     {
