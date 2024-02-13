@@ -4,6 +4,8 @@
 #include <pybind11/embed.h>
 #include <pybind11/pybind11.h>
 #include <iostream>
+#include <vector>
+
 
 #ifdef DEBUG
 #define DEBUG_MSG(str) do { std::cout << str << std::endl; } while( false )
@@ -23,7 +25,7 @@
 #define CAM_TILT_MIN -35
 #define CAM_TILT_MAX 65
 
-
+using namespace std;
 namespace py = pybind11;
 
 class VisionVoyager
@@ -36,6 +38,7 @@ class VisionVoyager
     int camera_tilt_angle;
     int camera_pan_angle;
     void initialize_python_embedding();
+    vector<int> map_python_list_cpp_vector(py::list py_list);
 public:
 
 	VisionVoyager();
@@ -66,6 +69,7 @@ public:
     void take_photo();
     void speed_up();
     void speed_down();
+    vector<int> read_grayscale_data();
 };
 
 
