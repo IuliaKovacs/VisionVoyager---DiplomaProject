@@ -36,6 +36,7 @@ void LineFollower::follow_line()
     State current_state = State::UNKNOWN;
     /* center direction servo before starting */
     robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
+    RouteRegistration::register_current_move("set_dir_servo_angle", robotVisionVoyager->get_dir_angle());
     robotVisionVoyager->set_speed(1);
 
     while(true)
@@ -80,6 +81,7 @@ bool LineFollower::verify_stop_condition()
     if (stop_counter >= STOP_VALUE)
     {
         robotVisionVoyager->stop();
+        RouteRegistration::register_current_move("stop");
         return true;
     }    
     else
@@ -178,6 +180,7 @@ void LineFollower::execute_move(State current_state)
     else if (current_state == State::FORWARD)
     {
         robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
+        RouteRegistration::register_current_move("set_dir_servo_angle", robotVisionVoyager->get_dir_angle());
         robotVisionVoyager->move_forward();
         RouteRegistration::register_current_move("forward", robotVisionVoyager->get_speed());
         RouteRegistration::set_moving_state(MovingState::MOVING_FORWARD);

@@ -31,10 +31,13 @@ int main()
     KeyboardControl::setRobot(&robot);
     LineFollower::setRobot(&robot);
 
-    // KeyboardControl::keyboard_listening_loop();
+    RouteRegistration::set_register_enabled_true();
 
     LineFollower::follow_line();
 
+    robot.stop();
+
+    KeyboardControl::keyboard_listening_loop();
 
     terminate_main_app();
 
