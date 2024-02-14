@@ -13,6 +13,8 @@ add_subdirectory(RouteRegistration)
 add_subdirectory(RouteRecordPlayer)
 add_subdirectory(KeyboardControl)
 add_subdirectory(LineFollower)
+add_subdirectory(ObstacleAvoidance)
+
 
 add_executable(VisionVoyager mainApplication.cpp)
 target_link_libraries(VisionVoyager PRIVATE pybind11::embed 
@@ -21,6 +23,7 @@ target_link_libraries(VisionVoyager PRIVATE pybind11::embed
                                             RouteRegistration 
                                             RouteRecordPlayer 
                                             KeyboardControl
-                                            LineFollower)
+                                            LineFollower
+                                            ObstacleAvoidance)
 
 # target_compile_definitions(VisionVoyager PRIVATE DEBUG)

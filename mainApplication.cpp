@@ -31,13 +31,25 @@ int main()
     KeyboardControl::setRobot(&robot);
     LineFollower::setRobot(&robot);
 
-    RouteRegistration::set_register_enabled_true();
+    // RouteRegistration::set_register_enabled_true();
 
-    LineFollower::follow_line();
+    // LineFollower::follow_line();
 
-    robot.stop();
+    // robot.stop();
 
-    KeyboardControl::keyboard_listening_loop();
+    // KeyboardControl::keyboard_listening_loop();
+    
+    int i = 0;
+
+    while(true)
+    {   
+        i++;
+        robot.read_ultrasonic_data();
+        if (i == 1000)
+        {
+            break;
+        }
+    }
 
     terminate_main_app();
 
