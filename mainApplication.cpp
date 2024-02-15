@@ -3,10 +3,13 @@
 #include "RouteRecordPlayer/routeRecordPlayUtils.h"
 #include "KeyboardControl/keyboardControl.h"
 #include "LineFollower/lineFollower.h"
+#include "ObstacleAvoidance/obstacleAvoidanceUtils.h"
 #include <pybind11/embed.h>
 #include <pybind11/pybind11.h>
 
+
 using namespace std;
+
 
 void initilize_main_app()
 {   
@@ -30,6 +33,8 @@ int main()
     RouteRecordPlayer::setRobot(&robot);
     KeyboardControl::setRobot(&robot);
     LineFollower::setRobot(&robot);
+    ObstacleAvoidance::setRobot(&robot);
+    
 
     // RouteRegistration::set_register_enabled_true();
 
@@ -39,17 +44,7 @@ int main()
 
     // KeyboardControl::keyboard_listening_loop();
     
-    int i = 0;
-
-    while(true)
-    {   
-        i++;
-        robot.read_ultrasonic_data();
-        if (i == 1000)
-        {
-            break;
-        }
-    }
+    ObstacleAvoidance::avoid_simple_obstacle();
 
     terminate_main_app();
 
