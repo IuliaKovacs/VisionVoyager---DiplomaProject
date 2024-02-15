@@ -23,13 +23,15 @@ class ObstacleAvoidance
     static VisionVoyager* robotVisionVoyager;
     static float ultrasonic_data;
     // static Direction choose_avoiding_side(); 
+    static void reverse_route(string route_name);
 
 public:
 
     static void setRobot(VisionVoyager* robot);
     static void get_ultrasonic_data();
-    static void avoid_simple_obstacle();
-    static void reverse_route(string route_name);
+    static void avoid_simple_obstacle_right_side();
+    static void avoid_simple_obstacle_left_side();
+    
 
 };
 

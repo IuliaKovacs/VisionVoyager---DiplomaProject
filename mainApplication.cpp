@@ -44,7 +44,7 @@ int main()
 
     // KeyboardControl::keyboard_listening_loop();
     
-    ObstacleAvoidance::avoid_simple_obstacle();
+    ObstacleAvoidance::avoid_simple_obstacle_right_side();
 
     terminate_main_app();
 

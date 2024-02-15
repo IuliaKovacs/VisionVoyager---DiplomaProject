@@ -13,7 +13,8 @@
 using namespace std;
 
 
-enum class State {
+enum class State 
+{
     UNKNOWN,
     FORWARD,
     LEFT,

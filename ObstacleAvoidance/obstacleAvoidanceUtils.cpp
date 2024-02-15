@@ -19,7 +19,7 @@ void ObstacleAvoidance::get_ultrasonic_data()
 }
 
 
-void ObstacleAvoidance::avoid_simple_obstacle()
+void ObstacleAvoidance::avoid_simple_obstacle_right_side()
 {
     robotVisionVoyager->move_forward();
 
@@ -32,7 +32,7 @@ void ObstacleAvoidance::avoid_simple_obstacle()
             robotVisionVoyager->turn_right_max();
             this_thread::sleep_for(std::chrono::milliseconds(1393));
             robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
-             this_thread::sleep_for(std::chrono::milliseconds(460));
+            this_thread::sleep_for(std::chrono::milliseconds(460));
             robotVisionVoyager->turn_left_max();
             this_thread::sleep_for(std::chrono::milliseconds(1250));
             robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
@@ -51,9 +51,43 @@ void ObstacleAvoidance::avoid_simple_obstacle()
 
     this_thread::sleep_for(std::chrono::milliseconds(1000)); 
     robotVisionVoyager->stop();
-
 }
 
+
+
+void ObstacleAvoidance::avoid_simple_obstacle_left_side()
+{
+    robotVisionVoyager->move_forward();
+
+    while(true)
+    {   
+        get_ultrasonic_data();
+        cout << ultrasonic_data << "   ";
+        if(DANGER_DISTANCE_THRESHOLD > ultrasonic_data)
+        {
+            robotVisionVoyager->turn_left_max();
+            this_thread::sleep_for(std::chrono::milliseconds(1393));
+            robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
+            this_thread::sleep_for(std::chrono::milliseconds(460));
+            robotVisionVoyager->turn_right_max();
+            this_thread::sleep_for(std::chrono::milliseconds(1250));
+            robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
+            this_thread::sleep_for(std::chrono::milliseconds(1500));
+            robotVisionVoyager->turn_right_max();
+            this_thread::sleep_for(std::chrono::milliseconds(1393));
+            robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
+            this_thread::sleep_for(std::chrono::milliseconds(460));
+            robotVisionVoyager->turn_left_max();
+            this_thread::sleep_for(std::chrono::milliseconds(1250));
+            robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
+
+            break;
+        }
+    }
+
+    this_thread::sleep_for(std::chrono::milliseconds(1000)); 
+    robotVisionVoyager->stop();
+}
 
 
 
