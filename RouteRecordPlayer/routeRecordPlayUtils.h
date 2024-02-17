@@ -4,6 +4,7 @@
 #include <string>
 #include <optional>
 #include "../VisionVoyagerMoves/visionVoyager.h"
+#include "../ObstacleAvoidance/obstacleAvoidanceUtils.h"
 
 using namespace std;
 
@@ -19,7 +20,7 @@ class RouteRecordPlayer
 public:
     static void setRobot(VisionVoyager* robot);
     static void play_route(string route_name);  
-
+	friend void ObstacleAvoidance::return_on_track();
 };
 
 #endif //ROUTE_RECORD_PLAY_UTILS

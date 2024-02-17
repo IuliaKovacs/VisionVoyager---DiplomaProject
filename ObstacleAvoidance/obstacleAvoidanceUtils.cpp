@@ -1,5 +1,7 @@
 
 #include "obstacleAvoidanceUtils.h"
+#include "../RouteRecordPlayer/routeRecordPlayUtils.h"
+
 
 using namespace std;
 
@@ -90,6 +92,69 @@ void ObstacleAvoidance::avoid_simple_obstacle_left_side()
 }
 
 
+
+
+void ObstacleAvoidance::return_on_track()
+{
+    vector<string> lines; 
+    
+    ifstream AvoidanceAux("../ObstacleAvoidance/obstacleAvoidanceAux.txt");
+
+    if (AvoidanceAux.is_open())
+    {
+        string line;
+
+        while(getline(AvoidanceAux, line))
+        {
+            lines.push_back(line);
+        }
+
+        AvoidanceAux.close();
+    }
+    else
+    {
+        cerr << "Unable to open file." << endl;
+    }
+
+    int index = 0;
+
+    while(index < lines.size())
+    {
+        
+        string command_name = RouteRecordPlayer::extract_command_name(lines[index]);
+        string command_arg_aux = RouteRecordPlayer::extract_command_argument(lines[index]);
+        index++;
+        int milliseconds = stoi(lines[index]);
+        index++;
+        int command_arg;
+
+        if (!(command_arg_aux == ")"))
+        {
+            command_arg = stoi(command_arg_aux);
+
+            if (command_arg == DIR_MIN)
+            {
+                command_arg = DIR_MAX;
+            }
+            else if (command_arg == DIR_MAX)
+            {
+                command_arg = DIR_MIN;
+            }
+        }
+        else
+        {
+            /* raise Error */
+        }
+
+        RouteRecordPlayer::play_command(command_name, command_arg);
+        // cout << command_name << "(" << command_arg << ")" << endl;
+        this_thread::sleep_for(std::chrono::milliseconds(milliseconds)); 
+    }
+
+    robotVisionVoyager->stop();
+    
+
+}
 
 
 void ObstacleAvoidance::reverse_route(string route_name)

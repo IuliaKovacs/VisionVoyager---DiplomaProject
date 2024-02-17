@@ -4,6 +4,9 @@
 #include "../VisionVoyagerMoves/visionVoyager.h"
 #include <thread>
 #include <chrono>
+#include <fstream>
+#include <vector>
+#include <string>
 
 #define DANGER_DISTANCE_THRESHOLD 40
 
@@ -31,6 +34,8 @@ public:
     static void get_ultrasonic_data();
     static void avoid_simple_obstacle_right_side();
     static void avoid_simple_obstacle_left_side();
+	/* Function that should compute the moves in order to return back on the route we want to pursue */
+    static void return_on_track();
     
 
 };
