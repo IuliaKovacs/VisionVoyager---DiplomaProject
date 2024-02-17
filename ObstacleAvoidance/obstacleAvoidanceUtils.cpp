@@ -159,5 +159,51 @@ void ObstacleAvoidance::return_on_track()
 
 void ObstacleAvoidance::reverse_route(string route_name)
 {
+    vector<string> lines; 
+    
+    ifstream AvoidanceAux("../ObstacleAvoidance/obstacleAvoidanceAux.txt");
 
+    if (AvoidanceAux.is_open())
+    {
+        string line;
+
+        while(getline(AvoidanceAux, line))
+        {
+            lines.push_back(line);
+        }
+
+        AvoidanceAux.close();
+    }
+    else
+    {
+        cerr << "Unable to open file." << endl;
+    }
+    
+    robotVisionVoyager->move_backward();
+
+    while(!lines.empty())
+    {      
+        int milliseconds = stoi(lines.back());
+        lines.pop_back();
+        string command_name = RouteRecordPlayer::extract_command_name(lines.back());
+        string command_arg_aux = RouteRecordPlayer::extract_command_argument(lines.back());
+        lines.pop_back();
+        int command_arg;
+
+        if (!(command_arg_aux == ")"))
+        {
+            command_arg = stoi(command_arg_aux);
+        }
+
+        if (command_name == "forward")
+        {
+            command_name == "backward";
+        }
+
+        RouteRecordPlayer::play_command(command_name, command_arg);
+        this_thread::sleep_for(std::chrono::milliseconds(milliseconds)); 
+    }
+
+    robotVisionVoyager->stop();
 }
+

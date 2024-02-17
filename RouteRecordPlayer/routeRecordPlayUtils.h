@@ -20,7 +20,8 @@ class RouteRecordPlayer
 public:
     static void setRobot(VisionVoyager* robot);
     static void play_route(string route_name);  
-	friend void ObstacleAvoidance::return_on_track();
+    friend void ObstacleAvoidance::return_on_track();
+    friend void ObstacleAvoidance::reverse_route(string route_name);
 };
 
 #endif //ROUTE_RECORD_PLAY_UTILS
