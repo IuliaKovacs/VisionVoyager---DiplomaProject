@@ -35,23 +35,8 @@ int main()
     LineFollower::setRobot(&robot);
     ObstacleAvoidance::setRobot(&robot);
     
-
-    // RouteRegistration::set_register_enabled_true();
-
-    // LineFollower::follow_line();
-
-    // robot.stop();
-
-    // KeyboardControl::keyboard_listening_loop();
     
-    // ObstacleAvoidance::avoid_simple_obstacle_right_side();
-
-    robot.move_forward();
-    RouteRecordPlayer::play_route("record_Route_No_1");
-    // ObstacleAvoidance::return_on_track();
-
-    // RouteRecordPlayer::play_route("simple_obstacle_avoidance");
-    ObstacleAvoidance::reverse_route("record_Route_No_1");
+    ObstacleAvoidance::choose_avoiding_side();
 
     terminate_main_app();
 
