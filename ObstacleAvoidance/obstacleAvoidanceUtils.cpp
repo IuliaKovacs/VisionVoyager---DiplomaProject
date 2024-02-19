@@ -17,7 +17,6 @@ void ObstacleAvoidance::setRobot(VisionVoyager* robot)
 void ObstacleAvoidance::get_ultrasonic_data()
 {
     ObstacleAvoidance::ultrasonic_data = robotVisionVoyager->read_ultrasonic_data();
-    cout<<ultrasonic_data<<endl;
 }
 
 Direction ObstacleAvoidance::choose_avoiding_side()
@@ -26,32 +25,37 @@ Direction ObstacleAvoidance::choose_avoiding_side()
     this_thread::sleep_for(std::chrono::milliseconds(1000));
     robotVisionVoyager->set_dir_angle(DIR_MAX);
     robotVisionVoyager->move_forward();
-    this_thread::sleep_for(std::chrono::milliseconds(300));
+    this_thread::sleep_for(std::chrono::milliseconds(600));
     robotVisionVoyager->stop();
     get_ultrasonic_data();
+    cout << ultrasonic_data << endl;
+    this_thread::sleep_for(std::chrono::milliseconds(1000));
     robotVisionVoyager->move_backward();
-    this_thread::sleep_for(std::chrono::milliseconds(300));
+    this_thread::sleep_for(std::chrono::milliseconds(900));
     robotVisionVoyager->stop();
     this_thread::sleep_for(std::chrono::milliseconds(200));
     robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
+    
 
-    if (DANGER_DISTANCE_THRESHOLD < ultrasonic_data)
+    if ((DANGER_DISTANCE_THRESHOLD < ultrasonic_data) || (-1 == ultrasonic_data))
     {
         return Direction::RIGHT;
     }
 
     robotVisionVoyager->set_dir_angle(DIR_MIN);
     robotVisionVoyager->move_forward();
-    this_thread::sleep_for(std::chrono::milliseconds(300));
+    this_thread::sleep_for(std::chrono::milliseconds(600));
     robotVisionVoyager->stop();
     get_ultrasonic_data();
+    cout << ultrasonic_data << endl;
+    this_thread::sleep_for(std::chrono::milliseconds(1000));
     robotVisionVoyager->move_backward();
-    this_thread::sleep_for(std::chrono::milliseconds(300));
+    this_thread::sleep_for(std::chrono::milliseconds(900));
     robotVisionVoyager->stop();
     this_thread::sleep_for(std::chrono::milliseconds(200));
     robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
 
-    if (DANGER_DISTANCE_THRESHOLD < ultrasonic_data)
+    if ((DANGER_DISTANCE_THRESHOLD < ultrasonic_data) || (-1 == ultrasonic_data))
     {
         return Direction::LEFT;
     }
@@ -119,11 +123,9 @@ void ObstacleAvoidance::simulate_real_case()
     while(true)
     {
         get_ultrasonic_data();
-        // cout << ultrasonic_data << "   ";
         if(DANGER_DISTANCE_THRESHOLD > ultrasonic_data)
         {
-            // Direction side = choose_avoiding_side();
-            Direction side = Direction::RIGHT;
+            Direction side = choose_avoiding_side();
 
             if (side == Direction::RIGHT)
             {

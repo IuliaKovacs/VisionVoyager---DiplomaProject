@@ -36,7 +36,9 @@ int main()
     ObstacleAvoidance::setRobot(&robot);
     
     
-    ObstacleAvoidance::choose_avoiding_side();
+    ObstacleAvoidance::simulate_real_case();
+    // ObstacleAvoidance::choose_avoiding_side();
+    // ObstacleAvoidance::avoid_simple_obstacle_right_side();
 
     terminate_main_app();
 
