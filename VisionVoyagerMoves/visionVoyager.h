@@ -70,6 +70,7 @@ public:
     void speed_up();
     void speed_down();
     vector<int> read_grayscale_data();
+    float read_ultrasonic_data();
 };
 
 

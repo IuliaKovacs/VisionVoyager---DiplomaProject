@@ -229,3 +229,13 @@ vector<int> VisionVoyager::map_python_list_cpp_vector(py::list py_list)
 
     return cpp_vector;
 }
+
+
+float VisionVoyager::read_ultrasonic_data()
+{
+    py::object ultrasonic = this->picar_python_object.attr("ultrasonic");
+    float ultrasonic_data = ultrasonic.attr("read")().cast<float>();
+    cout << ultrasonic_data << endl;
+    return ultrasonic_data;
+}
+
