@@ -4,8 +4,10 @@
 #include "KeyboardControl/keyboardControl.h"
 #include "LineFollower/lineFollower.h"
 #include "ObstacleAvoidance/obstacleAvoidanceUtils.h"
+#include "CameraModule/cameraModule.h"
 #include <pybind11/embed.h>
 #include <pybind11/pybind11.h>
+
 
 
 using namespace std;
@@ -36,7 +38,7 @@ int main()
     ObstacleAvoidance::setRobot(&robot);
     
     
-    ObstacleAvoidance::simulate_real_case();
+    // ObstacleAvoidance::simulate_real_case();
     // ObstacleAvoidance::choose_avoiding_side();
     // ObstacleAvoidance::avoid_simple_obstacle_right_side();
 
