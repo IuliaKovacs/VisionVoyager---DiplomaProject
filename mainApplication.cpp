@@ -42,6 +42,8 @@ int main()
     // ObstacleAvoidance::choose_avoiding_side();
     // ObstacleAvoidance::avoid_simple_obstacle_right_side();
 
+    CameraModule::display_camera_capture();
+
     terminate_main_app();
 
     return 0;
