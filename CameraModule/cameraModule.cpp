@@ -2,6 +2,12 @@
 #include "cameraModule.h"
 #include <opencv2/opencv.hpp>
 
+int CameraModule::no_of_recognized_subjects = DEFAULT_NO_OF_RECOGNIZED_SUBJECTS;
+
+void CameraModule::initialize_camera_module()
+{
+    no_of_recognized_subjects = count_recognized_subjects();
+}
 
 
 void CameraModule::display_camera_capture()

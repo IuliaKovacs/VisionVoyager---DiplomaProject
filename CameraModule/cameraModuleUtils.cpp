@@ -5,7 +5,6 @@
 namespace fs = std::filesystem;
 using namespace std;
 
-int CameraModule::no_of_recognized_subjects = 1;
 
 bool CameraModule::resize_and_apply_grayscale(const fs::path& input_path, int subject_number)
 {
@@ -54,4 +53,41 @@ bool CameraModule::parse_raw_images_folder()
         }
     }
     return true;
+}
+
+
+
+int CameraModule::count_recognized_subjects()
+{
+    string folder_path = FACES_DATASET_PATH;
+    int count = 0;
+
+    for (const auto& entry : fs::directory_iterator(folder_path)) 
+    {
+        count++;
+    }
+
+    return count;
+}
+
+
+void CameraModule::add_new_recognized_subject()
+{   
+    no_of_recognized_subjects++;
+
+    string folder_path = string(FACES_DATASET_PATH) + "/s" + to_string(no_of_recognized_subjects);
+
+    try 
+    {
+        fs::create_directory(folder_path);
+    } 
+    catch (const std::exception& e) 
+    {
+        cout << "Error in creating subject folder: " << e.what() << endl;
+    }
+
+    if (false == parse_raw_images_folder())
+    {
+        cout << "Error in processing images" << endl;
+    }
 }

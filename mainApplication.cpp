@@ -17,6 +17,7 @@ void initilize_main_app()
 {   
     KeyboardControl::initialize_keyboard_control();
     RouteRegistration::initialize_route_registration();
+    CameraModule::initialize_camera_module();
 }
 
 void terminate_main_app()
@@ -44,10 +45,7 @@ int main()
 
     // CameraModule::display_camera_capture();
 
-    bool res = CameraModule::parse_raw_images_folder();
-    // cout << res << endl;
-    
-
+    CameraModule::add_new_recognized_subject();
 
     terminate_main_app();
 
