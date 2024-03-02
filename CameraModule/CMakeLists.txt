@@ -1,6 +1,7 @@
 set(SOURCES
     cameraModule.cpp
     cameraModule.h
+    cameraModuleUtils.cpp
 )
 
 add_library(CameraModule STATIC ${SOURCES})

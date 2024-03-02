@@ -42,7 +42,12 @@ int main()
     // ObstacleAvoidance::choose_avoiding_side();
     // ObstacleAvoidance::avoid_simple_obstacle_right_side();
 
-    CameraModule::display_camera_capture();
+    // CameraModule::display_camera_capture();
+
+    bool res = CameraModule::resize_and_apply_grayscale("../CameraModule/test_sample.jpg", 1);
+    cout << res << endl;
+    
+
 
     terminate_main_app();
 
