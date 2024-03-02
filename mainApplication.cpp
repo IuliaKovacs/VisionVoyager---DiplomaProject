@@ -45,7 +45,7 @@ int main()
 
     // CameraModule::display_camera_capture();
 
-    CameraModule::add_new_recognized_subject();
+    CameraModule::create_csv_database_file();
 
     terminate_main_app();
 

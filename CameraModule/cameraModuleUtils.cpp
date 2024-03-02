@@ -90,4 +90,58 @@ void CameraModule::add_new_recognized_subject()
     {
         cout << "Error in processing images" << endl;
     }
+
+    // @ToDo
+    // update CSV file
+}
+
+
+void CameraModule::create_csv_database_file()
+{   
+    int label_no = 0;
+    string current_directory = fs::current_path();
+    string parent_directory = fs::path(current_directory).parent_path();
+    string full_specified_path_for_face_db = parent_directory + "/CameraModule/Faces_dataset";
+
+    ofstream CSV_file;
+    CSV_file.open(CSV_FILE_PATH, std::ios::out);
+
+    if (CSV_file.is_open())
+    {
+        if (!fs::exists(full_specified_path_for_face_db) || !fs::is_directory(full_specified_path_for_face_db)) 
+        {
+            cout << "Error with the Face_dataset folder" << endl;
+        }
+
+        for (const auto& s_entry : fs::directory_iterator(full_specified_path_for_face_db)) 
+        {
+            if (fs::is_directory(s_entry)) 
+            {
+                string entry_name = s_entry.path().filename().string();
+                for (const auto& image_entry : fs::directory_iterator(s_entry)) 
+                {
+                    if (fs::is_regular_file(image_entry)) 
+                    {
+                        string image_name = image_entry.path().filename().string();
+                        CSV_file << full_specified_path_for_face_db + "/" + entry_name + "/" + image_name + ";" + to_string(label_no) << endl;
+                    }
+                    else
+                    {
+                        cout << "Error: Faces_dataset folder structure is not respected" << endl;
+                    }
+                }
+            }
+            else
+            {
+                cout << "Error: Faces_dataset folder structure is not respected" << endl;
+            }
+            label_no++;
+        }
+    }
+    else
+    {
+        cout << "Error: Unable to make the CSV file" << endl;
+    }
+
+
 }
