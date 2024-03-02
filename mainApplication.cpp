@@ -44,8 +44,8 @@ int main()
 
     // CameraModule::display_camera_capture();
 
-    bool res = CameraModule::resize_and_apply_grayscale("../CameraModule/test_sample.jpg", 1);
-    cout << res << endl;
+    bool res = CameraModule::parse_raw_images_folder();
+    // cout << res << endl;
     
 
 
