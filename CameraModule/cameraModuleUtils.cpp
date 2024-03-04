@@ -6,7 +6,7 @@ namespace fs = std::filesystem;
 using namespace std;
 
 
-bool CameraModule::resize_and_apply_grayscale(const fs::path& input_path, int subject_number)
+bool CameraModule::resize_and_apply_grayscale_to_s(const fs::path& input_path, int subject_number)
 {
     static int file_no = 0;
     file_no++;
@@ -20,7 +20,7 @@ bool CameraModule::resize_and_apply_grayscale(const fs::path& input_path, int su
     }
 
     cv::Mat resized_image;
-    cv::resize(image, resized_image, cv::Size(92, 112));
+    cv::resize(image, resized_image, cv::Size(368, 448)); //368x448
 
     cv::Mat grayscale_image;
     cv::cvtColor(resized_image, grayscale_image, cv::COLOR_BGR2GRAY);
@@ -44,12 +44,15 @@ bool CameraModule::parse_raw_images_folder()
     for (const auto& entry : fs::directory_iterator(folder_path)) 
     {
         if (fs::is_regular_file(entry)) 
-        {
-            if (false == resize_and_apply_grayscale(entry.path(), no_of_recognized_subjects))
+        {   
+            if (false == detect_face_and_preprocess_if_so(entry.path()))
             {
-                cout << "There was a problem with processing the images" << endl;
-                return false;
+                cout << "The following image is not particular usefull:" << endl;
+                cout<< entry.path() << endl;
+                cout << "------------------------------------------------" << endl;
             }
+
+            resize_and_apply_grayscale_to_s(entry.path(), no_of_recognized_subjects);
         }
     }
     return true;
@@ -142,6 +145,58 @@ void CameraModule::create_csv_database_file()
     {
         cout << "Error: Unable to make the CSV file" << endl;
     }
+}
 
 
+bool CameraModule::resize_and_apply_grayscale(const fs::path& input_path)
+{   
+    cv::Mat image = cv::imread(input_path.string());
+
+    if (image.empty()) 
+    {
+        cout << "Failed to load image: " << input_path << endl;
+        return false;
+    }
+
+    cv::Mat resized_image;
+    cv::resize(image, resized_image, cv::Size(368, 448));
+
+    cv::Mat grayscale_image;
+    cv::cvtColor(resized_image, grayscale_image, cv::COLOR_BGR2GRAY);
+
+    cv::imwrite(input_path, grayscale_image);
+    return true;
+}
+
+
+
+bool CameraModule::detect_face_and_preprocess_if_so(string test_image_path)
+{
+    cv::CascadeClassifier face_cascade;
+    face_cascade.load("/home/kovaiu1/opencv/data/haarcascades/haarcascade_frontalface_default.xml");
+
+    cv::Mat image = cv::imread(test_image_path);
+    cv::Mat gray;
+    cv::cvtColor(image, gray, cv::COLOR_BGR2GRAY);
+
+    std::vector<cv::Rect> faces;
+    face_cascade.detectMultiScale(gray, faces, 1.1, 5, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
+
+    if (1 == faces.size())
+    {
+        cv::Rect rect_face = faces[0];
+        cv::Mat face_image = image(rect_face);
+        cv::imwrite(test_image_path, face_image);
+        return true;
+    }
+    else if (1 < faces.size())
+    {
+        cout << "Too many faces in the image!" << endl;
+        return false;
+    }
+    else if (1 > faces.size())
+    {
+        cout << "The image doesn't contain a face! " << endl;
+        return false;
+    }
 }

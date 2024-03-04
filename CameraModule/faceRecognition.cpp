@@ -60,7 +60,15 @@ int CameraModule::recognize_face(string test_image_path)
     read_images_from_csv();
     check_data_valid();
 
+    if (false == detect_face_and_preprocess_if_so(test_image_path))
+    {   
+        cout << "Predicted class = -1" << ", The image is not coresponding, either has no face or too many" << endl;
+        return -1;
+    }
+    resize_and_apply_grayscale(test_image_path);
+    
     cv::Mat test_image = cv::imread(test_image_path, 0);
+    cv::imshow("Input Image", test_image);
 
     if (test_image.empty()) 
     {
@@ -79,3 +87,7 @@ int CameraModule::recognize_face(string test_image_path)
 
     return predicted_label;
 }
+
+
+
+

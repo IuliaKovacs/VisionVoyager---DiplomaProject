@@ -23,7 +23,7 @@ class CameraModule
     static vector<cv::Mat> images;
     static vector<int> labels;  
     static int no_of_recognized_subjects;
-    static bool resize_and_apply_grayscale(const fs::path& input_path, int subject_number);
+    static bool resize_and_apply_grayscale_to_s(const fs::path& input_path, int subject_number);
     static int count_recognized_subjects();
     static bool parse_raw_images_folder();
     static void read_images_from_csv();
@@ -35,7 +35,8 @@ public:
     static void add_new_recognized_subject();
     static void create_csv_database_file();
     static int recognize_face(string test_image_path);
-
+    static bool resize_and_apply_grayscale(const fs::path& input_path);
+    static bool detect_face_and_preprocess_if_so(string test_image_path);
 };
 
 #endif //CAMERA_MODULE
