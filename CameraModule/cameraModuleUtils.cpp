@@ -148,14 +148,13 @@ void CameraModule::create_csv_database_file()
 }
 
 
-bool CameraModule::resize_and_apply_grayscale(const fs::path& input_path)
+cv::Mat CameraModule::resize_and_apply_grayscale(const fs::path& input_path)
 {   
     cv::Mat image = cv::imread(input_path.string());
 
     if (image.empty()) 
     {
         cout << "Failed to load image: " << input_path << endl;
-        return false;
     }
 
     cv::Mat resized_image;
@@ -164,8 +163,7 @@ bool CameraModule::resize_and_apply_grayscale(const fs::path& input_path)
     cv::Mat grayscale_image;
     cv::cvtColor(resized_image, grayscale_image, cv::COLOR_BGR2GRAY);
 
-    cv::imwrite(input_path, grayscale_image);
-    return true;
+    return grayscale_image;
 }
 
 
@@ -192,7 +190,7 @@ bool CameraModule::detect_face_and_preprocess_if_so(string test_image_path)
     else if (1 < faces.size())
     {
         cout << "Too many faces in the image!" << endl;
-        return false;
+        return true;
     }
     else if (1 > faces.size())
     {

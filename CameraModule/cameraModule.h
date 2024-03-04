@@ -35,7 +35,7 @@ public:
     static void add_new_recognized_subject();
     static void create_csv_database_file();
     static int recognize_face(string test_image_path);
-    static bool resize_and_apply_grayscale(const fs::path& input_path);
+    static cv::Mat resize_and_apply_grayscale(const fs::path& input_path);
     static bool detect_face_and_preprocess_if_so(string test_image_path);
 };
 
