@@ -2,6 +2,8 @@
 #include "cameraModule.h"
 #include <opencv2/opencv.hpp>
 
+using namespace std;
+
 int CameraModule::no_of_recognized_subjects = DEFAULT_NO_OF_RECOGNIZED_SUBJECTS;
 
 void CameraModule::initialize_camera_module()
@@ -13,9 +15,9 @@ void CameraModule::initialize_camera_module()
 void CameraModule::display_camera_capture()
 {
     cv::VideoCapture cap(0);
-
-    if (!cap.isOpened()) {
-        std::cout << "Error: Couldn't open the camera." << std::endl;
+    if (!cap.isOpened()) 
+    {
+        cout << "Error: Couldn't open the camera." << endl;
     }
 
     cv::namedWindow("Camera", cv::WINDOW_NORMAL);
@@ -35,4 +37,32 @@ void CameraModule::display_camera_capture()
 
     cap.release();
     cv::destroyAllWindows();
+}
+
+
+
+void CameraModule::capture_image(string path_to_store)
+{
+    static no = 0;
+    no++;
+
+    cv::VideoCapture cap(0);
+    if (!cap.isOpened()) 
+    {
+        cout << "Error: Couldn't open the camera." << endl;
+    }
+
+    cv::Mat image;
+    cap >> image;
+    if (image.empty()) 
+    {
+        cerr << "Error: Failed to capture image" << endl;
+    }
+
+    if (!cv::imwrite(path_to_store + "/image" + no + ".jpg", image)) 
+    {
+        cerr << "Error: Failed to store the image to " << path_to_store << endl;
+    }
+
+    cap.release();
 }

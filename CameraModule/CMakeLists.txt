@@ -2,6 +2,7 @@ set(SOURCES
     cameraModule.cpp
     cameraModuleUtils.cpp
     faceRecognition.cpp
+    detectLowerbody.cpp
     cameraModule.h
 )
 
