@@ -8,11 +8,13 @@
 #include <time.h>
 
 #define SOX_COMMAND "sox -q -r %d -c 1 -b 16 -e signed-integer -d -t raw -"
-#define MAX_DURATION_SECONDS 5
+#define RECORDING_DURATION_SECONDS = 5;
+#define SAMPLE_RATE = 16000; 
+#define NUM_CHANNELS = 1; 
+#define TEMP_AUDIO_FILE_PATH "../VoiceRecognition/recorded_audio.wav"
 
 
 using namespace std;
-
 int global_done = 0;
 
 
@@ -150,9 +152,31 @@ void VoiceRecognition::loop_recognition()
 }
 
 
+bool VoiceRecognition::record_audio()
+{
+    string command = "arecord -d " + to_string(RECORDING_DURATION_SECONDS) +
+            " -f S16_LE -r " + to_string(SAMPLE_RATE) +
+            " -c " + to_string(NUM_CHANNELS) + " " + TEMP_AUDIO_FILE_PATH;
+
+    cout << "Recording audio..." << endl;
+    int result = system(command.c_str());
+
+    if (result == 0) 
+    {
+        cout << "Audio recording complete" << endl;
+        return true;
+    } 
+    else 
+    {
+        cout << "Error: recording audio failed" << endl;
+        return false;
+    }
+}
 
 
 void VoiceRecognition::timed_listening_recognition()
 {
+    record_audio();
+
     
 }
