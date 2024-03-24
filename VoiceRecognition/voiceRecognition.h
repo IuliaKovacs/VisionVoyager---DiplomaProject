@@ -2,12 +2,25 @@
 #define VOICE_RECOGNITION
 
 
-class VoiceRecognition
-{
+#include <pocketsphinx.h>
+#include <signal.h>
+#include <iostream>
+#include <stdlib.h>
 
+enum class RecognitionType
+{   
+    UNDEFINED,
+    TIMED_RECOGNITION,
+    LIVE_RECOGNITION
+};
+
+
+class VoiceRecognition
+{   
 public:
 
     static void loop_recognition();
+    static void timed_listening_recognition();
 
 };
 
