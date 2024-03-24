@@ -8,9 +8,9 @@
 #include <time.h>
 
 #define SOX_COMMAND "sox -q -r %d -c 1 -b 16 -e signed-integer -d -t raw -"
-#define RECORDING_DURATION_SECONDS = 5;
-#define SAMPLE_RATE = 16000; 
-#define NUM_CHANNELS = 1; 
+#define RECORDING_DURATION_SECONDS 5
+#define SAMPLE_RATE 16000 
+#define NUM_CHANNELS  1
 #define TEMP_AUDIO_FILE_PATH "../VoiceRecognition/recorded_audio.wav"
 
 
@@ -178,5 +178,74 @@ void VoiceRecognition::timed_listening_recognition()
 {
     record_audio();
 
-    
+    ps_decoder_t *decoder;
+    ps_config_t *config;
+    FILE *fh;
+    short *buf;
+    size_t len, nsamples;
+
+    if ((fh = fopen(TEMP_AUDIO_FILE_PATH, "rb")) == NULL)
+    {
+        cout << "Error: Failed to open " << TEMP_AUDIO_FILE_PATH << endl;
+    }
+
+    if (fseek(fh, 0, SEEK_END) < 0)
+    {
+        cout << "Unable to find end of input file " << TEMP_AUDIO_FILE_PATH << endl;
+    }
+    len = ftell(fh);
+    rewind(fh);
+
+    config = ps_config_init(NULL);
+    ps_config_set_str(config, "lm", "../VoiceRecognition/7863.lm");
+    ps_config_set_str(config, "dict", "../VoiceRecognition/7863.dic");
+    ps_default_search_args(config);
+
+    if (ps_config_soundfile(config, fh, TEMP_AUDIO_FILE_PATH) < 0)
+    {
+        cout << "Error: Unsupported input file " << TEMP_AUDIO_FILE_PATH << endl;
+    }
+    if ((decoder = ps_init(config)) == NULL)
+    {
+        cout << "Error: PocketSphinx decoder initialization failed\n" << endl;
+    }
+
+    len -= ftell(fh);
+    if ((buf = (short *)malloc(len)) == NULL)
+    {
+        cout << "Error: Unable to allocate " << len << " bytes" << endl;
+    }
+
+    nsamples = fread(buf, sizeof(buf[0]), len / sizeof(buf[0]), fh);
+
+    if (nsamples != len / sizeof(buf[0]))
+    {
+        cout << "Error: Unable to read samples" << endl;
+    }
+
+    if (ps_start_utt(decoder) < 0)
+    {
+        cout << "Error: Failed to start processing" << endl;
+    }
+    if (ps_process_raw(decoder, buf, nsamples, FALSE, TRUE) < 0)
+    {
+        cout << "Error: ps_process_raw() failed" << endl;
+    }
+    if (ps_end_utt(decoder) < 0)
+    {
+        cout << "Error: Failed to end processing" << endl;
+    }
+
+    if (ps_get_hyp(decoder, NULL) != NULL)
+    {
+        cout << "Recognized words: " << ps_get_hyp(decoder, NULL) << endl;
+    }
+
+    if (fclose(fh) < 0)
+    {
+        cout << "Error: failed to close file " << TEMP_AUDIO_FILE_PATH << endl;
+    }
+    free(buf);
+    ps_free(decoder);
+    ps_config_free(config);
 }

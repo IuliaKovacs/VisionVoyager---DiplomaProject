@@ -17,6 +17,8 @@ enum class RecognitionType
 
 class VoiceRecognition
 {   
+    static bool record_audio();
+
 public:
 
     static void loop_recognition();
