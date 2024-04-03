@@ -12,10 +12,11 @@
 #define SAMPLE_RATE 16000 
 #define NUM_CHANNELS  1
 #define TEMP_AUDIO_FILE_PATH "../VoiceRecognition/recorded_audio.wav"
-
+#define KEYPHRASES_LIST "../VoiceRecognition/keyphrases.list"
 
 using namespace std;
 int global_done = 0;
+bool VoiceRecognition::start_flag = false;
 
 
 static void catch_sig(int signum) 
@@ -58,10 +59,10 @@ void VoiceRecognition::loop_recognition()
     size_t frame_size;
 
     ps_config_t *config = ps_config_init(NULL);
+
+    ps_config_set_str(config, "kws", KEYPHRASES_LIST);
     ps_default_search_args(config);
 
-    ps_config_set_str(config, "lm", "../VoiceRecognition/7863.lm");
-    ps_config_set_str(config, "dict", "../VoiceRecognition/7863.dic");
     decoder = ps_init(config);
 
     if (decoder == NULL)
@@ -131,11 +132,6 @@ void VoiceRecognition::loop_recognition()
                 {
                     cout << "Recognized words: " << hyp << endl;
                 }    
-
-                if (strcmp("THREE",  hyp) == 0)
-                {
-                    global_done = 1;
-                }
             }
         }
     }
@@ -174,9 +170,10 @@ bool VoiceRecognition::record_audio()
 }
 
 
-void VoiceRecognition::timed_listening_recognition()
+string VoiceRecognition::timed_listening_recognition()
 {
     record_audio();
+    string recognized_word;
 
     ps_decoder_t *decoder;
     ps_config_t *config;
@@ -197,8 +194,7 @@ void VoiceRecognition::timed_listening_recognition()
     rewind(fh);
 
     config = ps_config_init(NULL);
-    ps_config_set_str(config, "lm", "../VoiceRecognition/7863.lm");
-    ps_config_set_str(config, "dict", "../VoiceRecognition/7863.dic");
+    ps_config_set_str(config, "kws", KEYPHRASES_LIST);
     ps_default_search_args(config);
 
     if (ps_config_soundfile(config, fh, TEMP_AUDIO_FILE_PATH) < 0)
@@ -238,7 +234,8 @@ void VoiceRecognition::timed_listening_recognition()
 
     if (ps_get_hyp(decoder, NULL) != NULL)
     {
-        cout << "Recognized words: " << ps_get_hyp(decoder, NULL) << endl;
+        recognized_word = ps_get_hyp(decoder, NULL);
+        cout << "Recognized word: " << recognized_word << endl;
     }
 
     if (fclose(fh) < 0)
@@ -248,4 +245,6 @@ void VoiceRecognition::timed_listening_recognition()
     free(buf);
     ps_free(decoder);
     ps_config_free(config);
+
+    return recognized_word;
 }

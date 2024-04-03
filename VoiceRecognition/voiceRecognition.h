@@ -7,6 +7,8 @@
 #include <iostream>
 #include <stdlib.h>
 
+using namespace std;
+
 enum class RecognitionType
 {   
     UNDEFINED,
@@ -18,11 +20,12 @@ enum class RecognitionType
 class VoiceRecognition
 {   
     static bool record_audio();
+    static bool start_flag;
 
 public:
 
     static void loop_recognition();
-    static void timed_listening_recognition();
+    static string timed_listening_recognition();
 
 };
 
