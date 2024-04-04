@@ -8,22 +8,32 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(pybind11 REQUIRED)
 
+
 add_subdirectory(VisionVoyagerMoves)
 add_subdirectory(RouteRegistration)
 add_subdirectory(RouteRecordPlayer)
 add_subdirectory(KeyboardControl)
 add_subdirectory(LineFollower)
 add_subdirectory(ObstacleAvoidance)
+add_subdirectory(VoiceRecognition)
 
+set(Pocketsphinx_LIBRARY_DIRS "/home/kovaiu1/SRE/pocketsphinx/build")
+
+# PocketSphinx is installed in a custom location and I need to provide the paths
+set(POCKETSPHINX_LIBRARIES "/home/kovaiu1/SRE/pocketsphinx/build/libpocketsphinx.a")
+set(POCKETSPHINX_INCLUDE_DIRS "/home/kovaiu1/SRE/pocketsphinx/include")
 
 add_executable(VisionVoyager mainApplication.cpp)
 target_link_libraries(VisionVoyager PRIVATE pybind11::embed 
                                             curses 
+                                            ${POCKETSPHINX_LIBRARIES}
                                             VisionVoyagerMoves 
                                             RouteRegistration 
                                             RouteRecordPlayer 
                                             KeyboardControl
                                             LineFollower
-                                            ObstacleAvoidance)
+                                            ObstacleAvoidance
+                                            VoiceRecognition
+                                            )
 
 # target_compile_definitions(VisionVoyager PRIVATE DEBUG)

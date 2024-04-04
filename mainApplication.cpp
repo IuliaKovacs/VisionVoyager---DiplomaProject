@@ -4,6 +4,7 @@
 #include "KeyboardControl/keyboardControl.h"
 #include "LineFollower/lineFollower.h"
 #include "ObstacleAvoidance/obstacleAvoidanceUtils.h"
+#include "VoiceRecognition/voiceRecognition.h"
 #include <pybind11/embed.h>
 #include <pybind11/pybind11.h>
 
@@ -36,9 +37,22 @@ int main()
     ObstacleAvoidance::setRobot(&robot);
     
     
-    ObstacleAvoidance::simulate_real_case();
+    // ObstacleAvoidance::simulate_real_case();
+   
+    // VoiceRecognition::timed_listening_recognition();
     // ObstacleAvoidance::choose_avoiding_side();
     // ObstacleAvoidance::avoid_simple_obstacle_right_side();
+
+
+    VoiceRecognition::loop_recognition();
+
+    
+
+
+
+
+
+
 
     terminate_main_app();
 
