@@ -12,10 +12,12 @@
 #define SAMPLE_RATE 16000 
 #define NUM_CHANNELS  1
 #define TEMP_AUDIO_FILE_PATH "../VoiceRecognition/recorded_audio.wav"
+#define START_KEYPHRASES_LIST "../VoiceRecognition/start_keyphrase.list"
 #define KEYPHRASES_LIST "../VoiceRecognition/keyphrases.list"
 
 using namespace std;
 int global_done = 0;
+/* @ToDo - reset start_flag in specific cases */
 bool VoiceRecognition::start_flag = false;
 
 
@@ -60,7 +62,7 @@ void VoiceRecognition::loop_recognition()
 
     ps_config_t *config = ps_config_init(NULL);
 
-    ps_config_set_str(config, "kws", KEYPHRASES_LIST);
+    ps_config_set_str(config, "kws", START_KEYPHRASES_LIST);
     ps_default_search_args(config);
 
     decoder = ps_init(config);
@@ -90,7 +92,7 @@ void VoiceRecognition::loop_recognition()
         cout << "Error: Failed to set SIGINT handler" << endl;
     }
 
-    while (!global_done) 
+    while (!global_done && (false == start_flag)) 
     {
         const int16 *speech;
         int prev_in_speech = ps_endpointer_in_speech(ep);
@@ -130,7 +132,11 @@ void VoiceRecognition::loop_recognition()
                 ps_end_utt(decoder);
                 if ((hyp = ps_get_hyp(decoder, NULL)) != NULL)
                 {
-                    cout << "Recognized words: " << hyp << endl;
+                    cout << "Recognized words: +" << hyp << "+" << endl;
+                    if ((strstr("start",hyp) == 0) || (strstr("hello",hyp) == 0)) 
+                    {
+                        start_flag = true;
+                    }
                 }    
             }
         }
@@ -144,7 +150,6 @@ void VoiceRecognition::loop_recognition()
     ps_endpointer_free(ep);
     ps_free(decoder);
     ps_config_free(config);
-
 }
 
 

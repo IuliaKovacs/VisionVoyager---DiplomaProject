@@ -38,12 +38,21 @@ int main()
     
     
     // ObstacleAvoidance::simulate_real_case();
-
-    VoiceRecognition::loop_recognition();
+   
     // VoiceRecognition::timed_listening_recognition();
-
     // ObstacleAvoidance::choose_avoiding_side();
     // ObstacleAvoidance::avoid_simple_obstacle_right_side();
+
+
+    VoiceRecognition::loop_recognition();
+
+    
+
+
+
+
+
+
 
     terminate_main_app();
 
