@@ -45,8 +45,10 @@ int main()
     // ObstacleAvoidance::avoid_simple_obstacle_right_side();
 
 
-    VoiceRecognition::loop_recognition();
-    display_hello_message();
+    // VoiceRecognition::loop_recognition();
+    set_language_RO();
+
+    // display_hello_message();
     display_menu_options();
     
 
