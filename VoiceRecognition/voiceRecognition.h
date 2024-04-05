@@ -25,7 +25,7 @@ class VoiceRecognition
 public:
 
     static void loop_recognition();
-    static string timed_listening_recognition();
+    static string timed_listening_recognition_for_options();
 
 };
 

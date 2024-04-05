@@ -40,16 +40,46 @@ int main()
     
     // ObstacleAvoidance::simulate_real_case();
    
-    // VoiceRecognition::timed_listening_recognition();
+    // VoiceRecognition::timed_listening_recognition_for_options();
     // ObstacleAvoidance::choose_avoiding_side();
     // ObstacleAvoidance::avoid_simple_obstacle_right_side();
 
 
     // VoiceRecognition::loop_recognition();
+
     set_language_RO();
 
-    // display_hello_message();
-    display_menu_options();
+    display_hello_message();
+
+    bool option_flag = false;
+    string option;
+
+    while(option_flag == false)
+    {
+        display_menu_options();
+        option = VoiceRecognition::timed_listening_recognition_for_options();
+
+        /* @ToDo - make sure that option can have only 3 values "ONE"/"TWO"/"UNKOWN" */
+        if(strcmp("UNKOWN", option.c_str()) != 0)
+        {
+            if(strcmp("ONE", option.c_str()) == 0)
+            {
+                display_option1_message();
+                option_flag = true;
+            }
+            else 
+            {
+                display_option2_message();
+                option_flag = true;
+            }
+        }
+
+    }
+
+
+    
+
+
     
 
     

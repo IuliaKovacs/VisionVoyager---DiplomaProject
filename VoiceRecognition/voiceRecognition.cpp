@@ -175,7 +175,7 @@ bool VoiceRecognition::record_audio()
 }
 
 
-string VoiceRecognition::timed_listening_recognition()
+string VoiceRecognition::timed_listening_recognition_for_options()
 {
     record_audio();
     string recognized_word;
@@ -241,6 +241,18 @@ string VoiceRecognition::timed_listening_recognition()
     {
         recognized_word = ps_get_hyp(decoder, NULL);
         cout << "Recognized word: " << recognized_word << endl;
+        if (strstr("ONE", recognized_word.c_str()) == 0)
+        {
+            recognized_word = "ONE";
+        }
+        else if (strstr("TWO", recognized_word.c_str()) == 0)
+        {
+            recognized_word = "TWO";
+        }
+        else
+        {
+            recognized_word = "UNKOWN";
+        }
     }
 
     if (fclose(fh) < 0)

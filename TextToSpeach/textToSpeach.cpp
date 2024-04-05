@@ -53,7 +53,6 @@ void set_language_EN(){
 
 void display_menu_options()
 {   
-    cout << (language == Language::RO) << endl;
     string command = "espeak -v " + string(CHOOSE_LANGUAGE(language)) + " -s 150 " + " -f " + string(MODE_OPTIONS_FILE(language));
     system(command.c_str());
 }
