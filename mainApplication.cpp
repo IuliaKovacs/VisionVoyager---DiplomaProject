@@ -5,6 +5,7 @@
 #include "LineFollower/lineFollower.h"
 #include "ObstacleAvoidance/obstacleAvoidanceUtils.h"
 #include "VoiceRecognition/voiceRecognition.h"
+#include "TextToSpeach/textToSpeach.h"
 #include <pybind11/embed.h>
 #include <pybind11/pybind11.h>
 
@@ -45,6 +46,9 @@ int main()
 
 
     VoiceRecognition::loop_recognition();
+    display_hello_message();
+    display_menu_options();
+    
 
     
 
