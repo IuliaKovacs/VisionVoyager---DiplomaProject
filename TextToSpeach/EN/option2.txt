@@ -1,0 +1,17 @@
+You selected option 2. 
+You must select a route from the following:
+
+Route 1. To the secretariat.
+for the secretariat say "ONE"
+
+
+
+
+Route 2. To the rectory.
+for the rectory say "TWO"
+
+
+
+
+Route 3. To the auditorium.
+for the auditorium say "THREE"

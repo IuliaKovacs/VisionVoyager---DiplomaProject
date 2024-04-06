@@ -1,0 +1,19 @@
+I am vision Voyager, your travel aid.
+My mission is to guide you to the desired place.
+
+I have several modes of operation:
+
+1. I can follow a line to your destination.
+
+
+2. I have routes stored that I can guide you on.
+    
+     The routes are:
+    
+     1. To the secretariat
+    
+    
+     2. To the rectory
+    
+    
+     3. To the auditorium

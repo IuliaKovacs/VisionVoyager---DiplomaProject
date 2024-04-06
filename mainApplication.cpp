@@ -5,8 +5,12 @@
 #include "LineFollower/lineFollower.h"
 #include "ObstacleAvoidance/obstacleAvoidanceUtils.h"
 #include "CameraModule/cameraModule.h"
+#include "VoiceRecognition/voiceRecognition.h"
+#include "TextToSpeach/textToSpeach.h"
+#include "ApplicationModule/application.h"
 #include <pybind11/embed.h>
 #include <pybind11/pybind11.h>
+#include <thread>
 
 
 
@@ -32,81 +36,54 @@ int main()
     /* pybind11 specific - starts the interpreter and maintains it alive */
     py::scoped_interpreter guard{}; 
 
+    /* @ToDo make initialization look clean */
     VisionVoyager robot = VisionVoyager();
     RouteRecordPlayer::setRobot(&robot);
     KeyboardControl::setRobot(&robot);
     LineFollower::setRobot(&robot);
     ObstacleAvoidance::setRobot(&robot);
-    
-    
-    // ObstacleAvoidance::simulate_real_case();
-    // ObstacleAvoidance::choose_avoiding_side();
-    // ObstacleAvoidance::avoid_simple_obstacle_right_side();
 
-    // CameraModule::display_camera_capture();
 
-    cout << endl << endl << endl;
 
-    // CameraModule::create_csv_database_file();
+    /* StandBy/Sleep state until "start" or "hello" is recognized */
+    // VoiceRecognition::loop_recognition();
 
-    // int result = CameraModule::recognize_face("../CameraModule/mgk.jpg");
-    // cout << result << endl; 
+    set_language_RO();
 
-    // int result1 = CameraModule::recognize_face("../CameraModule/taylor2.jpg");
-    // cout << result1 << endl; 
+    display_hello_message();
 
-    // int result2 = CameraModule::recognize_face("../CameraModule/chair.jpg");
-    // cout << result2 << endl;  
+    bool option_flag = false;
+    string option;
 
-    // int result3 = CameraModule::recognize_face("../CameraModule/taylor.jpg");
-    // cout << result3 << endl;  
+    while(option_flag == false)
+    {
+        display_menu_options();
+        option = VoiceRecognition::timed_listening_recognition_for_options();
 
-    // int result4 = CameraModule::recognize_face("../CameraModule/mgk2.jpg");
-    // cout << result4 << endl; 
+        /* @ToDo - make sure that option can have only 3 values "ONE"/"TWO"/"UNKOWN" */
+        if(strcmp("UNKOWN", option.c_str()) != 0)
+        {
+            if(strcmp("ONE", option.c_str()) == 0)
+            {
+                display_option1_message();
+                option_flag = true;
 
-    
-//     if (CameraModule::detect_lowerbody("../CameraModule/input_image.jpg")) 
-//     {
-//          cout << "present" <<  endl;
-//     } 
-//     else 
-//     {
-//          cout << "not present" <<  endl;
-//     }
+                /* Start executing in paralell the Line Following, Camera and RFID Reader Communication Tasks */
+                thread line_follower_thread(TASK_LINE_FOLLOWING);
+                thread camera_thread(TASK_CAMERA_MODULE);
+                thread reader_comm_thread(TASK_RFID_READER_COMM);
+                line_follower_thread.join();
+                camera_thread.join();
+                reader_comm_thread.join();
+            }
+            else 
+            {
+                display_option2_message();
+                option_flag = true;
+            }
+        }
 
-//     if (CameraModule::detect_lowerbody("../CameraModule/mgk.jpg")) 
-//     {
-//          cout << "present" <<  endl;
-//     } 
-//     else 
-//     {
-//          cout << "not present" <<  endl;
-//     }
-
-//     if (CameraModule::detect_lowerbody("../CameraModule/lower.png")) 
-//     {
-//          cout << "present" <<  endl;
-//     } 
-//     else 
-//     {
-//          cout << "not present" <<  endl;
-//     }
-
-     int photo_no = 0;
-
-     while(true)
-     {
-          CameraModule::capture_image("../CameraModule/CapturedImages");
-          photo_no++;
-          this_thread::sleep_for(std::chrono::milliseconds(1000));
-
-          if(photo_no == 20)
-          {
-               break;
-          }
-     }
-
-    // CameraModule::add_new_recognized_subject();
+    }
 
     terminate_main_app();
 
