@@ -240,7 +240,6 @@ string VoiceRecognition::timed_listening_recognition_for_options()
     if (ps_get_hyp(decoder, NULL) != NULL)
     {
         recognized_word = ps_get_hyp(decoder, NULL);
-        cout << "Recognized word: " << recognized_word << endl;
         if (strstr("ONE", recognized_word.c_str()) == 0)
         {
             recognized_word = "ONE";
@@ -253,6 +252,7 @@ string VoiceRecognition::timed_listening_recognition_for_options()
         {
             recognized_word = "UNKOWN";
         }
+        cout << "Recognized word: " << recognized_word << endl;
     }
 
     if (fclose(fh) < 0)

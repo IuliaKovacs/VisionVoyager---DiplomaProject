@@ -178,7 +178,7 @@ bool CameraModule::detect_face_and_preprocess_if_so(string test_image_path)
     cv::cvtColor(image, gray, cv::COLOR_BGR2GRAY);
 
     std::vector<cv::Rect> faces;
-    face_cascade.detectMultiScale(gray, faces, 1.1, 5, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(30, 30));
+    face_cascade.detectMultiScale(gray, faces, 3, 5, 0 | cv::CASCADE_SCALE_IMAGE, cv::Size(50, 100));
 
     if (1 == faces.size())
     {

@@ -35,6 +35,7 @@ target_link_libraries(VisionVoyager PRIVATE pybind11::embed
                                             ${OpenCV_LIBS}
                                             curses 
                                             ${Pocketsphinx_LIBRARIES}
+                                            pthread
                                             VisionVoyagerMoves 
                                             RouteRegistration 
                                             RouteRecordPlayer 

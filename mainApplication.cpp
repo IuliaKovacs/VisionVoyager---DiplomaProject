@@ -1,17 +1,4 @@
-#include "VisionVoyagerMoves/visionVoyager.h"
-#include "RouteRegistration/routeRegistrationUtils.h"
-#include "RouteRecordPlayer/routeRecordPlayUtils.h"
-#include "KeyboardControl/keyboardControl.h"
-#include "LineFollower/lineFollower.h"
-#include "ObstacleAvoidance/obstacleAvoidanceUtils.h"
-#include "CameraModule/cameraModule.h"
-#include "VoiceRecognition/voiceRecognition.h"
-#include "TextToSpeach/textToSpeach.h"
 #include "ApplicationModule/application.h"
-#include <pybind11/embed.h>
-#include <pybind11/pybind11.h>
-#include <thread>
-
 
 
 using namespace std;
@@ -84,6 +71,20 @@ int main()
         }
 
     }
+
+
+    
+
+
+    
+
+    
+
+
+
+
+
+
 
     terminate_main_app();
 

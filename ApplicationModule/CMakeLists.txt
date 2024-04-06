@@ -5,5 +5,9 @@ set(SOURCES
 
 add_library(Application STATIC ${SOURCES})
 
-target_include_directories(Application PRIVATE ${pybind11_INCLUDE_DIRS})
+find_package(OpenCV REQUIRED)
+
+
+target_include_directories(Application PRIVATE ${OpenCV_INCLUDE_DIRS})
+target_include_directories(Application PRIVATE ${pybind11_INCLUDE_DIRS} ${OpenCV_LIBS})
 

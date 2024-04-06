@@ -37,6 +37,8 @@ public:
     static int recognize_face(string test_image_path);
     static cv::Mat resize_and_apply_grayscale(const fs::path& input_path);
     static bool detect_face_and_preprocess_if_so(string test_image_path);
+    static bool detect_lowerbody(string test_image_path);
+    static void capture_image(string path_to_store);
 };
 
 #endif //CAMERA_MODULE

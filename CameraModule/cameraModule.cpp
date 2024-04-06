@@ -43,7 +43,7 @@ void CameraModule::display_camera_capture()
 
 void CameraModule::capture_image(string path_to_store)
 {
-    static no = 0;
+    static int no = 0;
     no++;
 
     cv::VideoCapture cap(0);
@@ -59,7 +59,7 @@ void CameraModule::capture_image(string path_to_store)
         cerr << "Error: Failed to capture image" << endl;
     }
 
-    if (!cv::imwrite(path_to_store + "/image" + no + ".jpg", image)) 
+    if (!cv::imwrite(path_to_store + "/image" + to_string(no) + ".jpg", image)) 
     {
         cerr << "Error: Failed to store the image to " << path_to_store << endl;
     }
