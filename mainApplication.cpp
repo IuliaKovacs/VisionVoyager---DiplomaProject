@@ -4,12 +4,14 @@
 #include "KeyboardControl/keyboardControl.h"
 #include "LineFollower/lineFollower.h"
 #include "ObstacleAvoidance/obstacleAvoidanceUtils.h"
+#include "CameraModule/cameraModule.h"
 #include "VoiceRecognition/voiceRecognition.h"
 #include "TextToSpeach/textToSpeach.h"
 #include "ApplicationModule/application.h"
 #include <pybind11/embed.h>
 #include <pybind11/pybind11.h>
 #include <thread>
+
 
 
 using namespace std;
@@ -19,6 +21,7 @@ void initilize_main_app()
 {   
     KeyboardControl::initialize_keyboard_control();
     RouteRegistration::initialize_route_registration();
+    CameraModule::initialize_camera_module();
 }
 
 void terminate_main_app()
@@ -81,20 +84,6 @@ int main()
         }
 
     }
-
-
-    
-
-
-    
-
-    
-
-
-
-
-
-
 
     terminate_main_app();
 

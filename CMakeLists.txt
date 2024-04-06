@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
 find_package(pybind11 REQUIRED)
+find_package(OpenCV REQUIRED)
 
 
 add_subdirectory(VisionVoyagerMoves)
@@ -15,6 +16,7 @@ add_subdirectory(RouteRecordPlayer)
 add_subdirectory(KeyboardControl)
 add_subdirectory(LineFollower)
 add_subdirectory(ObstacleAvoidance)
+add_subdirectory(CameraModule)
 add_subdirectory(VoiceRecognition)
 add_subdirectory(TextToSpeach)
 add_subdirectory(ApplicationModule)
@@ -30,6 +32,7 @@ add_executable(VisionVoyager mainApplication.cpp)
 
 
 target_link_libraries(VisionVoyager PRIVATE pybind11::embed 
+                                            ${OpenCV_LIBS}
                                             curses 
                                             ${Pocketsphinx_LIBRARIES}
                                             VisionVoyagerMoves 
@@ -38,6 +41,7 @@ target_link_libraries(VisionVoyager PRIVATE pybind11::embed
                                             KeyboardControl
                                             LineFollower
                                             ObstacleAvoidance
+                                            CameraModule
                                             VoiceRecognition
                                             TextToSpeach
                                             Application
