@@ -16,17 +16,22 @@ add_subdirectory(KeyboardControl)
 add_subdirectory(LineFollower)
 add_subdirectory(ObstacleAvoidance)
 add_subdirectory(VoiceRecognition)
+add_subdirectory(TextToSpeach)
+add_subdirectory(ApplicationModule)
 
+
+# Specifying the name and path of the PocketSphinx library
 set(Pocketsphinx_LIBRARY_DIRS "/home/kovaiu1/SRE/pocketsphinx/build")
-
-# PocketSphinx is installed in a custom location and I need to provide the paths
-set(POCKETSPHINX_LIBRARIES "/home/kovaiu1/SRE/pocketsphinx/build/libpocketsphinx.a")
+set(Pocketsphinx_LIBRARIES "${Pocketsphinx_LIBRARY_DIRS}/libpocketsphinx.a")
 set(POCKETSPHINX_INCLUDE_DIRS "/home/kovaiu1/SRE/pocketsphinx/include")
 
+
 add_executable(VisionVoyager mainApplication.cpp)
+
+
 target_link_libraries(VisionVoyager PRIVATE pybind11::embed 
                                             curses 
-                                            ${POCKETSPHINX_LIBRARIES}
+                                            ${Pocketsphinx_LIBRARIES}
                                             VisionVoyagerMoves 
                                             RouteRegistration 
                                             RouteRecordPlayer 
@@ -34,6 +39,8 @@ target_link_libraries(VisionVoyager PRIVATE pybind11::embed
                                             LineFollower
                                             ObstacleAvoidance
                                             VoiceRecognition
+                                            TextToSpeach
+                                            Application
                                             )
 
 # target_compile_definitions(VisionVoyager PRIVATE DEBUG)

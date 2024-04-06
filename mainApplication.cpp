@@ -6,6 +6,7 @@
 #include "ObstacleAvoidance/obstacleAvoidanceUtils.h"
 #include "VoiceRecognition/voiceRecognition.h"
 #include "TextToSpeach/textToSpeach.h"
+#include "ApplicationModule/application.h"
 #include <pybind11/embed.h>
 #include <pybind11/pybind11.h>
 
@@ -31,20 +32,15 @@ int main()
     /* pybind11 specific - starts the interpreter and maintains it alive */
     py::scoped_interpreter guard{}; 
 
+    /* @ToDo make initialization look clean */
     VisionVoyager robot = VisionVoyager();
     RouteRecordPlayer::setRobot(&robot);
     KeyboardControl::setRobot(&robot);
     LineFollower::setRobot(&robot);
     ObstacleAvoidance::setRobot(&robot);
-    
-    
-    // ObstacleAvoidance::simulate_real_case();
-   
-    // VoiceRecognition::timed_listening_recognition_for_options();
-    // ObstacleAvoidance::choose_avoiding_side();
-    // ObstacleAvoidance::avoid_simple_obstacle_right_side();
 
 
+    /* StandBy/Sleep state until "start" or "hello" is recognized */
     // VoiceRecognition::loop_recognition();
 
     set_language_RO();

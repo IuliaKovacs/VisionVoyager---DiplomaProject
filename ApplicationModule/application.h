@@ -1,0 +1,19 @@
+#ifndef APPLICATION
+#define APPLICATION
+
+enum class ApplicationState 
+{
+    STANDBY,
+    MENU_DISPLAY,
+    LINE_FOLLOWING,
+    ROUTE_PLAYING,
+    ADMIN_MODE
+};
+
+
+bool TASK_LINE_FOLLOWING();
+bool TASK_CAMERA_MODULE();
+bool TASK_RFID_READER_COMM();
+
+
+#endif //APPLICATION

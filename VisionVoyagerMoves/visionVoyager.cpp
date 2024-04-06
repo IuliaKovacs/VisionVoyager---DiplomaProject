@@ -235,7 +235,6 @@ float VisionVoyager::read_ultrasonic_data()
 {
     py::object ultrasonic = this->picar_python_object.attr("ultrasonic");
     float ultrasonic_data = ultrasonic.attr("read")().cast<float>();
-    cout << ultrasonic_data << endl;
     return ultrasonic_data;
 }
 
