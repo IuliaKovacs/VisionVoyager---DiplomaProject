@@ -9,6 +9,7 @@
 #include "ApplicationModule/application.h"
 #include <pybind11/embed.h>
 #include <pybind11/pybind11.h>
+#include <thread>
 
 
 using namespace std;
@@ -40,6 +41,7 @@ int main()
     ObstacleAvoidance::setRobot(&robot);
 
 
+
     /* StandBy/Sleep state until "start" or "hello" is recognized */
     // VoiceRecognition::loop_recognition();
 
@@ -62,6 +64,14 @@ int main()
             {
                 display_option1_message();
                 option_flag = true;
+
+                /* Start executing in paralell the Line Following, Camera and RFID Reader Communication Tasks */
+                thread line_follower_thread(TASK_LINE_FOLLOWING);
+                thread camera_thread(TASK_CAMERA_MODULE);
+                thread reader_comm_thread(TASK_RFID_READER_COMM);
+                line_follower_thread.join();
+                camera_thread.join();
+                reader_comm_thread.join();
             }
             else 
             {
