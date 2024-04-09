@@ -29,17 +29,19 @@ void CameraWidget::initCamera()
 {
 
     videoCapture = new cv::VideoCapture(0);
-    if (!videoCapture->isOpened()) {
+    if (!videoCapture->isOpened()) 
+    {
        /* @ToDo - Solve what to do if camera is not available! */
     }
-    // Inițializare frame video
+
     *videoCapture >> frame;
 
-    // Inițializare și pornire update continuu al frame-ului video
     QTimer *timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, [this]() {
+    
+    connect(timer, &QTimer::timeout, [this]() 
+    {
         *videoCapture >> frame;
         update();
     });
-    timer->start(30); // Interval de update în milisecunde
+    timer->start(30); 
 }

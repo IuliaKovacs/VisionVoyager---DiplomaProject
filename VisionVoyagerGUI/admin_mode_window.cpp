@@ -1,6 +1,9 @@
 #include "admin_mode_window.h"
 #include "ui_adminmodewindow.h"
 #include "camera_widget.h"
+#include <iostream>
+
+using namespace std;
 
 
 void start_GUI(int argc, char *argv[])
@@ -25,3 +28,16 @@ AdminModeWindow::~AdminModeWindow()
 {
     delete ui;
 }
+
+
+void AdminModeWindow::on_routeRegistrationButton_clicked()
+{
+    cout << "routeRegistrationButton clicked!" << endl;
+}
+
+
+void AdminModeWindow::on_pushButton_clicked()
+{
+    cout << "pushButton clicked!" << endl;
+}
+

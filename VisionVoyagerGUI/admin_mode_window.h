@@ -11,7 +11,8 @@ void start_GUI(int argc, char *argv[]);
 
 
 QT_BEGIN_NAMESPACE
-namespace Ui {
+namespace Ui 
+{
     class AdminModeWindow;
 }
 QT_END_NAMESPACE
@@ -23,6 +24,11 @@ class AdminModeWindow : public QMainWindow
 public:
     AdminModeWindow(QWidget *parent = nullptr);
     ~AdminModeWindow();
+
+private slots:
+    void on_routeRegistrationButton_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::AdminModeWindow *ui;
