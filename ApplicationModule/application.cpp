@@ -1,3 +1,6 @@
+#include <pybind11/embed.h>
+#include <pybind11/pybind11.h>
+#include "../VisionVoyagerGUI/admin_mode_window.h"
 #include <iostream>
 #include "application.h"
 #include <thread>
@@ -35,4 +38,17 @@ bool TASK_RFID_READER_COMM()
 bool TASK_ROUTE_PLAYING()
 {
      
+}
+
+
+bool TASK_KEYBOARD_CONTROL()
+{
+    KeyboardControl::keyboard_listening_loop();
+}
+
+
+bool TASK_ADMIN_MODE_WINDOW(int argc, char *argv[]) 
+{
+    cout << "start GUI" << endl;
+    start_GUI(argc, argv);
 }

@@ -1,6 +1,4 @@
-#include <pybind11/embed.h>
-#include <pybind11/pybind11.h>
-#include "VisionVoyagerGUI/admin_mode_window.h"
+
 #include "ApplicationModule/application.h"
 
 
@@ -33,7 +31,11 @@ int main(int argc, char *argv[])
     LineFollower::setRobot(&robot);
     ObstacleAvoidance::setRobot(&robot);
 
-    start_GUI(argc, argv);
+    thread keyboard_control_thread(TASK_KEYBOARD_CONTROL);
+    thread admin_mode_window_thread(TASK_ADMIN_MODE_WINDOW, argc, argv);
+
+    keyboard_control_thread.join();
+    admin_mode_window_thread.join();
 
     /* StandBy/Sleep state until "start" or "hello" is recognized */
     // VoiceRecognition::loop_recognition();

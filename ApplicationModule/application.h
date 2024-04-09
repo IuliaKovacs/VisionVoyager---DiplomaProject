@@ -28,6 +28,8 @@ bool TASK_LINE_FOLLOWING();
 bool TASK_ROUTE_PLAYING();
 bool TASK_CAMERA_MODULE();
 bool TASK_RFID_READER_COMM();
+bool TASK_KEYBOARD_CONTROL();
+bool TASK_ADMIN_MODE_WINDOW(int argc, char *argv[]);
 
 
 

@@ -4,6 +4,7 @@ set(SOURCES
         admin_mode_window.h
         camera_widget.h
         camera_widget.cpp
+        adminmodewindow.ui
 )
 
 set(CMAKE_AUTOUIC ON)
