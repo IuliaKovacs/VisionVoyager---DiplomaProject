@@ -1,6 +1,6 @@
-#include "admin_mode_window.h"
+#include "adminModeWindow.h"
 #include "ui_adminmodewindow.h"
-#include "camera_widget.h"
+#include "cameraWidget.h"
 #include <iostream>
 
 using namespace std;
@@ -20,8 +20,12 @@ AdminModeWindow::AdminModeWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    cameraWidget = new CameraWidget(this);
-    ui->layout_2->addWidget(cameraWidget);
+    camera_widget = new CameraWidget(this);
+    ui->layout_2->addWidget(camera_widget);
+
+    file_drop_widget = new FileDropWidget(this);
+    ui->dragNdropLayout->addWidget(file_drop_widget);
+
 }
 
 AdminModeWindow::~AdminModeWindow()
@@ -36,8 +40,4 @@ void AdminModeWindow::on_routeRegistrationButton_clicked()
 }
 
 
-void AdminModeWindow::on_pushButton_clicked()
-{
-    cout << "pushButton clicked!" << endl;
-}
 

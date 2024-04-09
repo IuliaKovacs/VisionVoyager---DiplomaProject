@@ -1,4 +1,4 @@
-#include "camera_widget.h"
+#include "cameraWidget.h"
 #include <QPainter>
 
 CameraWidget::CameraWidget(QWidget *parent) : QWidget(parent)

@@ -1,6 +1,6 @@
 #include <pybind11/embed.h>
 #include <pybind11/pybind11.h>
-#include "../VisionVoyagerGUI/admin_mode_window.h"
+#include "../VisionVoyagerGUI/adminModeWindow.h"
 #include <iostream>
 #include "application.h"
 #include <thread>

@@ -1,9 +1,11 @@
 
 set(SOURCES
-        admin_mode_window.cpp
-        admin_mode_window.h
-        camera_widget.h
-        camera_widget.cpp
+        adminModeWindow.cpp
+        adminModeWindow.h
+        cameraWidget.h
+        cameraWidget.cpp
+        fileDropWidget.h
+        fileDropWidget.cpp
         adminmodewindow.ui
 )
 

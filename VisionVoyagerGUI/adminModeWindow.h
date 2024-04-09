@@ -1,10 +1,12 @@
 #ifndef ADMIN_MODE_WINDOW_H
 #define ADMIN_MODE_WINDOW_H
 
+
 #include <QApplication>
 #include <QMainWindow>
 #include <opencv2/opencv.hpp>
-#include "camera_widget.h" 
+#include "cameraWidget.h"
+#include "fileDropWidget.h"
 
 
 void start_GUI(int argc, char *argv[]);
@@ -28,11 +30,10 @@ public:
 private slots:
     void on_routeRegistrationButton_clicked();
 
-    void on_pushButton_clicked();
-
 private:
     Ui::AdminModeWindow *ui;
-    CameraWidget *cameraWidget; 
+    CameraWidget *camera_widget; 
+    FileDropWidget *file_drop_widget;
 };
 
 

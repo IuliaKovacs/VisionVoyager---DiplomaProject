@@ -18,8 +18,8 @@ protected:
     void paintEvent(QPaintEvent *event) override;
 
 private:
-    cv::VideoCapture *videoCapture; // Pointer către captură video OpenCV
-    cv::Mat frame; // Frame-ul video curent
+    cv::VideoCapture *videoCapture; 
+    cv::Mat frame; 
 
     void initCamera();
 };

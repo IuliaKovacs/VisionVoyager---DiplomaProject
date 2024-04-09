@@ -1,0 +1,31 @@
+#ifndef FILE_DROP_WIDGET_H
+#define FILE_DROP_WIDGET_H
+
+#include <QWidget>
+#include <QLabel>
+#include <QListWidget>
+#include <QDragEnterEvent>
+#include <QDragMoveEvent>
+#include <QDropEvent>
+#include <QMimeData>
+#include <QUrl>
+#include <iostream>
+
+
+class FileDropWidget : public QLabel
+{
+    Q_OBJECT
+
+public:
+    FileDropWidget(QWidget *parent = nullptr);
+
+protected:
+    void dragEnterEvent(QDragEnterEvent *event) override;
+    void dragMoveEvent(QDragMoveEvent *event) override;
+    void dropEvent(QDropEvent *event) override;
+
+private:
+    QListWidget *fileListWidget; 
+};
+
+#endif //FILE_DROP_WIDGET_H
