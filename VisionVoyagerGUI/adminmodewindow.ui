@@ -26,11 +26,11 @@
       <x>0</x>
       <y>0</y>
       <width>1181</width>
-      <height>621</height>
+      <height>700</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -68,14 +68,14 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="startRegistrationButton">
          <property name="text">
           <string>Start</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_3">
+        <widget class="QPushButton" name="endReigstrationButton">
          <property name="text">
           <string>Stop</string>
          </property>
@@ -126,21 +126,21 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <attribute name="title">
       <string>Route Manager</string>
      </attribute>
-     <widget class="QLineEdit" name="lineEdit">
+     <widget class="QLineEdit" name="routeNameLineEdit">
       <property name="geometry">
        <rect>
-        <x>320</x>
-        <y>270</y>
+        <x>670</x>
+        <y>170</y>
         <width>281</width>
         <height>31</height>
        </rect>
       </property>
      </widget>
-     <widget class="QPushButton" name="routeRegistrationButton">
+     <widget class="QPushButton" name="saveChangesButton">
       <property name="geometry">
        <rect>
-        <x>320</x>
-        <y>190</y>
+        <x>670</x>
+        <y>80</y>
         <width>281</width>
         <height>41</height>
        </rect>
@@ -152,7 +152,129 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </sizepolicy>
       </property>
       <property name="text">
-       <string>Route Registration</string>
+       <string>Save Changes</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="newRouteNameLabel">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>140</y>
+        <width>271</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>New Route Name:</string>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="routeTableWidget">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>80</y>
+        <width>371</width>
+        <height>451</height>
+       </rect>
+      </property>
+      <attribute name="horizontalHeaderVisible">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>209</number>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>Route Name</string>
+       </property>
+      </column>
+     </widget>
+     <widget class="QPushButton" name="insertRouteButton">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>430</y>
+        <width>281</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Insert Route</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="newRouteDurationLabel">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>230</y>
+        <width>271</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>New Route Duration:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="routeDurationLineEdit">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>260</y>
+        <width>281</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="deleteRouteButton">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>490</y>
+        <width>281</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Delete Regisration</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="verticalLayoutWidget_9">
+      <property name="geometry">
+       <rect>
+        <x>840</x>
+        <y>320</y>
+        <width>111</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="routeDragNdropLayout"/>
+     </widget>
+     <widget class="QLabel" name="newRouteDurationLabel_2">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>360</y>
+        <width>151</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Add a new route file:</string>
       </property>
      </widget>
     </widget>
@@ -173,12 +295,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <string>Add Recognized Face</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="subjectNameLabel">
       <property name="geometry">
        <rect>
         <x>710</x>
         <y>210</y>
-        <width>171</width>
+        <width>291</width>
         <height>20</height>
        </rect>
       </property>
@@ -221,7 +343,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
   <connection>
    <sender>addRecognizedFaceButton</sender>
    <signal>clicked()</signal>
-   <receiver>label</receiver>
+   <receiver>subjectNameLabel</receiver>
    <slot>update()</slot>
    <hints>
     <hint type="sourcelabel">

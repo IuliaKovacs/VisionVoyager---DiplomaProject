@@ -9,6 +9,11 @@ FileDropWidget::FileDropWidget(QWidget  *parent)
 {
     setAcceptDrops(true);
 
+    setStyleSheet("background-image: url(../VisionVoyagerGUI/dragNdropBG.png); "
+                    "background-repeat: no-repeat; "
+                    "background-position: center; "
+                    "background-origin: content-box;");
+
     QVBoxLayout *innerLayout = new QVBoxLayout(this); 
     fileListWidget = new QListWidget(this); 
     innerLayout->addWidget(fileListWidget); 

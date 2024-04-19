@@ -19,13 +19,17 @@ AdminModeWindow::AdminModeWindow(QWidget *parent)
     , ui(new Ui::AdminModeWindow)
 {
     ui->setupUi(this);
+    ui->routeTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     camera_widget = new CameraWidget(this);
     ui->layout_2->addWidget(camera_widget);
 
-    file_drop_widget = new FileDropWidget(this);
-    ui->dragNdropLayout->addWidget(file_drop_widget);
+    file_drop_widget_fr = new FileDropWidget(this);
+    ui->dragNdropLayout->addWidget(file_drop_widget_fr);
 
+    file_drop_route = new FileDropWidget(this);
+    ui->routeDragNdropLayout->addWidget(file_drop_route);
+    
 }
 
 AdminModeWindow::~AdminModeWindow()

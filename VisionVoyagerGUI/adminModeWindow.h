@@ -33,7 +33,8 @@ private slots:
 private:
     Ui::AdminModeWindow *ui;
     CameraWidget *camera_widget; 
-    FileDropWidget *file_drop_widget;
+    FileDropWidget *file_drop_widget_fr;
+    FileDropWidget *file_drop_route;
 };
 
 
