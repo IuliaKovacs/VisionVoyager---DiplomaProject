@@ -20,6 +20,7 @@ AdminModeWindow::AdminModeWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->routeTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->errorLabel->setVisible(false);
 
     camera_widget = new CameraWidget(this);
     ui->layout_2->addWidget(camera_widget);
@@ -37,11 +38,40 @@ AdminModeWindow::~AdminModeWindow()
     delete ui;
 }
 
-
-void AdminModeWindow::on_routeRegistrationButton_clicked()
+void AdminModeWindow::on_startRegistrationButton_clicked()
 {
-    cout << "routeRegistrationButton clicked!" << endl;
+    cout << "Start register clicked!" << endl;
+    RouteRegistration::set_register_enabled_true();
 }
 
+
+void AdminModeWindow::on_endReigstrationButton_clicked()
+{
+    cout << "Stop register clicked!" << endl;
+    RouteRegistration::end_registration();
+}
+
+
+void AdminModeWindow::on_saveChangesButton_clicked()
+{
+    cout << "Save Changes clicked!" << endl;
+}
+
+
+void AdminModeWindow::on_insertRouteButton_clicked()
+{
+    cout << "Insert Route clicked!" << endl;
+}
+
+
+void AdminModeWindow::on_deleteRouteButton_clicked()
+{
+    cout << "Delete Route clicked!" << endl;
+}
+
+void AdminModeWindow::on_addRecognizedFaceButton_clicked()
+{
+     cout << "Add New Subject clicked!" << endl;
+}
 
 

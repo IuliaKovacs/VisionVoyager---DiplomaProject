@@ -28,7 +28,12 @@ public:
     ~AdminModeWindow();
 
 private slots:
-    void on_routeRegistrationButton_clicked();
+    void on_addRecognizedFaceButton_clicked();
+    void on_startRegistrationButton_clicked();
+    void on_endReigstrationButton_clicked();
+    void on_saveChangesButton_clicked();
+    void on_insertRouteButton_clicked();
+    void on_deleteRouteButton_clicked();
 
 private:
     Ui::AdminModeWindow *ui;

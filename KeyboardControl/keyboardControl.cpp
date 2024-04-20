@@ -12,30 +12,6 @@ void KeyboardControl::setRobot(VisionVoyager* robot)
     KeyboardControl::robotVisionVoyager = robot;
 }
 
-void KeyboardControl::display_moves_dictionary()
-{   
-    //"Moves Dictionary:
-    // O: speed up
-    // P: speed down
-    // W: forward
-    // S: backward
-    // A: turn left one
-    // D：turn right
-    // F: stop
-    // T: take photo
-    // KEY_UP: Camera tilt up (Up arrow)
-    // KEY_DOWN: Camera tilt down (Down arrow)
-    // KEY_RIGHT: Camera pan right (Right arrow)
-    // KEY_LEFT: Camera pan left (Left arrow)
-    // 1: turn left max degree
-    // 2: turn right max degree
-    // 3: Camera pan left max
-    // 4: Camera pan right max
-    // 5: Camera tilt up max
-    // 6: Camera tilt down max
-    // Q: quit  "
-}
-
 void KeyboardControl::keyboard_listening_loop()
 {
     int key = 0;

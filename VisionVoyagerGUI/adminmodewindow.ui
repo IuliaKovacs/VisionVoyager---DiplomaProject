@@ -6,119 +6,162 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1166</width>
-    <height>610</height>
+    <width>1300</width>
+    <height>720</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>AdminModeWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">QPushButton
+{
+	background-color: #80e5ff;
+	color: #fff;
+	font-weight: bold;
+	border: none;
+	border-radius: 7px;
+	padding: 5px;
+}
+
+
+QLabel
+{
+	background-color: transparent;
+	color: #80e5ff;
+	font-weight: bold;
+}</string>
   </property>
   <widget class="QWidget" name="main_window">
    <property name="styleSheet">
-    <string notr="true">alternate-background-color: rgb(107, 107, 107);</string>
+    <string notr="true"/>
    </property>
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>1181</width>
-      <height>700</height>
+      <width>1300</width>
+      <height>720</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
       <string>Manual Mode</string>
      </attribute>
-     <widget class="QWidget" name="horizontalLayoutWidget">
+     <widget class="QWidget" name="horizontalWidget" native="true">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>40</y>
-        <width>621</width>
-        <height>511</height>
+        <x>50</x>
+        <y>80</y>
+        <width>631</width>
+        <height>531</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius: 20px;
+background-color: transparent;</string>
       </property>
       <layout class="QHBoxLayout" name="layout_2"/>
      </widget>
-     <widget class="QWidget" name="verticalLayoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>800</x>
-        <y>50</y>
-        <width>191</width>
-        <height>101</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>Route Registration</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignHCenter|Qt::AlignTop</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="startRegistrationButton">
-         <property name="text">
-          <string>Start</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="endReigstrationButton">
-         <property name="text">
-          <string>Stop</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QTextBrowser" name="textBrowser">
+     <widget class="QPushButton" name="startRegistrationButton">
       <property name="geometry">
        <rect>
         <x>710</x>
-        <y>170</y>
-        <width>389</width>
-        <height>339</height>
+        <y>90</y>
+        <width>531</width>
+        <height>41</height>
        </rect>
       </property>
-      <property name="html">
+      <property name="text">
+       <string>Start</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="endReigstrationButton">
+      <property name="geometry">
+       <rect>
+        <x>710</x>
+        <y>180</y>
+        <width>531</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Stop</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="controlsLabel">
+      <property name="geometry">
+       <rect>
+        <x>710</x>
+        <y>260</y>
+        <width>531</width>
+        <height>291</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:  #80e5ff;
+font-weight: bold;
+background-color:  #e6faff;
+border-radius: 15px;
+text-align: center;
+width: fit-content;</string>
+      </property>
+      <property name="text">
        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;title&gt;Controls&lt;/title&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Controls:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#1e1e1e;&quot;&gt;&lt;span style=&quot; font-family:'Consolas','Courier New','monospace'; font-size:14px; font-weight:700; color:#ce9178;&quot;&gt;    O: speed up&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#1e1e1e;&quot;&gt;&lt;span style=&quot; font-family:'Consolas','Courier New','monospace'; font-size:14px; font-weight:700; color:#ce9178;&quot;&gt;    P: speed down&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#1e1e1e;&quot;&gt;&lt;span style=&quot; font-family:'Consolas','Courier New','monospace'; font-size:14px; font-weight:700; color:#ce9178;&quot;&gt;    W: forward&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#1e1e1e;&quot;&gt;&lt;span style=&quot; font-family:'Consolas','Courier New','monospace'; font-size:14px; font-weight:700; color:#ce9178;&quot;&gt;    S: backward&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#1e1e1e;&quot;&gt;&lt;span style=&quot; font-family:'Consolas','Courier New','monospace'; font-size:14px; font-weight:700; color:#ce9178;&quot;&gt;    A: turn left&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#1e1e1e;&quot;&gt;&lt;span style=&quot; font-family:'Consolas','Courier New','monospace'; font-size:14px; font-weight:700; color:#ce9178;&quot;&gt;    D： turn right&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#1e1e1e;&quot;&gt;&lt;span style=&quot; font-family:'Consolas','Courier New','monospace'; font-size:14px; font-weight:700; color:#ce9178;&quot;&gt;    F: stop&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#1e1e1e;&quot;&gt;&lt;span style=&quot; font-family:'Consolas','Courier New','monospace'; font-size:14px; font-weight:700; color:#ce9178;&quot;&gt;    T: take photo&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#1e1e1e;&quot;&gt;&lt;span style=&quot; font-family:'Consolas','Courier New','monospace'; font-size:14px; font-weight:700; color:#ce9178;&quot;&gt;    ↑: Camera tilt up&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#1e1e1e;&quot;&gt;&lt;span style=&quot; font-family:'Consolas','Courier New','monospace'; font-size:14px; font-weight:700; color:#ce9178;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; font-family:'Consolas','Courier New','monospace'; font-weight:700; color:#ce9178;&quot;&gt;↓&lt;/span&gt;&lt;span style=&quot; font-family:'Consolas','Courier New','monospace'; font-size:14px; font-weight:700; color:#ce9178;&quot;&gt;: Camera tilt down&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#1e1e1e;&quot;&gt;&lt;span style=&quot; font-family:'Consolas','Courier New','monospace'; font-size:14px; font-weight:700; color:#ce9178;&quot;&gt;    &lt;/span&gt;&lt;span style=&quot; font-family:'Consolas','Courier New','monospace'; font-weight:700; color:#ce9178;&quot;&gt;→&lt;/span&gt;&lt;span style=&quot; font-family:'Consolas','Courier New','monospace'; font-size:14px; font-weight:700; color:#ce9178;&quot;&gt;: Camera pan right &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#1e1e1e;&quot;&gt;&lt;span style=&quot; font-family:'Consolas','Courier New','monospace'; font-size:14px; font-weight:700; color:#ce9178;&quot;&gt;    ←: Camera pan left &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#1e1e1e;&quot;&gt;&lt;span style=&quot; font-family:'Consolas','Courier New','monospace'; font-size:14px; font-weight:700; color:#ce9178;&quot;&gt;    1: turn left max &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#1e1e1e;&quot;&gt;&lt;span style=&quot; font-family:'Consolas','Courier New','monospace'; font-size:14px; font-weight:700; color:#ce9178;&quot;&gt;    2: turn right max &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#1e1e1e;&quot;&gt;&lt;span style=&quot; font-family:'Consolas','Courier New','monospace'; font-size:14px; font-weight:700; color:#ce9178;&quot;&gt;    3: Camera pan left max&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#1e1e1e;&quot;&gt;&lt;span style=&quot; font-family:'Consolas','Courier New','monospace'; font-size:14px; font-weight:700; color:#ce9178;&quot;&gt;    4: Camera pan right max&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#1e1e1e;&quot;&gt;&lt;span style=&quot; font-family:'Consolas','Courier New','monospace'; font-size:14px; font-weight:700; color:#ce9178;&quot;&gt;    5: Camera tilt up max&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#1e1e1e;&quot;&gt;&lt;span style=&quot; font-family:'Consolas','Courier New','monospace'; font-size:14px; font-weight:700; color:#ce9178;&quot;&gt;    6: Camera tilt down max&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:700; font-style:normal;&quot;&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;&quot; cellspacing=&quot;2&quot; cellpadding=&quot;0&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot; padding-left:5; padding-right:5; padding-top:5; padding-bottom:5;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Alfa Slab One','cursive'; font-size:11pt; color:#80e5ff;&quot;&gt;1: Turn Left Max                &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:5; padding-right:5; padding-top:5; padding-bottom:5;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Alfa Slab One','cursive'; font-size:11pt; color:#80e5ff;&quot;&gt;W:  Forward&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; padding-left:5; padding-right:5; padding-top:5; padding-bottom:5;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Alfa Slab One','cursive'; font-size:11pt; color:#80e5ff;&quot;&gt;2: Turn Right Max              &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:5; padding-right:5; padding-top:5; padding-bottom:5;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Alfa Slab One','cursive'; font-size:11pt; color:#80e5ff;&quot;&gt;S:   Backward&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; padding-left:5; padding-right:5; padding-top:5; padding-bottom:5;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Alfa Slab One','cursive'; font-size:11pt; color:#80e5ff;&quot;&gt;3：Camera Pan Left Max               &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:5; padding-right:5; padding-top:5; padding-bottom:5;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Alfa Slab One','cursive'; font-size:11pt; color:#80e5ff;&quot;&gt;A:   Turn Left &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; padding-left:5; padding-right:5; padding-top:5; padding-bottom:5;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Alfa Slab One','cursive'; font-size:11pt; color:#80e5ff;&quot;&gt;4: Camera Pan Right Max                &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:5; padding-right:5; padding-top:5; padding-bottom:5;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Alfa Slab One','cursive'; font-size:11pt; color:#80e5ff;&quot;&gt;D：  Turn Right              &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; padding-left:5; padding-right:5; padding-top:5; padding-bottom:5;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Alfa Slab One','cursive'; font-size:11pt; color:#80e5ff;&quot;&gt;5: Camera Tilt Up Max                &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:5; padding-right:5; padding-top:5; padding-bottom:5;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Alfa Slab One','cursive'; font-size:11pt; color:#80e5ff;&quot;&gt;↑:   Camera Tilt Up&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; padding-left:5; padding-right:5; padding-top:5; padding-bottom:5;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Alfa Slab One','cursive'; font-size:11pt; color:#80e5ff;&quot;&gt;6: Camera Tilt Down Max                &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:5; padding-right:5; padding-top:5; padding-bottom:5;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Alfa Slab One','cursive'; font-size:11pt; color:#80e5ff;&quot;&gt;↓:   Camera Tilt Down&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; padding-left:5; padding-right:5; padding-top:5; padding-bottom:5;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Alfa Slab One','cursive'; font-size:11pt; color:#80e5ff;&quot;&gt;P: Slow Down                &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:5; padding-right:5; padding-top:5; padding-bottom:5;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Alfa Slab One','cursive'; font-size:11pt; color:#80e5ff;&quot;&gt;→: Camera Pan Right                &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; padding-left:5; padding-right:5; padding-top:5; padding-bottom:5;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Alfa Slab One','cursive'; font-size:11pt; color:#80e5ff;&quot;&gt;O: Speed Up                &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:5; padding-right:5; padding-top:5; padding-bottom:5;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Alfa Slab One','cursive'; font-size:11pt; color:#80e5ff;&quot;&gt;←: Camera Pan Left&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </widget>
@@ -129,9 +172,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QLineEdit" name="routeNameLineEdit">
       <property name="geometry">
        <rect>
-        <x>670</x>
-        <y>170</y>
-        <width>281</width>
+        <x>800</x>
+        <y>180</y>
+        <width>351</width>
         <height>31</height>
        </rect>
       </property>
@@ -139,9 +182,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QPushButton" name="saveChangesButton">
       <property name="geometry">
        <rect>
-        <x>670</x>
-        <y>80</y>
-        <width>281</width>
+        <x>800</x>
+        <y>90</y>
+        <width>351</width>
         <height>41</height>
        </rect>
       </property>
@@ -158,8 +201,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QLabel" name="newRouteNameLabel">
       <property name="geometry">
        <rect>
-        <x>670</x>
-        <y>140</y>
+        <x>800</x>
+        <y>150</y>
         <width>271</width>
         <height>20</height>
        </rect>
@@ -171,10 +214,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QTableWidget" name="routeTableWidget">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>150</x>
         <y>80</y>
-        <width>371</width>
-        <height>451</height>
+        <width>431</width>
+        <height>491</height>
        </rect>
       </property>
       <attribute name="horizontalHeaderVisible">
@@ -195,9 +238,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QPushButton" name="insertRouteButton">
       <property name="geometry">
        <rect>
-        <x>670</x>
-        <y>430</y>
-        <width>281</width>
+        <x>800</x>
+        <y>470</y>
+        <width>351</width>
         <height>41</height>
        </rect>
       </property>
@@ -214,8 +257,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QLabel" name="newRouteDurationLabel">
       <property name="geometry">
        <rect>
-        <x>670</x>
-        <y>230</y>
+        <x>800</x>
+        <y>240</y>
         <width>271</width>
         <height>20</height>
        </rect>
@@ -227,9 +270,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QLineEdit" name="routeDurationLineEdit">
       <property name="geometry">
        <rect>
-        <x>670</x>
-        <y>260</y>
-        <width>281</width>
+        <x>800</x>
+        <y>270</y>
+        <width>351</width>
         <height>31</height>
        </rect>
       </property>
@@ -237,9 +280,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QPushButton" name="deleteRouteButton">
       <property name="geometry">
        <rect>
-        <x>670</x>
-        <y>490</y>
-        <width>281</width>
+        <x>800</x>
+        <y>530</y>
+        <width>351</width>
         <height>41</height>
        </rect>
       </property>
@@ -256,10 +299,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QWidget" name="verticalLayoutWidget_9">
       <property name="geometry">
        <rect>
-        <x>840</x>
-        <y>320</y>
+        <x>1040</x>
+        <y>330</y>
         <width>111</width>
-        <height>91</height>
+        <height>111</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="routeDragNdropLayout"/>
@@ -267,14 +310,35 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QLabel" name="newRouteDurationLabel_2">
       <property name="geometry">
        <rect>
-        <x>670</x>
-        <y>360</y>
-        <width>151</width>
+        <x>800</x>
+        <y>370</y>
+        <width>221</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
        <string>Add a new route file:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="errorLabel">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>620</y>
+        <width>761</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #ad0000;
+background-color:  #ffc299;
+border-radius: 10px;</string>
+      </property>
+      <property name="text">
+       <string>Error: You cannot use a route name that already exists in the database!  </string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </widget>
@@ -285,10 +349,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QPushButton" name="addRecognizedFaceButton">
       <property name="geometry">
        <rect>
-        <x>710</x>
+        <x>740</x>
         <y>100</y>
-        <width>261</width>
-        <height>29</height>
+        <width>461</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="text">
@@ -298,8 +362,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QLabel" name="subjectNameLabel">
       <property name="geometry">
        <rect>
-        <x>710</x>
-        <y>210</y>
+        <x>740</x>
+        <y>230</y>
         <width>291</width>
         <height>20</height>
        </rect>
@@ -311,9 +375,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <widget class="QLineEdit" name="lineEdit_2">
       <property name="geometry">
        <rect>
-        <x>710</x>
-        <y>240</y>
-        <width>281</width>
+        <x>740</x>
+        <y>260</y>
+        <width>461</width>
         <height>31</height>
        </rect>
       </property>
