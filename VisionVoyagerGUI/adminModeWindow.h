@@ -40,6 +40,8 @@ private:
     CameraWidget *camera_widget; 
     FileDropWidget *file_drop_widget_fr;
     FileDropWidget *file_drop_route;
+
+    void loadFromDatabase();
 };
 
 

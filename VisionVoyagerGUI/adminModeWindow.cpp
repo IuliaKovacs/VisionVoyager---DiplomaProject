@@ -1,9 +1,15 @@
 #include "adminModeWindow.h"
 #include "ui_adminmodewindow.h"
 #include "cameraWidget.h"
+#include "../RouteRegistration/routeRegistrationUtils.h"
 #include <iostream>
+#include <filesystem>
 
-using namespace std;
+namespace fs = std::filesystem;
+using namespace std; 
+
+#define ROUTE_DATABASE_PATH_SECTION "../RouteDatabase/"
+#define SECTION "Section "
 
 
 void start_GUI(int argc, char *argv[])
@@ -19,6 +25,8 @@ AdminModeWindow::AdminModeWindow(QWidget *parent)
     , ui(new Ui::AdminModeWindow)
 {
     ui->setupUi(this);
+    loadFromDatabase();
+
     ui->routeTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->errorLabel->setVisible(false);
 
@@ -71,7 +79,45 @@ void AdminModeWindow::on_deleteRouteButton_clicked()
 
 void AdminModeWindow::on_addRecognizedFaceButton_clicked()
 {
-     cout << "Add New Subject clicked!" << endl;
+    cout << "Add New Subject clicked!" << endl;
 }
 
+void AdminModeWindow::loadFromDatabase()
+{
+    for(char aux_section = 'A'; aux_section <= 'C'; aux_section++)
+    {
+        for(const auto & entry_file : fs::directory_iterator(string(ROUTE_DATABASE_PATH_SECTION) + string(SECTION) + aux_section))
+        {   
+            QTableWidgetItem* section = new QTableWidgetItem(QString::fromStdString(string(SECTION) + aux_section));
+            section->setTextAlignment(Qt::AlignCenter);
 
+            if (!fs::is_directory(entry_file.path()))
+            {
+                string aux_route_name = entry_file.path().filename().string();
+                aux_route_name.erase(aux_route_name.find(".txt"),4);
+                
+                int tableRow = ui->routeTableWidget->rowCount();
+                ui->routeTableWidget->insertRow(tableRow);
+
+                QTableWidgetItem* item = new QTableWidgetItem(QString::fromStdString(aux_route_name));
+                item->setTextAlignment(Qt::AlignCenter);
+                ui->routeTableWidget->setItem(tableRow, 0, item);
+                ui->routeTableWidget->setItem(tableRow, 1, section);
+            } 
+        }  
+    }
+
+    for(const string& route : RouteRegistration::get_route_names())
+    {
+        QTableWidgetItem* section = new QTableWidgetItem(QString::fromStdString(" - "));
+        section->setTextAlignment(Qt::AlignCenter);
+
+        int tableRow = ui->routeTableWidget->rowCount();
+        ui->routeTableWidget->insertRow(tableRow);
+
+        QTableWidgetItem* item = new QTableWidgetItem(QString::fromStdString(route));
+        item->setTextAlignment(Qt::AlignCenter);
+        ui->routeTableWidget->setItem(tableRow, 0, item);
+        ui->routeTableWidget->setItem(tableRow, 1, section);
+    }
+}

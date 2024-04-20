@@ -39,6 +39,7 @@ public:
     RouteRegistration();
     static void set_moving_state(MovingState moving_state);
     static void set_register_enabled_true();
+    static vector<string> get_route_names();
     static string get_route_database_directory_path();
     static void initialize_route_registration();
     static void display_possible_routes();

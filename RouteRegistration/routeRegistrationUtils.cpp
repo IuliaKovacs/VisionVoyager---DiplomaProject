@@ -38,6 +38,11 @@ string RouteRegistration::get_current_timestamp()
     return ss.str();
 }
 
+vector<string> RouteRegistration::get_route_names()
+{
+    return route_names;
+}
+
 void RouteRegistration::set_moving_state(MovingState moving_state)
 {
     moving_state = moving_state;
