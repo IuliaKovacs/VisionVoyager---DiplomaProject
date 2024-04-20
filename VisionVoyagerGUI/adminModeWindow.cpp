@@ -10,7 +10,7 @@ using namespace std;
 
 #define ROUTE_DATABASE_PATH_SECTION "../RouteDatabase/"
 #define SECTION "Section "
-
+#define FILE_TERMINATION ".txt"
 
 void start_GUI(int argc, char *argv[])
 {
@@ -75,6 +75,41 @@ void AdminModeWindow::on_insertRouteButton_clicked()
 void AdminModeWindow::on_deleteRouteButton_clicked()
 {
     cout << "Delete Route clicked!" << endl;
+    QList<QTableWidgetItem*> selectedItems = ui->routeTableWidget->selectedItems();
+
+    for (QTableWidgetItem* item : selectedItems) 
+    {
+        int row = item->row();
+        
+        QTableWidgetItem* route_name_item = ui->routeTableWidget->item(row, 0); 
+        QTableWidgetItem* section_item = ui->routeTableWidget->item(row, 1);
+        if (route_name_item && section_item) 
+        {
+            string route_name = (route_name_item->text()).toStdString();
+            string section = (section_item->text()).toStdString();
+
+            if(section != " - ")
+            {
+                string file_path = string(ROUTE_DATABASE_PATH_SECTION) + section + "/" + route_name + string(FILE_TERMINATION);
+                cout << file_path << endl;
+                remove(file_path.c_str());
+            }
+            else
+            {
+                string file_path = string(ROUTE_DATABASE_PATH_SECTION) + route_name + string(FILE_TERMINATION);
+                cout << file_path << endl;
+                remove(file_path.c_str());
+            }
+
+            ui->routeTableWidget->removeRow(row);
+        }
+        else
+        {
+            cout << "Error: There is a problem with deleting the route!" << endl;
+        }
+    }
+
+
 }
 
 void AdminModeWindow::on_addRecognizedFaceButton_clicked()
