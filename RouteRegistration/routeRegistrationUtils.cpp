@@ -7,6 +7,7 @@
 #include <thread>
 #include <cstdio>
 #include <filesystem>
+#include <algorithm>
 
 
 namespace fs = std::filesystem;
@@ -16,7 +17,7 @@ using namespace std;
 bool RouteRegistration::register_enabled = REGISTRATION_DISABLED;
 MovingState RouteRegistration::moving_state = MovingState::STATIONARY;
 string RouteRegistration::route_database_directory_path = "../RouteDatabase/";
-vector<string> RouteRegistration::route_names; 
+vector<string> RouteRegistration::route_paths; 
 string RouteRegistration::current_route_name = "";
 
 
@@ -38,9 +39,9 @@ string RouteRegistration::get_current_timestamp()
     return ss.str();
 }
 
-vector<string> RouteRegistration::get_route_names()
+vector<string>& RouteRegistration::get_route_paths()
 {
-    return route_names;
+    return route_paths;
 }
 
 void RouteRegistration::set_moving_state(MovingState moving_state)
@@ -218,22 +219,33 @@ void RouteRegistration::delete_duplicate_line_commands()
 }
 
 
-void RouteRegistration::prepare_route_names()
+void RouteRegistration::prepare_route_paths()
 {
-    for (const auto & entry_file : fs::directory_iterator(route_database_directory_path))
+    for(const auto &entry_file : fs::directory_iterator(route_database_directory_path))
     {   
-        if (!fs::is_directory(entry_file.path()))
+        if(fs::is_directory(entry_file.path()) && (entry_file.path().filename().string() != "Timestamp_Routes"))
         {
-            string aux_route_name = entry_file.path().filename().string();
-            aux_route_name.erase(aux_route_name.find(".txt"),4);
-            route_names.push_back(aux_route_name);
-        } 
+            for(const auto &entry : fs::directory_iterator(entry_file.path()))
+            {
+                string aux_route_path = entry.path().string();
+                aux_route_path.erase(aux_route_path.find(".txt"), 4);
+                route_paths.push_back(aux_route_path);
+            }
+        }
+        else if(!fs::is_directory(entry_file.path()))
+        {
+            string aux_route_path = entry_file.path().string();
+            aux_route_path.erase(aux_route_path.find(".txt"), 4);
+            route_paths.push_back(aux_route_path);
+        }
     }  
+
+    sort(route_paths.begin(), route_paths.end());
 }
 
 void RouteRegistration::display_possible_routes()
 {
-    for (auto route : route_names)
+    for (auto route : route_paths)
     {
         cout << route << endl;
     }   
@@ -241,7 +253,7 @@ void RouteRegistration::display_possible_routes()
 
 void RouteRegistration::initialize_route_registration()
 {
-    prepare_route_names();
+    prepare_route_paths();
     current_route_name = compute_new_route_name();
 }
 
@@ -249,7 +261,7 @@ string RouteRegistration::compute_new_route_name()
 {   
     int max_no = 0, aux = 0;
 
-    for (auto route : route_names)
+    for (auto route : route_paths)
     {
         /* by default the route names will follow this convention "Route_No_x" where 'x' is the actual number */
         /* the actual file/record that will have the possibility to be read and "played" will have the following name "record_Route_No_x" */

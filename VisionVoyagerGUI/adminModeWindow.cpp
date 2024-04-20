@@ -4,6 +4,7 @@
 #include "../RouteRegistration/routeRegistrationUtils.h"
 #include <iostream>
 #include <filesystem>
+#include <cstdio>
 
 namespace fs = std::filesystem;
 using namespace std; 
@@ -63,6 +64,38 @@ void AdminModeWindow::on_endReigstrationButton_clicked()
 void AdminModeWindow::on_saveChangesButton_clicked()
 {
     cout << "Save Changes clicked!" << endl;
+    for(int row = 0; row < ui->routeTableWidget->rowCount(); row++)
+    {
+        QTableWidgetItem *item = ui->routeTableWidget->item(row, 0);
+        if (item) 
+        {
+            string item_name = (item->text()).toStdString();
+            vector<string>& route_paths = RouteRegistration::get_route_paths();
+            QString old_name_aux = (QString::fromStdString(route_paths[row])).split('/').last();;
+            string old_name = old_name_aux.toStdString();
+            if(old_name != (item_name))
+            {   
+                string new_file_name;
+                string old_file_name = route_paths[row] + string(FILE_TERMINATION);
+
+                QTableWidgetItem *section_item = ui->routeTableWidget->item(row, 1);
+                if((section_item) && ((section_item->text()).toStdString().find("-") == string::npos))
+                {
+                    new_file_name = string(ROUTE_DATABASE_PATH_SECTION) + (section_item->text()).toStdString() + "/" + item_name;
+                }
+                else if(section_item)
+                {
+                    new_file_name = string(ROUTE_DATABASE_PATH_SECTION) + item_name;  
+                }
+
+                route_paths[row] = new_file_name;
+                new_file_name += string(FILE_TERMINATION);
+                // cout << old_file_name << endl;
+                // cout << new_file_name << endl;
+                rename(old_file_name.c_str(), new_file_name.c_str());
+            }
+        }
+    }
 }
 
 
@@ -119,40 +152,38 @@ void AdminModeWindow::on_addRecognizedFaceButton_clicked()
 
 void AdminModeWindow::loadFromDatabase()
 {
-    for(char aux_section = 'A'; aux_section <= 'C'; aux_section++)
+    for(const string& route : RouteRegistration::get_route_paths())
     {
-        for(const auto & entry_file : fs::directory_iterator(string(ROUTE_DATABASE_PATH_SECTION) + string(SECTION) + aux_section))
-        {   
-            QTableWidgetItem* section = new QTableWidgetItem(QString::fromStdString(string(SECTION) + aux_section));
-            section->setTextAlignment(Qt::AlignCenter);
+        QString path = QString::fromStdString(route);
+        QStringList files = path.split('/');
+        QTableWidgetItem* section;
 
-            if (!fs::is_directory(entry_file.path()))
-            {
-                string aux_route_name = entry_file.path().filename().string();
-                aux_route_name.erase(aux_route_name.find(".txt"),4);
-                
-                int tableRow = ui->routeTableWidget->rowCount();
-                ui->routeTableWidget->insertRow(tableRow);
-
-                QTableWidgetItem* item = new QTableWidgetItem(QString::fromStdString(aux_route_name));
-                item->setTextAlignment(Qt::AlignCenter);
-                ui->routeTableWidget->setItem(tableRow, 0, item);
-                ui->routeTableWidget->setItem(tableRow, 1, section);
-            } 
-        }  
-    }
-
-    for(const string& route : RouteRegistration::get_route_names())
-    {
-        QTableWidgetItem* section = new QTableWidgetItem(QString::fromStdString(" - "));
+        if((files.size() >= 2) && (files.at(files.size()-2).contains("Section")))
+        {
+            section = new QTableWidgetItem(files.at(files.size()-2));
+        }
+        else
+        {
+            section = new QTableWidgetItem(QString::fromStdString(" - "));
+        }
         section->setTextAlignment(Qt::AlignCenter);
 
         int tableRow = ui->routeTableWidget->rowCount();
         ui->routeTableWidget->insertRow(tableRow);
 
-        QTableWidgetItem* item = new QTableWidgetItem(QString::fromStdString(route));
+        QTableWidgetItem* item = new QTableWidgetItem(files.last());
         item->setTextAlignment(Qt::AlignCenter);
         ui->routeTableWidget->setItem(tableRow, 0, item);
         ui->routeTableWidget->setItem(tableRow, 1, section);
+    }
+
+
+    for(int row = 0; row < ui->routeTableWidget->rowCount(); row++) 
+    {
+        QTableWidgetItem *item = ui->routeTableWidget->item(row, 1); 
+        if(item) 
+        {
+            item->setFlags(item->flags() & ~Qt::ItemIsEditable);
+        }
     }
 }

@@ -24,7 +24,7 @@ class RouteRegistration
 {
     static bool register_enabled;
     static string route_database_directory_path;
-    static vector<string> route_names;  
+    static vector<string> route_paths;  
     static string current_route_name;
     static MovingState moving_state;
     static string get_current_timestamp();
@@ -32,14 +32,14 @@ class RouteRegistration
     static int extract_the_miliseconds_between_two_commands(string command_1, string command_2);
     static void delete_duplicate_line_commands(); 
     static void create_record_for_route(); 
-    static void prepare_route_names();
+    static void prepare_route_paths();
     static string compute_new_route_name();
 
 public:
     RouteRegistration();
     static void set_moving_state(MovingState moving_state);
     static void set_register_enabled_true();
-    static vector<string> get_route_names();
+    static vector<string>& get_route_paths();
     static string get_route_database_directory_path();
     static void initialize_route_registration();
     static void display_possible_routes();
