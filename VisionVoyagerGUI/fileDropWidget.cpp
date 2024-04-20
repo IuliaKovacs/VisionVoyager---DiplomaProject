@@ -1,4 +1,5 @@
 #include "fileDropWidget.h"
+#include "adminModeWindow.h"
 #include <iostream>
 #include <QVBoxLayout>
 
@@ -16,7 +17,13 @@ FileDropWidget::FileDropWidget(QWidget  *parent)
 
     QVBoxLayout *innerLayout = new QVBoxLayout(this); 
     fileListWidget = new QListWidget(this); 
+    acceptsSingleFile = false;
     innerLayout->addWidget(fileListWidget); 
+}
+
+void FileDropWidget::setAcceptsSingleFile(bool accept) 
+{
+    acceptsSingleFile = accept;
 }
 
 void FileDropWidget::dragEnterEvent(QDragEnterEvent *event)
@@ -37,12 +44,32 @@ void FileDropWidget::dragMoveEvent(QDragMoveEvent *event)
 
 void FileDropWidget::dropEvent(QDropEvent *event)
 {
-    const QList<QUrl> urls = event->mimeData()->urls();
+    const QMimeData *mimeData = event->mimeData();
 
-    for (const QUrl &url : urls) 
+    if (mimeData->hasUrls()) 
     {
-        QString filePath = url.toLocalFile();
-        fileListWidget->addItem(filePath);
+        event->acceptProposedAction();
+        QList<QUrl> urls = mimeData->urls();
+        if (acceptsSingleFile && (fileListWidget->count() == 1))
+        {
+            /* Do not accept item, there is already one in place */
+        }
+        else if(acceptsSingleFile && (urls.size() == 1)) 
+        {   
+            QString filePath = urls.at(0).toLocalFile();
+            fileListWidget->addItem(filePath); 
+        } 
+        else 
+        {   
+            for (const QUrl &url : urls) 
+            {
+                QString filePath = url.toLocalFile();
+                fileListWidget->addItem(filePath); 
+            }
+        }
+    } 
+    else 
+    {
+        QLabel::dropEvent(event);
     }
-    event->acceptProposedAction();
 }

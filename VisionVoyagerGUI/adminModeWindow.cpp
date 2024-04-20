@@ -13,6 +13,10 @@ using namespace std;
 #define SECTION "Section "
 #define FILE_TERMINATION ".txt"
 
+int section_A_routes = 0;
+int section_B_routes = 0;
+int section_C_routes = 0;
+
 void start_GUI(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -38,6 +42,7 @@ AdminModeWindow::AdminModeWindow(QWidget *parent)
     ui->dragNdropLayout->addWidget(file_drop_widget_fr);
 
     file_drop_route = new FileDropWidget(this);
+    file_drop_route->setAcceptsSingleFile(true);
     ui->routeDragNdropLayout->addWidget(file_drop_route);
     
 }
@@ -102,12 +107,29 @@ void AdminModeWindow::on_saveChangesButton_clicked()
 void AdminModeWindow::on_insertRouteButton_clicked()
 {
     cout << "Insert Route clicked!" << endl;
+    string new_route_name = (ui->routeNameLineEdit->text()).toStdString();
+    string new_route_section = (ui->comboBox->currentText()).toStdString();
+    
+    if(((new_route_section == "Section A") && (section_A_routes == 3))
+    || ((new_route_section == "Section B") && (section_B_routes == 3))
+    || ((new_route_section == "Section C") && (section_C_routes == 3)))
+    {
+        ui->errorLabel->setVisible(true);
+        ui->errorLabel->setText("Error: The selected section is full! Please delete an entry first!");
+    }
+    else 
+    {
+        ui->errorLabel->setVisible(false);
+    }
+
+
 }
 
 
 void AdminModeWindow::on_deleteRouteButton_clicked()
 {
     cout << "Delete Route clicked!" << endl;
+    ui->errorLabel->setVisible(false);
     QList<QTableWidgetItem*> selectedItems = ui->routeTableWidget->selectedItems();
 
     for (QTableWidgetItem* item : selectedItems) 
@@ -161,6 +183,18 @@ void AdminModeWindow::loadFromDatabase()
         if((files.size() >= 2) && (files.at(files.size()-2).contains("Section")))
         {
             section = new QTableWidgetItem(files.at(files.size()-2));
+            if(files.at(files.size()-2).contains("A"))
+            {
+                section_A_routes++;
+            }
+            else if(files.at(files.size()-2).contains("B"))
+            {
+                section_B_routes++;
+            }
+            else if(files.at(files.size()-2).contains("C"))
+            {
+                section_C_routes++;   
+            }
         }
         else
         {
@@ -187,3 +221,4 @@ void AdminModeWindow::loadFromDatabase()
         }
     }
 }
+

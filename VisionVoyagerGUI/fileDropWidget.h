@@ -18,6 +18,7 @@ class FileDropWidget : public QLabel
 
 public:
     FileDropWidget(QWidget *parent = nullptr);
+    void setAcceptsSingleFile(bool accept);
 
 protected:
     void dragEnterEvent(QDragEnterEvent *event) override;
@@ -26,6 +27,7 @@ protected:
 
 private:
     QListWidget *fileListWidget; 
+    bool acceptsSingleFile;
 };
 
 #endif //FILE_DROP_WIDGET_H

@@ -269,17 +269,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </rect>
       </property>
       <property name="text">
-       <string>New Route Duration:</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="routeDurationLineEdit">
-      <property name="geometry">
-       <rect>
-        <x>800</x>
-        <y>270</y>
-        <width>351</width>
-        <height>31</height>
-       </rect>
+       <string>Building Section:</string>
       </property>
      </widget>
      <widget class="QPushButton" name="deleteRouteButton">
@@ -305,9 +295,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <property name="geometry">
        <rect>
         <x>1040</x>
-        <y>330</y>
+        <y>290</y>
         <width>111</width>
-        <height>111</height>
+        <height>151</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="routeDragNdropLayout"/>
@@ -345,6 +335,40 @@ border-radius: 10px;</string>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox">
+      <property name="geometry">
+       <rect>
+        <x>800</x>
+        <y>270</y>
+        <width>141</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">text-align: center;</string>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
+      </property>
+      <item>
+       <property name="text">
+        <string>Section A</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Section B</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Section C</string>
+       </property>
+      </item>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
