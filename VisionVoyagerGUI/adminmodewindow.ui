@@ -49,7 +49,7 @@ QLabel
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -378,9 +378,9 @@ border-radius: 10px;</string>
      <widget class="QPushButton" name="addRecognizedFaceButton">
       <property name="geometry">
        <rect>
-        <x>740</x>
+        <x>830</x>
         <y>100</y>
-        <width>461</width>
+        <width>371</width>
         <height>41</height>
        </rect>
       </property>
@@ -391,7 +391,7 @@ border-radius: 10px;</string>
      <widget class="QLabel" name="subjectNameLabel">
       <property name="geometry">
        <rect>
-        <x>740</x>
+        <x>830</x>
         <y>230</y>
         <width>291</width>
         <height>20</height>
@@ -404,9 +404,9 @@ border-radius: 10px;</string>
      <widget class="QLineEdit" name="lineEdit_2">
       <property name="geometry">
        <rect>
-        <x>740</x>
+        <x>830</x>
         <y>260</y>
-        <width>461</width>
+        <width>371</width>
         <height>31</height>
        </rect>
       </property>
@@ -416,11 +416,135 @@ border-radius: 10px;</string>
        <rect>
         <x>100</x>
         <y>90</y>
-        <width>571</width>
-        <height>271</height>
+        <width>671</width>
+        <height>211</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="dragNdropLayout"/>
+     </widget>
+     <widget class="QLabel" name="subject1Label">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>390</y>
+        <width>91</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Subject 1</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="subject2Label">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>390</y>
+        <width>91</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Subject 2</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="subject3Label">
+      <property name="geometry">
+       <rect>
+        <x>750</x>
+        <y>390</y>
+        <width>91</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Subject 3</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="subject4Label">
+      <property name="geometry">
+       <rect>
+        <x>1030</x>
+        <y>390</y>
+        <width>91</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Subject 4</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="img1Label">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>430</y>
+        <width>111</width>
+        <height>161</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:  rgb(129, 129, 129);
+border-radius: 10px;
+background-image: url(../VisionVoyagerGUI/subjectBG.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="img2Label">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>430</y>
+        <width>111</width>
+        <height>161</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:  rgb(129, 129, 129);
+border-radius: 10px;
+background-image: url(../VisionVoyagerGUI/subjectBG.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="img3Label">
+      <property name="geometry">
+       <rect>
+        <x>740</x>
+        <y>430</y>
+        <width>111</width>
+        <height>161</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:  rgb(129, 129, 129);
+border-radius: 10px;
+background-image: url(../VisionVoyagerGUI/subjectBG.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="img4Label">
+      <property name="geometry">
+       <rect>
+        <x>1020</x>
+        <y>430</y>
+        <width>111</width>
+        <height>161</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:  rgb(129, 129, 129);
+border-radius: 10px;
+background-image: url(../VisionVoyagerGUI/subjectBG.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_3">
