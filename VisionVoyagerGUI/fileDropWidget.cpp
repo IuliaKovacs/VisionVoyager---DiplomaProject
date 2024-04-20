@@ -73,3 +73,18 @@ void FileDropWidget::dropEvent(QDropEvent *event)
         QLabel::dropEvent(event);
     }
 }
+
+QListWidgetItem FileDropWidget::getFirstItem()
+{
+    return *(fileListWidget->item(0));
+}
+
+int FileDropWidget::getListCount()
+{
+    return fileListWidget->count();
+}
+
+void FileDropWidget::clearFileList()
+{
+    fileListWidget->clear();
+}

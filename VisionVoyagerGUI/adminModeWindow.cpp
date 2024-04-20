@@ -110,18 +110,69 @@ void AdminModeWindow::on_insertRouteButton_clicked()
     string new_route_name = (ui->routeNameLineEdit->text()).toStdString();
     string new_route_section = (ui->comboBox->currentText()).toStdString();
     
-    if(((new_route_section == "Section A") && (section_A_routes == 3))
-    || ((new_route_section == "Section B") && (section_B_routes == 3))
-    || ((new_route_section == "Section C") && (section_C_routes == 3)))
+    if(!new_route_name.empty())
+    {
+        if(((new_route_section == "Section A") && (section_A_routes >= 3))
+        || ((new_route_section == "Section B") && (section_B_routes >= 3))
+        || ((new_route_section == "Section C") && (section_C_routes >= 3)))
+        {
+            ui->errorLabel->setVisible(true);
+            ui->errorLabel->setText("Error: The selected section is full! Please delete an entry first!");
+        }
+        else 
+        {
+            ui->errorLabel->setVisible(false);
+            if(file_drop_route->getListCount() == 1)
+            {   
+                QListWidgetItem item = file_drop_route->getFirstItem();
+                string path = (item.text()).toStdString();
+                string filename = get_filename_from_path(path);
+                bool ok = true;
+
+                for(const string path : RouteRegistration::get_route_paths())
+                {
+                    string aux_filename = get_filename_from_path(path);
+                    if(aux_filename == new_route_name)
+                    {
+                        ui->errorLabel->setVisible(true);
+                        ui->errorLabel->setText("Error: The route name already exists! Please choose another one!");
+                        ok = false;
+                        break;
+                    }
+                }
+
+                if(ok == true)
+                {
+                    string destination = string(ROUTE_DATABASE_PATH_SECTION) + new_route_section + "/" + new_route_name + string(FILE_TERMINATION);
+
+                    try 
+                    {
+                        fs::copy_file(path, destination);
+                        cout << "File copied successfully!" << endl;
+                        vector<string>& route_paths = RouteRegistration::get_route_paths();
+                        route_paths.push_back(destination);
+                        loadFromDatabase();
+                        file_drop_route->clearFileList();
+                        ui->routeNameLineEdit->clear();
+                    } 
+                    catch(const fs::filesystem_error& e) 
+                    {
+                        cout << "Error: " << e.what() << endl;
+                    }
+                }
+            }
+            else
+            {
+                ui->errorLabel->setVisible(true);
+                ui->errorLabel->setText("Error: No route file added! Please add a file first!");
+            }
+        }
+    }
+    else
     {
         ui->errorLabel->setVisible(true);
-        ui->errorLabel->setText("Error: The selected section is full! Please delete an entry first!");
+        ui->errorLabel->setText("Error: The route name field is empty! Please add a name");
     }
-    else 
-    {
-        ui->errorLabel->setVisible(false);
-    }
-
 
 }
 
@@ -146,13 +197,15 @@ void AdminModeWindow::on_deleteRouteButton_clicked()
             if(section != " - ")
             {
                 string file_path = string(ROUTE_DATABASE_PATH_SECTION) + section + "/" + route_name + string(FILE_TERMINATION);
-                cout << file_path << endl;
+                // cout << file_path << endl;
+                vector<string>& route_paths = RouteRegistration::get_route_paths();
+                route_paths.erase(route_paths.begin() + row);
                 remove(file_path.c_str());
             }
             else
             {
                 string file_path = string(ROUTE_DATABASE_PATH_SECTION) + route_name + string(FILE_TERMINATION);
-                cout << file_path << endl;
+                // cout << file_path << endl;
                 remove(file_path.c_str());
             }
 
@@ -174,6 +227,15 @@ void AdminModeWindow::on_addRecognizedFaceButton_clicked()
 
 void AdminModeWindow::loadFromDatabase()
 {
+    while (ui->routeTableWidget->rowCount() > 0) 
+    {
+        ui->routeTableWidget->removeRow(0);
+    }
+
+    section_A_routes = 0;
+    section_B_routes = 0;
+    section_C_routes = 0;
+
     for(const string& route : RouteRegistration::get_route_paths())
     {
         QString path = QString::fromStdString(route);
@@ -222,3 +284,10 @@ void AdminModeWindow::loadFromDatabase()
     }
 }
 
+
+string AdminModeWindow::get_filename_from_path(string path)
+{
+    QString qpath = QString::fromStdString(path);
+    QStringList fields = qpath.split('/');
+    return (fields.last()).toStdString();
+}

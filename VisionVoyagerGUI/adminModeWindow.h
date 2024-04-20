@@ -9,6 +9,9 @@
 #include "fileDropWidget.h"
 
 
+using namespace std;
+
+
 void start_GUI(int argc, char *argv[]);
 
 
@@ -42,6 +45,7 @@ private:
     FileDropWidget *file_drop_route;
 
     void loadFromDatabase();
+    string get_filename_from_path(string path);
 };
 
 
