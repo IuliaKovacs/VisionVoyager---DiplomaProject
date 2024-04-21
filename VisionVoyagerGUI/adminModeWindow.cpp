@@ -33,6 +33,7 @@ AdminModeWindow::AdminModeWindow(QWidget *parent)
     loadFromDatabase();
 
     ui->routeTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->personsTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->errorLabel->setVisible(false);
 
     camera_widget = new CameraWidget(this);
@@ -224,6 +225,13 @@ void AdminModeWindow::on_addRecognizedFaceButton_clicked()
 {
     cout << "Add New Subject clicked!" << endl;
 }
+
+
+void AdminModeWindow::on_deletePersonButton_clicked()
+{
+    cout << "Delete Person clicked!" << endl;
+}
+
 
 void AdminModeWindow::loadFromDatabase()
 {

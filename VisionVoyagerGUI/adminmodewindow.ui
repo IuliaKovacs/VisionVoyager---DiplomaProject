@@ -379,34 +379,34 @@ border-radius: 10px;</string>
       <property name="geometry">
        <rect>
         <x>830</x>
-        <y>100</y>
+        <y>90</y>
         <width>371</width>
         <height>41</height>
        </rect>
       </property>
       <property name="text">
-       <string>Add Recognized Face</string>
+       <string>Add Recognized Person</string>
       </property>
      </widget>
      <widget class="QLabel" name="subjectNameLabel">
       <property name="geometry">
        <rect>
         <x>830</x>
-        <y>230</y>
-        <width>291</width>
+        <y>160</y>
+        <width>161</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
-       <string>Subject name:</string>
+       <string>First Name:</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="lineEdit_2">
       <property name="geometry">
        <rect>
         <x>830</x>
-        <y>260</y>
-        <width>371</width>
+        <y>190</y>
+        <width>151</width>
         <height>31</height>
        </rect>
       </property>
@@ -415,9 +415,9 @@ border-radius: 10px;</string>
       <property name="geometry">
        <rect>
         <x>100</x>
-        <y>90</y>
-        <width>671</width>
-        <height>211</height>
+        <y>80</y>
+        <width>631</width>
+        <height>241</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="dragNdropLayout"/>
@@ -425,7 +425,7 @@ border-radius: 10px;</string>
      <widget class="QLabel" name="subject1Label">
       <property name="geometry">
        <rect>
-        <x>170</x>
+        <x>110</x>
         <y>390</y>
         <width>91</width>
         <height>20</height>
@@ -438,7 +438,7 @@ border-radius: 10px;</string>
      <widget class="QLabel" name="subject2Label">
       <property name="geometry">
        <rect>
-        <x>430</x>
+        <x>280</x>
         <y>390</y>
         <width>91</width>
         <height>20</height>
@@ -451,7 +451,7 @@ border-radius: 10px;</string>
      <widget class="QLabel" name="subject3Label">
       <property name="geometry">
        <rect>
-        <x>750</x>
+        <x>450</x>
         <y>390</y>
         <width>91</width>
         <height>20</height>
@@ -464,7 +464,7 @@ border-radius: 10px;</string>
      <widget class="QLabel" name="subject4Label">
       <property name="geometry">
        <rect>
-        <x>1030</x>
+        <x>620</x>
         <y>390</y>
         <width>91</width>
         <height>20</height>
@@ -477,7 +477,7 @@ border-radius: 10px;</string>
      <widget class="QLabel" name="img1Label">
       <property name="geometry">
        <rect>
-        <x>150</x>
+        <x>100</x>
         <y>430</y>
         <width>111</width>
         <height>161</height>
@@ -495,7 +495,7 @@ background-image: url(../VisionVoyagerGUI/subjectBG.png);</string>
      <widget class="QLabel" name="img2Label">
       <property name="geometry">
        <rect>
-        <x>410</x>
+        <x>270</x>
         <y>430</y>
         <width>111</width>
         <height>161</height>
@@ -513,7 +513,7 @@ background-image: url(../VisionVoyagerGUI/subjectBG.png);</string>
      <widget class="QLabel" name="img3Label">
       <property name="geometry">
        <rect>
-        <x>740</x>
+        <x>440</x>
         <y>430</y>
         <width>111</width>
         <height>161</height>
@@ -531,7 +531,7 @@ background-image: url(../VisionVoyagerGUI/subjectBG.png);</string>
      <widget class="QLabel" name="img4Label">
       <property name="geometry">
        <rect>
-        <x>1020</x>
+        <x>610</x>
         <y>430</y>
         <width>111</width>
         <height>161</height>
@@ -545,6 +545,114 @@ background-image: url(../VisionVoyagerGUI/subjectBG.png);</string>
       <property name="text">
        <string/>
       </property>
+     </widget>
+     <widget class="QTableWidget" name="personsTableWidget">
+      <property name="geometry">
+       <rect>
+        <x>830</x>
+        <y>430</y>
+        <width>371</width>
+        <height>161</height>
+       </rect>
+      </property>
+      <column>
+       <property name="text">
+        <string>First Name</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Last Name</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Role</string>
+       </property>
+      </column>
+     </widget>
+     <widget class="QPushButton" name="deletePersonButton">
+      <property name="geometry">
+       <rect>
+        <x>830</x>
+        <y>350</y>
+        <width>371</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Delete Person</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_3">
+      <property name="geometry">
+       <rect>
+        <x>1050</x>
+        <y>190</y>
+        <width>151</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="subjectNameLabel_2">
+      <property name="geometry">
+       <rect>
+        <x>1050</x>
+        <y>160</y>
+        <width>291</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Last Name:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="subjectNameLabel_3">
+      <property name="geometry">
+       <rect>
+        <x>830</x>
+        <y>240</y>
+        <width>161</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Role:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_2">
+      <property name="geometry">
+       <rect>
+        <x>830</x>
+        <y>270</y>
+        <width>151</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">text-align: center;</string>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
+      </property>
+      <item>
+       <property name="text">
+        <string>Secretary</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Receptionist</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Building Staff</string>
+       </property>
+      </item>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_3">

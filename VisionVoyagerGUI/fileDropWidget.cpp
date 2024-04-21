@@ -16,7 +16,10 @@ FileDropWidget::FileDropWidget(QWidget  *parent)
                     "background-origin: content-box;");
 
     QVBoxLayout *innerLayout = new QVBoxLayout(this); 
+
     fileListWidget = new QListWidget(this); 
+    fileListWidget->setSelectionMode(QAbstractItemView::SingleSelection);
+    
     acceptsSingleFile = false;
     innerLayout->addWidget(fileListWidget); 
 }

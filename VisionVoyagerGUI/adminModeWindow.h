@@ -37,6 +37,7 @@ private slots:
     void on_saveChangesButton_clicked();
     void on_insertRouteButton_clicked();
     void on_deleteRouteButton_clicked();
+    void on_deletePersonButton_clicked();
 
 private:
     Ui::AdminModeWindow *ui;
