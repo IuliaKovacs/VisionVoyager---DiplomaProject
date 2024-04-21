@@ -250,7 +250,7 @@ string VoiceRecognition::timed_listening_recognition_for_options()
         }
         else
         {
-            recognized_word = "UNKOWN";
+            recognized_word = "UNKNOWN";
         }
         cout << "Recognized word: " << recognized_word << endl;
     }

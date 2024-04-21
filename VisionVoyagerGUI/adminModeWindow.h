@@ -46,6 +46,7 @@ private:
     FileDropWidget *file_drop_route;
 
     void loadFromDatabase();
+    void load_recognized_persons();
     string get_filename_from_path(string path);
 };
 

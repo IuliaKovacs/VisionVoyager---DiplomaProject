@@ -1,5 +1,5 @@
-
 #include "cameraModule.h"
+#include "person.h"
 #include <opencv2/opencv.hpp>
 
 namespace fs = std::filesystem;
@@ -58,6 +58,47 @@ bool CameraModule::parse_raw_images_folder()
     return true;
 }
 
+
+void CameraModule::read_recognized_persons()
+{
+    ifstream recognized_f_file(RECOGNIZED_PERSONS_FILE_PATH);
+    string id;
+
+    if (recognized_f_file.is_open())
+    {
+        while (getline(recognized_f_file, id))
+        {
+            if(!id.empty() && isspace(id.back()))
+            {
+                cout << "Error: Wrong format in \"recognized_persons.txt\"" << endl;
+                break;
+            }
+
+            string first_name; getline(recognized_f_file, first_name);
+            string last_name; getline(recognized_f_file, last_name);
+            string role; getline(recognized_f_file, role);
+            Role r;
+            if(role == "Secretary")
+            {
+                r = Role::Secretary;
+            }
+            else if(role == "Receptionist")
+            {
+                r = Role::Receptionist;
+            }
+            else if(role == "Building Staff")
+            {
+                r = Role::Building_Staff;
+            }
+            else
+            {
+                cout << "Error: Wrong format in \"recognized_persons.txt\"" << endl;
+            }
+            Person person = Person(id, first_name, last_name, r);
+            recognized_persons.push_back(person);
+        }
+    }
+}
 
 
 int CameraModule::count_recognized_subjects()
@@ -197,4 +238,10 @@ bool CameraModule::detect_face_and_preprocess_if_so(string test_image_path)
         cout << "The image doesn't contain a face! " << endl;
         return false;
     }
+}
+
+
+vector<Person>& CameraModule::get_recognized_persons()
+{
+    return recognized_persons;
 }

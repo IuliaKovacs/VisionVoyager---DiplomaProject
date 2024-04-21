@@ -30,11 +30,14 @@ AdminModeWindow::AdminModeWindow(QWidget *parent)
     , ui(new Ui::AdminModeWindow)
 {
     ui->setupUi(this);
-    loadFromDatabase();
 
     ui->routeTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->personsTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->personsTableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->errorLabel->setVisible(false);
+
+    loadFromDatabase();
+    load_recognized_persons();
 
     camera_widget = new CameraWidget(this);
     ui->layout_2->addWidget(camera_widget);
@@ -299,3 +302,5 @@ string AdminModeWindow::get_filename_from_path(string path)
     QStringList fields = qpath.split('/');
     return (fields.last()).toStdString();
 }
+
+

@@ -7,7 +7,8 @@ using namespace std;
 int CameraModule::no_of_recognized_subjects = DEFAULT_NO_OF_RECOGNIZED_SUBJECTS;
 
 void CameraModule::initialize_camera_module()
-{
+{   
+    read_recognized_persons();
     no_of_recognized_subjects = count_recognized_subjects();
 }
 

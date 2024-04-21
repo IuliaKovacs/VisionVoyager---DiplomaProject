@@ -1,9 +1,10 @@
 set(SOURCES
+    cameraModule.h
     cameraModule.cpp
     cameraModuleUtils.cpp
     faceRecognition.cpp
     detectLowerbody.cpp
-    cameraModule.h
+    person.h
 )
 
 add_library(CameraModule STATIC ${SOURCES})

@@ -8,6 +8,7 @@
 #include <string>
 #include <filesystem>
 #include <vector>
+#include "person.h"
 
 namespace fs = std::filesystem;
 using namespace std;
@@ -16,13 +17,15 @@ using namespace std;
 #define FACES_DATASET_PATH "../CameraModule/Faces_dataset"
 #define DEFAULT_NO_OF_RECOGNIZED_SUBJECTS 0
 #define CSV_FILE_PATH "../CameraModule/faces_csv.txt"
-
+#define RECOGNIZED_PERSONS_FILE_PATH "../CameraModule/recognized_persons.txt"
 
 class CameraModule
 {   
     static vector<cv::Mat> images;
     static vector<int> labels;  
     static int no_of_recognized_subjects;
+    static vector<Person> recognized_persons;
+    static void read_recognized_persons();
     static bool resize_and_apply_grayscale_to_s(const fs::path& input_path, int subject_number);
     static int count_recognized_subjects();
     static bool parse_raw_images_folder();
@@ -39,6 +42,7 @@ public:
     static bool detect_face_and_preprocess_if_so(string test_image_path);
     static bool detect_lowerbody(string test_image_path);
     static void capture_image(string path_to_store);
+    static vector<Person>& get_recognized_persons();
 };
 
 #endif //CAMERA_MODULE

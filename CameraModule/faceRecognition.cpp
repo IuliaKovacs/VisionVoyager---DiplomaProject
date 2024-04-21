@@ -13,7 +13,7 @@ using namespace std;
 
 vector<cv::Mat> CameraModule::images;
 vector<int> CameraModule::labels;  
-
+vector<Person> CameraModule::recognized_persons;
 
 void CameraModule::read_images_from_csv()
 {   
@@ -86,7 +86,5 @@ int CameraModule::recognize_face(string test_image_path)
 
     return predicted_label;
 }
-
-
 
 

@@ -1,7 +1,8 @@
 
 set(SOURCES
-        adminModeWindow.cpp
         adminModeWindow.h
+        adminModeWindow.cpp
+        adminModeUtils.cpp
         cameraWidget.h
         cameraWidget.cpp
         fileDropWidget.h
