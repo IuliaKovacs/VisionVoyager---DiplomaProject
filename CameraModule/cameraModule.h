@@ -27,13 +27,13 @@ class CameraModule
     static vector<Person> recognized_persons;
     static void read_recognized_persons();
     static bool resize_and_apply_grayscale_to_s(const fs::path& input_path, int subject_number);
-    static int count_recognized_subjects();
     static bool parse_raw_images_folder();
     static void read_images_from_csv();
     static bool check_data_valid();
 
 public:
     static void initialize_camera_module();
+    static int count_recognized_subjects();
     static void display_camera_capture();
     static void add_new_recognized_subject();
     static void create_csv_database_file();

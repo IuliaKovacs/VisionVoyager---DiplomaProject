@@ -1,4 +1,5 @@
 /CameraModule/Faces_dataset
 /CameraModule/Raw_Images
 /CameraModule/CapturedImages
+/CameraModule/recognized_persons.txt
 /RouteDatabase/Timestamp_Routes

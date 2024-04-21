@@ -401,7 +401,7 @@ border-radius: 10px;</string>
        <string>First Name:</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_2">
+     <widget class="QLineEdit" name="firstNameLineEdit">
       <property name="geometry">
        <rect>
         <x>830</x>
@@ -584,7 +584,7 @@ background-image: url(../VisionVoyagerGUI/subjectBG.png);</string>
        <string>Delete Person</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_3">
+     <widget class="QLineEdit" name="lastNameLineEdit">
       <property name="geometry">
        <rect>
         <x>1050</x>
@@ -620,7 +620,7 @@ background-image: url(../VisionVoyagerGUI/subjectBG.png);</string>
        <string>Role:</string>
       </property>
      </widget>
-     <widget class="QComboBox" name="comboBox_2">
+     <widget class="QComboBox" name="roleComboBox">
       <property name="geometry">
        <rect>
         <x>830</x>
@@ -653,6 +653,27 @@ background-image: url(../VisionVoyagerGUI/subjectBG.png);</string>
         <string>Building Staff</string>
        </property>
       </item>
+     </widget>
+     <widget class="QLabel" name="addErrorLabel">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>340</y>
+        <width>631</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #ad0000;
+background-color:  #ffc299;
+border-radius: 10px;</string>
+      </property>
+      <property name="text">
+       <string>Error: You cannot use a route name that already exists in the database!  </string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_3">

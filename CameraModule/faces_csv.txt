@@ -1,0 +1,10 @@
+/home/kovaiu1/SunFounder/PiCar-X/CameraModule/Faces_dataset/s1/mgk_test.jpg;0
+/home/kovaiu1/SunFounder/PiCar-X/CameraModule/Faces_dataset/s1/mgk3.jpg;0
+/home/kovaiu1/SunFounder/PiCar-X/CameraModule/Faces_dataset/s1/mgk6.jpg;0
+/home/kovaiu1/SunFounder/PiCar-X/CameraModule/Faces_dataset/s1/mgk9.jpg;0
+/home/kovaiu1/SunFounder/PiCar-X/CameraModule/Faces_dataset/s1/mgk7.jpg;0
+/home/kovaiu1/SunFounder/PiCar-X/CameraModule/Faces_dataset/s1/mgk5.jpg;0
+/home/kovaiu1/SunFounder/PiCar-X/CameraModule/Faces_dataset/s1/mgk8.jpg;0
+/home/kovaiu1/SunFounder/PiCar-X/CameraModule/Faces_dataset/s1/mgk1.jpg;0
+/home/kovaiu1/SunFounder/PiCar-X/CameraModule/Faces_dataset/s1/mgk4.jpg;0
+/home/kovaiu1/SunFounder/PiCar-X/CameraModule/Faces_dataset/s1/mgk2.jpg;0

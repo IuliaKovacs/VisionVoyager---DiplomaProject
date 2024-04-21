@@ -91,3 +91,8 @@ void FileDropWidget::clearFileList()
 {
     fileListWidget->clear();
 }
+
+QListWidget* FileDropWidget::getFileListWidget()
+{
+    return fileListWidget;
+}

@@ -7,6 +7,7 @@
 #include <iostream>
 #include <filesystem>
 #include <cstdio>
+#include <iterator> 
 
 namespace fs = std::filesystem;
 using namespace std; 
@@ -15,7 +16,8 @@ using namespace std;
 #define SECTION "Section "
 #define FILE_TERMINATION ".txt"
 #define FACE_DATASET_PATH "../CameraModule/Faces_dataset/"
-
+#define MAX_NO_OF_SUBJECTS 4
+#define MINIMUM_IMG_NO_TO_ADD 10
 
 void start_GUI(int argc, char *argv[])
 {
@@ -35,6 +37,7 @@ AdminModeWindow::AdminModeWindow(QWidget *parent)
     ui->personsTableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->personsTableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->errorLabel->setVisible(false);
+    ui->addErrorLabel->setVisible(false);
 
     loadFromDatabase();
     load_recognized_persons();
@@ -152,7 +155,7 @@ void AdminModeWindow::on_insertRouteButton_clicked()
                     try 
                     {
                         fs::copy_file(path, destination);
-                        cout << "File copied successfully!" << endl;
+                        // cout << "File copied successfully!" << endl;
                         vector<string>& route_paths = RouteRegistration::get_route_paths();
                         route_paths.push_back(destination);
                         loadFromDatabase();
@@ -227,6 +230,76 @@ void AdminModeWindow::on_deleteRouteButton_clicked()
 void AdminModeWindow::on_addRecognizedFaceButton_clicked()
 {
     cout << "Add New Subject clicked!" << endl;
+    string first_name = (ui->firstNameLineEdit->text()).toStdString();
+    string last_name = (ui->lastNameLineEdit->text()).toStdString();
+    string role = (ui->roleComboBox->currentText()).toStdString();
+
+    if(!first_name.empty())
+    {
+        if(!last_name.empty())
+        {
+            if(MAX_NO_OF_SUBJECTS > CameraModule::count_recognized_subjects())
+            {   
+                if(file_drop_widget_fr->getListCount() >= MINIMUM_IMG_NO_TO_ADD)
+                {
+                    ui->addErrorLabel->setVisible(false);
+                    /* copiere poze in noul s folder*/
+                    QListWidget* fileList = file_drop_widget_fr->getFileListWidget();
+
+                    int new_index = CameraModule::count_recognized_subjects() + 1;
+                    string new_path = string(FACES_DATASET_PATH) + "/s" + to_string(new_index);
+                    fs::create_directory(new_path);
+
+                    for (int i = 0; i < fileList->count(); i++)
+                    {   
+                        QListWidgetItem *item = fileList->item(i);
+                        string path = (item->text()).toStdString();
+                        string filename = get_filename_from_path(path);
+                        string destination = new_path + "/" + filename;
+                        // cout << destination << endl;
+                        fs::copy_file(path, destination);
+                    }
+
+                    /* adaugare Person in vector cu push back */
+                    string id = "s" + to_string(new_index);
+                    Person p = Person(id, first_name, last_name, role);
+                    vector<Person>& persons = CameraModule::get_recognized_persons();
+                    persons.push_back(p);
+
+                    /* actualizare recognized_persons.txt */
+                    CameraModule::write_recognized_persons();
+                    
+                    /* reload tabel */
+                    load_recognized_persons();
+
+                    /* clear drag and drop si fielduri */
+                    file_drop_widget_fr->clearFileList();
+                    ui->firstNameLineEdit->clear();
+                    ui->lastNameLineEdit->clear();
+                }
+                else
+                {
+                    ui->addErrorLabel->setVisible(true);
+                    ui->addErrorLabel->setText("Error: Please add more images!");
+                }
+            }
+            else
+            {
+                ui->addErrorLabel->setVisible(true);
+                ui->addErrorLabel->setText("Error: The list is full! Delete an entry first!");
+            }
+        }
+        else
+        {
+            ui->addErrorLabel->setVisible(true);
+            ui->addErrorLabel->setText("Error: Last Name field is empty!");
+        }
+    }
+    else
+    {
+        ui->addErrorLabel->setVisible(true);
+        ui->addErrorLabel->setText("Error: First Name field is empty!");
+    }
 }
 
 

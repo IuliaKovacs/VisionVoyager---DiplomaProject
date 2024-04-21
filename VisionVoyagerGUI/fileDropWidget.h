@@ -20,6 +20,7 @@ public:
     FileDropWidget(QWidget *parent = nullptr);
     void setAcceptsSingleFile(bool accept);
     QListWidgetItem getFirstItem();
+    QListWidget* getFileListWidget();
     int getListCount();
     void clearFileList();
 

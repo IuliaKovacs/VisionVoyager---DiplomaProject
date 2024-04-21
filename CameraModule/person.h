@@ -23,6 +23,22 @@ private:
 public:
     Person(string i, string f, string l, Role r) : id(i), first_name(f), last_name(l), role(r) { }
     
+    Person(string i, string f, string l, string r) : id(i), first_name(f), last_name(l)
+    {
+         if(r == "Secretary")
+        {
+            role = Role::Secretary;
+        }
+        else if(r == "Receptionist")
+        {
+            role = Role::Receptionist;
+        }
+        else if(r == "Building Staff")
+        {
+            role = Role::Building_Staff;
+        }
+    }
+    
     string get_first_name()
     {
         return first_name;
