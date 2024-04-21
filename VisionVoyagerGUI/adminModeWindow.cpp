@@ -15,7 +15,6 @@ using namespace std;
 #define ROUTE_DATABASE_PATH_SECTION "../RouteDatabase/"
 #define SECTION "Section "
 #define FILE_TERMINATION ".txt"
-#define FACE_DATASET_PATH "../CameraModule/Faces_dataset/"
 #define MAX_NO_OF_SUBJECTS 4
 #define MINIMUM_IMG_NO_TO_ADD 10
 
@@ -320,7 +319,7 @@ void AdminModeWindow::on_deletePersonButton_clicked()
         CameraModule::write_recognized_persons();
 
         /* erase the folders and rename them: s1 s2 s3 s4 */
-        string subject_folder_path = string(FACE_DATASET_PATH) + "s" + to_string(row + 1); 
+        string subject_folder_path = string(FACES_DATASET_PATH) + "/s" + to_string(row + 1); 
         try 
         {
             fs::remove_all(subject_folder_path);
@@ -339,6 +338,9 @@ void AdminModeWindow::on_deletePersonButton_clicked()
         /* scot randul din tabel */
         ui->personsTableWidget->removeRow(row);
     }
+
+    delete_subject_display();
+    load_recognized_persons();
 }
 
 

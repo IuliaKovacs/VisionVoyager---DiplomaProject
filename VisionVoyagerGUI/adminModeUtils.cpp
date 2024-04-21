@@ -94,5 +94,68 @@ void AdminModeWindow::load_recognized_persons()
         ui->personsTableWidget->setItem(tableRow, 0, item_fn);
         ui->personsTableWidget->setItem(tableRow, 1, item_ln);
         ui->personsTableWidget->setItem(tableRow, 2, item_role);
+
+        update_subject_display(tableRow+1, person.get_first_name(), person.get_last_name()[0]);
     }
+}
+
+
+void AdminModeWindow::update_subject_display(int index, string first_name, char letter)
+{
+    string aux = first_name + " " + letter + ".";
+    QString display_text = QString::fromStdString(aux);
+    string face_path = string(FACES_DATASET_PATH) + "/s" + to_string(index);
+    string filename;
+
+    if (fs::exists(face_path) && fs::is_directory(face_path)) {
+        // Iterează prin intrările din director
+        for (const auto& entry : fs::directory_iterator(face_path)) 
+        {
+            filename = entry.path().string();
+            break;
+        }
+    }
+
+    QPixmap pixmap(filename.c_str());
+    QSize size(111, 161); 
+    QPixmap scaledPixmap = pixmap.scaled(size, Qt::KeepAspectRatio);
+
+    switch(index)
+    {   
+        case 1:
+            ui->subject1Label->setText(display_text);
+            ui->img1Label->setPixmap(scaledPixmap);
+            break;
+        case 2:
+            ui->subject2Label->setText(display_text);
+            ui->img2Label->setPixmap(scaledPixmap);
+            break;
+        case 3:
+            ui->subject3Label->setText(display_text);
+            ui->img3Label->setPixmap(scaledPixmap);
+            break;
+        case 4:
+            ui->subject4Label->setText(display_text);
+            ui->img4Label->setPixmap(scaledPixmap);
+            break;
+        default:
+            /* Do nothing - this should be unreachable */
+            cout << "Error" << endl; 
+    }
+}
+
+
+void AdminModeWindow::delete_subject_display()
+{
+    ui->subject1Label->setText("Empty S1");
+    ui->img1Label->clear();
+
+    ui->subject2Label->setText("Empty S2");
+    ui->img2Label->clear();
+
+    ui->subject3Label->setText("Empty S3");
+    ui->img3Label->clear();
+
+    ui->subject4Label->setText("Empty S4");
+    ui->img4Label->clear();
 }
