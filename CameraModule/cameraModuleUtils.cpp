@@ -1,5 +1,6 @@
 #include "cameraModule.h"
 #include "person.h"
+#include <algorithm>
 #include <opencv2/opencv.hpp>
 
 namespace fs = std::filesystem;
@@ -244,4 +245,52 @@ bool CameraModule::detect_face_and_preprocess_if_so(string test_image_path)
 vector<Person>& CameraModule::get_recognized_persons()
 {
     return recognized_persons;
+}
+
+void CameraModule::write_recognized_persons()
+{
+    ofstream recognized_f_file(RECOGNIZED_PERSONS_FILE_PATH, ios_base::trunc);
+    int index = 1;
+
+    for(Person p : recognized_persons)
+    {
+        recognized_f_file << "s" + to_string(index) << endl;
+        index++;
+        recognized_f_file << p.get_first_name() << endl;
+        recognized_f_file << p.get_last_name() << endl;
+        recognized_f_file << p.get_role() << endl;
+    }
+
+    recognized_f_file.close();
+}
+
+void CameraModule::update_faces_dataset_namings()
+{   
+    vector<string> paths;
+
+    for (const auto& entry : fs::directory_iterator(FACES_DATASET_PATH)) 
+    {
+        if (fs::is_directory(entry)) 
+        {
+            paths.push_back(entry.path().string());
+        }
+    }
+
+    sort(paths.begin(), paths.end());
+
+    int s_index = 1;
+    string new_path = string(FACES_DATASET_PATH) + "/s";
+
+    for(string path : paths)
+    {
+        try 
+        {
+            fs::rename(path, (new_path + to_string(s_index)));
+            s_index++;
+        } 
+        catch (const fs::filesystem_error& e) 
+        {
+            cout << "Error: Renaming the subject folder went wrong: " << e.what() << endl;
+        }
+    }
 }

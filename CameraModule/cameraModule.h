@@ -43,6 +43,8 @@ public:
     static bool detect_lowerbody(string test_image_path);
     static void capture_image(string path_to_store);
     static vector<Person>& get_recognized_persons();
+    static void write_recognized_persons();
+    static void update_faces_dataset_namings();
 };
 
 #endif //CAMERA_MODULE

@@ -2,6 +2,8 @@
 #include "ui_adminmodewindow.h"
 #include "cameraWidget.h"
 #include "../RouteRegistration/routeRegistrationUtils.h"
+#include "../CameraModule/cameraModule.h"
+#include "../CameraModule/person.h"
 #include <iostream>
 #include <filesystem>
 #include <cstdio>
@@ -12,10 +14,8 @@ using namespace std;
 #define ROUTE_DATABASE_PATH_SECTION "../RouteDatabase/"
 #define SECTION "Section "
 #define FILE_TERMINATION ".txt"
+#define FACE_DATASET_PATH "../CameraModule/Faces_dataset/"
 
-int section_A_routes = 0;
-int section_B_routes = 0;
-int section_C_routes = 0;
 
 void start_GUI(int argc, char *argv[])
 {
@@ -233,74 +233,41 @@ void AdminModeWindow::on_addRecognizedFaceButton_clicked()
 void AdminModeWindow::on_deletePersonButton_clicked()
 {
     cout << "Delete Person clicked!" << endl;
-}
 
+    QList<QTableWidgetItem*> selectedItems = ui->personsTableWidget->selectedItems();
 
-void AdminModeWindow::loadFromDatabase()
-{
-    while (ui->routeTableWidget->rowCount() > 0) 
+    for (QTableWidgetItem* item : selectedItems) 
     {
-        ui->routeTableWidget->removeRow(0);
-    }
+        int row = item->row();
+        
+        vector<Person>& persons = CameraModule::get_recognized_persons();
+        persons.erase(persons.begin() + row);
+        
+        /* @ToDo rewrite the txt file */
+        CameraModule::write_recognized_persons();
 
-    section_A_routes = 0;
-    section_B_routes = 0;
-    section_C_routes = 0;
-
-    for(const string& route : RouteRegistration::get_route_paths())
-    {
-        QString path = QString::fromStdString(route);
-        QStringList files = path.split('/');
-        QTableWidgetItem* section;
-
-        if((files.size() >= 2) && (files.at(files.size()-2).contains("Section")))
+        /* erase the folders and rename them: s1 s2 s3 s4 */
+        string subject_folder_path = string(FACE_DATASET_PATH) + "s" + to_string(row + 1); 
+        try 
         {
-            section = new QTableWidgetItem(files.at(files.size()-2));
-            if(files.at(files.size()-2).contains("A"))
-            {
-                section_A_routes++;
-            }
-            else if(files.at(files.size()-2).contains("B"))
-            {
-                section_B_routes++;
-            }
-            else if(files.at(files.size()-2).contains("C"))
-            {
-                section_C_routes++;   
-            }
+            fs::remove_all(subject_folder_path);
+            cout << "Erased the " << subject_folder_path << " folder successfully!" << endl;
         }
-        else
+        catch (const fs::filesystem_error& e) 
         {
-            section = new QTableWidgetItem(QString::fromStdString(" - "));
+            cout << "Error: There was a error in erasing the subject folder: " << e.what() << endl;
         }
-        section->setTextAlignment(Qt::AlignCenter);
 
-        int tableRow = ui->routeTableWidget->rowCount();
-        ui->routeTableWidget->insertRow(tableRow);
+        CameraModule::update_faces_dataset_namings();
 
-        QTableWidgetItem* item = new QTableWidgetItem(files.last());
-        item->setTextAlignment(Qt::AlignCenter);
-        ui->routeTableWidget->setItem(tableRow, 0, item);
-        ui->routeTableWidget->setItem(tableRow, 1, section);
-    }
+        /* reload pt CSV file */
+        CameraModule::create_csv_database_file();
 
-
-    for(int row = 0; row < ui->routeTableWidget->rowCount(); row++) 
-    {
-        QTableWidgetItem *item = ui->routeTableWidget->item(row, 1); 
-        if(item) 
-        {
-            item->setFlags(item->flags() & ~Qt::ItemIsEditable);
-        }
+        /* scot randul din tabel */
+        ui->personsTableWidget->removeRow(row);
     }
 }
 
 
-string AdminModeWindow::get_filename_from_path(string path)
-{
-    QString qpath = QString::fromStdString(path);
-    QStringList fields = qpath.split('/');
-    return (fields.last()).toStdString();
-}
 
 

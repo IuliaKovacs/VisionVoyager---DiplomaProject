@@ -11,7 +11,6 @@
 
 using namespace std;
 
-
 void start_GUI(int argc, char *argv[]);
 
 
@@ -44,6 +43,9 @@ private:
     CameraWidget *camera_widget; 
     FileDropWidget *file_drop_widget_fr;
     FileDropWidget *file_drop_route;
+    int section_A_routes = 0;
+    int section_B_routes = 0;
+    int section_C_routes = 0;
 
     void loadFromDatabase();
     void load_recognized_persons();
