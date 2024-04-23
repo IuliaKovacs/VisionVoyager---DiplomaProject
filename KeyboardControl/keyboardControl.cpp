@@ -7,7 +7,7 @@ using namespace std;
 
 VisionVoyager* KeyboardControl::robotVisionVoyager = nullptr;
 
-void KeyboardControl::setRobot(VisionVoyager* robot)
+void KeyboardControl::set_robot(VisionVoyager* robot)
 {
     KeyboardControl::robotVisionVoyager = robot;
 }

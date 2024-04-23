@@ -10,7 +10,7 @@ class KeyboardControl
     static VisionVoyager* robotVisionVoyager;
 
 public:
-    static void setRobot(VisionVoyager* robot);
+    static void set_robot(VisionVoyager* robot);
     static void initialize_keyboard_control();
     static void shutdown_keyboard_control();
     static void keyboard_listening_loop();

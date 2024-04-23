@@ -38,7 +38,7 @@ class LineFollower
 
 
 public:
-    static void setRobot(VisionVoyager* robot);
+    static void set_robot(VisionVoyager* robot);
     static void follow_line();
 };
 

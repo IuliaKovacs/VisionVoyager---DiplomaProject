@@ -10,15 +10,25 @@ using namespace std;
 
 #define ROUTE_DIR_PATH "../RouteDatabase/"
 
+enum class Building_Section
+{
+    SECTION_A,
+    SECTION_B,
+    SECTION_C,
+    UNKNOWN
+};
+
 class RouteRecordPlayer
 {   
     static VisionVoyager* robotVisionVoyager;
+    static Building_Section current_section;
     static string extract_command_name(string command);
     static string extract_command_argument(string command);
     static void play_command(string command_name, optional<int> arg_value = nullopt);
 
 public:
-    static void setRobot(VisionVoyager* robot);
+    static void set_robot(VisionVoyager* robot);
+    static void set_current_section(Building_Section section);
     static void play_route(string route_name);  
     friend void ObstacleAvoidance::return_on_track();
     friend void ObstacleAvoidance::reverse_route(string route_name);

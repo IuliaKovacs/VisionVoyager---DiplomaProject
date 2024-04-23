@@ -9,7 +9,7 @@ VisionVoyager* ObstacleAvoidance::robotVisionVoyager = nullptr;
 float ObstacleAvoidance::ultrasonic_data;
 
 
-void ObstacleAvoidance::setRobot(VisionVoyager* robot)
+void ObstacleAvoidance::set_robot(VisionVoyager* robot)
 {
     ObstacleAvoidance::robotVisionVoyager = robot;
 }

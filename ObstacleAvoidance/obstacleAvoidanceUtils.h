@@ -29,7 +29,7 @@ class ObstacleAvoidance
 
 public:
 
-    static void setRobot(VisionVoyager* robot);
+    static void set_robot(VisionVoyager* robot);
     static void get_ultrasonic_data();
     static void avoid_simple_obstacle_right_side();
     static void avoid_simple_obstacle_left_side();

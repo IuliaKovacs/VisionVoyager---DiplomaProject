@@ -19,6 +19,9 @@ MovingState RouteRegistration::moving_state = MovingState::STATIONARY;
 string RouteRegistration::route_database_directory_path = "../RouteDatabase/";
 vector<string> RouteRegistration::route_paths; 
 string RouteRegistration::current_route_name = "";
+vector<string> RouteRegistration::section_A_routes;
+vector<string> RouteRegistration::section_B_routes;
+vector<string> RouteRegistration::section_C_routes;
 
 
 RouteRegistration::RouteRegistration()
@@ -230,6 +233,18 @@ void RouteRegistration::prepare_route_paths()
                 string aux_route_path = entry.path().string();
                 aux_route_path.erase(aux_route_path.find(".txt"), 4);
                 route_paths.push_back(aux_route_path);
+                if("Section A" == entry_file.path().filename().string())
+                {
+                    section_A_routes.push_back(aux_route_path);
+                }
+                else if("Section B" == entry_file.path().filename().string())
+                {
+                    section_B_routes.push_back(aux_route_path);
+                }
+                else if("Section C" == entry_file.path().filename().string())
+                {
+                    section_C_routes.push_back(aux_route_path);
+                }
             }
         }
         else if(!fs::is_directory(entry_file.path()))
@@ -280,4 +295,55 @@ string RouteRegistration::compute_new_route_name()
     max_no++;
     string next_name = "Route_No_" + std::to_string(max_no);
     return next_name;
+}
+
+
+vector<string> RouteRegistration::split_path(const string& path)
+{
+    vector<string> files;
+    string aux;
+    char delimiter = '/';
+    
+    size_t start = 0;
+    size_t end = path.find(delimiter);
+
+     while (end != string::npos) 
+     {
+        aux = path.substr(start, end - start);
+        files.push_back(aux);
+        start = end + 1;
+        end = path.find(delimiter, start);
+    }
+
+    aux = path.substr(start, end);
+    files.push_back(aux);
+
+    return files;
+}
+
+
+string RouteRegistration::get_route_name_from_path(const string& path)
+{
+    return (RouteRegistration::split_path(path)).back();
+}
+
+string RouteRegistration::get_section_from_path(const string& path)
+{   
+    vector<string> files = RouteRegistration::split_path(path);
+    return files[files.size()-2];
+}
+
+vector<string> RouteRegistration::get_section_A_routes()
+{
+    return section_A_routes;
+}
+
+vector<string> RouteRegistration::get_section_B_routes()
+{
+    return section_B_routes;
+}
+
+vector<string> RouteRegistration::get_section_C_routes()
+{
+    return section_C_routes;
 }

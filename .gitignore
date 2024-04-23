@@ -3,3 +3,11 @@
 /CameraModule/CapturedImages
 /CameraModule/recognized_persons.txt
 /RouteDatabase/Timestamp_Routes
+TextToSpeach/EN/section_A_options.txt
+TextToSpeach/EN/section_B_options.txt
+TextToSpeach/EN/section_C_options.txt
+TextToSpeach/RO/section_A_options.txt
+TextToSpeach/RO/section_B_options.txt
+TextToSpeach/RO/section_C_options.txt
+CameraModule/faces_csv.txt
+CameraModule/recognized_persons.txt

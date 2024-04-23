@@ -8,7 +8,7 @@ vector<int> LineFollower::grayscale_data;
 int LineFollower::stop_counter = 0;
 State LineFollower::last_state = State::UNKNOWN;
 
-void LineFollower::setRobot(VisionVoyager* robot)
+void LineFollower::set_robot(VisionVoyager* robot)
 {
     LineFollower::robotVisionVoyager = robot;
 }

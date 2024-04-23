@@ -26,21 +26,34 @@ int main(int argc, char *argv[])
 
     /* @ToDo make initialization look clean */
     VisionVoyager robot = VisionVoyager();
-    RouteRecordPlayer::setRobot(&robot);
-    KeyboardControl::setRobot(&robot);
-    LineFollower::setRobot(&robot);
-    ObstacleAvoidance::setRobot(&robot);
+    RouteRecordPlayer::set_robot(&robot);
+    KeyboardControl::set_robot(&robot);
+    LineFollower::set_robot(&robot);
+    ObstacleAvoidance::set_robot(&robot);
 
-    thread keyboard_control_thread(TASK_KEYBOARD_CONTROL);
-    thread admin_mode_window_thread(TASK_ADMIN_MODE_WINDOW, argc, argv);
+    /* @ToDo - the building section should be calculated based on RFID reader info. So for now is hardcoded! */
+    RouteRecordPlayer::set_current_section(Building_Section::SECTION_A);
 
-    keyboard_control_thread.join();
-    admin_mode_window_thread.join();
+
+    initialize_route_display_files();
+
+    /* ---- Start of Admin Mode part ---- */
+
+    // thread keyboard_control_thread(TASK_KEYBOARD_CONTROL);
+    // thread admin_mode_window_thread(TASK_ADMIN_MODE_WINDOW, argc, argv);
+
+    // keyboard_control_thread.join();
+    // admin_mode_window_thread.join();
+
+
+    /* ---- Start of Main App logic ---- */
 
     /* StandBy/Sleep state until "start" or "hello" is recognized */
     // VoiceRecognition::loop_recognition();
 
     // set_language_RO();
+
+    // initialize_route_display_file();
 
     // display_hello_message();
 

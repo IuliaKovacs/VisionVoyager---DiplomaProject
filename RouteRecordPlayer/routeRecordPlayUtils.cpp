@@ -7,10 +7,16 @@
 
 
 VisionVoyager* RouteRecordPlayer::robotVisionVoyager = nullptr;
+Building_Section RouteRecordPlayer::current_section = Building_Section::UNKNOWN;
 
-void RouteRecordPlayer::setRobot(VisionVoyager* robot)
+void RouteRecordPlayer::set_robot(VisionVoyager* robot)
 {
     RouteRecordPlayer::robotVisionVoyager = robot;
+}
+
+void RouteRecordPlayer::set_current_section(Building_Section section)
+{
+    RouteRecordPlayer::current_section = section;
 }
 
 string RouteRecordPlayer::extract_command_name(string command)

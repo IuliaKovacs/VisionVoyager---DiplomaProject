@@ -207,6 +207,7 @@ void AdminModeWindow::on_deleteRouteButton_clicked()
                 vector<string>& route_paths = RouteRegistration::get_route_paths();
                 route_paths.erase(route_paths.begin() + row);
                 remove(file_path.c_str());
+                /* @Todo - check if is needed to also update the tts files */
             }
             else
             {
@@ -315,10 +316,8 @@ void AdminModeWindow::on_deletePersonButton_clicked()
         vector<Person>& persons = CameraModule::get_recognized_persons();
         persons.erase(persons.begin() + row);
         
-        /* @ToDo rewrite the txt file */
         CameraModule::write_recognized_persons();
 
-        /* erase the folders and rename them: s1 s2 s3 s4 */
         string subject_folder_path = string(FACES_DATASET_PATH) + "/s" + to_string(row + 1); 
         try 
         {
@@ -332,10 +331,8 @@ void AdminModeWindow::on_deletePersonButton_clicked()
 
         CameraModule::update_faces_dataset_namings();
 
-        /* reload pt CSV file */
         CameraModule::create_csv_database_file();
 
-        /* scot randul din tabel */
         ui->personsTableWidget->removeRow(row);
     }
 

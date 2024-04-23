@@ -1,16 +1,34 @@
-Ai selectat opțiunea 2. Trebuie să selectezi o rută dintre următoarele:
+Ai selectat opțiunea 2. Trebuie să selectezi o secțiune dintre următoarele:
 
-Ruta 1. Către secretariat. 
-pentru secretariat rostește "ONE"  
-
-
-
-
-Ruta 2. Către rectorat. 
-pentru rectorat rostește "TWO"
+Secțiunea A
+   Această secțiune cuprinde următoarele săli: 
+       Secretariat.
 
 
+       Auditorium.
 
 
-Ruta 3. Către sala auditorium. 
-pentru sala auditorium rostește "THREE"
+       Rectorat.
+
+
+   Pentru Secțiunea A rostește "ONE"
+
+
+
+
+Secțiunea B
+   Această secțiune cuprinde următoarele săli: 
+       Secretariat ETC.
+
+
+       Secretariat AC.
+
+
+       Amfiteatrul D1.
+
+
+   Pentru Secțiunea B rostește "TWO"
+
+
+
+

@@ -1,17 +1,34 @@
-You selected option 2. 
-You must select a route from the following:
+You selected option 2. You must select a route from the following:
 
-Route 1. To the secretariat.
-for the secretariat say "ONE"
-
-
+Section A
+   This section comprises the following rooms: 
+       Secretariat.
 
 
-Route 2. To the rectory.
-for the rectory say "TWO"
+       Auditorium.
+
+
+       Rectorat.
+
+
+   for the Section A say "ONE"
 
 
 
 
-Route 3. To the auditorium.
-for the auditorium say "THREE"
+Section B
+   This section comprises the following rooms: 
+       Secretariat ETC.
+
+
+       Secretariat AC.
+
+
+       Amfiteatrul D1.
+
+
+   for the Section B say "TWO"
+
+
+
+
