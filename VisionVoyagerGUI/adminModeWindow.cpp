@@ -52,8 +52,22 @@ AdminModeWindow::AdminModeWindow(QWidget *parent)
     file_drop_route->setAcceptsSingleFile(true);
     ui->routeDragNdropLayout->addWidget(file_drop_route);
 
-    // QChartView *chartView = new QChartView(this);
-    // ui->chart1Layout->addWidget(chartView);
+    /* Chart part */
+    QLineSeries *series = new QLineSeries();
+    series->append(0, 6);
+    series->append(2, 4);
+    series->append(3, 8);
+    series->append(7, 4);
+    series->append(10, 5);
+
+    chart = new QChart();
+    chart->addSeries(series);
+    chart->setTitle("Exemplu Grafic");
+        
+    QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+
+    ui->chartLayout->addWidget(chartView);
 }
 
 AdminModeWindow::~AdminModeWindow()

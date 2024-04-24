@@ -4,6 +4,7 @@
 
 #include <QApplication>
 #include <QMainWindow>
+#include <QtCharts/QtCharts>
 #include <opencv2/opencv.hpp>
 #include "cameraWidget.h"
 #include "fileDropWidget.h"
@@ -43,6 +44,7 @@ private:
     CameraWidget *camera_widget; 
     FileDropWidget *file_drop_widget_fr;
     FileDropWidget *file_drop_route;
+    QChart *chart;
     int section_A_routes = 0;
     int section_B_routes = 0;
     int section_C_routes = 0;

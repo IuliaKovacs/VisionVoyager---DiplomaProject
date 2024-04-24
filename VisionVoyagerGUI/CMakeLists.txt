@@ -1,4 +1,3 @@
-
 set(SOURCES
         adminModeWindow.h
         adminModeWindow.cpp
@@ -15,14 +14,16 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(OpenXLSX_DIR "~/OpenXLSX/build")
+set(CMAKE_PREFIX_PATH "/usr/lib/arm-linux-gnueabihf/cmake;/usr/include/arm-linux-gnueabihf/qt5")
 
 add_library(VisionVoyagerGUI STATIC ${SOURCES})
 
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Core Gui Multimedia MultimediaWidgets Quick)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Core Gui Multimedia MultimediaWidgets Quick)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Core Gui Multimedia MultimediaWidgets Quick Charts)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Core Gui Multimedia MultimediaWidgets Quick Charts)
 find_package(OpenCV REQUIRED)
 find_package(OpenXLSX REQUIRED)
+
 
 
 target_link_libraries(VisionVoyagerGUI PRIVATE
@@ -32,13 +33,10 @@ target_link_libraries(VisionVoyagerGUI PRIVATE
     Qt${QT_VERSION_MAJOR}::Multimedia
     Qt${QT_VERSION_MAJOR}::MultimediaWidgets
     Qt${QT_VERSION_MAJOR}::Quick
+    Qt${QT_VERSION_MAJOR}::Charts
     ${OpenCV_LIBS}
     OpenXLSX::OpenXLSX
 )
 
 
-target_include_directories(VisionVoyagerGUI PRIVATE /usr/include/arm-linux-gnueabihf/qt5 )
-
-
-
-
+target_include_directories(VisionVoyagerGUI PRIVATE /usr/include/arm-linux-gnueabihf/qt5)

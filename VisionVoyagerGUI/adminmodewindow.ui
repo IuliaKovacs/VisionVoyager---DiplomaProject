@@ -49,7 +49,7 @@ QLabel
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -427,12 +427,12 @@ border-radius: 10px;</string>
        <rect>
         <x>110</x>
         <y>390</y>
-        <width>91</width>
+        <width>101</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
-       <string>Subject 1</string>
+       <string>Empty S1</string>
       </property>
      </widget>
      <widget class="QLabel" name="subject2Label">
@@ -440,12 +440,12 @@ border-radius: 10px;</string>
        <rect>
         <x>280</x>
         <y>390</y>
-        <width>91</width>
+        <width>101</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
-       <string>Subject 2</string>
+       <string>Empty S2</string>
       </property>
      </widget>
      <widget class="QLabel" name="subject3Label">
@@ -453,12 +453,12 @@ border-radius: 10px;</string>
        <rect>
         <x>450</x>
         <y>390</y>
-        <width>91</width>
+        <width>101</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
-       <string>Subject 3</string>
+       <string>Empty S3</string>
       </property>
      </widget>
      <widget class="QLabel" name="subject4Label">
@@ -466,12 +466,12 @@ border-radius: 10px;</string>
        <rect>
         <x>620</x>
         <y>390</y>
-        <width>91</width>
+        <width>101</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
-       <string>Subject 4</string>
+       <string>Empty S4</string>
       </property>
      </widget>
      <widget class="QLabel" name="img1Label">
@@ -669,7 +669,7 @@ background-color:  #ffc299;
 border-radius: 10px;</string>
       </property>
       <property name="text">
-       <string>Error: You cannot use a route name that already exists in the database!  </string>
+       <string>Error: Here will be displayed the errors for adding a new person</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -678,8 +678,19 @@ border-radius: 10px;</string>
     </widget>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
-      <string>Statistics</string>
+      <string>Data Collection</string>
      </attribute>
+     <widget class="QWidget" name="verticalLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>70</y>
+        <width>831</width>
+        <height>181</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="chartLayout"/>
+     </widget>
     </widget>
    </widget>
   </widget>

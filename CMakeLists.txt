@@ -7,10 +7,11 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(OpenCV REQUIRED)
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Core Gui Multimedia MultimediaWidgets Quick)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Core Gui Multimedia MultimediaWidgets Quick)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Core Gui Multimedia MultimediaWidgets Quick Charts)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Core Gui Multimedia MultimediaWidgets Quick Charts)
 find_package(pybind11 REQUIRED)
 find_package(OpenXLSX REQUIRED)
+
 
 
 add_subdirectory(VisionVoyagerMoves)
@@ -34,7 +35,7 @@ set(OpenXLSX_DIR "~/OpenXLSX/build")
 
 add_executable(VisionVoyager mainApplication.cpp)
 
-target_include_directories(VisionVoyagerGUI PRIVATE /usr/include/arm-linux-gnueabihf/qt5)
+target_include_directories(VisionVoyagerGUI PRIVATE /usr/include/arm-linux-gnueabihf/qt5 ${Qt5Charts_INCLUDE_DIRS})
 
 target_link_libraries(VisionVoyager PRIVATE pybind11::embed
                                             Qt${QT_VERSION_MAJOR}::Widgets 
@@ -42,7 +43,8 @@ target_link_libraries(VisionVoyager PRIVATE pybind11::embed
                                             Qt${QT_VERSION_MAJOR}::Gui 
                                             Qt${QT_VERSION_MAJOR}::Multimedia
                                             Qt${QT_VERSION_MAJOR}::MultimediaWidgets
-                                            Qt${QT_VERSION_MAJOR}::Quick            
+                                            Qt${QT_VERSION_MAJOR}::Quick
+                                            Qt${QT_VERSION_MAJOR}::Charts            
                                             ${OpenCV_LIBS}
                                             curses 
                                             ${Pocketsphinx_LIBRARIES}
