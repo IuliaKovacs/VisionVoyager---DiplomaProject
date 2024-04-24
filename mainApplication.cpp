@@ -37,13 +37,14 @@ int main(int argc, char *argv[])
 
     initialize_route_display_files();
 
+
     /* ---- Start of Admin Mode part ---- */
 
-    // thread keyboard_control_thread(TASK_KEYBOARD_CONTROL);
-    // thread admin_mode_window_thread(TASK_ADMIN_MODE_WINDOW, argc, argv);
+    thread keyboard_control_thread(TASK_KEYBOARD_CONTROL);
+    thread admin_mode_window_thread(TASK_ADMIN_MODE_WINDOW, argc, argv);
 
-    // keyboard_control_thread.join();
-    // admin_mode_window_thread.join();
+    keyboard_control_thread.join();
+    admin_mode_window_thread.join();
 
 
     /* ---- Start of Main App logic ---- */

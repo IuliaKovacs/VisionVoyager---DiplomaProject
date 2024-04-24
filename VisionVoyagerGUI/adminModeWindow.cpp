@@ -40,6 +40,7 @@ AdminModeWindow::AdminModeWindow(QWidget *parent)
 
     loadFromDatabase();
     load_recognized_persons();
+    generateXLS();
 
     camera_widget = new CameraWidget(this);
     ui->layout_2->addWidget(camera_widget);
@@ -50,7 +51,9 @@ AdminModeWindow::AdminModeWindow(QWidget *parent)
     file_drop_route = new FileDropWidget(this);
     file_drop_route->setAcceptsSingleFile(true);
     ui->routeDragNdropLayout->addWidget(file_drop_route);
-    
+
+    // QChartView *chartView = new QChartView(this);
+    // ui->chart1Layout->addWidget(chartView);
 }
 
 AdminModeWindow::~AdminModeWindow()

@@ -52,6 +52,7 @@ private:
     void update_subject_display(int index, string first_name, char letter);
     void delete_subject_display();
     string get_filename_from_path(string path);
+    int generateXLS(); 
 };
 
 

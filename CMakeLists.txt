@@ -10,7 +10,7 @@ find_package(OpenCV REQUIRED)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Core Gui Multimedia MultimediaWidgets Quick)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Core Gui Multimedia MultimediaWidgets Quick)
 find_package(pybind11 REQUIRED)
-
+find_package(OpenXLSX REQUIRED)
 
 
 add_subdirectory(VisionVoyagerMoves)
@@ -30,13 +30,11 @@ add_subdirectory(VisionVoyagerGUI)
 set(Pocketsphinx_LIBRARY_DIRS "/home/kovaiu1/SRE/pocketsphinx/build")
 set(Pocketsphinx_LIBRARIES "${Pocketsphinx_LIBRARY_DIRS}/libpocketsphinx.a")
 set(POCKETSPHINX_INCLUDE_DIRS "/home/kovaiu1/SRE/pocketsphinx/include")
-
+set(OpenXLSX_DIR "~/OpenXLSX/build")
 
 add_executable(VisionVoyager mainApplication.cpp)
 
-target_include_directories(VisionVoyagerGUI PRIVATE
-    /usr/include/arm-linux-gnueabihf/qt5  
-)
+target_include_directories(VisionVoyagerGUI PRIVATE /usr/include/arm-linux-gnueabihf/qt5)
 
 target_link_libraries(VisionVoyager PRIVATE pybind11::embed
                                             Qt${QT_VERSION_MAJOR}::Widgets 
@@ -49,6 +47,7 @@ target_link_libraries(VisionVoyager PRIVATE pybind11::embed
                                             curses 
                                             ${Pocketsphinx_LIBRARIES}
                                             pthread
+                                            OpenXLSX::OpenXLSX
                                             VisionVoyagerMoves 
                                             RouteRegistration 
                                             RouteRecordPlayer 
