@@ -49,7 +49,8 @@ private:
     int section_B_routes = 0;
     int section_C_routes = 0;
 
-    void loadFromDatabase();
+    void load_from_database();
+    void initialize_chart();
     void load_recognized_persons();
     void update_subject_display(int index, string first_name, char letter);
     void delete_subject_display();

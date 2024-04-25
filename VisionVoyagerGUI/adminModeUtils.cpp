@@ -5,7 +5,7 @@
 #include "../RouteRegistration/routeRegistrationUtils.h"
 
 
-void AdminModeWindow::loadFromDatabase()
+void AdminModeWindow::load_from_database()
 {
     while (ui->routeTableWidget->rowCount() > 0) 
     {

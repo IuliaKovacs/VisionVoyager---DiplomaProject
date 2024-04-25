@@ -38,9 +38,9 @@ AdminModeWindow::AdminModeWindow(QWidget *parent)
     ui->errorLabel->setVisible(false);
     ui->addErrorLabel->setVisible(false);
 
-    loadFromDatabase();
+    load_from_database();
     load_recognized_persons();
-    generateXLS();
+    initialize_chart();
 
     camera_widget = new CameraWidget(this);
     ui->layout_2->addWidget(camera_widget);
@@ -51,23 +51,11 @@ AdminModeWindow::AdminModeWindow(QWidget *parent)
     file_drop_route = new FileDropWidget(this);
     file_drop_route->setAcceptsSingleFile(true);
     ui->routeDragNdropLayout->addWidget(file_drop_route);
-
-    /* Chart part */
-    QLineSeries *series = new QLineSeries();
-    series->append(0, 6);
-    series->append(2, 4);
-    series->append(3, 8);
-    series->append(7, 4);
-    series->append(10, 5);
-
-    chart = new QChart();
-    chart->addSeries(series);
-    chart->setTitle("Exemplu Grafic");
-        
+    
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
-
     ui->chartLayout->addWidget(chartView);
+    
 }
 
 AdminModeWindow::~AdminModeWindow()
@@ -174,7 +162,7 @@ void AdminModeWindow::on_insertRouteButton_clicked()
                         // cout << "File copied successfully!" << endl;
                         vector<string>& route_paths = RouteRegistration::get_route_paths();
                         route_paths.push_back(destination);
-                        loadFromDatabase();
+                        load_from_database();
                         file_drop_route->clearFileList();
                         ui->routeNameLineEdit->clear();
                     } 
