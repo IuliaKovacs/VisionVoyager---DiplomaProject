@@ -9,6 +9,8 @@
 #include "cameraWidget.h"
 #include "fileDropWidget.h"
 
+#define LOGS_PATH "../VisionVoyagerGUI/DataCollection/Logs/"
+
 
 using namespace std;
 
@@ -38,6 +40,7 @@ private slots:
     void on_insertRouteButton_clicked();
     void on_deleteRouteButton_clicked();
     void on_deletePersonButton_clicked();
+    void on_logsListView_clicked(const QModelIndex &index);
 
 private:
     Ui::AdminModeWindow *ui;
@@ -59,6 +62,7 @@ private:
     void delete_subject_display();
     string get_filename_from_path(string path);
     int generateXLS(); 
+    void populate_logs_list();
 };
 
 

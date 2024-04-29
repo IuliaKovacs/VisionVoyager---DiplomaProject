@@ -41,6 +41,7 @@ AdminModeWindow::AdminModeWindow(QWidget *parent)
     load_from_database();
     load_recognized_persons();
     initialize_chart();
+    populate_logs_list();
 
     camera_widget = new CameraWidget(this);
     ui->layout_2->addWidget(camera_widget);
@@ -364,5 +365,10 @@ void AdminModeWindow::on_deletePersonButton_clicked()
 }
 
 
-
+void AdminModeWindow::on_logsListView_clicked(const QModelIndex &index)
+{
+    QString log_text = index.data(Qt::DisplayRole).toString();
+    QString filename = LOGS_PATH + log_text;
+    QProcess::startDetached("xdg-open", QStringList() << filename);
+}
 

@@ -14,6 +14,12 @@
 #include <pybind11/pybind11.h>
 #include <thread>
 
+#define LOGS_PATH "../VisionVoyagerGUI/DataCollection/Logs/"
+
+using namespace std;
+
+extern ofstream logFile;
+
 enum class ApplicationState 
 {
     STANDBY,

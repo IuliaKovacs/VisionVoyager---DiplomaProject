@@ -4,9 +4,36 @@
 
 using namespace std;
 
+ofstream logFile;
+
+
+string generate_log_filename()
+{
+    time_t now = time(nullptr);
+    tm *tm_now = localtime(&now);
+
+    ostringstream filename;
+    filename << "log_" << put_time(tm_now, "%Y_%b_%d") << "_time_";
+
+    filename << put_time(tm_now, "%H_%M");
+
+    return filename.str();
+}
+
+void initialize_log_file() 
+{
+    string log_filename = generate_log_filename();
+    logFile.open(LOGS_PATH + log_filename + ".txt", ios::out | ios::trunc);
+
+    if (!logFile.is_open()) 
+    {
+        cout << "Error: Opening the log file for writing failed!" << endl;
+    }
+}
 
 void initilize_main_app()
 {   
+    initialize_log_file();
     KeyboardControl::initialize_keyboard_control();
     RouteRegistration::initialize_route_registration();
     CameraModule::initialize_camera_module();
@@ -15,6 +42,7 @@ void initilize_main_app()
 void terminate_main_app()
 {
     KeyboardControl::shutdown_keyboard_control();
+    logFile.close();
 }
 
 int main(int argc, char *argv[]) 
@@ -36,7 +64,8 @@ int main(int argc, char *argv[])
 
 
     initialize_route_display_files();
-
+    
+    logFile << "Logging test abcdef" << endl;
 
     /* ---- Start of Admin Mode part ---- */
 

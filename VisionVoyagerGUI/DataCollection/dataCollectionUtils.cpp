@@ -1,9 +1,11 @@
 #include <OpenXLSX.hpp>
 #include <iostream>
 #include "../adminModeWindow.h"
+#include "../ui_adminmodewindow.h"
 
 #define ROUTE_DATA_EXCEL_PATH "../VisionVoyagerGUI/DataCollection/RoutesData.xlsx"
 #define SHEET_ROUTE_NAME "RoutesData"
+
 
 using namespace OpenXLSX;
 
@@ -168,4 +170,24 @@ void AdminModeWindow::add_route_to_excel(string route_name, string section, int 
     doc.close();
 
     update_chart();
+}
+
+
+void AdminModeWindow::populate_logs_list()
+{
+    QStandardItemModel *model = new QStandardItemModel(this);
+
+    QString folder_path = LOGS_PATH;
+    QDir folder(folder_path);
+
+    QStringList log_files = folder.entryList(QDir::Files);
+
+    foreach(const QString &file_name, log_files) 
+    {
+        QStandardItem *item = new QStandardItem(file_name);
+        item->setEditable(false); 
+        model->appendRow(item);
+    }
+
+    ui->logsListView->setModel(model);
 }
