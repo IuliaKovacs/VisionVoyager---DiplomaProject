@@ -153,7 +153,8 @@ void AdminModeWindow::on_insertRouteButton_clicked()
                 }
 
                 if(ok == true)
-                {
+                {   
+                    string filename_path = string(ROUTE_DATABASE_PATH_SECTION) + new_route_section + "/" + new_route_name;
                     string destination = string(ROUTE_DATABASE_PATH_SECTION) + new_route_section + "/" + new_route_name + string(FILE_TERMINATION);
 
                     try 
@@ -161,7 +162,11 @@ void AdminModeWindow::on_insertRouteButton_clicked()
                         fs::copy_file(path, destination);
                         // cout << "File copied successfully!" << endl;
                         vector<string>& route_paths = RouteRegistration::get_route_paths();
-                        route_paths.push_back(destination);
+                        route_paths.push_back(filename_path);
+                        sort(route_paths.begin(), route_paths.end());
+                        auto it = std::find(route_paths.begin(), route_paths.end(), filename_path);
+                        int index = std::distance(route_paths.begin(), it);
+                        add_route_to_excel(new_route_name, new_route_section, index);
                         load_from_database();
                         file_drop_route->clearFileList();
                         ui->routeNameLineEdit->clear();
@@ -212,6 +217,18 @@ void AdminModeWindow::on_deleteRouteButton_clicked()
                 vector<string>& route_paths = RouteRegistration::get_route_paths();
                 route_paths.erase(route_paths.begin() + row);
                 remove(file_path.c_str());
+                if(section == "Section A")
+                {
+                    section_A_routes--; 
+                }
+                else if(section == "Section B")
+                {
+                    section_B_routes--; 
+                }
+                else if(section == "Section C")
+                {
+                    section_C_routes--; 
+                }
                 /* @Todo - check if is needed to also update the tts files */
             }
             else

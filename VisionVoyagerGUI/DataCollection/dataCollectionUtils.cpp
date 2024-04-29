@@ -81,7 +81,7 @@ void AdminModeWindow::delete_excel_row(int row)
     doc.workbook().addWorksheet("TempSheet");
     auto newWks = doc.workbook().worksheet("TempSheet");
 
-    cout << "Row = " << row << endl;
+    // cout << "Row = " << row << endl;
 
     for(int i = row; i < wks.rowCount(); i++)
     {
@@ -102,22 +102,32 @@ void AdminModeWindow::delete_excel_row(int row)
     doc.workbook().deleteSheet(SHEET_ROUTE_NAME);
     newWks.setName(SHEET_ROUTE_NAME);
 
-    cout << "New count row: " << newWks.rowCount() << endl;
+    // cout << "New count row: " << newWks.rowCount() << endl;
 
+    doc.save();
+    doc.close();
+
+    update_chart();
+}
+
+void AdminModeWindow::update_chart()
+{
+    XLDocument doc;
+    doc.open(ROUTE_DATA_EXCEL_PATH);
+    auto wks = doc.workbook().worksheet(SHEET_ROUTE_NAME);
 
     QBarSeries *series = new QBarSeries;
 
-    for(int i = 2; i <= newWks.rowCount(); i++)
+    for(int i = 2; i <= wks.rowCount(); i++)
     {   
-        string route_name = newWks.cell(i, 1).value().get<std::string>();
-        cout << route_name << endl;
+        string route_name = wks.cell(i, 1).value().get<std::string>();
 
         if (route_name.empty()) 
         {
             break;
         }
 
-        int selection_counter = newWks.cell(i, 3).value().get<int>();
+        int selection_counter = wks.cell(i, 3).value().get<int>();
 
         QBarSet *set = new QBarSet(QString::fromStdString(route_name));
         *set << selection_counter;
@@ -127,6 +137,35 @@ void AdminModeWindow::delete_excel_row(int row)
     chart->removeAllSeries();
     chart->addSeries(series);
 
+    cout << "Row count update: " << wks.rowCount() << endl;
+
     doc.save();
     doc.close();
+}
+
+void AdminModeWindow::add_route_to_excel(string route_name, string section, int index)
+{
+    index = index + 2;
+    XLDocument doc;
+    doc.open(ROUTE_DATA_EXCEL_PATH);
+    auto wks = doc.workbook().worksheet(SHEET_ROUTE_NAME);
+
+    cout << "Index = " << index << endl;
+
+    for(int i = wks.rowCount() + 1; i > index ; i--)
+    {
+        for(int j = 1; j <= wks.columnCount(); j++)
+        {
+           wks.cell(i, j).value() = wks.cell(i-1, j).value(); 
+        }
+    }
+
+    wks.cell(index, 1).value() = route_name;   
+    wks.cell(index, 2).value() = section;   
+    wks.cell(index, 3).value() = 0;   
+
+    doc.save();
+    doc.close();
+
+    update_chart();
 }

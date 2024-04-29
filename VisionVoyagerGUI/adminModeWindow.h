@@ -52,6 +52,8 @@ private:
     void load_from_database();
     void initialize_chart();
     void delete_excel_row(int row);
+    void add_route_to_excel(string route_name, string section, int index);
+    void update_chart();
     void load_recognized_persons();
     void update_subject_display(int index, string first_name, char letter);
     void delete_subject_display();
