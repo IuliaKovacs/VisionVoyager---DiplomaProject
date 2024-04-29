@@ -29,19 +29,17 @@ void AdminModeWindow::initialize_chart()
     doc.open(ROUTE_DATA_EXCEL_PATH);
 
     auto wks = doc.workbook().worksheet(SHEET_ROUTE_NAME);
-    int row_count = wks.rowCount();
 
-    cout << "row_count: " << row_count << endl;
+    cout << wks.rowCount() << endl;
 
     QBarSeries *series = new QBarSeries;
 
-    for(int i = 2; i <= row_count; i++)
+    for(int i = 2; i <= wks.rowCount(); i++)
     {   
         string route_name = wks.cell(i, 1).value().get<std::string>();
 
         if (route_name.empty()) 
         {
-            cout << "Sfârșitul datelor la rândul " << i << endl;
             break;
         }
 
@@ -59,7 +57,7 @@ void AdminModeWindow::initialize_chart()
     chart->addSeries(series);
     chart->setTitle("Route Selection Chart");
 
-    QStringList categories {"Total Selections"};
+    QStringList categories {"Total No of Selections per Route"};
     auto axisX = new QBarCategoryAxis;
     axisX->append(categories);
     chart->addAxis(axisX, Qt::AlignBottom);
@@ -72,4 +70,63 @@ void AdminModeWindow::initialize_chart()
 
     chart->legend()->setVisible(true);
     chart->legend()->setAlignment(Qt::AlignBottom);
+}
+
+
+void AdminModeWindow::delete_excel_row(int row)
+{
+    XLDocument doc;
+    doc.open(ROUTE_DATA_EXCEL_PATH);
+    auto wks = doc.workbook().worksheet(SHEET_ROUTE_NAME);
+    doc.workbook().addWorksheet("TempSheet");
+    auto newWks = doc.workbook().worksheet("TempSheet");
+
+    cout << "Row = " << row << endl;
+
+    for(int i = row; i < wks.rowCount(); i++)
+    {
+        for(int j = 1; j <= wks.columnCount(); j++)
+        {
+           wks.cell(i, j).value() = wks.cell(i+1, j).value(); 
+        }
+    }
+
+    for(int i = 1; i < wks.rowCount(); i++)
+    {
+        for(int j = 1; j <= wks.columnCount(); j++)
+        {
+           newWks.cell(i, j).value() = wks.cell(i, j).value(); 
+        }
+    }
+    
+    doc.workbook().deleteSheet(SHEET_ROUTE_NAME);
+    newWks.setName(SHEET_ROUTE_NAME);
+
+    cout << "New count row: " << newWks.rowCount() << endl;
+
+
+    QBarSeries *series = new QBarSeries;
+
+    for(int i = 2; i <= newWks.rowCount(); i++)
+    {   
+        string route_name = newWks.cell(i, 1).value().get<std::string>();
+        cout << route_name << endl;
+
+        if (route_name.empty()) 
+        {
+            break;
+        }
+
+        int selection_counter = newWks.cell(i, 3).value().get<int>();
+
+        QBarSet *set = new QBarSet(QString::fromStdString(route_name));
+        *set << selection_counter;
+        series->append(set);
+    }
+
+    chart->removeAllSeries();
+    chart->addSeries(series);
+
+    doc.save();
+    doc.close();
 }

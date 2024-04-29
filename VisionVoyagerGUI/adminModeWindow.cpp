@@ -222,6 +222,7 @@ void AdminModeWindow::on_deleteRouteButton_clicked()
             }
 
             ui->routeTableWidget->removeRow(row);
+            delete_excel_row(row + 2);
         }
         else
         {
