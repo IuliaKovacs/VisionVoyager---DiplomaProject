@@ -1,6 +1,7 @@
 set(SOURCES
     application.cpp
     application.h
+    application_utils.h
 )
 
 add_library(Application STATIC ${SOURCES})

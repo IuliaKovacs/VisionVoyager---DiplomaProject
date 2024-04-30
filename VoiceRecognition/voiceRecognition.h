@@ -1,7 +1,7 @@
 #ifndef VOICE_RECOGNITION
 #define VOICE_RECOGNITION
 
-
+#include "../ApplicationModule/application_utils.h"
 #include <pocketsphinx.h>
 #include <signal.h>
 #include <iostream>

@@ -1,5 +1,5 @@
-#ifndef APPLICATION
-#define APPLICATION
+#ifndef APPLICATION_H
+#define APPLICATION_H
 
 #include "../VisionVoyagerMoves/visionVoyager.h"
 #include "../RouteRegistration/routeRegistrationUtils.h"
@@ -10,11 +10,9 @@
 #include "../CameraModule/cameraModule.h"
 #include "../VoiceRecognition/voiceRecognition.h"
 #include "../TextToSpeach/textToSpeach.h"
+#include "application_utils.h"
 #include <pybind11/embed.h>
 #include <pybind11/pybind11.h>
-#include <thread>
-
-#define LOGS_PATH "../VisionVoyagerGUI/DataCollection/Logs/"
 
 using namespace std;
 
@@ -39,4 +37,4 @@ bool TASK_ADMIN_MODE_WINDOW(int argc, char *argv[]);
 
 
 
-#endif //APPLICATION
+#endif //APPLICATION_H

@@ -15,8 +15,6 @@ int AdminModeWindow::generateXLS()
     doc.create(ROUTE_DATA_EXCEL_PATH);
     auto wks = doc.workbook().worksheet(SHEET_ROUTE_NAME);
 
-    cout << "Generez Excel!" << endl;
-
     wks.cell("A1").value() = "Hello, OpenXLSX!";
 
     doc.save();
@@ -32,7 +30,7 @@ void AdminModeWindow::initialize_chart()
 
     auto wks = doc.workbook().worksheet(SHEET_ROUTE_NAME);
 
-    cout << wks.rowCount() << endl;
+    // logFile << wks.rowCount() << endl;
 
     QBarSeries *series = new QBarSeries;
 
@@ -83,7 +81,7 @@ void AdminModeWindow::delete_excel_row(int row)
     doc.workbook().addWorksheet("TempSheet");
     auto newWks = doc.workbook().worksheet("TempSheet");
 
-    // cout << "Row = " << row << endl;
+    // logFile << "Row = " << row << endl;
 
     for(int i = row; i < wks.rowCount(); i++)
     {
@@ -104,7 +102,7 @@ void AdminModeWindow::delete_excel_row(int row)
     doc.workbook().deleteSheet(SHEET_ROUTE_NAME);
     newWks.setName(SHEET_ROUTE_NAME);
 
-    // cout << "New count row: " << newWks.rowCount() << endl;
+    // logFile << "New count row: " << newWks.rowCount() << endl;
 
     doc.save();
     doc.close();
@@ -139,7 +137,7 @@ void AdminModeWindow::update_chart()
     chart->removeAllSeries();
     chart->addSeries(series);
 
-    cout << "Row count update: " << wks.rowCount() << endl;
+    // logFile << "Row count update: " << wks.rowCount() << endl;
 
     doc.save();
     doc.close();
@@ -152,7 +150,7 @@ void AdminModeWindow::add_route_to_excel(string route_name, string section, int 
     doc.open(ROUTE_DATA_EXCEL_PATH);
     auto wks = doc.workbook().worksheet(SHEET_ROUTE_NAME);
 
-    cout << "Index = " << index << endl;
+    // logFile << "Index = " << index << endl;
 
     for(int i = wks.rowCount() + 1; i > index ; i--)
     {

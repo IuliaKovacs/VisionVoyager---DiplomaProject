@@ -49,7 +49,7 @@ void LineFollower::follow_line()
             break;
         }     
 
-        // cout << stop_counter << endl;
+        // logFile << stop_counter << endl;
         if (verify_stop_condition())
         {   
             RouteRegistration::set_moving_state(MovingState::STATIONARY);
@@ -58,9 +58,9 @@ void LineFollower::follow_line()
         }
 
         get_grayscale_data();
-        // cout << "Grayscale Data: " << grayscale_data[0] << "  " << grayscale_data[1] << "  " << grayscale_data[2] << endl;
+        // logFile << "Grayscale Data: " << grayscale_data[0] << "  " << grayscale_data[1] << "  " << grayscale_data[2] << endl;
         vector<int> grayscale_line_status = get_line_from_grayscale_data();
-        // cout << "Grayscale Line Status: " << grayscale_line_status[0] << "  " << grayscale_line_status[1] << "  " << grayscale_line_status[2] << endl;
+        // logFile << "Grayscale Line Status: " << grayscale_line_status[0] << "  " << grayscale_line_status[1] << "  " << grayscale_line_status[2] << endl;
         last_state = current_state;
         current_state = compute_next_state(grayscale_line_status);
         execute_move(current_state);

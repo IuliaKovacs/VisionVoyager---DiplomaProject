@@ -1,6 +1,7 @@
 #ifndef OBSTACLE_AVOIDANCE
 #define OBSTACLE_AVOIDANCE
 
+#include "../ApplicationModule/application_utils.h"
 #include "../VisionVoyagerMoves/visionVoyager.h"
 #include <thread>
 #include <chrono>

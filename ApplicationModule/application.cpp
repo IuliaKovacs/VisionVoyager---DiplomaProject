@@ -20,7 +20,7 @@ bool TASK_CAMERA_MODULE()
     CameraModule::capture_image("../CameraModule/CapturedImages");
     /* process image*/
     std::time_t currentTime = std::time(nullptr); 
-    cout << " -- 2 -- Thread TASK_CAMERA_MODULE processing image at datetime: " << std::ctime(&currentTime) << endl;
+    logFile << " -- 2 -- Thread TASK_CAMERA_MODULE processing image at datetime: " << std::ctime(&currentTime) << endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(200)); 
     }
 }
@@ -29,7 +29,7 @@ bool TASK_RFID_READER_COMM()
 {
     for (int i = 0; i < 10; ++i) {
         std::time_t currentTime = std::time(nullptr); 
-        cout << " -- 3 -- Thread TASK_RFID_READER_COMM running at datetime: " << std::ctime(&currentTime) << endl;
+        logFile << " -- 3 -- Thread TASK_RFID_READER_COMM running at datetime: " << std::ctime(&currentTime) << endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(1000)); 
     }
 }
@@ -49,6 +49,5 @@ bool TASK_KEYBOARD_CONTROL()
 
 bool TASK_ADMIN_MODE_WINDOW(int argc, char *argv[]) 
 {
-    cout << "start GUI" << endl;
     start_GUI(argc, argv);
 }

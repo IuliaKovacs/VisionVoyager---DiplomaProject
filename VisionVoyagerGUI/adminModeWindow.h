@@ -8,9 +8,7 @@
 #include <opencv2/opencv.hpp>
 #include "cameraWidget.h"
 #include "fileDropWidget.h"
-
-#define LOGS_PATH "../VisionVoyagerGUI/DataCollection/Logs/"
-
+#include "../ApplicationModule/application_utils.h"
 
 using namespace std;
 

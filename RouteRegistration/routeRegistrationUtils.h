@@ -1,6 +1,7 @@
 #ifndef ROUTE_REGISTRATION_UTILS
 #define ROUTE_REGISTRATION_UTILS
 
+#include "../ApplicationModule/application_utils.h"
 #include <string>
 #include <vector>
 #include <optional>

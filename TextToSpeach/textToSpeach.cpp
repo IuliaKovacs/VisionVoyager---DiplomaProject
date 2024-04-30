@@ -132,7 +132,7 @@ void initialize_section_options_file_RO()
     }
     else
     {
-        cout << "Error: there was a problem to openeing the section options file for TTS";
+        logFile << "Error: there was a problem to openeing the section options file for TTS";
     }
 }
 
@@ -179,7 +179,7 @@ void initialize_section_options_file_EN()
     }
     else
     {
-        cout << "Error: there was a problem to openeing the section options file for TTS";
+        logFile << "Error: there was a problem to openeing the section options file for TTS";
     }
 }
 
@@ -219,7 +219,7 @@ void initialize_route_display_files_RO()
         }
         else
         {
-            cout << "Error: there was a problem to openeing the route options file for TTS";
+            logFile << "Error: there was a problem to openeing the route options file for TTS";
         }
     }
 }
@@ -259,7 +259,7 @@ void initialize_route_display_files_EN()
         }
         else
         {
-            cout << "Error: there was a problem to openeing the route options file for TTS";
+            logFile << "Error: there was a problem to openeing the route options file for TTS";
         }
     }
 }

@@ -27,7 +27,7 @@ void initialize_log_file()
 
     if (!logFile.is_open()) 
     {
-        cout << "Error: Opening the log file for writing failed!" << endl;
+        logFile << "Error: Opening the log file for writing failed!" << endl;
     }
 }
 

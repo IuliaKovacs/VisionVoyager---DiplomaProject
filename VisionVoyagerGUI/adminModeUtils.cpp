@@ -140,7 +140,7 @@ void AdminModeWindow::update_subject_display(int index, string first_name, char 
             break;
         default:
             /* Do nothing - this should be unreachable */
-            cout << "Error" << endl; 
+            logFile << "Error" << endl; 
     }
 }
 

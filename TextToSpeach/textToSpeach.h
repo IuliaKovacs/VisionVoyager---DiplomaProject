@@ -1,6 +1,8 @@
 #ifndef TEXT_TO_SPEACH
 #define TEXT_TO_SPEACH
 
+#include "../ApplicationModule/application_utils.h"
+
 enum class Language 
 {
     RO,

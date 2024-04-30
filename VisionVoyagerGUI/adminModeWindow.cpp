@@ -66,21 +66,21 @@ AdminModeWindow::~AdminModeWindow()
 
 void AdminModeWindow::on_startRegistrationButton_clicked()
 {
-    cout << "Start register clicked!" << endl;
+    logFile << "Start register clicked!" << endl;
     RouteRegistration::set_register_enabled_true();
 }
 
 
 void AdminModeWindow::on_endReigstrationButton_clicked()
 {
-    cout << "Stop register clicked!" << endl;
+    logFile << "Stop register clicked!" << endl;
     RouteRegistration::end_registration();
 }
 
 
 void AdminModeWindow::on_saveChangesButton_clicked()
 {
-    cout << "Save Changes clicked!" << endl;
+    logFile << "Save Changes clicked!" << endl;
     for(int row = 0; row < ui->routeTableWidget->rowCount(); row++)
     {
         QTableWidgetItem *item = ui->routeTableWidget->item(row, 0);
@@ -107,8 +107,8 @@ void AdminModeWindow::on_saveChangesButton_clicked()
 
                 route_paths[row] = new_file_name;
                 new_file_name += string(FILE_TERMINATION);
-                // cout << old_file_name << endl;
-                // cout << new_file_name << endl;
+                // logFile << old_file_name << endl;
+                // logFile << new_file_name << endl;
                 rename(old_file_name.c_str(), new_file_name.c_str());
             }
         }
@@ -118,7 +118,7 @@ void AdminModeWindow::on_saveChangesButton_clicked()
 
 void AdminModeWindow::on_insertRouteButton_clicked()
 {
-    cout << "Insert Route clicked!" << endl;
+    logFile << "Insert Route clicked!" << endl;
     string new_route_name = (ui->routeNameLineEdit->text()).toStdString();
     string new_route_section = (ui->comboBox->currentText()).toStdString();
     
@@ -161,7 +161,7 @@ void AdminModeWindow::on_insertRouteButton_clicked()
                     try 
                     {
                         fs::copy_file(path, destination);
-                        // cout << "File copied successfully!" << endl;
+                        // logFile << "File copied successfully!" << endl;
                         vector<string>& route_paths = RouteRegistration::get_route_paths();
                         route_paths.push_back(filename_path);
                         sort(route_paths.begin(), route_paths.end());
@@ -174,7 +174,7 @@ void AdminModeWindow::on_insertRouteButton_clicked()
                     } 
                     catch(const fs::filesystem_error& e) 
                     {
-                        cout << "Error: " << e.what() << endl;
+                        logFile << "Error: " << e.what() << endl;
                     }
                 }
             }
@@ -196,7 +196,7 @@ void AdminModeWindow::on_insertRouteButton_clicked()
 
 void AdminModeWindow::on_deleteRouteButton_clicked()
 {
-    cout << "Delete Route clicked!" << endl;
+    logFile << "Delete Route clicked!" << endl;
     ui->errorLabel->setVisible(false);
     QList<QTableWidgetItem*> selectedItems = ui->routeTableWidget->selectedItems();
 
@@ -214,7 +214,7 @@ void AdminModeWindow::on_deleteRouteButton_clicked()
             if(section != " - ")
             {
                 string file_path = string(ROUTE_DATABASE_PATH_SECTION) + section + "/" + route_name + string(FILE_TERMINATION);
-                // cout << file_path << endl;
+                // logFile << file_path << endl;
                 vector<string>& route_paths = RouteRegistration::get_route_paths();
                 route_paths.erase(route_paths.begin() + row);
                 remove(file_path.c_str());
@@ -235,7 +235,7 @@ void AdminModeWindow::on_deleteRouteButton_clicked()
             else
             {
                 string file_path = string(ROUTE_DATABASE_PATH_SECTION) + route_name + string(FILE_TERMINATION);
-                // cout << file_path << endl;
+                // logFile << file_path << endl;
                 remove(file_path.c_str());
             }
 
@@ -244,7 +244,7 @@ void AdminModeWindow::on_deleteRouteButton_clicked()
         }
         else
         {
-            cout << "Error: There is a problem with deleting the route!" << endl;
+            logFile << "Error: There is a problem with deleting the route!" << endl;
         }
     }
 
@@ -253,7 +253,7 @@ void AdminModeWindow::on_deleteRouteButton_clicked()
 
 void AdminModeWindow::on_addRecognizedFaceButton_clicked()
 {
-    cout << "Add New Subject clicked!" << endl;
+    logFile << "Add New Subject clicked!" << endl;
     string first_name = (ui->firstNameLineEdit->text()).toStdString();
     string last_name = (ui->lastNameLineEdit->text()).toStdString();
     string role = (ui->roleComboBox->currentText()).toStdString();
@@ -280,7 +280,7 @@ void AdminModeWindow::on_addRecognizedFaceButton_clicked()
                         string path = (item->text()).toStdString();
                         string filename = get_filename_from_path(path);
                         string destination = new_path + "/" + filename;
-                        // cout << destination << endl;
+                        // logFile << destination << endl;
                         fs::copy_file(path, destination);
                     }
 
@@ -329,7 +329,7 @@ void AdminModeWindow::on_addRecognizedFaceButton_clicked()
 
 void AdminModeWindow::on_deletePersonButton_clicked()
 {
-    cout << "Delete Person clicked!" << endl;
+    logFile << "Delete Person clicked!" << endl;
 
     QList<QTableWidgetItem*> selectedItems = ui->personsTableWidget->selectedItems();
 
@@ -346,11 +346,11 @@ void AdminModeWindow::on_deletePersonButton_clicked()
         try 
         {
             fs::remove_all(subject_folder_path);
-            cout << "Erased the " << subject_folder_path << " folder successfully!" << endl;
+            logFile << "Erased the " << subject_folder_path << " folder successfully!" << endl;
         }
         catch (const fs::filesystem_error& e) 
         {
-            cout << "Error: There was a error in erasing the subject folder: " << e.what() << endl;
+            logFile << "Error: There was a error in erasing the subject folder: " << e.what() << endl;
         }
 
         CameraModule::update_faces_dataset_namings();
