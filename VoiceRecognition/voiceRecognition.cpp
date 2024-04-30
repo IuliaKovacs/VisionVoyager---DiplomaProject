@@ -3,7 +3,6 @@
 #include <pocketsphinx.h>
 #include <signal.h>
 #include <stdlib.h>
-#include <iostream>
 #include <string.h>
 #include <time.h>
 
@@ -36,15 +35,15 @@ static FILE * popen_sox(int sample_rate)
     len = snprintf(NULL, 0, SOX_COMMAND, sample_rate);
     if ((soxcmd = (char *)malloc(len + 1)) == NULL)
     {
-        logFile << "Error: Failed to allocate string" << endl;
+        logFile << log_time() << "Error: Failed to allocate string" << endl;
     }
     if (snprintf(soxcmd, len + 1, SOX_COMMAND, sample_rate) != len)
     {
-        logFile << "Error: snprintf() failed" << endl;
+        logFile << log_time() << "Error: snprintf() failed" << endl;
     }
     if ((sox = popen(soxcmd, "r")) == NULL)
     {
-        logFile << "Error: Failed to popen(" << soxcmd << ")" << endl;
+        logFile << log_time() << "Error: Failed to popen(" << soxcmd << ")" << endl;
     }
     free(soxcmd);
 
@@ -69,14 +68,14 @@ void VoiceRecognition::loop_recognition()
 
     if (decoder == NULL)
     {
-         logFile << "Error: PocketSphinx decoder init failed\n" << endl;
+         logFile << log_time() << "Error: PocketSphinx decoder init failed\n" << endl;
     }   
 
     ps_vad_mode_t vad_mode = PS_VAD_LOOSE;
     ep = ps_endpointer_init(0, 0.0, vad_mode, 0, 0);
     if (ep == NULL)
     {
-        logFile << "Error: PocketSphinx endpointer init failed\n" << endl;
+        logFile << log_time() << "Error: PocketSphinx endpointer init failed\n" << endl;
     }
 
     sox = popen_sox(ps_endpointer_sample_rate(ep));
@@ -84,12 +83,12 @@ void VoiceRecognition::loop_recognition()
 
     if ((frame = (short *)malloc(frame_size * sizeof(frame[0]))) == NULL)
     {
-        logFile << "Error: Failed to allocate frame" << endl;
+        logFile << log_time() << "Error: Failed to allocate frame" << endl;
     }
 
     if (signal(SIGINT, catch_sig) == SIG_ERR)
     {
-        logFile << "Error: Failed to set SIGINT handler" << endl;
+        logFile << log_time() << "Error: Failed to set SIGINT handler" << endl;
     }
 
     while (!global_done && (false == start_flag)) 
@@ -124,7 +123,7 @@ void VoiceRecognition::loop_recognition()
 
             if (ps_process_raw(decoder, speech, frame_size, FALSE, FALSE) < 0)
             {
-                logFile << "Error: ps_process_raw() failed\n" << endl; 
+                logFile << log_time() << "Error: ps_process_raw() failed\n" << endl; 
             }
 
             if (!ps_endpointer_in_speech(ep)) 
@@ -132,7 +131,7 @@ void VoiceRecognition::loop_recognition()
                 ps_end_utt(decoder);
                 if ((hyp = ps_get_hyp(decoder, NULL)) != NULL)
                 {
-                    logFile << "Recognized words: +" << hyp << "+" << endl;
+                    logFile << log_time() << "Recognized words: +" << hyp << "+" << endl;
                     if ((strstr("start",hyp) == 0) || (strstr("hello",hyp) == 0)) 
                     {
                         start_flag = true;
@@ -145,7 +144,7 @@ void VoiceRecognition::loop_recognition()
     free(frame);
     if (pclose(sox) < 0)
     {
-        logFile << "Error: Failed to pclose(sox)" << endl;
+        logFile << log_time() << "Error: Failed to pclose(sox)" << endl;
     }
     ps_endpointer_free(ep);
     ps_free(decoder);
@@ -159,17 +158,17 @@ bool VoiceRecognition::record_audio()
             " -f S16_LE -r " + to_string(SAMPLE_RATE) +
             " -c " + to_string(NUM_CHANNELS) + " " + TEMP_AUDIO_FILE_PATH;
 
-    logFile << "Recording audio..." << endl;
+    logFile << log_time() << "Recording audio..." << endl;
     int result = system(command.c_str());
 
     if (result == 0) 
     {
-        logFile << "Audio recording complete" << endl;
+        logFile << log_time() << "Audio recording complete" << endl;
         return true;
     } 
     else 
     {
-        logFile << "Error: recording audio failed" << endl;
+        logFile << log_time() << "Error: recording audio failed" << endl;
         return false;
     }
 }
@@ -188,12 +187,12 @@ string VoiceRecognition::timed_listening_recognition_for_options()
 
     if ((fh = fopen(TEMP_AUDIO_FILE_PATH, "rb")) == NULL)
     {
-        logFile << "Error: Failed to open " << TEMP_AUDIO_FILE_PATH << endl;
+        logFile << log_time() << "Error: Failed to open " << TEMP_AUDIO_FILE_PATH << endl;
     }
 
     if (fseek(fh, 0, SEEK_END) < 0)
     {
-        logFile << "Error: Unable to find end of input file " << TEMP_AUDIO_FILE_PATH << endl;
+        logFile << log_time() << "Error: Unable to find end of input file " << TEMP_AUDIO_FILE_PATH << endl;
     }
     len = ftell(fh);
     rewind(fh);
@@ -204,37 +203,37 @@ string VoiceRecognition::timed_listening_recognition_for_options()
 
     if (ps_config_soundfile(config, fh, TEMP_AUDIO_FILE_PATH) < 0)
     {
-        logFile << "Error: Unsupported input file " << TEMP_AUDIO_FILE_PATH << endl;
+        logFile << log_time() << "Error: Unsupported input file " << TEMP_AUDIO_FILE_PATH << endl;
     }
     if ((decoder = ps_init(config)) == NULL)
     {
-        logFile << "Error: PocketSphinx decoder initialization failed\n" << endl;
+        logFile << log_time() << "Error: PocketSphinx decoder initialization failed\n" << endl;
     }
 
     len -= ftell(fh);
     if ((buf = (short *)malloc(len)) == NULL)
     {
-        logFile << "Error: Unable to allocate " << len << " bytes" << endl;
+        logFile << log_time() << "Error: Unable to allocate " << len << " bytes" << endl;
     }
 
     nsamples = fread(buf, sizeof(buf[0]), len / sizeof(buf[0]), fh);
 
     if (nsamples != len / sizeof(buf[0]))
     {
-        logFile << "Error: Unable to read samples" << endl;
+        logFile << log_time() << "Error: Unable to read samples" << endl;
     }
 
     if (ps_start_utt(decoder) < 0)
     {
-        logFile << "Error: Failed to start processing" << endl;
+        logFile << log_time() << "Error: Failed to start processing" << endl;
     }
     if (ps_process_raw(decoder, buf, nsamples, FALSE, TRUE) < 0)
     {
-        logFile << "Error: ps_process_raw() failed" << endl;
+        logFile << log_time() << "Error: ps_process_raw() failed" << endl;
     }
     if (ps_end_utt(decoder) < 0)
     {
-        logFile << "Error: Failed to end processing" << endl;
+        logFile << log_time() << "Error: Failed to end processing" << endl;
     }
 
     if (ps_get_hyp(decoder, NULL) != NULL)
@@ -252,12 +251,12 @@ string VoiceRecognition::timed_listening_recognition_for_options()
         {
             recognized_word = "UNKNOWN";
         }
-        logFile << "Recognized word: " << recognized_word << endl;
+        logFile << log_time() << "Recognized word: " << recognized_word << endl;
     }
 
     if (fclose(fh) < 0)
     {
-        logFile << "Error: failed to close file " << TEMP_AUDIO_FILE_PATH << endl;
+        logFile << log_time() << "Error: failed to close file " << TEMP_AUDIO_FILE_PATH << endl;
     }
     free(buf);
     ps_free(decoder);

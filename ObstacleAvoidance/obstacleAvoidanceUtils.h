@@ -3,7 +3,6 @@
 
 #include "../ApplicationModule/application_utils.h"
 #include "../VisionVoyagerMoves/visionVoyager.h"
-#include <thread>
 #include <chrono>
 #include <fstream>
 #include <vector>

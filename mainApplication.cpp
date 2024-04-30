@@ -6,6 +6,18 @@ using namespace std;
 
 ofstream logFile;
 
+string log_time()
+{
+    time_t now = time(nullptr);
+    tm *tm_now = localtime(&now);
+
+    ostringstream time_string;
+    time_string << put_time(tm_now, "%d-%b-%Y") << "-";
+
+    time_string << put_time(tm_now, "%Hh:%Mm  -  ");
+
+    return time_string.str();
+}
 
 string generate_log_filename()
 {
@@ -27,13 +39,14 @@ void initialize_log_file()
 
     if (!logFile.is_open()) 
     {
-        logFile << "Error: Opening the log file for writing failed!" << endl;
+        logFile << log_time() << "Error: Opening the log file for writing failed!" << endl;
     }
 }
 
 void initilize_main_app()
 {   
     initialize_log_file();
+    logFile << " - START MAIN APPLICATION  " << log_time() << endl << endl;
     KeyboardControl::initialize_keyboard_control();
     RouteRegistration::initialize_route_registration();
     CameraModule::initialize_camera_module();
@@ -42,6 +55,7 @@ void initilize_main_app()
 void terminate_main_app()
 {
     KeyboardControl::shutdown_keyboard_control();
+    logFile << endl << endl << " - END MAIN APPLICATION  " << log_time() << endl;
     logFile.close();
 }
 
@@ -64,8 +78,28 @@ int main(int argc, char *argv[])
 
 
     initialize_route_display_files();
+
+
+    CameraModule::create_csv_database_file();
+
+     std::string source_file = "../CameraModule/image.png";
+    std::string destination_file = "../CameraModule/image1.png";
+
+    // Deschide fișierul sursă și destinație în același timp
+    std::ifstream source_stream(source_file, std::ios::binary);
+    std::ofstream destination_stream(destination_file, std::ios::binary);
+
+    // Copiază conținutul din fișierul sursă în fișierul destinație într-un singur rând
+    destination_stream << source_stream.rdbuf();
+
+    // Închide fișierele
+    source_stream.close();
+    destination_stream.close();
+
+    int result = CameraModule::recognize_face("../CameraModule/image1.png");
+    logFile << log_time() << "s" << result << endl;
+
     
-    logFile << "Logging test abcdef" << endl;
 
     /* ---- Start of Admin Mode part ---- */
 
@@ -75,8 +109,10 @@ int main(int argc, char *argv[])
     keyboard_control_thread.join();
     admin_mode_window_thread.join();
 
+    /* ---- End of Admin Mode part ---- */
 
-    /* ---- Start of Main App logic ---- */
+
+    /* ---- Start of Normal User Mode part ---- */
 
     /* StandBy/Sleep state until "start" or "hello" is recognized */
     // VoiceRecognition::loop_recognition();
@@ -120,19 +156,7 @@ int main(int argc, char *argv[])
 
     // }
 
-
-    
-
-
-    
-
-    
-
-
-
-
-
-
+    /* ---- End of Normal User Mode part ---- */
 
     terminate_main_app();
 

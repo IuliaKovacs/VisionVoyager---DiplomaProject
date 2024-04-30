@@ -1,9 +1,7 @@
 #include <pybind11/embed.h>
 #include <pybind11/pybind11.h>
 #include "../VisionVoyagerGUI/adminModeWindow.h"
-#include <iostream>
 #include "application.h"
-#include <thread>
 #include <chrono>
 #include <ctime>
 
@@ -20,7 +18,7 @@ bool TASK_CAMERA_MODULE()
     CameraModule::capture_image("../CameraModule/CapturedImages");
     /* process image*/
     std::time_t currentTime = std::time(nullptr); 
-    logFile << " -- 2 -- Thread TASK_CAMERA_MODULE processing image at datetime: " << std::ctime(&currentTime) << endl;
+    logFile << log_time() << " -- 2 -- Thread TASK_CAMERA_MODULE processing image at datetime: " << std::ctime(&currentTime) << endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(200)); 
     }
 }
@@ -29,7 +27,7 @@ bool TASK_RFID_READER_COMM()
 {
     for (int i = 0; i < 10; ++i) {
         std::time_t currentTime = std::time(nullptr); 
-        logFile << " -- 3 -- Thread TASK_RFID_READER_COMM running at datetime: " << std::ctime(&currentTime) << endl;
+        logFile << log_time() << " -- 3 -- Thread TASK_RFID_READER_COMM running at datetime: " << std::ctime(&currentTime) << endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(1000)); 
     }
 }

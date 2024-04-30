@@ -16,7 +16,7 @@ bool CameraModule::resize_and_apply_grayscale_to_s(const fs::path& input_path, i
 
     if (image.empty()) 
     {
-        logFile << "Error: Failed to load image: " << input_path << endl;
+        logFile << log_time() << "Error: Failed to load image: " << input_path << endl;
         return false;
     }
 
@@ -38,7 +38,7 @@ bool CameraModule::parse_raw_images_folder()
 
     if (!fs::exists(folder_path) || !fs::is_directory(folder_path)) 
     {
-        logFile << "Error: Folder does not exist or is not a directory." << endl;
+        logFile << log_time() << "Error: Folder does not exist or is not a directory." << endl;
         return false;
     }
 
@@ -48,9 +48,9 @@ bool CameraModule::parse_raw_images_folder()
         {   
             if (false == detect_face_and_preprocess_if_so(entry.path()))
             {
-                logFile << "The following image is not particular usefull:" << endl;
+                logFile << log_time() << "The following image is not particular usefull:" << endl;
                 logFile<< entry.path() << endl;
-                logFile << "------------------------------------------------" << endl;
+                logFile << log_time() << "------------------------------------------------" << endl;
             }
 
             resize_and_apply_grayscale_to_s(entry.path(), no_of_recognized_subjects);
@@ -71,7 +71,7 @@ void CameraModule::read_recognized_persons()
         {
             if(!id.empty() && isspace(id.back()))
             {
-                logFile << "Error: Wrong format in \"recognized_persons.txt\"" << endl;
+                logFile << log_time() << "Error: Wrong format in \"recognized_persons.txt\"" << endl;
                 break;
             }
 
@@ -93,7 +93,7 @@ void CameraModule::read_recognized_persons()
             }
             else
             {
-                logFile << "Error: Wrong format in \"recognized_persons.txt\"" << endl;
+                logFile << log_time() << "Error: Wrong format in \"recognized_persons.txt\"" << endl;
             }
             Person person = Person(id, first_name, last_name, r);
             recognized_persons.push_back(person);
@@ -128,16 +128,22 @@ void CameraModule::add_new_recognized_subject()
     } 
     catch (const std::exception& e) 
     {
-        logFile << "Error: Problem in creating subject folder: " << e.what() << endl;
+        logFile << log_time() << "Error: Problem in creating subject folder: " << e.what() << endl;
     }
 
     if (false == parse_raw_images_folder())
     {
-        logFile << "Error: Problem in processing images" << endl;
+        logFile << log_time() << "Error: Problem in processing images" << endl;
     }
 
-    // @ToDo
-    // update CSV file
+    string raw_path = RAW_IMAGES_FOLDER_PATH;
+    for (const auto& entry : fs::directory_iterator(raw_path)) 
+    {
+        if (fs::is_regular_file(entry)) 
+        {
+            fs::remove(entry.path());
+        }
+    }
 }
 
 
@@ -155,7 +161,7 @@ void CameraModule::create_csv_database_file()
     {
         if (!fs::exists(full_specified_path_for_face_db) || !fs::is_directory(full_specified_path_for_face_db)) 
         {
-            logFile << "Error with the Face_dataset folder" << endl;
+            logFile << log_time() << "Error: Problem with the Face_dataset folder" << endl;
         }
 
         for (const auto& s_entry : fs::directory_iterator(full_specified_path_for_face_db)) 
@@ -163,6 +169,7 @@ void CameraModule::create_csv_database_file()
             if (fs::is_directory(s_entry)) 
             {
                 string entry_name = s_entry.path().filename().string();
+                label_no = entry_name[1] - '0';
                 for (const auto& image_entry : fs::directory_iterator(s_entry)) 
                 {
                     if (fs::is_regular_file(image_entry)) 
@@ -172,20 +179,19 @@ void CameraModule::create_csv_database_file()
                     }
                     else
                     {
-                        logFile << "Error: Faces_dataset folder structure is not respected" << endl;
+                        logFile << log_time() << "Error: Faces_dataset folder structure is not respected" << endl;
                     }
                 }
             }
             else
             {
-                logFile << "Error: Faces_dataset folder structure is not respected" << endl;
+                logFile << log_time() << "Error: Faces_dataset folder structure is not respected" << endl;
             }
-            label_no++;
         }
     }
     else
     {
-        logFile << "Error: Unable to make the CSV file" << endl;
+        logFile << log_time() << "Error: Unable to make the CSV file" << endl;
     }
 }
 
@@ -196,7 +202,7 @@ cv::Mat CameraModule::resize_and_apply_grayscale(const fs::path& input_path)
 
     if (image.empty()) 
     {
-        logFile << "Failed to load image: " << input_path << endl;
+        logFile << log_time() << "Failed to load image: " << input_path << endl;
     }
 
     cv::Mat resized_image;
@@ -231,12 +237,12 @@ bool CameraModule::detect_face_and_preprocess_if_so(string test_image_path)
     }
     else if (1 < faces.size())
     {
-        logFile << "Too many faces in the image!" << endl;
+        logFile << log_time() << "Too many faces in the image!" << endl;
         return true;
     }
     else if (1 > faces.size())
     {
-        logFile << "The image doesn't contain a face! " << endl;
+        logFile << log_time() << "The image doesn't contain a face! " << endl;
         return false;
     }
 }
@@ -290,7 +296,7 @@ void CameraModule::update_faces_dataset_namings()
         } 
         catch (const fs::filesystem_error& e) 
         {
-            logFile << "Error: Renaming the subject folder went wrong: " << e.what() << endl;
+            logFile << log_time() << "Error: Renaming the subject folder went wrong: " << e.what() << endl;
         }
     }
 }

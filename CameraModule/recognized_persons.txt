@@ -1,8 +1,12 @@
 s1
-Taylor
-Swift
+Iulia
+Kovacs
 Secretary
 s2
 Collson
 Baker
-Building Staff
+Receptionist
+s3
+Taylor
+Swift
+Secretary

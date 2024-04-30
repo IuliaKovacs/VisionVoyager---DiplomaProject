@@ -12,3 +12,7 @@ TextToSpeach/RO/section_C_options.txt
 CameraModule/faces_csv.txt
 CameraModule/recognized_persons.txt
 VisionVoyagerGUI/DataCollection/Logs
+TextToSpeach/RO/option2.txt
+TextToSpeach/EN/option2.txt
+CameraModule/image_eu.png
+CameraModule/image_t.png

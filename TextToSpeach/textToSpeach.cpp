@@ -1,5 +1,3 @@
-#include <iostream>
-#include <fstream>
 #include <string>
 #include <vector>
 #include "textToSpeach.h"
@@ -132,7 +130,7 @@ void initialize_section_options_file_RO()
     }
     else
     {
-        logFile << "Error: there was a problem to openeing the section options file for TTS";
+        logFile << log_time() << "Error: there was a problem to openeing the section options file for TTS";
     }
 }
 
@@ -179,7 +177,7 @@ void initialize_section_options_file_EN()
     }
     else
     {
-        logFile << "Error: there was a problem to openeing the section options file for TTS";
+        logFile << log_time() << "Error: there was a problem to openeing the section options file for TTS";
     }
 }
 
@@ -219,7 +217,7 @@ void initialize_route_display_files_RO()
         }
         else
         {
-            logFile << "Error: there was a problem to openeing the route options file for TTS";
+            logFile << log_time() << "Error: there was a problem to openeing the route options file for TTS";
         }
     }
 }
@@ -259,7 +257,7 @@ void initialize_route_display_files_EN()
         }
         else
         {
-            logFile << "Error: there was a problem to openeing the route options file for TTS";
+            logFile << log_time() << "Error: there was a problem to openeing the route options file for TTS";
         }
     }
 }

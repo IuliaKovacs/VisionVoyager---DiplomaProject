@@ -15,7 +15,7 @@ enum class Role
 class Person
 {   
 private:
-    string id;
+    string id; /* "s1"/"s2"/"s3"/"s4"/ */
     string first_name;
     string last_name;
     Role role;

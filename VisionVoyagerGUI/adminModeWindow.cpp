@@ -4,7 +4,6 @@
 #include "../RouteRegistration/routeRegistrationUtils.h"
 #include "../CameraModule/cameraModule.h"
 #include "../CameraModule/person.h"
-#include <iostream>
 #include <filesystem>
 #include <cstdio>
 #include <iterator> 
@@ -16,7 +15,7 @@ using namespace std;
 #define SECTION "Section "
 #define FILE_TERMINATION ".txt"
 #define MAX_NO_OF_SUBJECTS 4
-#define MINIMUM_IMG_NO_TO_ADD 10
+#define MINIMUM_IMG_NO_TO_ADD 7
 
 void start_GUI(int argc, char *argv[])
 {
@@ -66,21 +65,21 @@ AdminModeWindow::~AdminModeWindow()
 
 void AdminModeWindow::on_startRegistrationButton_clicked()
 {
-    logFile << "Start register clicked!" << endl;
+    logFile << log_time() << "Start register clicked!" << endl;
     RouteRegistration::set_register_enabled_true();
 }
 
 
 void AdminModeWindow::on_endReigstrationButton_clicked()
 {
-    logFile << "Stop register clicked!" << endl;
+    logFile << log_time() << "Stop register clicked!" << endl;
     RouteRegistration::end_registration();
 }
 
 
 void AdminModeWindow::on_saveChangesButton_clicked()
 {
-    logFile << "Save Changes clicked!" << endl;
+    logFile << log_time() << "Save Changes clicked!" << endl;
     for(int row = 0; row < ui->routeTableWidget->rowCount(); row++)
     {
         QTableWidgetItem *item = ui->routeTableWidget->item(row, 0);
@@ -107,8 +106,8 @@ void AdminModeWindow::on_saveChangesButton_clicked()
 
                 route_paths[row] = new_file_name;
                 new_file_name += string(FILE_TERMINATION);
-                // logFile << old_file_name << endl;
-                // logFile << new_file_name << endl;
+                // logFile << log_time() << old_file_name << endl;
+                // logFile << log_time() << new_file_name << endl;
                 rename(old_file_name.c_str(), new_file_name.c_str());
             }
         }
@@ -118,7 +117,7 @@ void AdminModeWindow::on_saveChangesButton_clicked()
 
 void AdminModeWindow::on_insertRouteButton_clicked()
 {
-    logFile << "Insert Route clicked!" << endl;
+    logFile << log_time() << "Insert Route clicked!" << endl;
     string new_route_name = (ui->routeNameLineEdit->text()).toStdString();
     string new_route_section = (ui->comboBox->currentText()).toStdString();
     
@@ -161,7 +160,7 @@ void AdminModeWindow::on_insertRouteButton_clicked()
                     try 
                     {
                         fs::copy_file(path, destination);
-                        // logFile << "File copied successfully!" << endl;
+                        // logFile << log_time() << "File copied successfully!" << endl;
                         vector<string>& route_paths = RouteRegistration::get_route_paths();
                         route_paths.push_back(filename_path);
                         sort(route_paths.begin(), route_paths.end());
@@ -174,7 +173,7 @@ void AdminModeWindow::on_insertRouteButton_clicked()
                     } 
                     catch(const fs::filesystem_error& e) 
                     {
-                        logFile << "Error: " << e.what() << endl;
+                        logFile << log_time() << "Error: " << e.what() << endl;
                     }
                 }
             }
@@ -196,7 +195,7 @@ void AdminModeWindow::on_insertRouteButton_clicked()
 
 void AdminModeWindow::on_deleteRouteButton_clicked()
 {
-    logFile << "Delete Route clicked!" << endl;
+    logFile << log_time() << "Delete Route clicked!" << endl;
     ui->errorLabel->setVisible(false);
     QList<QTableWidgetItem*> selectedItems = ui->routeTableWidget->selectedItems();
 
@@ -214,7 +213,7 @@ void AdminModeWindow::on_deleteRouteButton_clicked()
             if(section != " - ")
             {
                 string file_path = string(ROUTE_DATABASE_PATH_SECTION) + section + "/" + route_name + string(FILE_TERMINATION);
-                // logFile << file_path << endl;
+                // logFile << log_time() << file_path << endl;
                 vector<string>& route_paths = RouteRegistration::get_route_paths();
                 route_paths.erase(route_paths.begin() + row);
                 remove(file_path.c_str());
@@ -235,7 +234,7 @@ void AdminModeWindow::on_deleteRouteButton_clicked()
             else
             {
                 string file_path = string(ROUTE_DATABASE_PATH_SECTION) + route_name + string(FILE_TERMINATION);
-                // logFile << file_path << endl;
+                // logFile << log_time() << file_path << endl;
                 remove(file_path.c_str());
             }
 
@@ -244,7 +243,7 @@ void AdminModeWindow::on_deleteRouteButton_clicked()
         }
         else
         {
-            logFile << "Error: There is a problem with deleting the route!" << endl;
+            logFile << log_time() << "Error: There is a problem with deleting the route!" << endl;
         }
     }
 
@@ -253,7 +252,7 @@ void AdminModeWindow::on_deleteRouteButton_clicked()
 
 void AdminModeWindow::on_addRecognizedFaceButton_clicked()
 {
-    logFile << "Add New Subject clicked!" << endl;
+    logFile << log_time() << "Add New Subject clicked!" << endl;
     string first_name = (ui->firstNameLineEdit->text()).toStdString();
     string last_name = (ui->lastNameLineEdit->text()).toStdString();
     string role = (ui->roleComboBox->currentText()).toStdString();
@@ -267,12 +266,11 @@ void AdminModeWindow::on_addRecognizedFaceButton_clicked()
                 if(file_drop_widget_fr->getListCount() >= MINIMUM_IMG_NO_TO_ADD)
                 {
                     ui->addErrorLabel->setVisible(false);
-                    /* copiere poze in noul s folder*/
+                   
                     QListWidget* fileList = file_drop_widget_fr->getFileListWidget();
 
                     int new_index = CameraModule::count_recognized_subjects() + 1;
-                    string new_path = string(FACES_DATASET_PATH) + "/s" + to_string(new_index);
-                    fs::create_directory(new_path);
+                    string new_path = string(RAW_IMAGES_FOLDER_PATH);
 
                     for (int i = 0; i < fileList->count(); i++)
                     {   
@@ -280,26 +278,24 @@ void AdminModeWindow::on_addRecognizedFaceButton_clicked()
                         string path = (item->text()).toStdString();
                         string filename = get_filename_from_path(path);
                         string destination = new_path + "/" + filename;
-                        // logFile << destination << endl;
+                        // logFile << log_time() << destination << endl;
                         fs::copy_file(path, destination);
                     }
-
-                    /* adaugare Person in vector cu push back */
+                    CameraModule::add_new_recognized_subject();
                     string id = "s" + to_string(new_index);
                     Person p = Person(id, first_name, last_name, role);
                     vector<Person>& persons = CameraModule::get_recognized_persons();
                     persons.push_back(p);
-
-                    /* actualizare recognized_persons.txt */
+                    
                     CameraModule::write_recognized_persons();
                     
-                    /* reload tabel */
                     load_recognized_persons();
 
-                    /* clear drag and drop si fielduri */
                     file_drop_widget_fr->clearFileList();
                     ui->firstNameLineEdit->clear();
                     ui->lastNameLineEdit->clear();
+
+                    CameraModule::create_csv_database_file();
                 }
                 else
                 {
@@ -329,7 +325,7 @@ void AdminModeWindow::on_addRecognizedFaceButton_clicked()
 
 void AdminModeWindow::on_deletePersonButton_clicked()
 {
-    logFile << "Delete Person clicked!" << endl;
+    logFile << log_time() << "Delete Person clicked!" << endl;
 
     QList<QTableWidgetItem*> selectedItems = ui->personsTableWidget->selectedItems();
 
@@ -346,11 +342,11 @@ void AdminModeWindow::on_deletePersonButton_clicked()
         try 
         {
             fs::remove_all(subject_folder_path);
-            logFile << "Erased the " << subject_folder_path << " folder successfully!" << endl;
+            logFile << log_time() << "Erased the " << subject_folder_path << " folder successfully!" << endl;
         }
         catch (const fs::filesystem_error& e) 
         {
-            logFile << "Error: There was a error in erasing the subject folder: " << e.what() << endl;
+            logFile << log_time() << "Error: There was a error in erasing the subject folder: " << e.what() << endl;
         }
 
         CameraModule::update_faces_dataset_namings();

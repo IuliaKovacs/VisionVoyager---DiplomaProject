@@ -1,10 +1,7 @@
 #include "routeRegistrationUtils.h"
-#include <iostream> 
-#include <fstream>
 #include <optional>
 #include <chrono>
 #include <iomanip>
-#include <thread>
 #include <cstdio>
 #include <filesystem>
 #include <algorithm>
@@ -157,10 +154,10 @@ int RouteRegistration::extract_the_miliseconds_between_two_commands(string comma
     string seconds_2 = command_2.substr(18,2);
     string miliseconds_1 = command_1.substr(21,3);
     string miliseconds_2 = command_2.substr(21,3);
-    // logFile << "Command 1: M: " << minutes_1 << ", s: " << seconds_1 << ", ms: " << miliseconds_1 << endl;
-    // logFile << "Command 2: M: " << minutes_2 << ", s: " << seconds_2 << ", ms: " << miliseconds_2 << endl;
+    // logFile << log_time() << "Command 1: M: " << minutes_1 << ", s: " << seconds_1 << ", ms: " << miliseconds_1 << endl;
+    // logFile << log_time() << "Command 2: M: " << minutes_2 << ", s: " << seconds_2 << ", ms: " << miliseconds_2 << endl;
     int difference_in_miliseconds = (stoi(minutes_2) - stoi(minutes_1)) * 60 * 1000 + (stoi(seconds_2) - stoi(seconds_1)) * 1000 + (stoi(miliseconds_2) - stoi(miliseconds_1));
-    // logFile << "Difference in miliseconds between first and second command: " << difference_in_miliseconds << endl;
+    // logFile << log_time() << "Difference in miliseconds between first and second command: " << difference_in_miliseconds << endl;
     return difference_in_miliseconds;
 }
 
@@ -262,7 +259,7 @@ void RouteRegistration::display_possible_routes()
 {
     for (auto route : route_paths)
     {
-        logFile << route << endl;
+        logFile << log_time() << route << endl;
     }   
 }
 

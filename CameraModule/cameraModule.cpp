@@ -18,7 +18,7 @@ void CameraModule::display_camera_capture()
     cv::VideoCapture cap(0);
     if (!cap.isOpened()) 
     {
-        logFile << "Error: Couldn't open the camera." << endl;
+        logFile << log_time() << "Error: Couldn't open the camera." << endl;
     }
 
     cv::namedWindow("Camera", cv::WINDOW_NORMAL);
@@ -50,19 +50,19 @@ void CameraModule::capture_image(string path_to_store)
     cv::VideoCapture cap(0);
     if (!cap.isOpened()) 
     {
-        logFile << "Error: Couldn't open the camera." << endl;
+        logFile << log_time() << "Error: Couldn't open the camera." << endl;
     }
 
     cv::Mat image;
     cap >> image;
     if (image.empty()) 
     {
-        logFile << "Error: Failed to capture image" << endl;
+        logFile << log_time() << "Error: Failed to capture image" << endl;
     }
 
     if (!cv::imwrite(path_to_store + "/image" + to_string(no) + ".jpg", image)) 
     {
-        logFile << "Error: Failed to store the image to " << path_to_store << endl;
+        logFile << log_time() << "Error: Failed to store the image to " << path_to_store << endl;
     }
 
     cap.release();

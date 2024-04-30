@@ -4,7 +4,6 @@
 #include "../ApplicationModule/application_utils.h"
 #include <pocketsphinx.h>
 #include <signal.h>
-#include <iostream>
 #include <stdlib.h>
 
 using namespace std;

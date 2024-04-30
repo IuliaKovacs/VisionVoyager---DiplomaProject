@@ -5,7 +5,7 @@
 #include <opencv2/face.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
-
+#include <cstdio>
 
 
 using namespace std;
@@ -38,7 +38,7 @@ void CameraModule::read_images_from_csv()
     }
     else
     {
-        logFile << "Error: Unable to open CSV file" << endl;
+        logFile << log_time() << "Error: Unable to open CSV file" << endl;
     }
 }
 
@@ -47,7 +47,7 @@ bool CameraModule::check_data_valid()
 {
     if(1 >= images.size()) 
     {
-        logFile << "The face recognition needs at least 2 images in order to work" << endl;
+        logFile << log_time() << "The face recognition needs at least 2 images in order to work" << endl;
         return false;
     }
 
@@ -62,16 +62,15 @@ int CameraModule::recognize_face(string test_image_path)
 
     if (false == detect_face_and_preprocess_if_so(test_image_path))
     {   
-        logFile << "Predicted class = -1" << ", The image is not coresponding, does not contain a face!" << endl;
+        logFile << log_time() << "Predicted class = -1" << ", The image is not coresponding, does not contain a face!" << endl;
         return -1;
     }
     
     cv::Mat test_image = resize_and_apply_grayscale(test_image_path);
-    cv::imshow("Input Image", test_image);
 
     if (test_image.empty()) 
     {
-        logFile << "Failed to load test image." << endl;
+        logFile << log_time() << "Error: Failed to load test image." << endl;
     }
 
     /* Create an Eigenfaces model and train it with the Faces_dataset retrieved data */
@@ -82,7 +81,9 @@ int CameraModule::recognize_face(string test_image_path)
     double confidence = 0.0;
     model->predict(test_image, predicted_label, confidence);
 
-    logFile << "Predicted class = " << predicted_label << ", Confidence = " << confidence << endl;
+    logFile << log_time() << "Predicted class = " << predicted_label << ", Confidence = " << confidence << endl;
+
+    remove(test_image_path.c_str());
 
     return predicted_label;
 }

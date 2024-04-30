@@ -5,9 +5,6 @@ Section A
        Secretariat.
 
 
-       Rectorat.
-
-
    for the Section A say "ONE"
 
 

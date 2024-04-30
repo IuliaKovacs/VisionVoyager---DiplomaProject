@@ -29,7 +29,7 @@ Direction ObstacleAvoidance::choose_avoiding_side()
     this_thread::sleep_for(std::chrono::milliseconds(600));
     robotVisionVoyager->stop();
     get_ultrasonic_data();
-    logFile << ultrasonic_data << endl;
+    logFile << log_time() << ultrasonic_data << endl;
     this_thread::sleep_for(std::chrono::milliseconds(1000));
     robotVisionVoyager->move_backward();
     this_thread::sleep_for(std::chrono::milliseconds(900));
@@ -48,7 +48,7 @@ Direction ObstacleAvoidance::choose_avoiding_side()
     this_thread::sleep_for(std::chrono::milliseconds(600));
     robotVisionVoyager->stop();
     get_ultrasonic_data();
-    logFile << ultrasonic_data << endl;
+    logFile << log_time() << ultrasonic_data << endl;
     this_thread::sleep_for(std::chrono::milliseconds(1000));
     robotVisionVoyager->move_backward();
     this_thread::sleep_for(std::chrono::milliseconds(900));
@@ -131,12 +131,12 @@ void ObstacleAvoidance::simulate_real_case()
             if (side == Direction::RIGHT)
             {
                 avoid_simple_obstacle_right_side();
-                logFile << "right" << endl;
+                logFile << log_time() << "right" << endl;
             }
             else if (side == Direction::LEFT)
             {
                 avoid_simple_obstacle_left_side();
-                logFile << "left" << endl;
+                logFile << log_time() << "left" << endl;
             }
             else 
             {
@@ -205,7 +205,7 @@ void ObstacleAvoidance::return_on_track()
         }
 
         RouteRecordPlayer::play_command(command_name, command_arg);
-        // logFile << command_name << "(" << command_arg << ")" << endl;
+        // logFile << log_time() << command_name << "(" << command_arg << ")" << endl;
         this_thread::sleep_for(std::chrono::milliseconds(milliseconds)); 
     }
 

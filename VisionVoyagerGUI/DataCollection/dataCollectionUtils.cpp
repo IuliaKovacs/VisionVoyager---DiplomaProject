@@ -1,5 +1,4 @@
 #include <OpenXLSX.hpp>
-#include <iostream>
 #include "../adminModeWindow.h"
 #include "../ui_adminmodewindow.h"
 
@@ -30,7 +29,7 @@ void AdminModeWindow::initialize_chart()
 
     auto wks = doc.workbook().worksheet(SHEET_ROUTE_NAME);
 
-    // logFile << wks.rowCount() << endl;
+    // logFile << log_time() << wks.rowCount() << endl;
 
     QBarSeries *series = new QBarSeries;
 
@@ -81,7 +80,7 @@ void AdminModeWindow::delete_excel_row(int row)
     doc.workbook().addWorksheet("TempSheet");
     auto newWks = doc.workbook().worksheet("TempSheet");
 
-    // logFile << "Row = " << row << endl;
+    // logFile << log_time() << "Row = " << row << endl;
 
     for(int i = row; i < wks.rowCount(); i++)
     {
@@ -102,7 +101,7 @@ void AdminModeWindow::delete_excel_row(int row)
     doc.workbook().deleteSheet(SHEET_ROUTE_NAME);
     newWks.setName(SHEET_ROUTE_NAME);
 
-    // logFile << "New count row: " << newWks.rowCount() << endl;
+    // logFile << log_time() << "New count row: " << newWks.rowCount() << endl;
 
     doc.save();
     doc.close();
@@ -137,7 +136,7 @@ void AdminModeWindow::update_chart()
     chart->removeAllSeries();
     chart->addSeries(series);
 
-    // logFile << "Row count update: " << wks.rowCount() << endl;
+    // logFile << log_time() << "Row count update: " << wks.rowCount() << endl;
 
     doc.save();
     doc.close();
@@ -150,7 +149,7 @@ void AdminModeWindow::add_route_to_excel(string route_name, string section, int 
     doc.open(ROUTE_DATA_EXCEL_PATH);
     auto wks = doc.workbook().worksheet(SHEET_ROUTE_NAME);
 
-    // logFile << "Index = " << index << endl;
+    // logFile << log_time() << "Index = " << index << endl;
 
     for(int i = wks.rowCount() + 1; i > index ; i--)
     {
