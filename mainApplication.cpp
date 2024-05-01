@@ -79,23 +79,16 @@ int main(int argc, char *argv[])
 
     initialize_route_display_files();
 
+    /* ---s Face Recognition Test --- */
 
     CameraModule::create_csv_database_file();
-
-     std::string source_file = "../CameraModule/image.png";
+    std::string source_file = "../CameraModule/image.png";
     std::string destination_file = "../CameraModule/image1.png";
-
-    // Deschide fișierul sursă și destinație în același timp
     std::ifstream source_stream(source_file, std::ios::binary);
     std::ofstream destination_stream(destination_file, std::ios::binary);
-
-    // Copiază conținutul din fișierul sursă în fișierul destinație într-un singur rând
     destination_stream << source_stream.rdbuf();
-
-    // Închide fișierele
     source_stream.close();
     destination_stream.close();
-
     int result = CameraModule::recognize_face("../CameraModule/image1.png");
     logFile << log_time() << "s" << result << endl;
 

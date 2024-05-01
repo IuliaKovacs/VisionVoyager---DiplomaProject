@@ -368,3 +368,14 @@ void AdminModeWindow::on_logsListView_clicked(const QModelIndex &index)
     QProcess::startDetached("xdg-open", QStringList() << filename);
 }
 
+void AdminModeWindow::on_controlButton_clicked(bool checked)
+{
+    if (checked)
+    {
+        cout << "RadioButton is checked" << endl;
+    }
+    else
+    {
+        cout << "RadioButton is unchecked" << endl;
+    }
+}

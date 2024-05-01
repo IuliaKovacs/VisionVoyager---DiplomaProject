@@ -39,6 +39,7 @@ private slots:
     void on_deleteRouteButton_clicked();
     void on_deletePersonButton_clicked();
     void on_logsListView_clicked(const QModelIndex &index);
+    void on_controlButton_clicked(bool checked);
 
 private:
     Ui::AdminModeWindow *ui;
