@@ -81,31 +81,41 @@ int main(int argc, char *argv[])
 
     /* ---s Face Recognition Test --- */
 
-    CameraModule::create_csv_database_file();
-    std::string source_file = "../CameraModule/image.png";
-    std::string destination_file = "../CameraModule/image1.png";
-    std::ifstream source_stream(source_file, std::ios::binary);
-    std::ofstream destination_stream(destination_file, std::ios::binary);
-    destination_stream << source_stream.rdbuf();
-    source_stream.close();
-    destination_stream.close();
-    int result = CameraModule::recognize_face("../CameraModule/image1.png");
-    logFile << log_time() << "s" << result << endl;
+    // CameraModule::create_csv_database_file();
+    // std::string source_file = "../CameraModule/image.png";
+    // std::string destination_file = "../CameraModule/image1.png";
+    // std::ifstream source_stream(source_file, std::ios::binary);
+    // std::ofstream destination_stream(destination_file, std::ios::binary);
+    // destination_stream << source_stream.rdbuf();
+    // source_stream.close();
+    // destination_stream.close();
+    // int result = CameraModule::recognize_face("../CameraModule/image1.png");
+    // logFile << log_time() << "s" << result << endl;
 
     
 
     /* ---- Start of Admin Mode part ---- */
+    
+    KeyboardControl::F11_listening_loop();
+    bool Admin_Mode = KeyboardControl::get_F11_pressed();
 
-    thread keyboard_control_thread(TASK_KEYBOARD_CONTROL);
-    thread admin_mode_window_thread(TASK_ADMIN_MODE_WINDOW, argc, argv);
+    if(true == Admin_Mode)
+    {   
+        logFile << log_time() << "Starting Admin Mode Window" << endl;
+        thread keyboard_control_thread(TASK_KEYBOARD_CONTROL);
+        thread admin_mode_window_thread(TASK_ADMIN_MODE_WINDOW, argc, argv);
 
-    keyboard_control_thread.join();
-    admin_mode_window_thread.join();
+        keyboard_control_thread.join();
+        admin_mode_window_thread.join();
+    }
+
 
     /* ---- End of Admin Mode part ---- */
 
 
     /* ---- Start of Normal User Mode part ---- */
+
+    logFile << log_time() << "Starting Normal User Mode " << endl;
 
     /* StandBy/Sleep state until "start" or "hello" is recognized */
     // VoiceRecognition::loop_recognition();

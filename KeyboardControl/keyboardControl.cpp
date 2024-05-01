@@ -1,11 +1,13 @@
 #include "keyboardControl.h"
 #include "../RouteRegistration/routeRegistrationUtils.h"
 #include "../RouteRecordPlayer/routeRecordPlayUtils.h"
-
+#include <sys/select.h> 
+#include <termios.h> 
 
 using namespace std;
 
 VisionVoyager* KeyboardControl::robotVisionVoyager = nullptr;
+bool KeyboardControl::F11_pressed = false;
 
 void KeyboardControl::set_robot(VisionVoyager* robot)
 {
@@ -153,5 +155,52 @@ void KeyboardControl::initialize_keyboard_control()
 
  void KeyboardControl::shutdown_keyboard_control()
  {
-      endwin();
+    endwin();
+ }
+
+ void KeyboardControl::F11_listening_loop()
+ {
+    chrono::seconds interval(5);
+    auto start_time = chrono::steady_clock::now();
+
+    struct termios initial_settings, new_settings;
+    tcgetattr(0, &initial_settings);
+    new_settings = initial_settings;
+    new_settings.c_lflag &= ~ICANON;
+    new_settings.c_cc[VMIN] = 0; 
+    new_settings.c_cc[VTIME] = 0; 
+    tcsetattr(0, TCSANOW, &new_settings);
+
+    while((!F11_pressed) && (interval > chrono::steady_clock::now() - start_time))
+    {   
+        fd_set fds;
+        FD_ZERO(&fds);
+        FD_SET(0, &fds);
+        struct timeval timeout;
+        timeout.tv_sec = 0;
+        timeout.tv_usec = 0;
+        int ready = select(1, &fds, NULL, NULL, &timeout); 
+        if (ready > 0) 
+        {
+            int ch = getch(); 
+            if (ch != ERR) 
+            { 
+                if (ch == KEY_F(11)) 
+                {
+                    F11_pressed = true;
+                    logFile << log_time() << "F11 Pressed! " << endl;
+                }
+            }
+            else
+            {
+                logFile << log_time() << "Error: Problem with listening for F11 input" << endl;
+            }
+        }
+    }
+    logFile << log_time() << "F11 Not Pressed!" << endl;
+ }
+
+ bool KeyboardControl::get_F11_pressed()
+ {
+    return F11_pressed;
  }
