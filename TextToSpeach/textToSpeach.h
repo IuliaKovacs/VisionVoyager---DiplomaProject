@@ -6,11 +6,13 @@
 enum class Language 
 {
     RO,
-    EN
+    EN,
+    UNKNOWN
 };
 
 extern Language language;
 
+void inititalize_language();
 void set_language_RO();
 void set_language_EN();
 void display_menu_options();

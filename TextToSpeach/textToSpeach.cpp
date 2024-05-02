@@ -5,6 +5,7 @@
 
 #define VISION_VOYAGER_RO_VOICE "vv"
 #define VISION_VOYAGER_EN_VOICE "mb-en1"
+#define LANGUAGE_FILE_PATH "../TextToSpeach/language.txt"
 
 #define MODE_OPTIONS_FILE(arg) \
     ( \
@@ -39,17 +40,75 @@
 
 
 using namespace std;
-
-/* Convention that language should be English by default */
-Language language = Language::EN;
+Language language = Language::UNKNOWN;
 vector<string> voice_commands = {"\"ONE\"", "\"TWO\"", "\"THREE\""};
 
 void set_language_RO(){
+    ofstream file(LANGUAGE_FILE_PATH, ofstream::trunc);
+    if(Language::UNKNOWN != language)
+    {
+        if (file.is_open()) 
+        {
+            file << "RO";
+            file.close();
+            logFile << log_time() << "Language changed to RO" << endl;
+        }
+        else
+        {
+            logFile << log_time() << "Error: There is a problem with setting the language!" << endl;
+        }
+    }
     language = Language::RO;
 }
 
 void set_language_EN(){
+    ofstream file(LANGUAGE_FILE_PATH, ofstream::trunc);
+    if(Language::UNKNOWN != language)
+    {
+        if (file.is_open()) 
+        {
+            file << "EN";
+            file.close();
+            logFile << log_time() << "Language changed to EN" << endl;
+        }
+        else
+        {
+            logFile << log_time() << "Error: There is a problem with setting the language!" << endl;
+        }
+    }
     language = Language::EN;
+}
+
+void inititalize_language()
+{
+    ifstream file(LANGUAGE_FILE_PATH);
+    if(file.is_open()) {
+        string line;
+        if(std::getline(file, line)) 
+        {
+            logFile << log_time() << line << endl;
+            if("RO" == line)
+            {
+                set_language_RO();
+                logFile << log_time() << "TTS inititalized with RO language" << endl;
+            }
+            else if("EN" == line)
+            {
+                set_language_EN();
+                logFile << log_time() << "TTS inititalized with EN language" << endl;
+            }
+        } 
+        else 
+        {
+            logFile << log_time() << "Error: There is a problem with initialization of the language!" << endl;
+        }
+
+        file.close();
+    } 
+    else 
+    {
+        logFile << log_time() << "Error: There is a problem with initialization of the language!" << endl;
+    }
 }
 
 void display_menu_options()

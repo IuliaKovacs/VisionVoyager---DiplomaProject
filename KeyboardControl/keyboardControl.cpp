@@ -70,7 +70,6 @@ void KeyboardControl::initialize_keyboard_control()
             }
         }
     }
-    logFile << log_time() << "F11 Not Pressed!" << endl;
  }
 
  bool KeyboardControl::get_F11_pressed()

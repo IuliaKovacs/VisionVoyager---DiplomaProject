@@ -12,6 +12,7 @@
 #include "../ApplicationModule/application_utils.h"
 #include "../RouteRegistration/routeRegistrationUtils.h"
 #include "../KeyboardControl/keyboardControl.h"
+#include "../TextToSpeach/textToSpeach.h"
 
 using namespace std;
 
@@ -47,7 +48,8 @@ private Q_SLOTS:
     void on_deletePersonButton_clicked();
     void on_logsListView_clicked(const QModelIndex &index);
     void on_controlButton_clicked(bool checked);
-
+    void on_enButton_clicked(bool checked);
+    void on_roButton_clicked(bool checked);
 
 private:
     Ui::AdminModeWindow *ui;
@@ -70,6 +72,7 @@ private:
     string get_filename_from_path(string path);
     int generateXLS(); 
     void populate_logs_list();
+    void languge_buttons_set();
 };
 
 

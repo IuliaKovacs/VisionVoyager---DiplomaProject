@@ -13,6 +13,7 @@
 #define TEMP_AUDIO_FILE_PATH "../VoiceRecognition/recorded_audio.wav"
 #define START_KEYPHRASES_LIST "../VoiceRecognition/start_keyphrase.list"
 #define KEYPHRASES_LIST "../VoiceRecognition/keyphrases.list"
+#define WAIT_KEYPHRASES_LIST "../VoiceRecognition/wait_keyphrase.list"
 
 using namespace std;
 int global_done = 0;
@@ -263,4 +264,106 @@ string VoiceRecognition::timed_listening_recognition_for_options()
     ps_config_free(config);
 
     return recognized_word;
+}
+
+
+static void loop_listening_for_stop()
+{
+    ps_decoder_t *decoder;
+    ps_endpointer_t *ep;
+    FILE *sox;
+    short *frame;
+    size_t frame_size;
+    bool wait_flag = false;
+
+    ps_config_t *config = ps_config_init(NULL);
+
+    ps_config_set_str(config, "kws", WAIT_KEYPHRASES_LIST);
+    ps_default_search_args(config);
+
+    decoder = ps_init(config);
+
+    if (decoder == NULL)
+    {
+         logFile << log_time() << "Error: PocketSphinx decoder init failed\n" << endl;
+    }   
+
+    ps_vad_mode_t vad_mode = PS_VAD_LOOSE;
+    ep = ps_endpointer_init(0, 0.0, vad_mode, 0, 0);
+    if (ep == NULL)
+    {
+        logFile << log_time() << "Error: PocketSphinx endpointer init failed\n" << endl;
+    }
+
+    sox = popen_sox(ps_endpointer_sample_rate(ep));
+    frame_size = ps_endpointer_frame_size(ep);
+
+    if ((frame = (short *)malloc(frame_size * sizeof(frame[0]))) == NULL)
+    {
+        logFile << log_time() << "Error: Failed to allocate frame" << endl;
+    }
+
+    if (signal(SIGINT, catch_sig) == SIG_ERR)
+    {
+        logFile << log_time() << "Error: Failed to set SIGINT handler" << endl;
+    }
+
+    while (false == wait_flag)
+    {
+        const int16 *speech;
+        int prev_in_speech = ps_endpointer_in_speech(ep);
+        size_t len, end_samples;
+
+        if ((len = fread(frame, sizeof(frame[0]), frame_size, sox)) != frame_size) 
+        {
+            if (len > 0) 
+            {
+                speech = ps_endpointer_end_stream(ep, frame, frame_size, &end_samples);
+            } 
+            else 
+            {
+                break;
+            }
+        } 
+        else 
+        {
+            speech = ps_endpointer_process(ep, frame);
+        }
+
+        if (speech != NULL) 
+        {
+            const char *hyp;
+            if (!prev_in_speech) 
+            {
+                ps_start_utt(decoder);
+            }
+
+            if (ps_process_raw(decoder, speech, frame_size, FALSE, FALSE) < 0)
+            {
+                logFile << log_time() << "Error: ps_process_raw() failed\n" << endl; 
+            }
+
+            if (!ps_endpointer_in_speech(ep)) 
+            {
+                ps_end_utt(decoder);
+                if ((hyp = ps_get_hyp(decoder, NULL)) != NULL)
+                {
+                    logFile << log_time() << "Recognized words: +" << hyp << "+" << endl;
+                    if ((strstr("stop",hyp) == 0) || (strstr("wait",hyp) == 0)) 
+                    {
+                        wait_flag = true;
+                    }
+                }    
+            }
+        }
+    }
+
+    free(frame);
+    if (pclose(sox) < 0)
+    {
+        logFile << log_time() << "Error: Failed to pclose(sox)" << endl;
+    }
+    ps_endpointer_free(ep);
+    ps_free(decoder);
+    ps_config_free(config);
 }

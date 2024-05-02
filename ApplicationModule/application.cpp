@@ -38,13 +38,6 @@ bool TASK_ROUTE_PLAYING()
      
 }
 
-
-bool TASK_KEYBOARD_CONTROL()
-{
-    // KeyboardControl::keyboard_listening_loop();
-}
-
-
 bool TASK_ADMIN_MODE_WINDOW(int argc, char *argv[]) 
 {
     start_GUI(argc, argv);

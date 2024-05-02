@@ -171,3 +171,18 @@ void AdminModeWindow::keyPressEvent(QKeyEvent *event)
 
     KeyboardControl::keyboard_listening_loop(active_key);
 }
+
+
+void AdminModeWindow::languge_buttons_set()
+{
+    if(Language::RO == language)
+    {
+        ui->roButton->setChecked(true);
+        ui->enButton->setChecked(false);
+    }
+    else if(Language::EN == language)
+    {
+        ui->roButton->setChecked(false);
+        ui->enButton->setChecked(true);
+    }
+}

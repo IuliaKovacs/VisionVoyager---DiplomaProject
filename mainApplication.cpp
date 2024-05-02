@@ -50,6 +50,7 @@ void initilize_main_app()
     KeyboardControl::initialize_keyboard_control();
     RouteRegistration::initialize_route_registration();
     CameraModule::initialize_camera_module();
+    inititalize_language();
 }
 
 void terminate_main_app()
@@ -79,7 +80,7 @@ int main(int argc, char *argv[])
 
     initialize_route_display_files();
 
-    /* ---s Face Recognition Test --- */
+    /* --- Start Face Recognition Test --- */
 
     // CameraModule::create_csv_database_file();
     // std::string source_file = "../CameraModule/image.png";
@@ -91,6 +92,8 @@ int main(int argc, char *argv[])
     // destination_stream.close();
     // int result = CameraModule::recognize_face("../CameraModule/image1.png");
     // logFile << log_time() << "s" << result << endl;
+
+    /* --- End Face Recognition Test --- */
 
     
 
@@ -117,46 +120,42 @@ int main(int argc, char *argv[])
         logFile << log_time() << "Starting Normal User Mode " << endl;
 
         /* StandBy/Sleep state until "start" or "hello" is recognized */
-        // VoiceRecognition::loop_recognition();
+        VoiceRecognition::loop_recognition();
 
-        // set_language_RO();
+        display_hello_message();
 
-        // initialize_route_display_file();
+        bool option_flag = false;
+        string option;
 
-        // display_hello_message();
+        while(option_flag == false)
+        {
+            display_menu_options();
+            option = VoiceRecognition::timed_listening_recognition_for_options();
 
-        // bool option_flag = false;
-        // string option;
+            /* @ToDo - make sure that option can have only 3 values "ONE"/"TWO"/"UNKOWN" */
+            if(strcmp("UNKOWN", option.c_str()) != 0)
+            {
+                if(strcmp("ONE", option.c_str()) == 0)
+                {
+                    display_option1_message();
+                    option_flag = true;
 
-        // while(option_flag == false)
-        // {
-        //     display_menu_options();
-        //     option = VoiceRecognition::timed_listening_recognition_for_options();
+                    /* Start executing in paralell the Line Following, Camera and RFID Reader Communication Tasks */
+                    thread line_follower_thread(TASK_LINE_FOLLOWING);
+                    thread camera_thread(TASK_CAMERA_MODULE);
+                    thread reader_comm_thread(TASK_RFID_READER_COMM);
+                    line_follower_thread.join();
+                    camera_thread.join();
+                    reader_comm_thread.join();
+                }
+                else 
+                {
+                    display_option2_message();
+                    option_flag = true;
+                }
+            }
 
-        //     /* @ToDo - make sure that option can have only 3 values "ONE"/"TWO"/"UNKOWN" */
-        //     if(strcmp("UNKOWN", option.c_str()) != 0)
-        //     {
-        //         if(strcmp("ONE", option.c_str()) == 0)
-        //         {
-        //             display_option1_message();
-        //             option_flag = true;
-
-        //             /* Start executing in paralell the Line Following, Camera and RFID Reader Communication Tasks */
-        //             thread line_follower_thread(TASK_LINE_FOLLOWING);
-        //             thread camera_thread(TASK_CAMERA_MODULE);
-        //             thread reader_comm_thread(TASK_RFID_READER_COMM);
-        //             line_follower_thread.join();
-        //             camera_thread.join();
-        //             reader_comm_thread.join();
-        //         }
-        //         else 
-        //         {
-        //             display_option2_message();
-        //             option_flag = true;
-        //         }
-        //     }
-
-        // }
+        }
     }
 
     

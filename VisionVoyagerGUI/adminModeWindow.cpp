@@ -41,6 +41,7 @@ AdminModeWindow::AdminModeWindow(QWidget *parent)
     load_recognized_persons();
     initialize_chart();
     populate_logs_list();
+    languge_buttons_set();
 
     camera_widget = new CameraWidget(this);
     ui->layout_2->addWidget(camera_widget);
@@ -383,3 +384,21 @@ void AdminModeWindow::on_controlButton_clicked(bool checked)
 }
 
 
+void AdminModeWindow::on_enButton_clicked(bool checked)
+{
+    if(checked)
+    {
+        set_language_EN();
+        ui->roButton->setChecked(false);
+    }
+}
+
+
+void AdminModeWindow::on_roButton_clicked(bool checked)
+{
+    if(checked)
+    {
+        set_language_RO();
+        ui->enButton->setChecked(false);
+    }
+}

@@ -49,7 +49,7 @@ QLabel
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -425,6 +425,32 @@ border-radius: 10px;</string>
         <string>Section C</string>
        </property>
       </item>
+     </widget>
+     <widget class="QRadioButton" name="enButton">
+      <property name="geometry">
+       <rect>
+        <x>950</x>
+        <y>40</y>
+        <width>51</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>EN</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="roButton">
+      <property name="geometry">
+       <rect>
+        <x>1010</x>
+        <y>40</y>
+        <width>51</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>RO</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
