@@ -179,7 +179,7 @@ void AdminModeWindow::populate_logs_list()
 
     QStringList log_files = folder.entryList(QDir::Files);
 
-    foreach(const QString &file_name, log_files) 
+    Q_FOREACH(const QString &file_name, log_files) 
     {
         QStandardItem *item = new QStandardItem(file_name);
         item->setEditable(false); 

@@ -102,63 +102,64 @@ int main(int argc, char *argv[])
     if(true == Admin_Mode)
     {   
         logFile << log_time() << "Starting Admin Mode Window" << endl;
-        thread keyboard_control_thread(TASK_KEYBOARD_CONTROL);
         thread admin_mode_window_thread(TASK_ADMIN_MODE_WINDOW, argc, argv);
-
-        keyboard_control_thread.join();
         admin_mode_window_thread.join();
     }
-
 
     /* ---- End of Admin Mode part ---- */
 
 
+
     /* ---- Start of Normal User Mode part ---- */
 
-    logFile << log_time() << "Starting Normal User Mode " << endl;
+    if(true != Admin_Mode)
+    {
+        logFile << log_time() << "Starting Normal User Mode " << endl;
 
-    /* StandBy/Sleep state until "start" or "hello" is recognized */
-    // VoiceRecognition::loop_recognition();
+        /* StandBy/Sleep state until "start" or "hello" is recognized */
+        // VoiceRecognition::loop_recognition();
 
-    // set_language_RO();
+        // set_language_RO();
 
-    // initialize_route_display_file();
+        // initialize_route_display_file();
 
-    // display_hello_message();
+        // display_hello_message();
 
-    // bool option_flag = false;
-    // string option;
+        // bool option_flag = false;
+        // string option;
 
-    // while(option_flag == false)
-    // {
-    //     display_menu_options();
-    //     option = VoiceRecognition::timed_listening_recognition_for_options();
+        // while(option_flag == false)
+        // {
+        //     display_menu_options();
+        //     option = VoiceRecognition::timed_listening_recognition_for_options();
 
-    //     /* @ToDo - make sure that option can have only 3 values "ONE"/"TWO"/"UNKOWN" */
-    //     if(strcmp("UNKOWN", option.c_str()) != 0)
-    //     {
-    //         if(strcmp("ONE", option.c_str()) == 0)
-    //         {
-    //             display_option1_message();
-    //             option_flag = true;
+        //     /* @ToDo - make sure that option can have only 3 values "ONE"/"TWO"/"UNKOWN" */
+        //     if(strcmp("UNKOWN", option.c_str()) != 0)
+        //     {
+        //         if(strcmp("ONE", option.c_str()) == 0)
+        //         {
+        //             display_option1_message();
+        //             option_flag = true;
 
-    //             /* Start executing in paralell the Line Following, Camera and RFID Reader Communication Tasks */
-    //             thread line_follower_thread(TASK_LINE_FOLLOWING);
-    //             thread camera_thread(TASK_CAMERA_MODULE);
-    //             thread reader_comm_thread(TASK_RFID_READER_COMM);
-    //             line_follower_thread.join();
-    //             camera_thread.join();
-    //             reader_comm_thread.join();
-    //         }
-    //         else 
-    //         {
-    //             display_option2_message();
-    //             option_flag = true;
-    //         }
-    //     }
+        //             /* Start executing in paralell the Line Following, Camera and RFID Reader Communication Tasks */
+        //             thread line_follower_thread(TASK_LINE_FOLLOWING);
+        //             thread camera_thread(TASK_CAMERA_MODULE);
+        //             thread reader_comm_thread(TASK_RFID_READER_COMM);
+        //             line_follower_thread.join();
+        //             camera_thread.join();
+        //             reader_comm_thread.join();
+        //         }
+        //         else 
+        //         {
+        //             display_option2_message();
+        //             option_flag = true;
+        //         }
+        //     }
 
-    // }
+        // }
+    }
 
+    
     /* ---- End of Normal User Mode part ---- */
 
     terminate_main_app();

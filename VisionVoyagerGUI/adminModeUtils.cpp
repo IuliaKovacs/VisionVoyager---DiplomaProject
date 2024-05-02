@@ -1,8 +1,9 @@
+
 #include "../CameraModule/person.h"
 #include "../CameraModule/cameraModule.h"
 #include "adminModeWindow.h"
 #include "ui_adminmodewindow.h"
-#include "../RouteRegistration/routeRegistrationUtils.h"
+
 
 
 void AdminModeWindow::load_from_database()
@@ -158,4 +159,15 @@ void AdminModeWindow::delete_subject_display()
 
     ui->subject4Label->setText("Empty S4");
     ui->img4Label->clear();
+}
+
+void AdminModeWindow::keyPressEvent(QKeyEvent *event) 
+{
+    int key = event->key();
+
+    QString keyString = QKeySequence(key).toString();
+
+    string active_key = keyString.toStdString();
+
+    KeyboardControl::keyboard_listening_loop(active_key);
 }

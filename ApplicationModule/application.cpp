@@ -41,7 +41,7 @@ bool TASK_ROUTE_PLAYING()
 
 bool TASK_KEYBOARD_CONTROL()
 {
-    KeyboardControl::keyboard_listening_loop();
+    // KeyboardControl::keyboard_listening_loop();
 }
 
 

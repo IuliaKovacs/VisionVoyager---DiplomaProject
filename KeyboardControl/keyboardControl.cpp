@@ -8,21 +8,125 @@ using namespace std;
 
 VisionVoyager* KeyboardControl::robotVisionVoyager = nullptr;
 bool KeyboardControl::F11_pressed = false;
+bool KeyboardControl::keyboard_control_active = false;
 
 void KeyboardControl::set_robot(VisionVoyager* robot)
 {
     KeyboardControl::robotVisionVoyager = robot;
 }
 
-void KeyboardControl::keyboard_listening_loop()
+void KeyboardControl::initialize_keyboard_control()
+{
+    /* curses.h specific */
+    /* Initializes the curses library and sets up the data structures */
+    initscr();
+    /* Disables line buffering and processes input character by character */
+    raw(); 
+    /* Enables keypad input for the standard screen */
+    keypad(stdscr, TRUE); 
+}
+
+ void KeyboardControl::shutdown_keyboard_control()
+ {
+    endwin();
+ }
+
+ void KeyboardControl::F11_listening_loop()
+ {
+    chrono::seconds interval(5);
+    auto start_time = chrono::steady_clock::now();
+
+    struct termios initial_settings, new_settings;
+    tcgetattr(0, &initial_settings);
+    new_settings = initial_settings;
+    new_settings.c_lflag &= ~ICANON;
+    new_settings.c_cc[VMIN] = 0; 
+    new_settings.c_cc[VTIME] = 0; 
+    tcsetattr(0, TCSANOW, &new_settings);
+
+    while((!F11_pressed) && (interval > chrono::steady_clock::now() - start_time))
+    {   
+        fd_set fds;
+        FD_ZERO(&fds);
+        FD_SET(0, &fds);
+        struct timeval timeout;
+        timeout.tv_sec = 0;
+        timeout.tv_usec = 0;
+        int ready = select(1, &fds, NULL, NULL, &timeout); 
+        if (ready > 0) 
+        {
+            int ch = getch(); 
+            if (ch != ERR) 
+            { 
+                if (ch == KEY_F(11)) 
+                {
+                    F11_pressed = true;
+                    logFile << log_time() << "F11 Pressed! " << endl;
+                }
+            }
+            else
+            {
+                logFile << log_time() << "Error: Problem with listening for F11 input" << endl;
+            }
+        }
+    }
+    logFile << log_time() << "F11 Not Pressed!" << endl;
+ }
+
+ bool KeyboardControl::get_F11_pressed()
+ {
+    return F11_pressed;
+ }
+
+ const std::unordered_map<std::string, int> key_map 
+ {
+    {"Left", KEY_LEFT},
+    {"Up", KEY_UP},
+    {"Right", KEY_RIGHT},
+    {"Down", KEY_DOWN},
+    {"1", '1'},
+    {"2", '2'},
+    {"3", '3'},
+    {"4", '4'},
+    {"5", '5'},
+    {"6", '6'},
+    {"P", 'p'},
+    {"O", 'o'},
+    {"W", 'w'},
+    {"A", 'a'},
+    {"S", 's'},
+    {"D", 'd'},
+    {"F", 'f'},
+    {"R", 'r'},
+    {"E", 'e'},
+    {"X", 'x'}
+};
+
+int KeyboardControl::map_key(const string& key)
+{
+    auto it = key_map.find(key);
+
+    if (it != key_map.end()) 
+    {
+        return it->second;
+    } 
+    else 
+    {
+        return -1;
+    }
+}
+
+void KeyboardControl::keyboard_listening_loop(string key_s)
 {
     int key = 0;
-    int loop_on = 1;    
 
-    while (loop_on == 1) {
-        scanf(" %d", &key);
+    if(true == keyboard_control_active)
+    {   
+        key = map_key(key_s);
+        cout << key_s << "   " << key << endl;
 
-        switch ((key = getch())) {
+        switch (key) 
+        {
             case 'w':
                 DEBUG_MSG("Ai apasat tasta 'w'");
                 robotVisionVoyager->move_forward();
@@ -132,7 +236,7 @@ void KeyboardControl::keyboard_listening_loop()
             case 'q':
                 DEBUG_MSG("Programul se inchide.\n");
                 robotVisionVoyager->stop();
-                loop_on = 0;
+                keyboard_control_active = false;
                 break;
             default:
                 /* Do nothing */
@@ -141,66 +245,12 @@ void KeyboardControl::keyboard_listening_loop()
     }
 }
 
-
-void KeyboardControl::initialize_keyboard_control()
+void KeyboardControl::set_keyboard_control_active(bool state)
 {
-    /* curses.h specific */
-    /* Initializes the curses library and sets up the data structures */
-    initscr();
-    /* Disables line buffering and processes input character by character */
-    raw(); 
-    /* Enables keypad input for the standard screen */
-    keypad(stdscr, TRUE); 
+    keyboard_control_active = state;
 }
 
- void KeyboardControl::shutdown_keyboard_control()
- {
-    endwin();
- }
-
- void KeyboardControl::F11_listening_loop()
- {
-    chrono::seconds interval(5);
-    auto start_time = chrono::steady_clock::now();
-
-    struct termios initial_settings, new_settings;
-    tcgetattr(0, &initial_settings);
-    new_settings = initial_settings;
-    new_settings.c_lflag &= ~ICANON;
-    new_settings.c_cc[VMIN] = 0; 
-    new_settings.c_cc[VTIME] = 0; 
-    tcsetattr(0, TCSANOW, &new_settings);
-
-    while((!F11_pressed) && (interval > chrono::steady_clock::now() - start_time))
-    {   
-        fd_set fds;
-        FD_ZERO(&fds);
-        FD_SET(0, &fds);
-        struct timeval timeout;
-        timeout.tv_sec = 0;
-        timeout.tv_usec = 0;
-        int ready = select(1, &fds, NULL, NULL, &timeout); 
-        if (ready > 0) 
-        {
-            int ch = getch(); 
-            if (ch != ERR) 
-            { 
-                if (ch == KEY_F(11)) 
-                {
-                    F11_pressed = true;
-                    logFile << log_time() << "F11 Pressed! " << endl;
-                }
-            }
-            else
-            {
-                logFile << log_time() << "Error: Problem with listening for F11 input" << endl;
-            }
-        }
-    }
-    logFile << log_time() << "F11 Not Pressed!" << endl;
- }
-
- bool KeyboardControl::get_F11_pressed()
- {
-    return F11_pressed;
- }
+bool KeyboardControl::get_keyboard_control_active()
+{
+    return keyboard_control_active;
+}

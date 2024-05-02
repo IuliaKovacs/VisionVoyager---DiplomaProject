@@ -39,4 +39,7 @@ target_link_libraries(VisionVoyagerGUI PRIVATE
 )
 
 
-target_include_directories(VisionVoyagerGUI PRIVATE /usr/include/arm-linux-gnueabihf/qt5)
+target_include_directories(VisionVoyagerGUI PRIVATE ${pybind11_INCLUDE_DIRS} /usr/include/arm-linux-gnueabihf/qt5)
+
+
+add_definitions(-DQT_NO_KEYWORDS)

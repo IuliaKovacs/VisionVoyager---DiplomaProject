@@ -2,6 +2,7 @@
 #define ADMIN_MODE_WINDOW_H
 
 
+
 #include <QApplication>
 #include <QMainWindow>
 #include <QtCharts/QtCharts>
@@ -9,6 +10,8 @@
 #include "cameraWidget.h"
 #include "fileDropWidget.h"
 #include "../ApplicationModule/application_utils.h"
+#include "../RouteRegistration/routeRegistrationUtils.h"
+#include "../KeyboardControl/keyboardControl.h"
 
 using namespace std;
 
@@ -30,7 +33,11 @@ public:
     AdminModeWindow(QWidget *parent = nullptr);
     ~AdminModeWindow();
 
-private slots:
+protected:
+    void keyPressEvent(QKeyEvent *event);
+
+
+private Q_SLOTS:
     void on_addRecognizedFaceButton_clicked();
     void on_startRegistrationButton_clicked();
     void on_endReigstrationButton_clicked();
@@ -40,6 +47,7 @@ private slots:
     void on_deletePersonButton_clicked();
     void on_logsListView_clicked(const QModelIndex &index);
     void on_controlButton_clicked(bool checked);
+
 
 private:
     Ui::AdminModeWindow *ui;

@@ -1,9 +1,9 @@
 #include "adminModeWindow.h"
 #include "ui_adminmodewindow.h"
 #include "cameraWidget.h"
-#include "../RouteRegistration/routeRegistrationUtils.h"
 #include "../CameraModule/cameraModule.h"
 #include "../CameraModule/person.h"
+#include "../ApplicationModule/application_utils.h"
 #include <filesystem>
 #include <cstdio>
 #include <iterator> 
@@ -373,9 +373,13 @@ void AdminModeWindow::on_controlButton_clicked(bool checked)
     if (checked)
     {
         cout << "RadioButton is checked" << endl;
+        KeyboardControl::set_keyboard_control_active(true);
     }
     else
     {
         cout << "RadioButton is unchecked" << endl;
+        KeyboardControl::set_keyboard_control_active(false);
     }
 }
+
+
