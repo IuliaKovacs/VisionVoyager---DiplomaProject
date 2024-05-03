@@ -29,7 +29,8 @@ class RouteRecordPlayer
 public:
     static void set_robot(VisionVoyager* robot);
     static void set_current_section(Building_Section section);
-    static void play_route(string route_name);  
+    static void play_route(string route_name);
+    static void play_route_conditioned(string route_name);
     friend void ObstacleAvoidance::return_on_track();
     friend void ObstacleAvoidance::reverse_route(string route_name);
 };

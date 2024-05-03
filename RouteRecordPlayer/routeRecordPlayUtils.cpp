@@ -100,6 +100,8 @@ void RouteRecordPlayer::play_route(string route_name)
     ifstream Route_File(ROUTE_DIR_PATH + route_name + ".txt");
     string line;
 
+    logFile << log_time() << "--- Started playing route \"" << route_name << "\" ---" << endl;
+
     while (getline(Route_File,line))
     {   
         string command_name = extract_command_name(line);
@@ -118,6 +120,75 @@ void RouteRecordPlayer::play_route(string route_name)
         {
             int miliseconds = stoi(line);
             this_thread::sleep_for(std::chrono::milliseconds(miliseconds));   
+        }
+    }
+}
+
+
+
+
+void RouteRecordPlayer::play_route_conditioned(string route_name)
+{
+    ifstream Route_File(route_name);
+    string line;
+
+    logFile << log_time() << "[Thread][PlayRoute] Route Playing Thread Started" << endl;
+    logFile << log_time() << "[PlayRoute] --- Started playing route \"" << route_name << "\" ---" << endl;
+ 
+    while (!route_complete.load())
+    {   
+        if(getline(Route_File,line))
+        {   
+            string command_name = extract_command_name(line);
+            string command_arg = extract_command_argument(line);
+            
+            if (command_arg == ")")
+            {
+                play_command(command_name);
+            }
+            else 
+            {
+                play_command(command_name, stoi(command_arg));
+            }
+
+            logFile << log_time() << command_name;
+
+            if (getline(Route_File,line))
+            {
+                int milliseconds_to_count = stoi(line);
+                logFile << milliseconds_to_count << endl;
+                // this_thread::sleep_for(std::chrono::milliseconds(miliseconds)); 
+
+                auto start_time = std::chrono::steady_clock::now();
+                auto end_time = start_time + std::chrono::milliseconds(milliseconds_to_count);
+                
+                while (std::chrono::steady_clock::now() < end_time) 
+                {
+                    if(should_stop.load())
+                    {   
+                        play_command("stop");
+                        logFile << log_time() << "[Waiting][VoiceRecognition Thread] Intervention from user - must wait the start signal" << endl;
+                        auto wait_start_time = std::chrono::steady_clock::now();
+                        std::unique_lock<std::mutex> lock(mtx);
+                        cond_v.wait(lock, []{ return !should_stop.load(); });
+                        auto wait_end_time = std::chrono::steady_clock::now();
+                        end_time += wait_end_time - wait_start_time;
+                        play_command("forward", 1);
+                        logFile << log_time() << "[Waiting Ended][VoiceRecognition Thread]" << endl;
+                    }
+                }
+            }
+        }
+        else
+        {
+            /* The entire file was parsed so it means that we are at the end of the route -> flags are updated */
+            {   
+                logFile << endl << log_time() << "Route completed" << endl;
+                lock_guard<mutex> lock2(mtx);
+                should_stop.store(true);
+                route_complete.store(true);
+                cond_v.notify_all();
+            }
         }
     }
 }

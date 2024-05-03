@@ -373,12 +373,10 @@ void AdminModeWindow::on_controlButton_clicked(bool checked)
 {
     if (checked)
     {
-        cout << "RadioButton is checked" << endl;
         KeyboardControl::set_keyboard_control_active(true);
     }
     else
     {
-        cout << "RadioButton is unchecked" << endl;
         KeyboardControl::set_keyboard_control_active(false);
     }
 }

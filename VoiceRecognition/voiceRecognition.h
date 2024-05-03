@@ -25,7 +25,7 @@ public:
 
     static void loop_recognition();
     static string timed_listening_recognition_for_options();
-    static void loop_listening_for_stop();
+    static void loop_listening_for_wait();
 };
 
 #endif //VOICE_RECOGNITION

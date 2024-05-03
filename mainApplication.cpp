@@ -5,16 +5,23 @@
 using namespace std;
 
 ofstream logFile;
+mutex mtx;
+condition_variable cond_v;
+atomic<bool> should_stop(false); 
+atomic<bool> route_complete(false); 
 
 string log_time()
 {
     time_t now = time(nullptr);
     tm *tm_now = localtime(&now);
+    auto milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(
+    chrono::system_clock::now().time_since_epoch()).count() % 1000;
+
 
     ostringstream time_string;
     time_string << put_time(tm_now, "%d-%b-%Y") << "-";
-
-    time_string << put_time(tm_now, "%Hh:%Mm  -  ");
+    time_string << std::put_time(tm_now, "%Hh:%Mm:%Ss") << ":";
+    time_string << std::setw(3) << std::setfill('0') << milliseconds << "ms  -  ";
 
     return time_string.str();
 }
@@ -115,51 +122,68 @@ int main(int argc, char *argv[])
 
     /* ---- Start of Normal User Mode part ---- */
 
-    if(true != Admin_Mode)
-    {
-        logFile << log_time() << "Starting Normal User Mode " << endl;
+    // if(true != Admin_Mode)
+    // {
+    //     logFile << log_time() << "Starting Normal User Mode " << endl;
 
-        /* StandBy/Sleep state until "start" or "hello" is recognized */
-        VoiceRecognition::loop_recognition();
+    //     /* StandBy/Sleep state until "start" or "hello" is recognized */
+    //     VoiceRecognition::loop_recognition();
 
-        display_hello_message();
+    //     display_hello_message();
 
-        bool option_flag = false;
-        string option;
+    //     bool option_flag = false;
+    //     string option;
 
-        while(option_flag == false)
-        {
-            display_menu_options();
-            option = VoiceRecognition::timed_listening_recognition_for_options();
+    //     while(option_flag == false)
+    //     {
+    //         display_menu_options();
+    //         option = VoiceRecognition::timed_listening_recognition_for_options();
 
-            /* @ToDo - make sure that option can have only 3 values "ONE"/"TWO"/"UNKOWN" */
-            if(strcmp("UNKOWN", option.c_str()) != 0)
-            {
-                if(strcmp("ONE", option.c_str()) == 0)
-                {
-                    display_option1_message();
-                    option_flag = true;
+    //         /* @ToDo - make sure that option can have only 3 values "ONE"/"TWO"/"UNKNOWN" */
+    //         if(strcmp("UNKNOWN", option.c_str()) != 0)
+    //         {
+    //             if(strcmp("ONE", option.c_str()) == 0)
+    //             {
+    //                 display_option1_message();
+    //                 option_flag = true;
 
-                    /* Start executing in paralell the Line Following, Camera and RFID Reader Communication Tasks */
-                    thread line_follower_thread(TASK_LINE_FOLLOWING);
-                    thread camera_thread(TASK_CAMERA_MODULE);
-                    thread reader_comm_thread(TASK_RFID_READER_COMM);
-                    line_follower_thread.join();
-                    camera_thread.join();
-                    reader_comm_thread.join();
-                }
-                else 
-                {
-                    display_option2_message();
-                    option_flag = true;
-                }
-            }
+    //                 /* Start executing in paralell the Line Following, Camera, Voice Recognition and RFID Reader Communication Tasks */
+    //                 thread line_follower_thread(TASK_LINE_FOLLOWING);
+    //                 thread camera_thread(TASK_CAMERA_MODULE);
+    //                 thread reader_comm_thread(TASK_RFID_READER_COMM);
+    //                 thread voice_recognition_thread(TASK_VOICE_RECOGNITION_WAIT);
+    //                 line_follower_thread.join();
+    //                 camera_thread.join();
+    //                 reader_comm_thread.join();
+    //                 voice_recognition_thread.join();
+    //             }
+    //             else 
+    //             {   
+    //                 display_option2_message();
+    //                 option_flag = true;
+                
+    //                 /* Start executing in paralell the Route Playing, Camera + Obstacle Detectio, Voice Recognition and RFID Reader Communication Tasks */
+                
+    //             }
+    //         }
 
-        }
-    }
+    //     }
+    // }
 
     
     /* ---- End of Normal User Mode part ---- */
+
+
+    /* Thread testing part */
+
+    thread route_player_thread(TASK_ROUTE_PLAYING, "../RouteDatabase/Section A/Secretariat.txt");
+    // thread camera_thread(TASK_CAMERA_MODULE);
+    // thread reader_comm_thread(TASK_RFID_READER_COMM);
+    thread voice_recognition_thread(TASK_VOICE_RECOGNITION_WAIT);
+    route_player_thread.join();
+    // camera_thread.join();
+    // reader_comm_thread.join();
+    voice_recognition_thread.join();
 
     terminate_main_app();
 

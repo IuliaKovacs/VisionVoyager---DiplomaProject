@@ -29,11 +29,11 @@ enum class ApplicationState
 
 
 bool TASK_LINE_FOLLOWING();
-bool TASK_ROUTE_PLAYING();
+bool TASK_ROUTE_PLAYING(string route_name);
 bool TASK_CAMERA_MODULE();
 bool TASK_RFID_READER_COMM();
 bool TASK_ADMIN_MODE_WINDOW(int argc, char *argv[]);
-
+bool TASK_VOICE_RECOGNITION_WAIT();
 
 
 #endif //APPLICATION_H

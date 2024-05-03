@@ -86,24 +86,24 @@ void inititalize_language()
         string line;
         if(std::getline(file, line)) 
         {
-            logFile << log_time() << line << endl;
             if("RO" == line)
-            {
+            {   
+                file.close();
                 set_language_RO();
-                logFile << log_time() << "TTS inititalized with RO language" << endl;
+                logFile << log_time() << "[TTS] TTS inititalized with RO language" << endl;
             }
             else if("EN" == line)
-            {
+            {   
+                file.close();
                 set_language_EN();
-                logFile << log_time() << "TTS inititalized with EN language" << endl;
+                logFile << log_time() << "[TTS] TTS inititalized with EN language" << endl;
             }
         } 
         else 
         {
             logFile << log_time() << "Error: There is a problem with initialization of the language!" << endl;
+            file.close();
         }
-
-        file.close();
     } 
     else 
     {

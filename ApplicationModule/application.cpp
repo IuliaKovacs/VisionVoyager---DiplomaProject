@@ -5,7 +5,9 @@
 #include <chrono>
 #include <ctime>
 
+
 using namespace std;
+
 
 bool TASK_LINE_FOLLOWING()
 {
@@ -33,12 +35,27 @@ bool TASK_RFID_READER_COMM()
 }
 
 
-bool TASK_ROUTE_PLAYING()
+bool TASK_ROUTE_PLAYING(string route_name)
 {
-     
+     RouteRecordPlayer::play_route_conditioned(route_name);
 }
 
 bool TASK_ADMIN_MODE_WINDOW(int argc, char *argv[]) 
 {
     start_GUI(argc, argv);
+}
+
+bool TASK_VOICE_RECOGNITION_WAIT()
+{
+    logFile << log_time() << "[Thread][VoiceRecognition] Voice Regognition Thread Started " << endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000)); 
+    // Setăm flagul de oprire la true
+    should_stop.store(true);
+    cond_v.notify_all();
+    /* in partea asta de cod ar trebui sa pun conditia de trezire - commanda START */
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000)); 
+    // Setăm flagul inapoi
+    should_stop.store(false);
+    cond_v.notify_all();
+    // VoiceRecognition::loop_listening_for_wait();
 }

@@ -267,7 +267,7 @@ string VoiceRecognition::timed_listening_recognition_for_options()
 }
 
 
-static void loop_listening_for_stop()
+static void loop_listening_for_wait()
 {
     ps_decoder_t *decoder;
     ps_endpointer_t *ep;

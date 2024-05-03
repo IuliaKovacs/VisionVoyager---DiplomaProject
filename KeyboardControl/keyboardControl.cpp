@@ -122,7 +122,7 @@ void KeyboardControl::keyboard_listening_loop(string key_s)
     if(true == keyboard_control_active)
     {   
         key = map_key(key_s);
-        cout << key_s << "   " << key << endl;
+        // cout << key_s << "   " << key << endl;
 
         switch (key) 
         {
