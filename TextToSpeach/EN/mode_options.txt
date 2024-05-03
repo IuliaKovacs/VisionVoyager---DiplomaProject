@@ -1,19 +1,27 @@
 I am vision Voyager, your travel aid.
+
 My mission is to guide you to the desired place.
 
 I have several modes of operation:
 
-1. I can follow a line to your destination.
+
+1. I have routes stored that I can guide you on. 
+
+There are different sections with different routes.
 
 
-2. I have routes stored that I can guide you on.
-    
-     The routes are:
-    
-     1. To the secretariat
-    
-    
-     2. To the rectory
-    
-    
-     3. To the auditorium
+
+2. I can follow a line to your destination.
+
+
+
+
+Now, you must select a mode from the following:
+
+
+
+1. For Routes that I can guide you on say "ONE"
+
+
+
+2. For Line Follower Mode say "TWO"

@@ -1,2 +1,3 @@
-start /1e-4/
-hello /1e-5/
+start /1e-1/
+hello /1e-2/
+go /1e-1/

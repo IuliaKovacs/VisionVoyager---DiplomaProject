@@ -1,25 +1,4 @@
-Ai selectat opțiunea 2. Trebuie să selectezi o secțiune dintre următoarele:
+Ai selectat opțiunea 1.
+Vom urmări o linie până la destinație
 
-Secțiunea A
-   Această secțiune cuprinde următoarele săli: 
-       Secretariat.
-
-
-   Pentru Secțiunea A rostește "ONE"
-
-
-
-
-Secțiunea B
-   Această secțiune cuprinde următoarele săli: 
-       Secretariat ETC.
-
-
-       Secretariat AC.
-
-
-   Pentru Secțiunea B rostește "TWO"
-
-
-
-
+Eu te voi ghida cu direcțiile în care trebuie să te deplasezi

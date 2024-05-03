@@ -136,7 +136,7 @@ void VoiceRecognition::loop_recognition()
                 ps_end_utt(decoder);
                 if ((hyp = ps_get_hyp(decoder, NULL)) != NULL)
                 {
-                    if ((strstr("start",hyp) == 0) || (strstr("hello",hyp) == 0)) 
+                    if ((strstr("start",hyp) == 0) || (strstr("hello",hyp) == 0) || (strstr("go",hyp) == 0)) 
                     {
                         start_flag = true;
                         should_stop.store(false);
@@ -255,6 +255,10 @@ string VoiceRecognition::timed_listening_recognition_for_options()
         else if (strstr("TWO", recognized_word.c_str()) == 0)
         {
             recognized_word = "TWO";
+        }
+        else if (strstr("THREE", recognized_word.c_str()) == 0)
+        {
+            recognized_word = "THREE";
         }
         else
         {

@@ -1,5 +1,29 @@
-You selected option 1.
+You selected the Route Follower option. You must select a route from the following:
 
-We will follow a line to the destination.
+Section A
 
-I will guide you with the directions in which you must move.
+
+   This section comprises the following rooms: 
+       Secretariat.
+
+
+   for the Section A say "ONE"
+
+
+
+
+Section B
+
+
+   This section comprises the following rooms: 
+       Secretariat ETC.
+
+
+       Secretariat AC.
+
+
+   for the Section B say "TWO"
+
+
+
+

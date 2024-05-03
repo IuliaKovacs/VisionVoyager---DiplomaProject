@@ -1,22 +1,27 @@
 Eu sunt Vision Voyager, ajutorul tău pentru deplasare.
+
 Misiunea mea este să te ghidez în locul dorit.
 
 Dispun de mai multe moduri de funcționare:
 
-1. Pot urmări o linie până la destinație.
 
 
-2. Dețin stocate mai multe rute pe care te pot ghida.
-    
-    Rutele sunt:
-    
-    1. Către secretariat 
-    
-    
-    2. Către rectorat 
-    
-    
-    3. Către sala auditorium 
+1. Dețin stocate mai multe rute pe care te pot ghida. 
+
+Rutele sunt împărțite pe diverse secțiuni.
+
+
+2. Pot urmări o linie până la destinație.
 
 
 
+
+Acum, trebuie să selectezi un mod dintre următoarele:
+
+
+
+1. Pentru rute pe care să te ghidez rostește "ONE"
+
+
+
+2. Pentru modul de urmărire al unei linii rostește "TWO"

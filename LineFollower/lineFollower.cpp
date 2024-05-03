@@ -41,11 +41,26 @@ void LineFollower::follow_line()
 
     while(true)
     {
+        if(should_stop.load())
+        {   
+            robotVisionVoyager->stop();
+            RouteRegistration::set_moving_state(MovingState::STATIONARY);
+            log_mutex.lock();
+            logFile << log_time() << "[Thread][LineFollower] ...Waiting... - Intervention from user - must wait the start signal" << endl;
+            log_mutex.unlock();
+            std::unique_lock<std::mutex> lock(mtx);
+            cond_v.wait(lock, []{ return !should_stop.load(); });
+            log_mutex.lock();
+            logFile << log_time() << "[Thread][LineFollower] Waiting Ended " << endl;
+            log_mutex.unlock();
+        }
+
         if (verify_is_in_air())
         {
             robotVisionVoyager->stop();
             RouteRegistration::set_moving_state(MovingState::STATIONARY);
             RouteRegistration::end_registration();
+            route_complete.store(true);
             break;
         }     
 
@@ -54,6 +69,7 @@ void LineFollower::follow_line()
         {   
             RouteRegistration::set_moving_state(MovingState::STATIONARY);
             RouteRegistration::end_registration();
+            route_complete.store(true);
             break;
         }
 

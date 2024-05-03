@@ -5,9 +5,7 @@
 #include <chrono>
 #include <ctime>
 
-
 using namespace std;
-
 
 bool TASK_LINE_FOLLOWING()
 {

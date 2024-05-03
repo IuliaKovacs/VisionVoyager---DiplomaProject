@@ -1,25 +1,5 @@
-You selected option 2. You must select a route from the following:
+You selected option 1.
 
-Section A
-   This section comprises the following rooms: 
-       Secretariat.
+We will follow a line to the destination.
 
-
-   for the Section A say "ONE"
-
-
-
-
-Section B
-   This section comprises the following rooms: 
-       Secretariat ETC.
-
-
-       Secretariat AC.
-
-
-   for the Section B say "TWO"
-
-
-
-
+I will guide you with the directions in which you must move.

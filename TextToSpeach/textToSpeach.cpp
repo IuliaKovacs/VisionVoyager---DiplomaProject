@@ -35,6 +35,31 @@
                                       "\"../TextToSpeach/EN/hello_message.txt\""  \
     )
 
+#define SECTION_A_MESSAGE_FILE(arg) \
+    ( \
+        (arg == Language::RO) ?  "\"../TextToSpeach/RO/section_A_options.txt\"" : \
+                                      "\"../TextToSpeach/EN/section_A_options.txt\""  \
+    )
+
+#define SECTION_B_MESSAGE_FILE(arg) \
+    ( \
+        (arg == Language::RO) ?  "\"../TextToSpeach/RO/section_B_options.txt\"" : \
+                                      "\"../TextToSpeach/EN/section_B_options.txt\""  \
+    )
+
+#define SECTION_C_MESSAGE_FILE(arg) \
+    ( \
+        (arg == Language::RO) ?  "\"../TextToSpeach/RO/section_C_options.txt\"" : \
+                                      "\"../TextToSpeach/EN/section_C_options.txt\""  \
+    )
+
+#define REPEAT_MESSAGE_FILE(arg) \
+    ( \
+        (arg == Language::RO) ?  "\"../TextToSpeach/RO/repeat_selection.txt\"" : \
+                                      "\"../TextToSpeach/EN/repeat_selection.txt\""  \
+    )
+    
+
 #define CHOOSE_LANGUAGE(lang) ((lang == Language::RO) ? VISION_VOYAGER_RO_VOICE : VISION_VOYAGER_EN_VOICE)
 
 
@@ -115,6 +140,7 @@ void inititalize_language()
 
 void display_menu_options()
 {   
+    logFile << log_time() << "[TTS] Displaying menu options " << endl;
     string command = "espeak -v " + string(CHOOSE_LANGUAGE(language)) + " -s 150 " + " -f " + string(MODE_OPTIONS_FILE(language));
     system(command.c_str());
 }
@@ -131,13 +157,40 @@ void display_option2_message()
     system(command.c_str());
 }
 
+void display_section_A_options_message()
+{   
+    logFile << log_time() << "[TTS] Displaying section A routes " << endl;
+    string command = "espeak -v " + string(CHOOSE_LANGUAGE(language)) + " -s 150 " + " -f " + string(SECTION_A_MESSAGE_FILE(language));
+    system(command.c_str());
+}
+
+void display_section_B_options_message()
+{   
+    logFile << log_time() << "[TTS] Displaying section B routes " << endl;
+    string command = "espeak -v " + string(CHOOSE_LANGUAGE(language)) + " -s 150 " + " -f " + string(SECTION_B_MESSAGE_FILE(language));
+    system(command.c_str());
+}
+
+void display_section_C_options_message()
+{   
+    logFile << log_time() << "[TTS] Displaying section C routes " << endl;
+    string command = "espeak -v " + string(CHOOSE_LANGUAGE(language)) + " -s 150 " + " -f " + string(SECTION_C_MESSAGE_FILE(language));
+    system(command.c_str());
+}
+
 void display_hello_message()
-{
+{   
+    logFile << log_time() << "[TTS] Displaying hello message " << endl;
     string command = "espeak -v " + string(CHOOSE_LANGUAGE(language)) + " -s 150 " + " -f " + string(HELLO_MESSAGE_FILE(language));
     system(command.c_str());
 }
 
-
+void display_repeat_message()
+{
+    logFile << log_time() << "[TTS] Displaying repeat message " << endl;
+    string command = "espeak -v " + string(CHOOSE_LANGUAGE(language)) + " -s 150 " + " -f " + string(REPEAT_MESSAGE_FILE(language));
+    system(command.c_str());
+}
 
 void initialize_route_display_files()
 {   
@@ -150,10 +203,10 @@ void initialize_route_display_files()
 
 void initialize_section_options_file_RO()
 {
-    ofstream SectionOptionsFileRO("../TextToSpeach/RO/option2.txt", ios_base::trunc);
+    ofstream SectionOptionsFileRO("../TextToSpeach/RO/option1.txt", ios_base::trunc);
     if (SectionOptionsFileRO.is_open())
     {
-        SectionOptionsFileRO << "Ai selectat opțiunea 2. Trebuie să selectezi o secțiune dintre următoarele:" << endl << endl;
+        SectionOptionsFileRO << "Ai selectat opțiunea pentru urmărirea unei rute. Trebuie să selectezi o secțiune dintre următoarele:" << endl << endl;
         
         for(char c = 'A'; c <= 'C'; c++)
         {   
@@ -176,7 +229,7 @@ void initialize_section_options_file_RO()
         
             if(0 < routes.size())
             {
-                SectionOptionsFileRO << "Secțiunea " <<  string(1, c) << endl;
+                SectionOptionsFileRO << "Secțiunea " <<  string(1, c) << endl << endl << endl;
                 SectionOptionsFileRO << "   Această secțiune cuprinde următoarele săli: " << endl;
 
                 for(int i = 1; i <= routes.size(); i++)
@@ -197,10 +250,10 @@ void initialize_section_options_file_RO()
 
 void initialize_section_options_file_EN()
 {
-    ofstream SectionOptionsFileEN("../TextToSpeach/EN/option2.txt", ios_base::trunc);
+    ofstream SectionOptionsFileEN("../TextToSpeach/EN/option1.txt", ios_base::trunc);
     if (SectionOptionsFileEN.is_open())
     {
-        SectionOptionsFileEN << "You selected option 2. You must select a route from the following:" << endl << endl;
+        SectionOptionsFileEN << "You selected the Route Follower option. You must select a route from the following:" << endl << endl;
         
         for(char c = 'A'; c <= 'C'; c++)
         {   
@@ -223,7 +276,7 @@ void initialize_section_options_file_EN()
         
             if(0 < routes.size())
             {
-                SectionOptionsFileEN << "Section " <<  string(1, c) << endl;
+                SectionOptionsFileEN << "Section " <<  string(1, c) << endl << endl << endl;
                 SectionOptionsFileEN << "   This section comprises the following rooms: " << endl;
 
                 for(int i = 1; i <= routes.size(); i++)
@@ -272,8 +325,8 @@ void initialize_route_display_files_RO()
             
             for(int i = 1; i <= routes.size(); i++)
             {
-                RouteOptionsFileRO << "Ruta " << i << ". Către " << RouteRegistration::get_route_name_from_path(routes[i-1]) << "." << endl;
-                RouteOptionsFileRO << "pentru "<< RouteRegistration::get_route_name_from_path(routes[i-1]) << " rostește" << voice_commands[i-1] << endl << endl << endl << endl << endl;
+                RouteOptionsFileRO << "Ruta " << i << ". Către " << RouteRegistration::get_route_name_from_path(routes[i-1]) << "." << endl << endl << endl;
+                RouteOptionsFileRO << "pentru "<< RouteRegistration::get_route_name_from_path(routes[i-1]) << " rostește " << voice_commands[i-1] << endl << endl << endl << endl << endl;
             }
         }
         else
@@ -312,7 +365,7 @@ void initialize_route_display_files_EN()
             
             for(int i = 1; i <= routes.size(); i++)
             {
-                RouteOptionsFileEN << "Route " << i << ". To the " << RouteRegistration::get_route_name_from_path(routes[i-1]) << "." << endl;
+                RouteOptionsFileEN << "Route " << i << ". To the " << RouteRegistration::get_route_name_from_path(routes[i-1]) << "." << endl << endl << endl;
                 RouteOptionsFileEN << "for the "<< RouteRegistration::get_route_name_from_path(routes[i-1]) << " say " << voice_commands[i-1] << endl << endl << endl << endl << endl;
             }
         }
