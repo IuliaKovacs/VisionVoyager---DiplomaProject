@@ -44,9 +44,10 @@ Language language = Language::UNKNOWN;
 vector<string> voice_commands = {"\"ONE\"", "\"TWO\"", "\"THREE\""};
 
 void set_language_RO(){
-    ofstream file(LANGUAGE_FILE_PATH, ofstream::trunc);
+    
     if(Language::UNKNOWN != language)
-    {
+    {   
+        ofstream file(LANGUAGE_FILE_PATH, ofstream::trunc);
         if (file.is_open()) 
         {
             file << "RO";
@@ -62,9 +63,10 @@ void set_language_RO(){
 }
 
 void set_language_EN(){
-    ofstream file(LANGUAGE_FILE_PATH, ofstream::trunc);
+    
     if(Language::UNKNOWN != language)
     {
+        ofstream file(LANGUAGE_FILE_PATH, ofstream::trunc);
         if (file.is_open()) 
         {
             file << "EN";

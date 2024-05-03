@@ -21,6 +21,7 @@ target_link_libraries(Application PRIVATE
     Qt${QT_VERSION_MAJOR}::MultimediaWidgets
     Qt${QT_VERSION_MAJOR}::Quick
     ${OpenCV_LIBS}
+    VoiceRecognition
 )
 
 target_include_directories(Application PRIVATE ${OpenCV_INCLUDE_DIRS})

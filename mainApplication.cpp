@@ -6,6 +6,7 @@ using namespace std;
 
 ofstream logFile;
 mutex mtx;
+mutex log_mutex;
 condition_variable cond_v;
 atomic<bool> should_stop(false); 
 atomic<bool> route_complete(false); 
@@ -58,6 +59,8 @@ void initilize_main_app()
     RouteRegistration::initialize_route_registration();
     CameraModule::initialize_camera_module();
     inititalize_language();
+    initialize_route_display_files();
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000)); 
 }
 
 void terminate_main_app()
@@ -83,9 +86,6 @@ int main(int argc, char *argv[])
 
     /* @ToDo - the building section should be calculated based on RFID reader info. So for now is hardcoded! */
     RouteRecordPlayer::set_current_section(Building_Section::SECTION_A);
-
-
-    initialize_route_display_files();
 
     /* --- Start Face Recognition Test --- */
 

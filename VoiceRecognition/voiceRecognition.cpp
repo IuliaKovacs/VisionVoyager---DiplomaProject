@@ -59,6 +59,7 @@ void VoiceRecognition::loop_recognition()
     FILE *sox;
     short *frame;
     size_t frame_size;
+    start_flag = false;
 
     ps_config_t *config = ps_config_init(NULL);
 
@@ -92,8 +93,11 @@ void VoiceRecognition::loop_recognition()
         logFile << log_time() << "Error: Failed to set SIGINT handler" << endl;
     }
 
+    log_mutex.lock();
+    logFile << log_time() << "[Thread][VoiceRecognition] ... Waiting for continue keywords ..." << endl;
+    log_mutex.unlock();
     while (!global_done && (false == start_flag)) 
-    {
+    {   
         const int16 *speech;
         int prev_in_speech = ps_endpointer_in_speech(ep);
         size_t len, end_samples;
@@ -132,10 +136,14 @@ void VoiceRecognition::loop_recognition()
                 ps_end_utt(decoder);
                 if ((hyp = ps_get_hyp(decoder, NULL)) != NULL)
                 {
-                    logFile << log_time() << "Recognized words: +" << hyp << "+" << endl;
                     if ((strstr("start",hyp) == 0) || (strstr("hello",hyp) == 0)) 
                     {
                         start_flag = true;
+                        should_stop.store(false);
+                        cond_v.notify_all();
+                        log_mutex.lock();
+                        logFile << log_time() << "[Thread][VoiceRecognition] Recognized \"" << hyp << "\" keyword" << endl;
+                        log_mutex.unlock();
                     }
                 }    
             }
@@ -267,7 +275,7 @@ string VoiceRecognition::timed_listening_recognition_for_options()
 }
 
 
-static void loop_listening_for_wait()
+void VoiceRecognition::loop_listening_for_wait()
 {
     ps_decoder_t *decoder;
     ps_endpointer_t *ep;
@@ -308,7 +316,7 @@ static void loop_listening_for_wait()
         logFile << log_time() << "Error: Failed to set SIGINT handler" << endl;
     }
 
-    while (false == wait_flag)
+    while (false == wait_flag && (!route_complete.load()))
     {
         const int16 *speech;
         int prev_in_speech = ps_endpointer_in_speech(ep);
@@ -348,10 +356,14 @@ static void loop_listening_for_wait()
                 ps_end_utt(decoder);
                 if ((hyp = ps_get_hyp(decoder, NULL)) != NULL)
                 {
-                    logFile << log_time() << "Recognized words: +" << hyp << "+" << endl;
                     if ((strstr("stop",hyp) == 0) || (strstr("wait",hyp) == 0)) 
                     {
                         wait_flag = true;
+                        should_stop.store(true);
+                        cond_v.notify_all();
+                        log_mutex.lock();
+                        logFile << log_time() << "[Thread][VoiceRecognition] Recognized \"" << hyp << "\" keyword" << endl;
+                        log_mutex.unlock();
                     }
                 }    
             }

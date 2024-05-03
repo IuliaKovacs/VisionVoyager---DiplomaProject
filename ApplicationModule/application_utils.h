@@ -15,6 +15,7 @@ extern ofstream logFile;
 
 
 extern mutex mtx;
+extern mutex log_mutex;
 extern condition_variable cond_v;
 extern atomic<bool> should_stop; 
 extern atomic<bool> route_complete; 

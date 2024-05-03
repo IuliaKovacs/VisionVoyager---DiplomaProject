@@ -12,6 +12,7 @@ using namespace std;
 bool TASK_LINE_FOLLOWING()
 {
     LineFollower::follow_line();
+    return true;
 }
 
 bool TASK_CAMERA_MODULE()
@@ -23,6 +24,8 @@ bool TASK_CAMERA_MODULE()
     logFile << log_time() << " -- 2 -- Thread TASK_CAMERA_MODULE processing image at datetime: " << std::ctime(&currentTime) << endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(200)); 
     }
+
+    return true;
 }
 
 bool TASK_RFID_READER_COMM()
@@ -32,30 +35,40 @@ bool TASK_RFID_READER_COMM()
         logFile << log_time() << " -- 3 -- Thread TASK_RFID_READER_COMM running at datetime: " << std::ctime(&currentTime) << endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(1000)); 
     }
+
+    return true;
 }
 
 
 bool TASK_ROUTE_PLAYING(string route_name)
 {
      RouteRecordPlayer::play_route_conditioned(route_name);
+     return true;
 }
 
 bool TASK_ADMIN_MODE_WINDOW(int argc, char *argv[]) 
 {
     start_GUI(argc, argv);
+    return true;
 }
 
 bool TASK_VOICE_RECOGNITION_WAIT()
 {
+    log_mutex.lock();
     logFile << log_time() << "[Thread][VoiceRecognition] Voice Regognition Thread Started " << endl;
-    std::this_thread::sleep_for(std::chrono::milliseconds(2000)); 
-    // Setăm flagul de oprire la true
-    should_stop.store(true);
-    cond_v.notify_all();
-    /* in partea asta de cod ar trebui sa pun conditia de trezire - commanda START */
-    std::this_thread::sleep_for(std::chrono::milliseconds(2000)); 
-    // Setăm flagul inapoi
-    should_stop.store(false);
-    cond_v.notify_all();
-    // VoiceRecognition::loop_listening_for_wait();
+    log_mutex.unlock();
+
+    while(!route_complete.load())
+    {   
+        /* Listening in case the user input is "wait" */
+        VoiceRecognition::loop_listening_for_wait();
+        /* Check if route is already completely pursued */
+        if (!route_complete.load())
+        {
+            /* Listening for the keyword "start" in order to continue the guidigng */
+            VoiceRecognition::loop_recognition();
+        }
+    }
+
+    return true;
 }
