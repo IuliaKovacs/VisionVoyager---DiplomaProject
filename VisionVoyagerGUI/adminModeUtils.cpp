@@ -175,12 +175,12 @@ void AdminModeWindow::keyPressEvent(QKeyEvent *event)
 
 void AdminModeWindow::languge_buttons_set()
 {
-    if(Language::RO == language)
+    if(Language::RO == TextToSpeech::get_language())
     {
         ui->roButton->setChecked(true);
         ui->enButton->setChecked(false);
     }
-    else if(Language::EN == language)
+    else if(Language::EN == TextToSpeech::get_language())
     {
         ui->roButton->setChecked(false);
         ui->enButton->setChecked(true);

@@ -7,13 +7,13 @@
 
 using namespace std;
 
-bool TASK_LINE_FOLLOWING()
+bool ApplicationModule::TASK_LINE_FOLLOWING()
 {
     LineFollower::follow_line();
     return true;
 }
 
-bool TASK_CAMERA_MODULE()
+bool ApplicationModule::TASK_CAMERA_MODULE()
 {
     for (int i = 0; i < 10; ++i) {
     CameraModule::capture_image("../CameraModule/CapturedImages");
@@ -26,7 +26,7 @@ bool TASK_CAMERA_MODULE()
     return true;
 }
 
-bool TASK_RFID_READER_COMM()
+bool ApplicationModule::TASK_RFID_READER_COMM()
 {
     for (int i = 0; i < 10; ++i) {
         std::time_t currentTime = std::time(nullptr); 
@@ -38,19 +38,19 @@ bool TASK_RFID_READER_COMM()
 }
 
 
-bool TASK_ROUTE_PLAYING(string route_name)
+bool ApplicationModule::TASK_ROUTE_PLAYING(string route_name)
 {
      RouteRecordPlayer::play_route_conditioned(route_name);
      return true;
 }
 
-bool TASK_ADMIN_MODE_WINDOW(int argc, char *argv[]) 
+bool ApplicationModule::TASK_ADMIN_MODE_WINDOW(int argc, char *argv[]) 
 {
     start_GUI(argc, argv);
     return true;
 }
 
-bool TASK_VOICE_RECOGNITION_WAIT()
+bool ApplicationModule::TASK_VOICE_RECOGNITION_WAIT()
 {
     log_mutex.lock();
     logFile << log_time() << "[Thread][VoiceRecognition] Voice Regognition Thread Started " << endl;

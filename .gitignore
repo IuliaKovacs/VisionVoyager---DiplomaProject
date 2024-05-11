@@ -2,7 +2,7 @@
 /CameraModule/Raw_Images
 /CameraModule/CapturedImages
 /CameraModule/recognized_persons.txt
-/RouteDatabase/Timestamp_Routes
+/RouteDatabase
 TextToSpeach/EN/section_A_options.txt
 TextToSpeach/EN/section_B_options.txt
 TextToSpeach/EN/section_C_options.txt
@@ -17,4 +17,4 @@ TextToSpeach/EN/option2.txt
 CameraModule/image_eu.png
 CameraModule/image_t.png
 TextToSpeach/language.txt
-RouteDatabase/
+VisionVoyagerGUI/DataCollection/RoutesData.xlsx

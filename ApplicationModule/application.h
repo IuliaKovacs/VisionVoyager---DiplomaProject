@@ -28,12 +28,16 @@ enum class ApplicationState
 };
 
 
-bool TASK_LINE_FOLLOWING();
-bool TASK_ROUTE_PLAYING(string route_name);
-bool TASK_CAMERA_MODULE();
-bool TASK_RFID_READER_COMM();
-bool TASK_ADMIN_MODE_WINDOW(int argc, char *argv[]);
-bool TASK_VOICE_RECOGNITION_WAIT();
+class ApplicationModule
+{
+public:
+    static bool TASK_LINE_FOLLOWING();
+    static bool TASK_ROUTE_PLAYING(string route_name);
+    static bool TASK_CAMERA_MODULE();
+    static bool TASK_RFID_READER_COMM();
+    static bool TASK_ADMIN_MODE_WINDOW(int argc, char *argv[]);
+    static bool TASK_VOICE_RECOGNITION_WAIT();
 
+};
 
 #endif //APPLICATION_H

@@ -24,7 +24,7 @@ class RouteRecordPlayer
     static Building_Section current_section;
     static string extract_command_name(string command);
     static string extract_command_argument(string command);
-    static void play_command(string command_name, optional<int> arg_value = nullopt);
+    static void play_command(string command_name, int miliseconds, optional<int> arg_value = nullopt);
 
 public:
     static void set_robot(VisionVoyager* robot);

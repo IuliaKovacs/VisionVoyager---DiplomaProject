@@ -386,7 +386,7 @@ void AdminModeWindow::on_enButton_clicked(bool checked)
 {
     if(checked)
     {
-        set_language_EN();
+        TextToSpeech::set_language_EN();
         ui->roButton->setChecked(false);
     }
 }
@@ -396,7 +396,7 @@ void AdminModeWindow::on_roButton_clicked(bool checked)
 {
     if(checked)
     {
-        set_language_RO();
+        TextToSpeech::set_language_RO();
         ui->enButton->setChecked(false);
     }
 }

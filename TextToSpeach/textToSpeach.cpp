@@ -65,10 +65,15 @@
 
 
 using namespace std;
-Language language = Language::UNKNOWN;
-vector<string> voice_commands = {"\"ONE\"", "\"TWO\"", "\"THREE\""};
+Language TextToSpeech::language = Language::UNKNOWN;
+vector<string> TextToSpeech::voice_commands = {"\"ONE\"", "\"TWO\"", "\"THREE\""};
 
-void set_language_RO(){
+Language TextToSpeech::get_language()
+{
+    return language;
+}
+
+void TextToSpeech::set_language_RO(){
     
     if(Language::UNKNOWN != language)
     {   
@@ -87,7 +92,7 @@ void set_language_RO(){
     language = Language::RO;
 }
 
-void set_language_EN(){
+void TextToSpeech::set_language_EN(){
     
     if(Language::UNKNOWN != language)
     {
@@ -106,7 +111,7 @@ void set_language_EN(){
     language = Language::EN;
 }
 
-void inititalize_language()
+void TextToSpeech::inititalize_language()
 {
     ifstream file(LANGUAGE_FILE_PATH);
     if(file.is_open()) {
@@ -138,61 +143,61 @@ void inititalize_language()
     }
 }
 
-void display_menu_options()
+void TextToSpeech::display_menu_options()
 {   
     logFile << log_time() << "[TTS] Displaying menu options " << endl;
     string command = "espeak -v " + string(CHOOSE_LANGUAGE(language)) + " -s 150 " + " -f " + string(MODE_OPTIONS_FILE(language));
     system(command.c_str());
 }
 
-void display_option1_message()
+void TextToSpeech::display_option1_message()
 {
     string command = "espeak -v " + string(CHOOSE_LANGUAGE(language)) + " -s 150 " + " -f " + string(OPTION1_MESSAGE_FILE(language));
     system(command.c_str());
 }
 
-void display_option2_message()
+void TextToSpeech::display_option2_message()
 {
     string command = "espeak -v " + string(CHOOSE_LANGUAGE(language)) + " -s 150 " + " -f " + string(OPTION2_MESSAGE_FILE(language));
     system(command.c_str());
 }
 
-void display_section_A_options_message()
+void TextToSpeech::display_section_A_options_message()
 {   
     logFile << log_time() << "[TTS] Displaying section A routes " << endl;
     string command = "espeak -v " + string(CHOOSE_LANGUAGE(language)) + " -s 150 " + " -f " + string(SECTION_A_MESSAGE_FILE(language));
     system(command.c_str());
 }
 
-void display_section_B_options_message()
+void TextToSpeech::display_section_B_options_message()
 {   
     logFile << log_time() << "[TTS] Displaying section B routes " << endl;
     string command = "espeak -v " + string(CHOOSE_LANGUAGE(language)) + " -s 150 " + " -f " + string(SECTION_B_MESSAGE_FILE(language));
     system(command.c_str());
 }
 
-void display_section_C_options_message()
+void TextToSpeech::display_section_C_options_message()
 {   
     logFile << log_time() << "[TTS] Displaying section C routes " << endl;
     string command = "espeak -v " + string(CHOOSE_LANGUAGE(language)) + " -s 150 " + " -f " + string(SECTION_C_MESSAGE_FILE(language));
     system(command.c_str());
 }
 
-void display_hello_message()
+void TextToSpeech::display_hello_message()
 {   
     logFile << log_time() << "[TTS] Displaying hello message " << endl;
     string command = "espeak -v " + string(CHOOSE_LANGUAGE(language)) + " -s 150 " + " -f " + string(HELLO_MESSAGE_FILE(language));
     system(command.c_str());
 }
 
-void display_repeat_message()
+void TextToSpeech::display_repeat_message()
 {
     logFile << log_time() << "[TTS] Displaying repeat message " << endl;
     string command = "espeak -v " + string(CHOOSE_LANGUAGE(language)) + " -s 150 " + " -f " + string(REPEAT_MESSAGE_FILE(language));
     system(command.c_str());
 }
 
-void initialize_route_display_files()
+void TextToSpeech::initialize_route_display_files()
 {   
     initialize_section_options_file_RO();
     initialize_section_options_file_EN();
@@ -201,7 +206,7 @@ void initialize_route_display_files()
 }
 
 
-void initialize_section_options_file_RO()
+void TextToSpeech::initialize_section_options_file_RO()
 {
     ofstream SectionOptionsFileRO("../TextToSpeach/RO/option1.txt", ios_base::trunc);
     if (SectionOptionsFileRO.is_open())
@@ -248,7 +253,7 @@ void initialize_section_options_file_RO()
     }
 }
 
-void initialize_section_options_file_EN()
+void TextToSpeech::initialize_section_options_file_EN()
 {
     ofstream SectionOptionsFileEN("../TextToSpeach/EN/option1.txt", ios_base::trunc);
     if (SectionOptionsFileEN.is_open())
@@ -295,7 +300,7 @@ void initialize_section_options_file_EN()
     }
 }
 
-void initialize_route_display_files_RO()
+void TextToSpeech::initialize_route_display_files_RO()
 {
 
     for(char c = 'A'; c <= 'C'; c++)
@@ -336,7 +341,7 @@ void initialize_route_display_files_RO()
     }
 }
 
-void initialize_route_display_files_EN()
+void TextToSpeech::initialize_route_display_files_EN()
 {
     for(char c = 'A'; c <= 'C'; c++)
     {   
@@ -374,4 +379,60 @@ void initialize_route_display_files_EN()
             logFile << log_time() << "Error: there was a problem to openeing the route options file for TTS";
         }
     }
+}
+
+
+void TextToSpeech::display_turn_right()
+{   
+    string command = "espeak -v " + string(CHOOSE_LANGUAGE(Language::EN)) + " -s 150 " + "\" turn right \"";
+    system(command.c_str());
+}
+
+
+void TextToSpeech::display_turn_left()
+{   
+    string command = "espeak -v " + string(CHOOSE_LANGUAGE(Language::EN)) + " -s 150 " + "\" turn left \"";
+    system(command.c_str());
+}
+
+
+void TextToSpeech::display_step_left()
+{   
+    string command = "espeak -v " + string(CHOOSE_LANGUAGE(Language::EN)) + " -s 150 " + "\" move one step right \"";
+    system(command.c_str());
+}
+
+
+void TextToSpeech::display_step_right()
+{   
+    string command = "espeak -v " + string(CHOOSE_LANGUAGE(Language::EN)) + " -s 150 " + "\" move one step left \"";
+    system(command.c_str());
+}
+
+
+void TextToSpeech::display_go_forward()
+{   
+    string command = "espeak -v " + string(CHOOSE_LANGUAGE(Language::EN)) + " -s 150 " + "\" go forward \"";
+    system(command.c_str());
+}
+
+void TextToSpeech::display_go_backward()
+{   
+    string command = "espeak -v " + string(CHOOSE_LANGUAGE(Language::EN)) + " -s 150 " + "\" go backward \"";
+    system(command.c_str());
+}
+
+
+void TextToSpeech::display_stop()
+{   
+    string command = "espeak -v " + string(CHOOSE_LANGUAGE(Language::EN)) + " -s 150 " + "\" stop \"";
+    system(command.c_str());
+}
+
+
+
+void TextToSpeech::display_destination()
+{   
+    string command = "espeak -v " + string(CHOOSE_LANGUAGE(Language::EN)) + " -s 150 " + "\" destination reached! \"";
+    system(command.c_str());
 }

@@ -10,23 +10,40 @@ enum class Language
     UNKNOWN
 };
 
-extern Language language;
+class TextToSpeech
+{   
+    static Language language;
+    static vector<string> voice_commands;
+    static void initialize_section_options_file_RO();
+    static void initialize_section_options_file_EN();
+    static void initialize_route_display_files_RO();
+    static void initialize_route_display_files_EN();
 
-void inititalize_language();
-void set_language_RO();
-void set_language_EN();
-void display_menu_options();
-void display_option1_message();
-void display_option2_message();
-void display_hello_message();
-void display_section_A_options_message();
-void display_section_B_options_message();
-void display_section_C_options_message();
-void display_repeat_message();
-void initialize_route_display_files();
-void initialize_section_options_file_RO();
-void initialize_section_options_file_EN();
-void initialize_route_display_files_RO();
-void initialize_route_display_files_EN();
+public:
+
+    static Language get_language();
+    static void inititalize_language();
+    static void set_language_RO();
+    static void set_language_EN();
+    static void display_menu_options();
+    static void display_option1_message();
+    static void display_option2_message();
+    static void display_hello_message();
+    static void display_section_A_options_message();
+    static void display_section_B_options_message();
+    static void display_section_C_options_message();
+    static void display_repeat_message();
+    static void initialize_route_display_files();
+    /* Start of Guiding Moves area */
+    static void display_turn_right();
+    static void display_turn_left();
+    static void display_step_right();
+    static void display_step_left();
+    static void display_go_forward();
+    static void display_go_backward();
+    static void display_stop();
+    static void display_destination();
+    /* End of Guiding Moves area */
+};
 
 #endif //TEXT_TO_SPEACH

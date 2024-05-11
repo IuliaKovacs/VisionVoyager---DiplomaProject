@@ -2,6 +2,7 @@
 #include "../RouteRegistration/routeRegistrationUtils.h"
 #include <fstream>
 #include <chrono>
+#include "../TextToSpeach/textToSpeach.h"
 
 
 VisionVoyager* RouteRecordPlayer::robotVisionVoyager = nullptr;
@@ -27,18 +28,30 @@ string RouteRecordPlayer::extract_command_argument(string command)
     return command.substr(command.find('(') + 1, command.find(')'));
 }
 
-void RouteRecordPlayer::play_command(string command_name, optional<int> command_arg)
+void RouteRecordPlayer::play_command(string command_name, int miliseconds, optional<int> command_arg)
 {
     if (command_name.compare("set_dir_servo_angle") == 0)
     {   
         if (command_arg)
         {
             robotVisionVoyager->set_dir_angle(command_arg.value());
+            if(miliseconds > 2500)
+            {
+                if(20 <= command_arg.value())
+                {
+                    TextToSpeech::display_turn_right();
+                }
+                else if(-20 >= command_arg.value())
+                {
+                    TextToSpeech::display_turn_left();
+                }
+            }
         }
         else
         {
             throw std::runtime_error("There was an error in setting parameters!");
         }
+        robotVisionVoyager->move_forward();
     }
     else if (command_name.compare("set_cam_pan_angle") == 0)
     {   
@@ -69,6 +82,7 @@ void RouteRecordPlayer::play_command(string command_name, optional<int> command_
         if (command_arg)
         {
             robotVisionVoyager->set_speed(command_arg.value());
+            TextToSpeech::display_go_forward();
         }
         else
         {
@@ -81,6 +95,7 @@ void RouteRecordPlayer::play_command(string command_name, optional<int> command_
         if (command_arg)
         {
             robotVisionVoyager->set_speed(command_arg.value());
+            TextToSpeech::display_go_backward();
         }
         else
         {
@@ -91,6 +106,7 @@ void RouteRecordPlayer::play_command(string command_name, optional<int> command_
     else if (command_name.compare("stop") == 0)
     {
         robotVisionVoyager->stop();
+        TextToSpeech::display_stop();
     }
 
 }
@@ -109,11 +125,11 @@ void RouteRecordPlayer::play_route(string route_name)
         
         if (command_arg == ")")
         {
-            play_command(command_name);
+            play_command(command_name, 0);
         }
         else 
         {
-            play_command(command_name, stoi(command_arg));
+            play_command(command_name, 0, stoi(command_arg));
         }
 
         if (getline(Route_File,line))
@@ -144,18 +160,19 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
             string command_name = extract_command_name(line);
             string command_arg = extract_command_argument(line);
             
-            if (command_arg == ")")
-            {
-                play_command(command_name);
-            }
-            else 
-            {
-                play_command(command_name, stoi(command_arg));
-            }
-
             if (getline(Route_File,line))
             {
                 int milliseconds_to_count = stoi(line);
+
+                if (command_arg == ")")
+                {
+                    play_command(command_name, milliseconds_to_count);
+                }
+                else 
+                {
+                    play_command(command_name, milliseconds_to_count, stoi(command_arg));
+                }
+            
                 log_mutex.lock();
                 logFile << log_time() << command_name << " : " << milliseconds_to_count << endl;
                 log_mutex.unlock(); 
@@ -167,16 +184,27 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                 {
                     if(should_stop.load())
                     {   
-                        play_command("stop");
+                        play_command("stop", 0);
                         logFile << log_time() << "[Thread][PlayRoute] ...Waiting... - Intervention from user - must wait the start signal" << endl;
                         auto wait_start_time = std::chrono::steady_clock::now();
                         std::unique_lock<std::mutex> lock(mtx);
                         cond_v.wait(lock, []{ return !should_stop.load(); });
                         auto wait_end_time = std::chrono::steady_clock::now();
                         end_time += wait_end_time - wait_start_time;
-                        play_command("forward", 1);
+                        play_command("forward", 0, 1);
                         logFile << log_time() << "[Thread][PlayRoute] Waiting Ended " << endl;
                     }
+                }
+            }
+            else
+            {
+                if (command_arg == ")")
+                {
+                    play_command(command_name, 0);
+                }
+                else 
+                {
+                    play_command(command_name, 0, stoi(command_arg));
                 }
             }
         }
@@ -191,6 +219,7 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                 should_stop.store(true);
                 route_complete.store(true);
                 cond_v.notify_all();
+                TextToSpeech::display_destination();
             }
         }
     }

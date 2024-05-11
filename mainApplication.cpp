@@ -64,8 +64,8 @@ void initilize_main_app()
     KeyboardControl::initialize_keyboard_control();
     RouteRegistration::initialize_route_registration();
     CameraModule::initialize_camera_module();
-    inititalize_language();
-    initialize_route_display_files();
+    TextToSpeech::inititalize_language();
+    TextToSpeech::initialize_route_display_files();
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     logFile << log_time() << "[MainApp] Application initialization complete!" << endl; 
 }
@@ -119,7 +119,7 @@ int main(int argc, char *argv[])
     if(true == Admin_Mode)
     {   
         logFile << log_time() << "[MainApp] --- Starting Admin Mode Window ---" << endl;
-        thread admin_mode_window_thread(TASK_ADMIN_MODE_WINDOW, argc, argv);
+        thread admin_mode_window_thread(ApplicationModule::TASK_ADMIN_MODE_WINDOW, argc, argv);
         admin_mode_window_thread.join();
     }
 
@@ -129,106 +129,106 @@ int main(int argc, char *argv[])
 
     /* ---- Start of Normal User Mode part ---- */
 
-    if(true != Admin_Mode)
-    {
-        logFile << log_time() << "[MainApp] --- Starting Normal User Mode ---" << endl;
+    // if(true != Admin_Mode)
+    // {
+    //     logFile << log_time() << "[MainApp] --- Starting Normal User Mode ---" << endl;
 
-        display_hello_message();
+    //     TextToSpeech::display_hello_message();
 
-        /* StandBy/Sleep state until "start" or "hello" is recognized */
-        VoiceRecognition::loop_recognition();
-        logFile << log_time() << "[MainApp] Activation keyword recognized " << endl;
+    //     /* StandBy/Sleep state until "start" or "hello" is recognized */
+    //     VoiceRecognition::loop_recognition();
+    //     logFile << log_time() << "[MainApp] Activation keyword recognized " << endl;
         
 
-        bool option_flag = false;
-        string option;
+    //     bool option_flag = false;
+    //     string option;
 
-        while(option_flag == false)
-        {
-            display_menu_options();
-            option = VoiceRecognition::timed_listening_recognition_for_options();
+    //     while(option_flag == false)
+    //     {
+    //         TextToSpeech::display_menu_options();
+    //         option = VoiceRecognition::timed_listening_recognition_for_options();
 
-            if((strcmp("UNKNOWN", option.c_str()) != 0) && (strcmp("THREE", option.c_str()) != 0))
-            {
-                if(strcmp("ONE", option.c_str()) == 0)
-                {   
-                    string route_path = "";
-                    logFile << log_time() << "[MainApp] Option 1 was selected (Route Player) " << endl;
-                    option_flag = true;
+    //         if((strcmp("UNKNOWN", option.c_str()) != 0) && (strcmp("THREE", option.c_str()) != 0))
+    //         {
+    //             if(strcmp("ONE", option.c_str()) == 0)
+    //             {   
+    //                 string route_path = "";
+    //                 logFile << log_time() << "[MainApp] Option 1 was selected (Route Player) " << endl;
+    //                 option_flag = true;
 
-                    while(route_path.empty())
-                    {
-                        display_option1_message();
-                        /* @ToDo - make sure if there is no B section - A=ONE and C=THREE */
-                        string section_option = VoiceRecognition::timed_listening_recognition_for_options();
+    //                 while(route_path.empty())
+    //                 {
+    //                     TextToSpeech::display_option1_message();
+    //                     /* @ToDo - make sure if there is no B section - A=ONE and C=THREE */
+    //                     string section_option = VoiceRecognition::timed_listening_recognition_for_options();
 
-                        if(strcmp("UNKNOWN", section_option.c_str()) != 0)
-                        {
-                            if((strcmp("ONE", section_option.c_str()) == 0) && (0 != RouteRegistration::get_section_A_routes().size())) 
-                            {
-                                display_section_A_options_message();
-                                string section_route = VoiceRecognition::timed_listening_recognition_for_options();
-                                int index = route_map_no[section_route];
-                                route_path = RouteRegistration::get_section_A_routes()[index];
-                                break;
-                            }
-                            else if((strcmp("TWO", section_option.c_str()) == 0) && (0 != RouteRegistration::get_section_B_routes().size()))
-                            {
-                                display_section_B_options_message();
-                                string section_route = VoiceRecognition::timed_listening_recognition_for_options();
-                                int index = route_map_no[section_route];
-                                route_path = RouteRegistration::get_section_B_routes()[index];
-                                break;
-                            }
-                            else if((strcmp("THREE", section_option.c_str()) == 0) && (0 != RouteRegistration::get_section_C_routes().size()))
-                            {
-                                display_section_C_options_message();
-                                string section_route = VoiceRecognition::timed_listening_recognition_for_options();
-                                int index = route_map_no[section_route];
-                                route_path = RouteRegistration::get_section_C_routes()[index];
-                                break;
-                            }
+    //                     if(strcmp("UNKNOWN", section_option.c_str()) != 0)
+    //                     {
+    //                         if((strcmp("ONE", section_option.c_str()) == 0) && (0 != RouteRegistration::get_section_A_routes().size())) 
+    //                         {
+    //                             TextToSpeech::display_section_A_options_message();
+    //                             string section_route = VoiceRecognition::timed_listening_recognition_for_options();
+    //                             int index = route_map_no[section_route];
+    //                             route_path = RouteRegistration::get_section_A_routes()[index];
+    //                             break;
+    //                         }
+    //                         else if((strcmp("TWO", section_option.c_str()) == 0) && (0 != RouteRegistration::get_section_B_routes().size()))
+    //                         {
+    //                             TextToSpeech::display_section_B_options_message();
+    //                             string section_route = VoiceRecognition::timed_listening_recognition_for_options();
+    //                             int index = route_map_no[section_route];
+    //                             route_path = RouteRegistration::get_section_B_routes()[index];
+    //                             break;
+    //                         }
+    //                         else if((strcmp("THREE", section_option.c_str()) == 0) && (0 != RouteRegistration::get_section_C_routes().size()))
+    //                         {
+    //                             TextToSpeech::display_section_C_options_message();
+    //                             string section_route = VoiceRecognition::timed_listening_recognition_for_options();
+    //                             int index = route_map_no[section_route];
+    //                             route_path = RouteRegistration::get_section_C_routes()[index];
+    //                             break;
+    //                         }
 
-                            display_repeat_message();
-                        }
-                    }
+    //                         TextToSpeech::display_repeat_message();
+    //                     }
+    //                 }
 
-                    logFile << log_time() << "[MainApp] The selected route is: \"" << route_path << "\"" << endl;
+    //                 logFile << log_time() << "[MainApp] The selected route is: \"" << route_path << "\"" << endl;
 
-                    /* Start executing in paralell the Route Playing, Camera + Obstacle Detectio, Voice Recognition and RFID Reader Communication Tasks */
-                    thread route_player_thread(TASK_ROUTE_PLAYING, route_path);
-                    // thread camera_thread(TASK_CAMERA_MODULE);
-                    // thread reader_comm_thread(TASK_RFID_READER_COMM);
-                    thread voice_recognition_thread(TASK_VOICE_RECOGNITION_WAIT);
-                    route_player_thread.join();
-                    // camera_thread.join();
-                    // reader_comm_thread.join();
-                    voice_recognition_thread.join();
+    //                 /* Start executing in paralell the Route Playing, Camera + Obstacle Detectio, Voice Recognition and RFID Reader Communication Tasks */
+    //                 thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, route_path);
+    //                 // thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
+    //                 // thread reader_comm_thread(ApplicationModule::TASK_RFID_READER_COMM);
+    //                 thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
+    //                 route_player_thread.join();
+    //                 // camera_thread.join();
+    //                 // reader_comm_thread.join();
+    //                 voice_recognition_thread.join();
 
-                    break;
-                }
-                else if(strcmp("TWO", option.c_str()) == 0)
-                {   
-                    logFile << log_time() << "[MainApp] Option 2 was selected (Line Follower) " << endl;
-                    display_option2_message();
-                    option_flag = true;
+    //                 break;
+    //             }
+    //             else if(strcmp("TWO", option.c_str()) == 0)
+    //             {   
+    //                 logFile << log_time() << "[MainApp] Option 2 was selected (Line Follower) " << endl;
+    //                 TextToSpeech::display_option2_message();
+    //                 option_flag = true;
 
-                    /* Start executing in paralell the Line Following, Camera, Voice Recognition and RFID Reader Communication Tasks */
-                    thread line_follower_thread(TASK_LINE_FOLLOWING);
-                    thread camera_thread(TASK_CAMERA_MODULE);
-                    thread reader_comm_thread(TASK_RFID_READER_COMM);
-                    thread voice_recognition_thread(TASK_VOICE_RECOGNITION_WAIT);
-                    line_follower_thread.join();
-                    camera_thread.join();
-                    reader_comm_thread.join();
-                    voice_recognition_thread.join();
+    //                 /* Start executing in paralell the Line Following, Camera, Voice Recognition and RFID Reader Communication Tasks */
+    //                 thread line_follower_thread(ApplicationModule::TASK_LINE_FOLLOWING);
+    //                 thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
+    //                 thread reader_comm_thread(ApplicationModule::TASK_RFID_READER_COMM);
+    //                 thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
+    //                 line_follower_thread.join();
+    //                 camera_thread.join();
+    //                 reader_comm_thread.join();
+    //                 voice_recognition_thread.join();
 
-                    break;
-                }
-            }
-            display_repeat_message();
-        }
-    }
+    //                 break;
+    //             }
+    //         }
+    //         TextToSpeech::display_repeat_message();
+    //     }
+    // }
 
     
     /* ---- End of Normal User Mode part ---- */
@@ -236,14 +236,16 @@ int main(int argc, char *argv[])
 
     /* Thread testing part */
 
-    // thread route_player_thread(TASK_ROUTE_PLAYING, "../RouteDatabase/Section A/Secretariat.txt");
-    // thread camera_thread(TASK_CAMERA_MODULE);
-    // thread reader_comm_thread(TASK_RFID_READER_COMM);
-    // thread voice_recognition_thread(TASK_VOICE_RECOGNITION_WAIT);
-    // route_player_thread.join();
+    thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, "../RouteDatabase/Section B/Secretariat AC.txt");
+    // thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
+    // thread reader_comm_thread(ApplicationModule::TASK_RFID_READER_COMM);
+    thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
+    route_player_thread.join();
     // camera_thread.join();
     // reader_comm_thread.join();
-    // voice_recognition_thread.join();
+    voice_recognition_thread.join();
+
+
 
     terminate_main_app();
 

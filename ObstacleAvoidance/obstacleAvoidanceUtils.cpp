@@ -204,7 +204,7 @@ void ObstacleAvoidance::return_on_track()
             /* raise Error */
         }
 
-        RouteRecordPlayer::play_command(command_name, command_arg);
+        RouteRecordPlayer::play_command(command_name, milliseconds, command_arg);
         // logFile << log_time() << command_name << "(" << command_arg << ")" << endl;
         this_thread::sleep_for(std::chrono::milliseconds(milliseconds)); 
     }
@@ -258,7 +258,7 @@ void ObstacleAvoidance::reverse_route(string route_name)
             command_name == "backward";
         }
 
-        RouteRecordPlayer::play_command(command_name, command_arg);
+        RouteRecordPlayer::play_command(command_name, milliseconds, command_arg);
         this_thread::sleep_for(std::chrono::milliseconds(milliseconds)); 
     }
 
