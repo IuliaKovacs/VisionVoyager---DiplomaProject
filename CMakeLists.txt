@@ -25,6 +25,7 @@ add_subdirectory(VoiceRecognition)
 add_subdirectory(TextToSpeach)
 add_subdirectory(ApplicationModule)
 add_subdirectory(VisionVoyagerGUI)
+add_subdirectory(RFID)
 
 
 # Specifying the name and path of the PocketSphinx library
@@ -38,6 +39,7 @@ add_executable(VisionVoyager mainApplication.cpp)
 target_include_directories(VisionVoyagerGUI PRIVATE /usr/include/arm-linux-gnueabihf/qt5 ${Qt5Charts_INCLUDE_DIRS})
 
 target_link_libraries(VisionVoyager PRIVATE pybind11::embed
+                                            RFID_Manager
                                             Qt${QT_VERSION_MAJOR}::Widgets 
                                             Qt${QT_VERSION_MAJOR}::Core 
                                             Qt${QT_VERSION_MAJOR}::Gui 

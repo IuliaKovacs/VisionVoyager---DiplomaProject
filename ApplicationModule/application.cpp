@@ -2,6 +2,7 @@
 #include <pybind11/pybind11.h>
 #include "../VisionVoyagerGUI/adminModeWindow.h"
 #include "application.h"
+#include "../RFID/RFID_Manager.h"
 #include <chrono>
 #include <ctime>
 
@@ -26,13 +27,39 @@ bool ApplicationModule::TASK_CAMERA_MODULE()
     return true;
 }
 
-bool ApplicationModule::TASK_RFID_READER_COMM()
+bool ApplicationModule::TASK_RFID_READER_COMM(optional<string> route_name)
 {
-    for (int i = 0; i < 10; ++i) {
-        std::time_t currentTime = std::time(nullptr); 
-        logFile << log_time() << " -- 3 -- Thread TASK_RFID_READER_COMM running at datetime: " << std::ctime(&currentTime) << endl;
-        std::this_thread::sleep_for(std::chrono::milliseconds(1000)); 
+    uint8_t out_data;
+    RFID_request_status_t st;
+    RFID_Tag_Information tag_info;
+    bool system_init_status;
+
+    RFID_init();
+
+    st = RFID_Send_Ping();
+    
+    if(st == RFID_REQUEST_OK)
+    {
+        while(!route_complete.load())
+        {
+            cout << " RFID Thread " << endl;
+
+            st = RFID_get_System_Init_Status(&system_init_status);
+            if((st == RFID_REQUEST_OK) && (system_init_status == true))
+            {
+                st = RFID_get_Rooms(&tag_info);
+                logFile << log_time() <<  "Room Request Status = " << st << endl;
+
+                if(st == RFID_REQUEST_OK)
+                {
+                    logFile << log_time() << "Room name: " << tag_info.room_name << endl;
+                    logFile << log_time() << "Room description: " << tag_info.room_description << endl;
+                    logFile << log_time() << "Room destination_status: " << tag_info.destination_node << endl;
+                }
+            }
+        }
     }
+
 
     return true;
 }

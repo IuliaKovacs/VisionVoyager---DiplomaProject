@@ -238,12 +238,12 @@ int main(int argc, char *argv[])
 
     thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, "../RouteDatabase/Section B/Secretariat AC.txt");
     // thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
-    // thread reader_comm_thread(ApplicationModule::TASK_RFID_READER_COMM);
-    thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
+    thread reader_comm_thread(ApplicationModule::TASK_RFID_READER_COMM, "../RouteDatabase/Section B/Secretariat AC.txt");
+    // thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
     route_player_thread.join();
     // camera_thread.join();
-    // reader_comm_thread.join();
-    voice_recognition_thread.join();
+    reader_comm_thread.join();
+    // voice_recognition_thread.join();
 
 
 

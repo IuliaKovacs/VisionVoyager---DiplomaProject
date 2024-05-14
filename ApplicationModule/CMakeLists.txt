@@ -14,6 +14,7 @@ find_package(OpenCV REQUIRED)
 
 
 target_link_libraries(Application PRIVATE
+    RFID_Manager
     Qt${QT_VERSION_MAJOR}::Widgets 
     Qt${QT_VERSION_MAJOR}::Core 
     Qt${QT_VERSION_MAJOR}::Gui 
@@ -27,3 +28,4 @@ target_link_libraries(Application PRIVATE
 target_include_directories(Application PRIVATE ${OpenCV_INCLUDE_DIRS})
 target_include_directories(Application PRIVATE ${pybind11_INCLUDE_DIRS} ${OpenCV_LIBS})
 
+include_directories(../RFID)

@@ -6,6 +6,7 @@
 #include <thread>
 #include <atomic>
 #include <condition_variable>
+#include "../RFID/RFID_Manager.h"
 
 #define LOGS_PATH "../VisionVoyagerGUI/DataCollection/Logs/"
 
