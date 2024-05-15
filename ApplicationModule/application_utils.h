@@ -9,6 +9,13 @@
 
 
 #define LOGS_PATH "../VisionVoyagerGUI/DataCollection/Logs/"
+#define LOG_THREAD_RFID_PREFIX "[Thread][RFID Reader]"
+#define LOG_THREAD_VOICE_PREFIX "[Thread][VoiceRecognition]"
+#define LOG_THREAD_LINE_FOLLOWER_PREFIX "[Thread][Line Follower]"
+#define LOG_THREAD_CAMERA_PREFIX "[Thread][Camera]"
+#define LOG_THREAD_ROUTE_PLAYER_PREFIX "[Thread][Route Player]"
+#define LOG_THREAD_ADMIN_PREFIX "[Thread][Admin Mode]"
+
 
 using namespace std;
 

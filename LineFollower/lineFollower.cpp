@@ -46,12 +46,12 @@ void LineFollower::follow_line()
             robotVisionVoyager->stop();
             RouteRegistration::set_moving_state(MovingState::STATIONARY);
             log_mutex.lock();
-            logFile << log_time() << "[Thread][LineFollower] ...Waiting... - Intervention from user - must wait the start signal" << endl;
+            logFile << log_time() << LOG_THREAD_LINE_FOLLOWER_PREFIX << " ...Waiting... - Intervention from user - must wait the start signal" << endl;
             log_mutex.unlock();
             std::unique_lock<std::mutex> lock(mtx);
             cond_v.wait(lock, []{ return !should_stop.load(); });
             log_mutex.lock();
-            logFile << log_time() << "[Thread][LineFollower] Waiting Ended " << endl;
+            logFile << log_time() << LOG_THREAD_LINE_FOLLOWER_PREFIX << " Waiting Ended " << endl;
             log_mutex.unlock();
         }
 

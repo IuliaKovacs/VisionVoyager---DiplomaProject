@@ -34,6 +34,7 @@ bool ApplicationModule::TASK_RFID_READER_COMM(optional<string> route_name)
     RFID_Tag_Information tag_info;
     bool system_init_status;
 
+    logFile << log_time() <<  LOG_THREAD_RFID_PREFIX << " Start of RFID Reader Communication Thread " << endl;
     RFID_init();
 
     st = RFID_Send_Ping();
@@ -47,15 +48,15 @@ bool ApplicationModule::TASK_RFID_READER_COMM(optional<string> route_name)
             if((st == RFID_REQUEST_OK) && (system_init_status == true))
             {   
                 st = RFID_get_Rooms(&tag_info);
-                logFile << log_time() <<  "[RFID Thread] Room Request Status = " << st << endl;
+                logFile << log_time() <<  LOG_THREAD_RFID_PREFIX << " Room Request Status = " << st << endl;
 
                 if(st == RFID_REQUEST_OK)
                 {   
                     if(strcmp(last_room_name, tag_info.room_name) != 0)
                     {
-                        logFile << log_time() << "[RFID Thread] Room name: " << tag_info.room_name << endl;
-                        logFile << log_time() << "[RFID Thread] Room description: " << tag_info.room_description << endl;
-                        logFile << log_time() << "[RFID Thread] Room destination_status: " << tag_info.destination_node << endl;
+                        logFile << log_time() << LOG_THREAD_RFID_PREFIX << " Room name: " << tag_info.room_name << endl;
+                        logFile << log_time() << LOG_THREAD_RFID_PREFIX << " Room description: " << tag_info.room_description << endl;
+                        logFile << log_time() << LOG_THREAD_RFID_PREFIX << " Room destination_status: " << tag_info.destination_node << endl;
                         strcpy(last_room_name, tag_info.room_name);
                     }
                     string tag_info_route_name = string(tag_info.room_name);
@@ -72,7 +73,7 @@ bool ApplicationModule::TASK_RFID_READER_COMM(optional<string> route_name)
         }
     }
 
-    logFile << log_time() << "[RFID Thread] Ended successfully! " << endl;
+    logFile << log_time() << LOG_THREAD_RFID_PREFIX << " Ended successfully! " << endl;
 
 
     return true;
@@ -94,7 +95,7 @@ bool ApplicationModule::TASK_ADMIN_MODE_WINDOW(int argc, char *argv[])
 bool ApplicationModule::TASK_VOICE_RECOGNITION_WAIT()
 {
     log_mutex.lock();
-    logFile << log_time() << "[Thread][VoiceRecognition] Voice Regognition Thread Started " << endl;
+    logFile << log_time() << LOG_THREAD_VOICE_PREFIX << " Voice Regognition Thread Started " << endl;
     log_mutex.unlock();
 
     while(!route_complete.load())

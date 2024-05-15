@@ -94,7 +94,7 @@ void VoiceRecognition::loop_recognition()
     }
 
     log_mutex.lock();
-    logFile << log_time() << "[Thread][VoiceRecognition] ... Waiting for continue keywords ..." << endl;
+    logFile << log_time() << LOG_THREAD_VOICE_PREFIX << " ... Waiting for continue keywords ..." << endl;
     log_mutex.unlock();
     while (!global_done && (false == start_flag)) 
     {   
@@ -142,7 +142,7 @@ void VoiceRecognition::loop_recognition()
                         should_stop.store(false);
                         cond_v.notify_all();
                         log_mutex.lock();
-                        logFile << log_time() << "[Thread][VoiceRecognition] Recognized \"" << hyp << "\" keyword" << endl;
+                        logFile << log_time() << LOG_THREAD_VOICE_PREFIX << " Recognized \"" << hyp << "\" keyword" << endl;
                         log_mutex.unlock();
                     }
                 }    
@@ -366,7 +366,7 @@ void VoiceRecognition::loop_listening_for_wait()
                         should_stop.store(true);
                         cond_v.notify_all();
                         log_mutex.lock();
-                        logFile << log_time() << "[Thread][VoiceRecognition] Recognized \"" << hyp << "\" keyword" << endl;
+                        logFile << log_time() << LOG_THREAD_VOICE_PREFIX << " Recognized \"" << hyp << "\" keyword" << endl;
                         log_mutex.unlock();
                     }
                 }    

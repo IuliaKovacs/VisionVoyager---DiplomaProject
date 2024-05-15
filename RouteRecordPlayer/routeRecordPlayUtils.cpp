@@ -149,8 +149,8 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
     string line;
     
     log_mutex.lock();
-    logFile << log_time() << "[Thread][PlayRoute] Route Playing Thread Started" << endl;
-    logFile << log_time() << "[Thread][PlayRoute] --- Started playing route \"" << route_name << "\" ---" << endl;
+    logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " Route Playing Thread Started" << endl;
+    logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Started playing route \"" << route_name << "\" ---" << endl;
     log_mutex.unlock();
 
     while(!route_complete.load())
@@ -185,14 +185,14 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                     if(should_stop.load())
                     {   
                         play_command("stop", 0);
-                        logFile << log_time() << "[Thread][PlayRoute] ...Waiting... - Intervention from user - must wait the start signal" << endl;
+                        logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " ...Waiting... - Intervention from user - must wait the start signal" << endl;
                         auto wait_start_time = std::chrono::steady_clock::now();
                         std::unique_lock<std::mutex> lock(mtx);
                         cond_v.wait(lock, []{ return !should_stop.load(); });
                         auto wait_end_time = std::chrono::steady_clock::now();
                         end_time += wait_end_time - wait_start_time;
                         play_command("forward", 0, 1);
-                        logFile << log_time() << "[Thread][PlayRoute] Waiting Ended " << endl;
+                        logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " Waiting Ended " << endl;
                     }
                 }
             }
@@ -213,7 +213,7 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
             /* The entire file was parsed so it means that we are at the end of the route -> flags are updated */
             {   
                 log_mutex.lock();
-                logFile << log_time() << "[Thread][PlayRoute] --- Route completed --- " << endl;
+                logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route completed --- " << endl;
                 log_mutex.unlock();
                 lock_guard<mutex> lock2(mtx);
                 should_stop.store(true);
