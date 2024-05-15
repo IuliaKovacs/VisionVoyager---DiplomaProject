@@ -113,15 +113,15 @@ int main(int argc, char *argv[])
 
     /* ---- Start of Admin Mode part ---- */
     
-    KeyboardControl::F11_listening_loop();
-    bool Admin_Mode = KeyboardControl::get_F11_pressed();
+    // KeyboardControl::F11_listening_loop();
+    // bool Admin_Mode = KeyboardControl::get_F11_pressed();
 
-    if(true == Admin_Mode)
-    {   
-        logFile << log_time() << "[MainApp] --- Starting Admin Mode Window ---" << endl;
-        thread admin_mode_window_thread(ApplicationModule::TASK_ADMIN_MODE_WINDOW, argc, argv);
-        admin_mode_window_thread.join();
-    }
+    // if(true == Admin_Mode)
+    // {   
+    //     logFile << log_time() << "[MainApp] --- Starting Admin Mode Window ---" << endl;
+    //     thread admin_mode_window_thread(ApplicationModule::TASK_ADMIN_MODE_WINDOW, argc, argv);
+    //     admin_mode_window_thread.join();
+    // }
 
     /* ---- End of Admin Mode part ---- */
 
@@ -236,11 +236,11 @@ int main(int argc, char *argv[])
 
     /* Thread testing part */
 
-    thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, "../RouteDatabase/Section B/Secretariat AC.txt");
+    // thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, "../RouteDatabase/Section B/Secretariat AC.txt");
     // thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
-    thread reader_comm_thread(ApplicationModule::TASK_RFID_READER_COMM, "../RouteDatabase/Section B/Secretariat AC.txt");
+    thread reader_comm_thread(ApplicationModule::TASK_RFID_READER_COMM, "../RouteDatabase/Section B/Auditorium");
     // thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
-    route_player_thread.join();
+    // route_player_thread.join();
     // camera_thread.join();
     reader_comm_thread.join();
     // voice_recognition_thread.join();
