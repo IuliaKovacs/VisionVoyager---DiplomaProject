@@ -34,6 +34,7 @@ public:
     static void display_section_C_options_message();
     static void display_repeat_message();
     static void initialize_route_display_files();
+    static void display_custom_message(string message);
     /* Start of Guiding Moves area */
     static void display_turn_right();
     static void display_turn_left();

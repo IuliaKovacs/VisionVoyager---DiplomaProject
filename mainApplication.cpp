@@ -60,7 +60,7 @@ void initialize_log_file()
 void initilize_main_app()
 {   
     initialize_log_file();
-    logFile << " - START MAIN APPLICATION  " << log_time() << endl << endl;
+    logFile << " - START OF MAIN APPLICATION  " << log_time() << endl << endl;
     KeyboardControl::initialize_keyboard_control();
     RouteRegistration::initialize_route_registration();
     CameraModule::initialize_camera_module();
@@ -73,7 +73,7 @@ void initilize_main_app()
 void terminate_main_app()
 {
     KeyboardControl::shutdown_keyboard_control();
-    logFile << endl << endl << " - END MAIN APPLICATION  " << log_time() << endl;
+    logFile << endl << endl << " - END OF MAIN APPLICATION  " << log_time() << endl;
     logFile.close();
 }
 

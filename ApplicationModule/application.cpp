@@ -35,6 +35,7 @@ bool ApplicationModule::TASK_RFID_READER_COMM(optional<string> route_name)
     bool system_init_status;
 
     logFile << log_time() <<  LOG_THREAD_RFID_PREFIX << " Start of RFID Reader Communication Thread " << endl;
+
     RFID_init();
 
     st = RFID_Send_Ping();
@@ -53,16 +54,47 @@ bool ApplicationModule::TASK_RFID_READER_COMM(optional<string> route_name)
                 if(st == RFID_REQUEST_OK)
                 {   
                     if(strcmp(last_room_name, tag_info.room_name) != 0)
-                    {
+                    {   
+                        string room_description_message;
                         logFile << log_time() << LOG_THREAD_RFID_PREFIX << " Room name: " << tag_info.room_name << endl;
                         logFile << log_time() << LOG_THREAD_RFID_PREFIX << " Room description: " << tag_info.room_description << endl;
                         logFile << log_time() << LOG_THREAD_RFID_PREFIX << " Room destination_status: " << tag_info.destination_node << endl;
+                        if(Language::EN == TextToSpeech::get_language())
+                        {
+                            if(false == tag_info.destination_node)
+                            {
+                                room_description_message += "We pass by " + string(tag_info.room_name) + "\n\n\n\n\n\n";
+                                room_description_message += "Use the waiting command to stop here! \n\n\n\n\n\n";
+                            }
+                            else
+                            {   
+                                room_description_message += "We reached " + string(tag_info.room_name) + "\n\n\n\n\n\n";
+                                room_description_message += "This is your destination! \n\n\n\n\n\n";
+                            }
+                            room_description_message += string(tag_info.room_description) + "\n\n\n\n\n\n";
+                        }
+                        else
+                        {
+                            if(false == tag_info.destination_node)
+                            {
+                                room_description_message += "Trecem pe lângă " + string(tag_info.room_name) + "\n\n\n\n\n\n";
+                                room_description_message += "Folosește comanda de așteptare dacă dorești să ne oprim aici! \n\n\n\n\n\n";
+                            }
+                            else
+                            {   
+                                room_description_message += "Am ajuns la: " + string(tag_info.room_name) + "\n\n\n\n\n\n";
+                                room_description_message += "Aceasta este destinația ta! \n\n\n\n\n\n";
+                            }
+                            room_description_message += string(tag_info.room_description) + "\n\n\n\n\n\n";
+                        }
                         strcpy(last_room_name, tag_info.room_name);
+                        TextToSpeech::display_custom_message(room_description_message);
                     }
+
                     string tag_info_route_name = string(tag_info.room_name);
                     if(route_name.has_value())
                     {
-                        if(tag_info_route_name == RouteRegistration::get_route_name_from_path(route_name.value()))
+                        if((tag_info_route_name == RouteRegistration::get_route_name_from_path(route_name.value())) && (true == tag_info.destination_node))
                         {
                             route_complete.store(true);
                         }

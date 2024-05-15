@@ -436,3 +436,9 @@ void TextToSpeech::display_destination()
     string command = "espeak -v " + string(CHOOSE_LANGUAGE(Language::EN)) + " -s 150 " + "\" destination reached! \"";
     system(command.c_str());
 }
+
+void TextToSpeech::display_custom_message(string message)
+{
+    string command = "espeak -v " + string(CHOOSE_LANGUAGE(get_language())) + " -s 150 " + "\" " + message +  " \"";
+    system(command.c_str());   
+}
