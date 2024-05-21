@@ -5,6 +5,7 @@
 #include <pybind11/pybind11.h>
 #include <iostream>
 #include <vector>
+#include "../ApplicationModule/application_utils.h"
 
 
 #ifdef DEBUG
@@ -71,6 +72,7 @@ public:
     void speed_down();
     vector<int> read_grayscale_data();
     float read_ultrasonic_data();
+    void read_hall_sensors();
 };
 
 

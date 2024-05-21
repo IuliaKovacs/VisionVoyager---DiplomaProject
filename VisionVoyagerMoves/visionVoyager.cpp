@@ -1,7 +1,12 @@
 #include "visionVoyager.h"
+#include <wiringPi.h>
+
+#define HALL_PIN_RIGHT_MOTOR 22 // in BCM numbering
+#define HALL_PIN_LEFT_MOTOR 17
+#define TEST_PIN 3
+
 
 namespace py = pybind11;
-
 using namespace std;
 
 VisionVoyager::VisionVoyager()
@@ -238,3 +243,42 @@ float VisionVoyager::read_ultrasonic_data()
     return ultrasonic_data;
 }
 
+
+void VisionVoyager::read_hall_sensors()
+{
+    if (wiringPiSetupGpio() == -1) 
+    {   // BCM GPIO numbering
+        logFile << log_time() << " Error: Failed to initialize WiringPi!" << endl;
+        return;
+    }
+
+    logFile << log_time() << "[Hall Sensor Feature] Ready for use!" << endl;
+
+    pinMode(HALL_PIN_RIGHT_MOTOR, INPUT);
+    pullUpDnControl(HALL_PIN_RIGHT_MOTOR, PUD_UP);
+    pinMode(HALL_PIN_LEFT_MOTOR, INPUT);
+    pullUpDnControl(HALL_PIN_LEFT_MOTOR, PUD_UP);
+
+    while (true) 
+    {
+        int state_1 = digitalRead(HALL_PIN_RIGHT_MOTOR);
+        if (state_1 == LOW) 
+        {
+            logFile << log_time() << "[Hall Sensor 1 Right Motor] Magnet detected!" << endl;
+        } 
+
+        int state_2 = digitalRead(HALL_PIN_LEFT_MOTOR);
+        if (state_2 == LOW) 
+        {
+            logFile << log_time() << "[Hall Sensor 2 Left Motor] Magnet detected!" << endl;
+        } 
+
+        int state_test = digitalRead(TEST_PIN);
+        if (state_test == LOW) 
+        {
+            logFile << log_time() << "[TEST] Working - magenet detected" << endl;
+        } 
+
+        delay(400);
+    }
+}

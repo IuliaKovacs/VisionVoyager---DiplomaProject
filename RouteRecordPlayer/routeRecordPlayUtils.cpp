@@ -225,5 +225,9 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
     }
 }
 
-
+void RouteRecordPlayer::check_hall_sensors()
+{
+    
+    robotVisionVoyager->read_hall_sensors();
+}
 

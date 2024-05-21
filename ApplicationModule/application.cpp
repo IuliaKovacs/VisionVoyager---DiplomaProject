@@ -144,3 +144,9 @@ bool ApplicationModule::TASK_VOICE_RECOGNITION_WAIT()
 
     return true;
 }
+
+bool ApplicationModule::TASK_SAFETY_MEASURES()
+{
+     RouteRecordPlayer::check_hall_sensors();
+     return true;
+}
