@@ -31,7 +31,7 @@ public:
     static void set_current_section(Building_Section section);
     static void play_route(string route_name);
     static void play_route_conditioned(string route_name);
-    static void check_hall_sensors();
+    static void check_motors_feedback();
     friend void ObstacleAvoidance::return_on_track();
     friend void ObstacleAvoidance::reverse_route(string route_name);
 };

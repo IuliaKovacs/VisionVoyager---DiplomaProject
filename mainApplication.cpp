@@ -91,9 +91,6 @@ int main(int argc, char *argv[])
     LineFollower::set_robot(&robot);
     ObstacleAvoidance::set_robot(&robot);
 
-    /* @ToDo - the building section should be calculated based on RFID reader info. So for now is hardcoded! */
-    RouteRecordPlayer::set_current_section(Building_Section::SECTION_A);
-
     /* --- Start Face Recognition Test --- */
 
     // CameraModule::create_csv_database_file();
@@ -115,16 +112,16 @@ int main(int argc, char *argv[])
     
     // KeyboardControl::F11_listening_loop();
     // bool Admin_Mode = KeyboardControl::get_F11_pressed();
-    bool Admin_Mode = true;
+    // bool Admin_Mode = true;
 
-    if(true == Admin_Mode)
-    {   
-        logFile << log_time() << "[MainApp] --- Starting Admin Mode Window ---" << endl;
-        thread admin_mode_window_thread(ApplicationModule::TASK_ADMIN_MODE_WINDOW, argc, argv);
-        thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
-        admin_mode_window_thread.join();
-        safety_thread.join();
-    }
+    // if(true == Admin_Mode)
+    // {   
+    //     logFile << log_time() << "[MainApp] --- Starting Admin Mode Window ---" << endl;
+    //     thread admin_mode_window_thread(ApplicationModule::TASK_ADMIN_MODE_WINDOW, argc, argv);
+    //     thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
+    //     admin_mode_window_thread.join();
+    //     safety_thread.join();
+    // }
 
     /* ---- End of Admin Mode part ---- */
 
@@ -239,13 +236,13 @@ int main(int argc, char *argv[])
 
     /* Thread testing part */
 
-    // thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, "../RouteDatabase/Section B/Secretariat AC.txt");
-    // thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
+    thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, "../RouteDatabase/Section A/Secretariat.txt");
+    thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
     // thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
     // thread reader_comm_thread(ApplicationModule::TASK_RFID_READER_COMM, "../RouteDatabase/Section A/Secretariat");
     // thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
-    // route_player_thread.join();
-    // safety_thread.join();
+    route_player_thread.join();
+    safety_thread.join();
     // camera_thread.join();
     // reader_comm_thread.join();
     // voice_recognition_thread.join();

@@ -31,7 +31,6 @@ class LineFollower
     static void get_grayscale_data();
     static vector<int> get_line_from_grayscale_data();
     static bool verify_stop_condition();
-    static bool verify_is_in_air();
     static void search_line();
     static State compute_next_state(vector<int> grayscale_line_status);
     static void execute_move(State current_state);
@@ -40,6 +39,7 @@ class LineFollower
 public:
     static void set_robot(VisionVoyager* robot);
     static void follow_line();
+    static bool verify_is_in_air();
 };
 
 

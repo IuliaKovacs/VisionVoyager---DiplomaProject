@@ -3,8 +3,9 @@
 
 #define HALL_PIN_RIGHT_MOTOR 22 // in BCM numbering
 #define HALL_PIN_LEFT_MOTOR 17
-#define TEST_PIN 3
-
+#define WHEEL_RADIUS 3.175 // cm - centimeters
+#define CONSTANT_PI 3.14159265358979323846
+#define WHEEL_CIRCUMFERENCE (2 * CONSTANT_PI * WHEEL_RADIUS)
 
 namespace py = pybind11;
 using namespace std;
@@ -244,7 +245,7 @@ float VisionVoyager::read_ultrasonic_data()
 }
 
 
-void VisionVoyager::read_hall_sensors()
+void VisionVoyager::check_hall_sensors_timing()
 {
     if (wiringPiSetupGpio() == -1) 
     {   // BCM GPIO numbering
@@ -261,11 +262,11 @@ void VisionVoyager::read_hall_sensors()
 
     while (true) 
     {
-        int state_1 = digitalRead(HALL_PIN_RIGHT_MOTOR);
-        if (state_1 == LOW) 
-        {
-            logFile << log_time() << "[Hall Sensor 1 Right Motor] Magnet detected!" << endl;
-        } 
+        // int state_1 = digitalRead(HALL_PIN_RIGHT_MOTOR);
+        // if (state_1 == LOW) 
+        // {
+        //     logFile << log_time() << "[Hall Sensor 1 Right Motor] Magnet detected!" << endl;
+        // } 
 
         int state_2 = digitalRead(HALL_PIN_LEFT_MOTOR);
         if (state_2 == LOW) 
@@ -273,12 +274,5 @@ void VisionVoyager::read_hall_sensors()
             logFile << log_time() << "[Hall Sensor 2 Left Motor] Magnet detected!" << endl;
         } 
 
-        int state_test = digitalRead(TEST_PIN);
-        if (state_test == LOW) 
-        {
-            logFile << log_time() << "[TEST] Working - magenet detected" << endl;
-        } 
-
-        delay(400);
     }
 }

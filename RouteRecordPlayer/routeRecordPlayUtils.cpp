@@ -3,6 +3,7 @@
 #include <fstream>
 #include <chrono>
 #include "../TextToSpeach/textToSpeach.h"
+#include "../LineFollower/lineFollower.h"
 
 
 VisionVoyager* RouteRecordPlayer::robotVisionVoyager = nullptr;
@@ -181,7 +182,13 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                 auto end_time = start_time + std::chrono::milliseconds(milliseconds_to_count);
                 
                 while (std::chrono::steady_clock::now() < end_time) 
-                {
+                {   
+                    if(true == LineFollower::verify_is_in_air())
+                    {
+                        logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Interrupted: The robot is either in air or on the edge of something! ---" << endl;
+                        logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Displaying acoustical warning ---" << endl;
+                    }
+
                     if(should_stop.load())
                     {   
                         play_command("stop", 0);
@@ -225,9 +232,8 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
     }
 }
 
-void RouteRecordPlayer::check_hall_sensors()
-{
-    
-    robotVisionVoyager->read_hall_sensors();
+void RouteRecordPlayer::check_motors_feedback()
+{   
+    robotVisionVoyager->check_hall_sensors_timing();
 }
 

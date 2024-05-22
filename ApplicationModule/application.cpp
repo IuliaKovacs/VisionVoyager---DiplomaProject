@@ -107,7 +107,6 @@ bool ApplicationModule::TASK_RFID_READER_COMM(optional<string> route_name)
 
     logFile << log_time() << LOG_THREAD_RFID_PREFIX << " Ended successfully! " << endl;
 
-
     return true;
 }
 
@@ -147,6 +146,6 @@ bool ApplicationModule::TASK_VOICE_RECOGNITION_WAIT()
 
 bool ApplicationModule::TASK_SAFETY_MEASURES()
 {
-     RouteRecordPlayer::check_hall_sensors();
+     RouteRecordPlayer::check_motors_feedback();
      return true;
 }

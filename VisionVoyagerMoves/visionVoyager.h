@@ -72,7 +72,7 @@ public:
     void speed_down();
     vector<int> read_grayscale_data();
     float read_ultrasonic_data();
-    void read_hall_sensors();
+    void check_hall_sensors_timing();
 };
 
 
