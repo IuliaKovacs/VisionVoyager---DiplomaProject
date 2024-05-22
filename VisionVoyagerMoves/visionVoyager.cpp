@@ -1,11 +1,12 @@
 #include "visionVoyager.h"
 #include <wiringPi.h>
 
+
 #define HALL_PIN_RIGHT_MOTOR 22 // in BCM numbering
 #define HALL_PIN_LEFT_MOTOR 17
-#define WHEEL_RADIUS 3.175 // cm - centimeters
+#define WHEEL_RADIUS 0.03175 // m - meters = 3.175 cm
 #define CONSTANT_PI 3.14159265358979323846
-#define WHEEL_CIRCUMFERENCE (2 * CONSTANT_PI * WHEEL_RADIUS)
+#define WHEEL_CIRCUMFERENCE (2 * CONSTANT_PI * WHEEL_RADIUS) // m - meters
 
 namespace py = pybind11;
 using namespace std;
@@ -260,18 +261,64 @@ void VisionVoyager::check_hall_sensors_timing()
     pinMode(HALL_PIN_LEFT_MOTOR, INPUT);
     pullUpDnControl(HALL_PIN_LEFT_MOTOR, PUD_UP);
 
+    auto last_spin_right = std::chrono::steady_clock::now();
+    auto last_spin_left = std::chrono::steady_clock::now();
+
+    /* @ToDo replace magic numbers */
+    vector<long long> last_10_time_intervals_right(10, 0);
+    vector<long long> last_10_time_intervals_left(10, 0);
+    int index_r = -1; //this index will help tracking the latest 10 time intervals/periods
+    int index_l = -1; //this index will help tracking the latest 10 time intervals/periods
+
     while (true) 
-    {
-        // int state_1 = digitalRead(HALL_PIN_RIGHT_MOTOR);
-        // if (state_1 == LOW) 
-        // {
-        //     logFile << log_time() << "[Hall Sensor 1 Right Motor] Magnet detected!" << endl;
-        // } 
+    {   
+        int state_1 = digitalRead(HALL_PIN_RIGHT_MOTOR);
+        if (state_1 == LOW) 
+        {   
+            auto current_spin_right = std::chrono::steady_clock::now();
+            auto time_difference = std::chrono::duration_cast<std::chrono::milliseconds>(current_spin_right - last_spin_right);
+            /* simulating a kind of debounce */
+            if(time_difference.count() > 100)
+            {
+                index_r = ((index_r + 1) % last_10_time_intervals_right.size());
+                logFile << log_time() << "[Hall Sensor 1 Right Motor] Magnet detected!" << endl;
+                last_spin_right = current_spin_right;
+                last_10_time_intervals_right[index_r] = time_difference.count();
+                logFile << log_time() << "[Hall Sensor 1 Right Motor] time_difference from last period: " << time_difference.count() << "ms" << endl;
+            }
+        } 
 
         int state_2 = digitalRead(HALL_PIN_LEFT_MOTOR);
         if (state_2 == LOW) 
         {
-            logFile << log_time() << "[Hall Sensor 2 Left Motor] Magnet detected!" << endl;
+            auto current_spin_left = std::chrono::steady_clock::now();
+            auto time_difference = std::chrono::duration_cast<std::chrono::milliseconds>(current_spin_left - last_spin_left);
+            /* simulating a kind of debounce */
+            if(time_difference.count() > 100)
+            {   
+                index_l = ((index_l + 1) % last_10_time_intervals_left.size());
+                logFile << log_time() << "[Hall Sensor 2 Left Motor] Magnet detected!" << endl;
+                last_spin_left = current_spin_left;
+                last_10_time_intervals_left[index_l] = time_difference.count();
+                logFile << log_time() << "[Hall Sensor 2 Left Motor] time_difference from last period: " << time_difference.count() << "ms" << endl;
+                if(index_l == 9)
+                {
+                    float sum = 0.0f;
+                    for (float period : last_10_time_intervals_left) {
+                        sum += period;
+                    }
+                    float average_period = sum / last_10_time_intervals_left.size();
+                    logFile << log_time() << "[Hall Sensor 2 Left Motor] average period: " << average_period << "ms" << endl;
+                    /* transforming the period in secods from miliseconds */
+                    float average_period_s = average_period / 1000.0;
+                    /* omega = (2*PI)/T  <=> angular speed = (2 * PI)/period */
+                    angular_velocity = (2 * CONSTANT_PI) / average_period_s; // rad/s
+                    /* v = omega * r  <=> linear speed = angular velocity * radius */
+                    linear_velocity = angular_velocity * WHEEL_RADIUS; // m/s
+                    logFile << log_time() << "[Hall Sensor 2 Left Motor] Angular velocity: " << angular_velocity << " rad/s" << endl;
+                    logFile << log_time() << "[Hall Sensor 2 Left Motor] Linear velocity: " << linear_velocity << "m/s" << endl;
+                }
+            }
         } 
 
     }

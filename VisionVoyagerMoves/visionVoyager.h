@@ -38,6 +38,8 @@ class VisionVoyager
     int dir_angle;
     int camera_tilt_angle;
     int camera_pan_angle;
+    float angular_velocity;
+    float linear_velocity;
     void initialize_python_embedding();
     vector<int> map_python_list_cpp_vector(py::list py_list);
 public:

@@ -185,8 +185,9 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                 {   
                     if(true == LineFollower::verify_is_in_air())
                     {
-                        logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Interrupted: The robot is either in air or on the edge of something! ---" << endl;
-                        logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Displaying acoustical warning ---" << endl;
+                        // logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Interrupted: The robot is either in air or on the edge of something! ---" << endl;
+                        // logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Displaying acoustical warning ---" << endl;
+                        // @ToDo - acoustical warning, update flags, abord the route playing
                     }
 
                     if(should_stop.load())
