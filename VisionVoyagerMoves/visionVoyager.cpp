@@ -2,7 +2,7 @@
 #include <wiringPi.h>
 
 
-#define HALL_PIN_RIGHT_MOTOR 22 // in BCM numbering
+#define HALL_PIN_RIGHT_MOTOR 4 // in BCM numbering
 #define HALL_PIN_LEFT_MOTOR 17
 #define WHEEL_RADIUS 0.03175 // m - meters = 3.175 cm
 #define CONSTANT_PI 3.14159265358979323846
@@ -11,7 +11,7 @@
 namespace py = pybind11;
 using namespace std;
 
-VisionVoyager::VisionVoyager()
+VisionVoyager::VisionVoyager() 
 {   
     this->speed = DEFAULT_SPEED;
     this->dir_angle = DEFAULT_WHEEL_ANGLE;
@@ -270,8 +270,11 @@ void VisionVoyager::check_hall_sensors_timing()
     int index_r = -1; //this index will help tracking the latest 10 time intervals/periods
     int index_l = -1; //this index will help tracking the latest 10 time intervals/periods
 
-    while (true) 
+    while (!route_complete.load()) 
     {   
+        float angular_velocity_r, angular_velocity_l;
+        float linear_velocity_r, linear_velocity_l; 
+
         int state_1 = digitalRead(HALL_PIN_RIGHT_MOTOR);
         if (state_1 == LOW) 
         {   
@@ -280,11 +283,33 @@ void VisionVoyager::check_hall_sensors_timing()
             /* simulating a kind of debounce */
             if(time_difference.count() > 100)
             {
-                index_r = ((index_r + 1) % last_10_time_intervals_right.size());
-                logFile << log_time() << "[Hall Sensor 1 Right Motor] Magnet detected!" << endl;
+                // logFile << log_time() << "[Hall Sensor][Right Motor] Magnet detected!" << endl;
                 last_spin_right = current_spin_right;
                 last_10_time_intervals_right[index_r] = time_difference.count();
-                logFile << log_time() << "[Hall Sensor 1 Right Motor] time_difference from last period: " << time_difference.count() << "ms" << endl;
+                // logFile << log_time() << "[Hall Sensor][Right Motor] time_difference from last period: " << time_difference.count() << "ms" << endl;
+                /* Workaround because of the periodic signal that is sent to the GPIO 4 PIN - **reason not known 
+                * Forcing the velocity updates to happen only for periods larger than 500 miliseconds */
+                if (time_difference.count() > 500)
+                {
+                    index_r = ((index_r + 1) % last_10_time_intervals_right.size());
+                    if(index_r == 9)
+                    {
+                        float sum = 0.0f;
+                        for (float period : last_10_time_intervals_right) {
+                            sum += period;
+                        }
+                        float average_period = sum / last_10_time_intervals_right.size();
+                        logFile << log_time() << "[Hall Sensor][Right Motor] average period: " << average_period << "ms" << endl;
+                        /* transforming the period in secods from miliseconds */
+                        float average_period_s = average_period / 1000.0;
+                        /* omega = (2*PI)/T  <=> angular speed = (2 * PI)/period */
+                        angular_velocity_r = (2 * CONSTANT_PI) / average_period_s; // rad/s
+                        /* v = omega * r  <=> linear speed = angular velocity * radius */
+                        linear_velocity_r = angular_velocity_r * WHEEL_RADIUS; // m/s
+                        logFile << log_time() << "[Hall Sensor][Right Motor] Angular velocity: " << angular_velocity_r << " rad/s" << endl;
+                        logFile << log_time() << "[Hall Sensor][Right Motor] Linear velocity: " << linear_velocity_r << "m/s" << endl;
+                    }
+                }
             }
         } 
 
@@ -297,10 +322,10 @@ void VisionVoyager::check_hall_sensors_timing()
             if(time_difference.count() > 100)
             {   
                 index_l = ((index_l + 1) % last_10_time_intervals_left.size());
-                logFile << log_time() << "[Hall Sensor 2 Left Motor] Magnet detected!" << endl;
+                // logFile << log_time() << "[Hall Sensor][Left Motor] Magnet detected!" << endl;
                 last_spin_left = current_spin_left;
                 last_10_time_intervals_left[index_l] = time_difference.count();
-                logFile << log_time() << "[Hall Sensor 2 Left Motor] time_difference from last period: " << time_difference.count() << "ms" << endl;
+                // logFile << log_time() << "[Hall Sensor][Left Motor] time_difference from last period: " << time_difference.count() << "ms" << endl;
                 if(index_l == 9)
                 {
                     float sum = 0.0f;
@@ -308,18 +333,23 @@ void VisionVoyager::check_hall_sensors_timing()
                         sum += period;
                     }
                     float average_period = sum / last_10_time_intervals_left.size();
-                    logFile << log_time() << "[Hall Sensor 2 Left Motor] average period: " << average_period << "ms" << endl;
+                    logFile << log_time() << "[Hall Sensor][Left Motor] average period: " << average_period << "ms" << endl;
                     /* transforming the period in secods from miliseconds */
                     float average_period_s = average_period / 1000.0;
                     /* omega = (2*PI)/T  <=> angular speed = (2 * PI)/period */
-                    angular_velocity = (2 * CONSTANT_PI) / average_period_s; // rad/s
+                    angular_velocity_l = (2 * CONSTANT_PI) / average_period_s; // rad/s
                     /* v = omega * r  <=> linear speed = angular velocity * radius */
-                    linear_velocity = angular_velocity * WHEEL_RADIUS; // m/s
-                    logFile << log_time() << "[Hall Sensor 2 Left Motor] Angular velocity: " << angular_velocity << " rad/s" << endl;
-                    logFile << log_time() << "[Hall Sensor 2 Left Motor] Linear velocity: " << linear_velocity << "m/s" << endl;
+                    linear_velocity_l = angular_velocity_l * WHEEL_RADIUS; // m/s
+                    logFile << log_time() << "[Hall Sensor][Left Motor] Angular velocity: " << angular_velocity_l << " rad/s" << endl;
+                    logFile << log_time() << "[Hall Sensor][Left Motor] Linear velocity: " << linear_velocity_l << "m/s" << endl;
+
+
+                    angular_velocity = ((angular_velocity_r) + (angular_velocity_l)) / 2;
+                    linear_velocity = ((linear_velocity_r) + (linear_velocity_l)) / 2;
+                    logFile << log_time() << "[Hall Sensors] Angular velocity: " << angular_velocity << " rad/s" << endl;
+                    logFile << log_time() << "[Hall Sensors] Linear velocity: " << linear_velocity << "m/s" << endl;
                 }
             }
-        } 
-
+        }
     }
 }

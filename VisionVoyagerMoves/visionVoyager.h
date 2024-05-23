@@ -29,6 +29,15 @@
 using namespace std;
 namespace py = pybind11;
 
+
+
+enum class Moving_State 
+{
+    UNKNOWN,
+    MOVING,
+    STEADY
+};
+
 class VisionVoyager
 {
     py::object picar_python_module;
@@ -42,6 +51,7 @@ class VisionVoyager
     float linear_velocity;
     void initialize_python_embedding();
     vector<int> map_python_list_cpp_vector(py::list py_list);
+    Moving_State moving_state;
 public:
 
 	VisionVoyager();
