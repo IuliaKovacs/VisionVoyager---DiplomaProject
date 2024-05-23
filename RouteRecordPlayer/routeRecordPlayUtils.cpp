@@ -190,6 +190,12 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                         // @ToDo - acoustical warning, update flags, abord the route playing
                     }
 
+                    if(severe_error.load())
+                    {
+                       play_command("stop", 0);  
+                       logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " ...Aborting due to severe error..." << endl;
+                    }
+
                     if(should_stop.load())
                     {   
                         play_command("stop", 0);
@@ -235,6 +241,17 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
 
 void RouteRecordPlayer::check_motors_feedback()
 {   
-    robotVisionVoyager->check_hall_sensors_timing();
+    bool result = robotVisionVoyager->check_hall_sensors_timing();
+    if(false == result)
+    {   
+        if(Language::EN == TextToSpeech::get_language())
+        {
+            TextToSpeech::display_custom_message("Severe motor issue! \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
+        }
+        else
+        {
+            TextToSpeech::display_custom_message("Problema severă la motoare \n\n\n Abandonare proces de ghidare \n\n\n Contactați personalul clădirii!");
+        }
+    }
 }
 

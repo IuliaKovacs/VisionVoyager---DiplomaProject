@@ -31,12 +31,6 @@ namespace py = pybind11;
 
 
 
-enum class Moving_State 
-{
-    UNKNOWN,
-    MOVING,
-    STEADY
-};
 
 class VisionVoyager
 {
@@ -51,7 +45,6 @@ class VisionVoyager
     float linear_velocity;
     void initialize_python_embedding();
     vector<int> map_python_list_cpp_vector(py::list py_list);
-    Moving_State moving_state;
 public:
 
 	VisionVoyager();
@@ -84,7 +77,7 @@ public:
     void speed_down();
     vector<int> read_grayscale_data();
     float read_ultrasonic_data();
-    void check_hall_sensors_timing();
+    bool check_hall_sensors_timing();
 };
 
 
