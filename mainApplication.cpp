@@ -240,12 +240,10 @@ int main(int argc, char *argv[])
     thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, "../RouteDatabase/Section A/Secretariat.txt");
     thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
     // thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
-    // thread reader_comm_thread(ApplicationModule::TASK_RFID_READER_COMM, "../RouteDatabase/Section A/Secretariat");
     // thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
     route_player_thread.join();
     safety_thread.join();
     // camera_thread.join();
-    // reader_comm_thread.join();
     // voice_recognition_thread.join();
 
     terminate_main_app();

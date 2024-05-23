@@ -192,8 +192,12 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
 
                     if(severe_error.load())
                     {
-                       play_command("stop", 0);  
-                       logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " ...Aborting due to severe error..." << endl;
+                        play_command("stop", 0);  
+                        log_mutex.lock();
+                        logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " ...Aborting due to severe error..." << endl;
+                        log_mutex.unlock();
+                        route_complete.store(true);
+                        break;
                     }
 
                     if(should_stop.load())
@@ -236,6 +240,8 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                 TextToSpeech::display_destination();
             }
         }
+
+        // TASK_RFID_READER_COMM();
     }
 }
 

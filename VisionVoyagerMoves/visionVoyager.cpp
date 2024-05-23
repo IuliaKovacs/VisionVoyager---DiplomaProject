@@ -304,9 +304,7 @@ bool VisionVoyager::check_hall_sensors_timing()
                     logFile << log_time() << "!WARNING! [Hall Sensor] --- SEVERE MOTOR ISSUE, ABORTING... --- !WARNING!" << endl;
                     log_mutex.unlock();
                     lock_guard<mutex> lock2(mtx);
-                    // route_complete.store(true);
                     severe_error.store(true);
-                    // should_stop.store(true);
                     cond_v.notify_all();
                     return false;
                 }
