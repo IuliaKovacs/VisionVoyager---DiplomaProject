@@ -231,7 +231,6 @@ vector<int> VisionVoyager::read_grayscale_data()
     py::list py_result = this->picar_python_object.attr("get_grayscale_data")();
     py::list py_list = py_result.cast<py::list>();
     vector<int> grayscale_data = map_python_list_cpp_vector(py_list);
-    // py::print("Grayscale Data:", result);
     return grayscale_data;
 }
 
@@ -284,7 +283,7 @@ SevereErrorType VisionVoyager::check_hall_sensors_timing()
     bool last_moving_state = false;
     SevereErrorType result = SevereErrorType::NO_ERROR;
 
-    while (!route_complete.load()) 
+    while((!route_complete.load()) && (!severe_error.load()))
     {   
         if(true == moving.load())
         {   

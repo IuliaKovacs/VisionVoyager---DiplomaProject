@@ -12,6 +12,7 @@ condition_variable cond_v;
 atomic<bool> should_stop(false); 
 atomic<bool> route_complete(false);
 atomic<bool> severe_error(false);
+SevereErrorType error_type = SevereErrorType::NO_ERROR;
 map<std::string, int> route_map_no = {
     {"ONE", 0},
     {"TWO", 1},

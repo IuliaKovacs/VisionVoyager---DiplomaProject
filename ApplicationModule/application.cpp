@@ -39,6 +39,8 @@ bool ApplicationModule::TASK_RFID_READER_COMM(optional<string> route_name)
     RFID_init();
 
     st = RFID_Send_Ping();
+    logFile << log_time() <<  LOG_RFID_PREFIX << " Ping Request Status = " << st << endl;
+
     
     if(st == RFID_REQUEST_OK)
     {   

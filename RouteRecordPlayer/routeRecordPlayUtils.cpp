@@ -198,8 +198,21 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                         log_mutex.lock();
                         logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Interrupted: The robot is either in air or on the edge of something! ---" << endl;
                         logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Displaying acoustical warning ---" << endl;
-                        log_mutex.lock();
+                        log_mutex.unlock();
                         // @ToDo - acoustical warning, update flags, abort the route playing
+                        severe_error.store(true);
+                        error_type = SevereErrorType::IN_AIR;
+                        play_command("stop", 0);
+                        tts_mutex.lock();
+                        if(Language::EN == TextToSpeech::get_language())
+                        {   
+                            TextToSpeech::display_custom_message("The robot is in the air or on the edge of something \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
+                        }
+                        else
+                        {
+                            TextToSpeech::display_custom_message("Robotul este în aer sau pe marginea unei prăpăstii! \n\n\n Abandonare proces de ghidare \n\n\n Contactați personalul clădirii!");
+                        }
+                        tts_mutex.unlock();
                     }
 
                     if(severe_error.load())
