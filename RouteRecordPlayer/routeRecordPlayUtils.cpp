@@ -40,12 +40,16 @@ void RouteRecordPlayer::play_command(string command_name, int miliseconds, optio
             if(miliseconds > 2500)
             {
                 if(20 <= command_arg.value())
-                {
+                {   
+                    tts_mutex.lock();
                     TextToSpeech::display_turn_right();
+                    tts_mutex.unlock();
                 }
                 else if(-20 >= command_arg.value())
                 {
+                    tts_mutex.lock();
                     TextToSpeech::display_turn_left();
+                    tts_mutex.unlock();
                 }
             }
         }
@@ -84,7 +88,9 @@ void RouteRecordPlayer::play_command(string command_name, int miliseconds, optio
         if (command_arg)
         {
             robotVisionVoyager->set_speed(command_arg.value());
+            tts_mutex.lock();
             TextToSpeech::display_go_forward();
+            tts_mutex.unlock();
         }
         else
         {
@@ -97,7 +103,9 @@ void RouteRecordPlayer::play_command(string command_name, int miliseconds, optio
         if (command_arg)
         {
             robotVisionVoyager->set_speed(command_arg.value());
+            tts_mutex.lock();
             TextToSpeech::display_go_backward();
+            tts_mutex.unlock();
         }
         else
         {
@@ -108,7 +116,9 @@ void RouteRecordPlayer::play_command(string command_name, int miliseconds, optio
     else if (command_name.compare("stop") == 0)
     {
         robotVisionVoyager->stop();
+        tts_mutex.lock();
         TextToSpeech::display_stop();
+        tts_mutex.unlock();
     }
 
 }
@@ -186,8 +196,10 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                 {   
                     if(true == LineFollower::verify_is_in_air())
                     {
-                        // logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Interrupted: The robot is either in air or on the edge of something! ---" << endl;
-                        // logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Displaying acoustical warning ---" << endl;
+                        log_mutex.lock();
+                        logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Interrupted: The robot is either in air or on the edge of something! ---" << endl;
+                        logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Displaying acoustical warning ---" << endl;
+                        log_mutex.lock();
                         // @ToDo - acoustical warning, update flags, abord the route playing
                     }
 
@@ -204,14 +216,18 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                     if(should_stop.load())
                     {   
                         play_command("stop", 0);
+                        log_mutex.lock();
                         logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " ...Waiting... - Intervention from user - must wait the start signal" << endl;
+                        log_mutex.unlock();
                         auto wait_start_time = std::chrono::steady_clock::now();
                         std::unique_lock<std::mutex> lock(mtx);
                         cond_v.wait(lock, []{ return !should_stop.load(); });
                         auto wait_end_time = std::chrono::steady_clock::now();
                         end_time += wait_end_time - wait_start_time;
                         play_command("forward", 0, 1);
+                        log_mutex.lock();
                         logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " Waiting Ended " << endl;
+                        log_mutex.unlock();
                     }
                 }
             }
@@ -242,17 +258,18 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
             }
         }
 
-        ApplicationModule::TASK_RFID_READER_COMM(route_name);
+        // ApplicationModule::TASK_RFID_READER_COMM(route_name);
     }
 }
 
 void RouteRecordPlayer::check_motors_feedback()
 {   
     bool result = robotVisionVoyager->check_hall_sensors_timing();
+    tts_mutex.lock();
     if(false == result)
     {   
         if(Language::EN == TextToSpeech::get_language())
-        {
+        {   
             TextToSpeech::display_custom_message("Severe motor issue! \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
         }
         else
@@ -260,5 +277,6 @@ void RouteRecordPlayer::check_motors_feedback()
             TextToSpeech::display_custom_message("Problema severă la motoare \n\n\n Abandonare proces de ghidare \n\n\n Contactați personalul clădirii!");
         }
     }
+    tts_mutex.unlock();
 }
 

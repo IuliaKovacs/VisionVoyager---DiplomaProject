@@ -9,12 +9,14 @@
 
 
 #define LOGS_PATH "../VisionVoyagerGUI/DataCollection/Logs/"
-#define LOG_THREAD_RFID_PREFIX "[Thread][RFID Reader]"
 #define LOG_THREAD_VOICE_PREFIX "[Thread][VoiceRecognition]"
 #define LOG_THREAD_LINE_FOLLOWER_PREFIX "[Thread][Line Follower]"
 #define LOG_THREAD_CAMERA_PREFIX "[Thread][Camera]"
 #define LOG_THREAD_ROUTE_PLAYER_PREFIX "[Thread][Route Player]"
 #define LOG_THREAD_ADMIN_PREFIX "[Thread][Admin Mode]"
+
+#define LOG_RFID_PREFIX "[RFID Reader]"
+#define LOG_HALL_SENSORS_PREFIX "[Hall Sensors]"
 
 
 using namespace std;
@@ -24,6 +26,7 @@ extern ofstream logFile;
 
 extern mutex mtx;
 extern mutex log_mutex;
+extern mutex tts_mutex;
 extern condition_variable cond_v;
 extern atomic<bool> should_stop; 
 extern atomic<bool> route_complete;

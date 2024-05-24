@@ -7,6 +7,7 @@ using namespace std;
 ofstream logFile;
 mutex mtx;
 mutex log_mutex;
+mutex tts_mutex;
 condition_variable cond_v;
 atomic<bool> should_stop(false); 
 atomic<bool> route_complete(false);
@@ -199,11 +200,9 @@ int main(int argc, char *argv[])
     //                 /* Start executing in paralell the Route Playing, Camera + Obstacle Detectio, Voice Recognition and RFID Reader Communication Tasks */
     //                 thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, route_path);
     //                 // thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
-    //                 // thread reader_comm_thread(ApplicationModule::TASK_RFID_READER_COMM);
     //                 thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
     //                 route_player_thread.join();
     //                 // camera_thread.join();
-    //                 // reader_comm_thread.join();
     //                 voice_recognition_thread.join();
 
     //                 break;
@@ -217,11 +216,9 @@ int main(int argc, char *argv[])
     //                 /* Start executing in paralell the Line Following, Camera, Voice Recognition and RFID Reader Communication Tasks */
     //                 thread line_follower_thread(ApplicationModule::TASK_LINE_FOLLOWING);
     //                 thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
-    //                 thread reader_comm_thread(ApplicationModule::TASK_RFID_READER_COMM);
     //                 thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
     //                 line_follower_thread.join();
     //                 camera_thread.join();
-    //                 reader_comm_thread.join();
     //                 voice_recognition_thread.join();
 
     //                 break;
