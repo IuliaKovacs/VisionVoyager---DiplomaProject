@@ -256,12 +256,12 @@ float VisionVoyager::read_ultrasonic_data()
 }
 
 
-bool VisionVoyager::check_hall_sensors_timing()
+SevereErrorType VisionVoyager::check_hall_sensors_timing()
 {
     if (wiringPiSetupGpio() == -1) 
     {   // BCM GPIO numbering
         logFile << log_time() << " Error: Failed to initialize WiringPi!" << endl;
-        return false;
+        return SevereErrorType::GPIO_ERROR;
     }
 
     log_mutex.lock();
@@ -282,6 +282,7 @@ bool VisionVoyager::check_hall_sensors_timing()
     int index_r = -1; //this index will help tracking the latest 10 time intervals/periods
     int index_l = -1; //this index will help tracking the latest 10 time intervals/periods
     bool last_moving_state = false;
+    SevereErrorType result = SevereErrorType::NO_ERROR;
 
     while (!route_complete.load()) 
     {   
@@ -308,7 +309,7 @@ bool VisionVoyager::check_hall_sensors_timing()
                     lock_guard<mutex> lock2(mtx);
                     severe_error.store(true);
                     cond_v.notify_all();
-                    return false;
+                    return SevereErrorType::MOTOR_ERROR;
                 }
             }
 
@@ -335,7 +336,7 @@ bool VisionVoyager::check_hall_sensors_timing()
                         if((time_difference.count() > 1000) && (time_difference.count() < 2000))
                         {
                             logFile << log_time() << LOG_HALL_SENSORS_PREFIX << "[Right Motor] WARNING: LOW VOLTAGE DETECTED!" << endl;
-                            //@ToDo acoustical warning
+                            result = SevereErrorType::LOW_VOLTAGE;
                         }
                         
                         /* Workaround because of the periodic signal that is sent to the GPIO 4 PIN - **reason not known 
@@ -381,6 +382,13 @@ bool VisionVoyager::check_hall_sensors_timing()
                     last_spin_left = current_spin_left;
                     if(true == last_moving_state)
                     {  
+                        /* Checking if the wheel rotation took longer than usual and if so -> LOW VOLTAGE warning */
+                        if((time_difference.count() > 1000) && (time_difference.count() < 2000))
+                        {
+                            logFile << log_time() << LOG_HALL_SENSORS_PREFIX << "[Left Motor] WARNING: LOW VOLTAGE DETECTED!" << endl;
+                            result = SevereErrorType::LOW_VOLTAGE;
+                        }
+
                         index_l = ((index_l + 1) % last_10_time_intervals_left.size());
                         last_10_time_intervals_left[index_l] = time_difference.count();
                         // logFile << log_time() << LOG_HALL_SENSORS_PREFIX << "[Left Motor] time_difference from last period: " << time_difference.count() << "ms" << endl;
@@ -403,11 +411,13 @@ bool VisionVoyager::check_hall_sensors_timing()
                             logFile << log_time() << LOG_HALL_SENSORS_PREFIX << "[Left Motor] Angular velocity: " << angular_velocity_l << " rad/s" << endl;
                             logFile << log_time() << LOG_HALL_SENSORS_PREFIX << "[Left Motor] Linear velocity: " << linear_velocity_l << "m/s" << endl;
 
-
-                            angular_velocity = ((angular_velocity_r) + (angular_velocity_l)) / 2;
-                            linear_velocity = ((linear_velocity_r) + (linear_velocity_l)) / 2;
-                            logFile << log_time() << LOG_HALL_SENSORS_PREFIX << " Angular velocity: " << angular_velocity << " rad/s" << endl;
-                            logFile << log_time() << LOG_HALL_SENSORS_PREFIX << " Linear velocity: " << linear_velocity << "m/s" << endl;
+                            if((angular_velocity_r > 0.0f) && (angular_velocity_l > 0.0f))
+                            {
+                                angular_velocity = ((angular_velocity_r) + (angular_velocity_l)) / 2;
+                                linear_velocity = ((linear_velocity_r) + (linear_velocity_l)) / 2;
+                                logFile << log_time() << LOG_HALL_SENSORS_PREFIX << " Angular velocity: " << angular_velocity << " rad/s" << endl;
+                                logFile << log_time() << LOG_HALL_SENSORS_PREFIX << " Linear velocity: " << linear_velocity << "m/s" << endl;   
+                            }
                             log_mutex.unlock();
                         }
                     }
@@ -418,5 +428,5 @@ bool VisionVoyager::check_hall_sensors_timing()
         last_moving_state = moving.load();
     }
 
-    return true;
+    return result;
 }

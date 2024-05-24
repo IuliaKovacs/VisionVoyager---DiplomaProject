@@ -2,7 +2,6 @@
 #include "../RouteRegistration/routeRegistrationUtils.h"
 #include <fstream>
 #include <chrono>
-#include "../TextToSpeach/textToSpeach.h"
 #include "../LineFollower/lineFollower.h"
 #include "../ApplicationModule/application.h"
 
@@ -200,7 +199,7 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                         logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Interrupted: The robot is either in air or on the edge of something! ---" << endl;
                         logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Displaying acoustical warning ---" << endl;
                         log_mutex.lock();
-                        // @ToDo - acoustical warning, update flags, abord the route playing
+                        // @ToDo - acoustical warning, update flags, abort the route playing
                     }
 
                     if(severe_error.load())
@@ -254,7 +253,9 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                 should_stop.store(true);
                 route_complete.store(true);
                 cond_v.notify_all();
+                tts_mutex.lock();
                 TextToSpeech::display_destination();
+                tts_mutex.unlock();
             }
         }
 
@@ -262,21 +263,8 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
     }
 }
 
-void RouteRecordPlayer::check_motors_feedback()
+SevereErrorType RouteRecordPlayer::check_motors_feedback()
 {   
-    bool result = robotVisionVoyager->check_hall_sensors_timing();
-    tts_mutex.lock();
-    if(false == result)
-    {   
-        if(Language::EN == TextToSpeech::get_language())
-        {   
-            TextToSpeech::display_custom_message("Severe motor issue! \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
-        }
-        else
-        {
-            TextToSpeech::display_custom_message("Problema severă la motoare \n\n\n Abandonare proces de ghidare \n\n\n Contactați personalul clădirii!");
-        }
-    }
-    tts_mutex.unlock();
+    return robotVisionVoyager->check_hall_sensors_timing();
 }
 

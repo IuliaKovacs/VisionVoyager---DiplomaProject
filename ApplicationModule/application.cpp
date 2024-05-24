@@ -147,6 +147,35 @@ bool ApplicationModule::TASK_VOICE_RECOGNITION_WAIT()
 
 bool ApplicationModule::TASK_SAFETY_MEASURES()
 {
-     RouteRecordPlayer::check_motors_feedback();
-     return true;
+    SevereErrorType err_type = RouteRecordPlayer::check_motors_feedback();
+
+    if(SevereErrorType::MOTOR_ERROR == err_type)
+    {
+        tts_mutex.lock();
+        if(Language::EN == TextToSpeech::get_language())
+        {   
+            TextToSpeech::display_custom_message("Severe motor issue! \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
+        }
+        else
+        {
+            TextToSpeech::display_custom_message("Problema severă la motoare \n\n\n Abandonare proces de ghidare \n\n\n Contactați personalul clădirii!");
+        }
+        tts_mutex.unlock();
+    }
+    if(SevereErrorType::LOW_VOLTAGE == err_type)
+    {   
+        tts_mutex.lock();
+        if(Language::EN == TextToSpeech::get_language())
+        {   
+            TextToSpeech::display_custom_message("LOW VOLTAGE! \n\n\n LOW VOLTAGE! \n\n\n Please contact the building staff!");
+        }
+        else
+        {
+            TextToSpeech::display_custom_message("Baterie descărcată! \n\n\n Baterie descărcată! \n\n\n Contactați personalul clădirii!");
+        }
+        tts_mutex.unlock();
+    }
+
+    
+    return true;
 }

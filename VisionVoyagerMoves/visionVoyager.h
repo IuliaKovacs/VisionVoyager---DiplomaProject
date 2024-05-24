@@ -41,8 +41,8 @@ class VisionVoyager
     int dir_angle;
     int camera_tilt_angle;
     int camera_pan_angle;
-    float angular_velocity;
-    float linear_velocity;
+    float angular_velocity = 0.0f;
+    float linear_velocity = 0.0f;
     void initialize_python_embedding();
     vector<int> map_python_list_cpp_vector(py::list py_list);
 public:
@@ -77,7 +77,7 @@ public:
     void speed_down();
     vector<int> read_grayscale_data();
     float read_ultrasonic_data();
-    bool check_hall_sensors_timing();
+    SevereErrorType check_hall_sensors_timing();
 };
 
 

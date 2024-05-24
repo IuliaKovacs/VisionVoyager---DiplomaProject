@@ -21,9 +21,18 @@
 
 using namespace std;
 
+enum class SevereErrorType 
+{   
+    NO_ERROR,
+    MOTOR_ERROR,
+    VOICE_RECOGNITION_ERROR,
+    GPIO_ERROR,
+    IN_AIR,
+    LOW_VOLTAGE,
+    CAMERA_ERROR
+};
+
 extern ofstream logFile;
-
-
 extern mutex mtx;
 extern mutex log_mutex;
 extern mutex tts_mutex;
@@ -31,6 +40,7 @@ extern condition_variable cond_v;
 extern atomic<bool> should_stop; 
 extern atomic<bool> route_complete;
 extern atomic<bool> severe_error;  
+extern SevereErrorType error_type;
 
 
 string log_time();
