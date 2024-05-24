@@ -4,6 +4,7 @@
 #include <chrono>
 #include "../TextToSpeach/textToSpeach.h"
 #include "../LineFollower/lineFollower.h"
+#include "../ApplicationModule/application.h"
 
 
 VisionVoyager* RouteRecordPlayer::robotVisionVoyager = nullptr;
@@ -241,7 +242,7 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
             }
         }
 
-        // TASK_RFID_READER_COMM();
+        ApplicationModule::TASK_RFID_READER_COMM(route_name);
     }
 }
 
