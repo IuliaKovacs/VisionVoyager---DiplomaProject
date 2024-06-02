@@ -89,7 +89,7 @@ bool ApplicationModule::TASK_RFID_READER_COMM(optional<string> route_name)
                         room_description_message += string(tag_info.room_description) + "\n\n\n\n\n\n";
                     }
                     strcpy(last_room_name, tag_info.room_name);
-                    TextToSpeech::display_custom_message(room_description_message);
+                    thread display_details(TextToSpeech::display_custom_message, room_description_message);
                 }
 
                 string tag_info_route_name = string(tag_info.room_name);
@@ -180,4 +180,27 @@ bool ApplicationModule::TASK_SAFETY_MEASURES()
 
     
     return true;
+}
+
+
+bool ApplicationModule::TASK_SPEAKING()
+{
+    log_mutex.lock();
+    logFile << log_time() << LOG_THREAD_SPEAK_PREFIX << " TTS Thread Started " << endl;
+    log_mutex.unlock();
+
+    while(!route_complete.load())
+    {
+        std::unique_lock<std::mutex> lock(speak_mutex);
+        speaking_condition.wait(lock, []{ return (speak.load() || route_complete.load()); });
+        if(!global_message.empty())
+        {
+            log_mutex.lock();
+            logFile << log_time() << LOG_THREAD_SPEAK_PREFIX << "Custom message is displayed" << endl;
+            log_mutex.unlock(); 
+            TextToSpeech::display_custom_message(global_message);
+            speak.store(false);
+            global_message = "";
+        }
+    }
 }

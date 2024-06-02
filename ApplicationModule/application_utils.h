@@ -14,6 +14,7 @@
 #define LOG_THREAD_CAMERA_PREFIX "[Thread][Camera]"
 #define LOG_THREAD_ROUTE_PLAYER_PREFIX "[Thread][Route Player]"
 #define LOG_THREAD_ADMIN_PREFIX "[Thread][Admin Mode]"
+#define LOG_THREAD_SPEAK_PREFIX "[Thread][TTS Module]"
 
 #define LOG_RFID_PREFIX "[RFID Reader]"
 #define LOG_HALL_SENSORS_PREFIX "[Hall Sensors]"
@@ -36,12 +37,15 @@ extern ofstream logFile;
 extern mutex mtx;
 extern mutex log_mutex;
 extern mutex tts_mutex;
+extern mutex speak_mutex;
 extern condition_variable cond_v;
 extern atomic<bool> should_stop; 
 extern atomic<bool> route_complete;
 extern atomic<bool> severe_error;  
 extern SevereErrorType error_type;
-
+extern condition_variable speaking_condition;
+extern atomic<bool> speak;
+extern string global_message;
 
 string log_time();
 

@@ -7,7 +7,7 @@
 
 #define LINE_THRESHOLD 80
 #define STOP_VALUE 350
-#define IN_AIR_THRESHOLD 15
+#define IN_AIR_THRESHOLD 70
 
 
 using namespace std;

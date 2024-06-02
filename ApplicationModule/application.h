@@ -39,6 +39,7 @@ public:
     static bool TASK_ADMIN_MODE_WINDOW(int argc, char *argv[]);
     static bool TASK_VOICE_RECOGNITION_WAIT();
     static bool TASK_SAFETY_MEASURES();
+    static bool TASK_SPEAKING();
 
 };
 

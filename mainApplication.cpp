@@ -8,6 +8,7 @@ ofstream logFile;
 mutex mtx;
 mutex log_mutex;
 mutex tts_mutex;
+mutex speak_mutex;
 condition_variable cond_v;
 atomic<bool> should_stop(false); 
 atomic<bool> route_complete(false);
@@ -18,7 +19,9 @@ map<std::string, int> route_map_no = {
     {"TWO", 1},
     {"THREE", 2}
 };
-
+condition_variable speaking_condition;
+atomic<bool> speak(false);
+string global_message;
 
 string log_time()
 {
@@ -115,16 +118,14 @@ int main(int argc, char *argv[])
     
     // KeyboardControl::F11_listening_loop();
     // bool Admin_Mode = KeyboardControl::get_F11_pressed();
-    // bool Admin_Mode = true;
+    bool Admin_Mode = false;
 
-    // if(true == Admin_Mode)
-    // {   
-    //     logFile << log_time() << "[MainApp] --- Starting Admin Mode Window ---" << endl;
-    //     thread admin_mode_window_thread(ApplicationModule::TASK_ADMIN_MODE_WINDOW, argc, argv);
-    //     thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
-    //     admin_mode_window_thread.join();
-    //     safety_thread.join();
-    // }
+    if(true == Admin_Mode)
+    {   
+        logFile << log_time() << "[MainApp] --- Starting Admin Mode Window ---" << endl;
+        thread admin_mode_window_thread(ApplicationModule::TASK_ADMIN_MODE_WINDOW, argc, argv);
+        admin_mode_window_thread.join();
+    }
 
     /* ---- End of Admin Mode part ---- */
 
@@ -237,10 +238,12 @@ int main(int argc, char *argv[])
 
     thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, "../RouteDatabase/Section A/Secretariat.txt");
     thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
+    thread speaking_thread(ApplicationModule::TASK_SPEAKING);
     // thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
     // thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
     route_player_thread.join();
     safety_thread.join();
+    speaking_thread.join();
     // camera_thread.join();
     // voice_recognition_thread.join();
 

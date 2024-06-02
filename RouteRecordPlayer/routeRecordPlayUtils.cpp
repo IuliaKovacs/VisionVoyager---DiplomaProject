@@ -163,6 +163,8 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
     logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " Route Playing Thread Started" << endl;
     logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Started playing route \"" << route_name << "\" ---" << endl;
     log_mutex.unlock();
+    
+    int ok = 0;
 
     while(!route_complete.load())
     {   
@@ -191,29 +193,46 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                 auto start_time = std::chrono::steady_clock::now();
                 auto end_time = start_time + std::chrono::milliseconds(milliseconds_to_count);
                 
+                if(ok == 0)
+                {   
+                    std::lock_guard<std::mutex> lock(speak_mutex);
+                    global_message = "Mesaj random pe care ar trebui sa il citeasca robotul \n\n\n\n si sa il spuna cu voce tare";
+                    speak.store(true);
+                    speaking_condition.notify_all();
+                    ok = 1;
+                }
+
                 while (std::chrono::steady_clock::now() < end_time) 
                 {   
-                    if(true == LineFollower::verify_is_in_air())
-                    {
-                        log_mutex.lock();
-                        logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Interrupted: The robot is either in air or on the edge of something! ---" << endl;
-                        logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Displaying acoustical warning ---" << endl;
-                        log_mutex.unlock();
-                        // @ToDo - acoustical warning, update flags, abort the route playing
-                        severe_error.store(true);
-                        error_type = SevereErrorType::IN_AIR;
-                        play_command("stop", 0);
-                        tts_mutex.lock();
-                        if(Language::EN == TextToSpeech::get_language())
-                        {   
-                            TextToSpeech::display_custom_message("The robot is in the air or on the edge of something \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
-                        }
-                        else
-                        {
-                            TextToSpeech::display_custom_message("Robotul este în aer sau pe marginea unei prăpăstii! \n\n\n Abandonare proces de ghidare \n\n\n Contactați personalul clădirii!");
-                        }
-                        tts_mutex.unlock();
-                    }
+                    // if(std::chrono::duration_cast<std::chrono::milliseconds>(end_time - std::chrono::steady_clock::now()).count() > 3000)
+                    // {
+                    //     ApplicationModule::TASK_RFID_READER_COMM(route_name);
+                    // }
+
+                    /* IMPORTANT: The threshold for IN AIR DETECTION must be calibrated before using this feature!
+                     * It depends on the surface on which the robot moves!
+                     */
+                    // if(true == LineFollower::verify_is_in_air())
+                    // {
+                    //     log_mutex.lock();
+                    //     logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Interrupted: The robot is either in air or on the edge of something! ---" << endl;
+                    //     logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Displaying acoustical warning ---" << endl;
+                    //     log_mutex.unlock();
+                    //     // @ToDo - acoustical warning, update flags, abort the route playing
+                    //     severe_error.store(true);
+                    //     error_type = SevereErrorType::IN_AIR;
+                    //     play_command("stop", 0);
+                    //     tts_mutex.lock();
+                    //     if(Language::EN == TextToSpeech::get_language())
+                    //     {   
+                    //         TextToSpeech::display_custom_message("The robot is in the air or on the edge of something \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
+                    //     }
+                    //     else
+                    //     {
+                    //         TextToSpeech::display_custom_message("Robotul este în aer sau pe marginea unei prăpăstii! \n\n\n Abandonare proces de ghidare \n\n\n Contactați personalul clădirii!");
+                    //     }
+                    //     tts_mutex.unlock();
+                    // }
 
                     if(severe_error.load())
                     {
@@ -269,10 +288,9 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                 tts_mutex.lock();
                 TextToSpeech::display_destination();
                 tts_mutex.unlock();
+                speaking_condition.notify_all();
             }
         }
-
-        // ApplicationModule::TASK_RFID_READER_COMM(route_name);
     }
 }
 
