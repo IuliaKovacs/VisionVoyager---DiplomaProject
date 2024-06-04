@@ -2,12 +2,14 @@
 
 #include "obstacleAvoidanceUtils.h"
 #include "../RouteRecordPlayer/routeRecordPlayUtils.h"
+#include "../TextToSpeach/textToSpeach.h"
 
 
 using namespace std;
 
 VisionVoyager* ObstacleAvoidance::robotVisionVoyager = nullptr;
 float ObstacleAvoidance::ultrasonic_data;
+ std::chrono::time_point<std::chrono::steady_clock> ObstacleAvoidance::start_tts_avoid;
 
 
 void ObstacleAvoidance::set_robot(VisionVoyager* robot)
@@ -18,6 +20,7 @@ void ObstacleAvoidance::set_robot(VisionVoyager* robot)
 void ObstacleAvoidance::get_ultrasonic_data()
 {
     ObstacleAvoidance::ultrasonic_data = robotVisionVoyager->read_ultrasonic_data();
+    // logFile << log_time() << "Ultrasonic: " << ultrasonic_data << endl;
 }
 
 Direction ObstacleAvoidance::choose_avoiding_side()
@@ -60,8 +63,6 @@ Direction ObstacleAvoidance::choose_avoiding_side()
     {
         return Direction::LEFT;
     }
-
-    /* ToDo special case of complex avoiding*/
 }
 
 void ObstacleAvoidance::avoid_simple_obstacle_right_side()
@@ -69,23 +70,20 @@ void ObstacleAvoidance::avoid_simple_obstacle_right_side()
     robotVisionVoyager->move_forward();
 
     robotVisionVoyager->turn_right_max();
-    this_thread::sleep_for(std::chrono::milliseconds(1393));
+    this_thread::sleep_for(std::chrono::milliseconds(1400));
     robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
     this_thread::sleep_for(std::chrono::milliseconds(460));
     robotVisionVoyager->turn_left_max();
-    this_thread::sleep_for(std::chrono::milliseconds(1250));
+    this_thread::sleep_for(std::chrono::milliseconds(900));
     robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
     this_thread::sleep_for(std::chrono::milliseconds(1500));
     robotVisionVoyager->turn_left_max();
-    this_thread::sleep_for(std::chrono::milliseconds(1393));
+    this_thread::sleep_for(std::chrono::milliseconds(875));
     robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
     this_thread::sleep_for(std::chrono::milliseconds(460));
     robotVisionVoyager->turn_right_max();
-    this_thread::sleep_for(std::chrono::milliseconds(1250));
+    this_thread::sleep_for(std::chrono::milliseconds(1100));
     robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
-
-    this_thread::sleep_for(std::chrono::milliseconds(500)); 
-    robotVisionVoyager->stop();
 }
 
 
@@ -95,23 +93,80 @@ void ObstacleAvoidance::avoid_simple_obstacle_left_side()
     robotVisionVoyager->move_forward();
    
     robotVisionVoyager->turn_left_max();
-    this_thread::sleep_for(std::chrono::milliseconds(1393));
+    this_thread::sleep_for(std::chrono::milliseconds(1400));
     robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
     this_thread::sleep_for(std::chrono::milliseconds(460));
     robotVisionVoyager->turn_right_max();
-    this_thread::sleep_for(std::chrono::milliseconds(1250));
+    this_thread::sleep_for(std::chrono::milliseconds(900));
     robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
     this_thread::sleep_for(std::chrono::milliseconds(1500));
     robotVisionVoyager->turn_right_max();
-    this_thread::sleep_for(std::chrono::milliseconds(1393));
+    this_thread::sleep_for(std::chrono::milliseconds(875));
     robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
     this_thread::sleep_for(std::chrono::milliseconds(460));
     robotVisionVoyager->turn_left_max();
-    this_thread::sleep_for(std::chrono::milliseconds(1250));
-    robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
+    this_thread::sleep_for(std::chrono::milliseconds(1100));
+    robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE); 
+}
 
-    this_thread::sleep_for(std::chrono::milliseconds(500)); 
-    robotVisionVoyager->stop();
+
+bool ObstacleAvoidance::check_forward_safety()
+{
+    get_ultrasonic_data();
+    if((DANGER_DISTANCE_THRESHOLD > ultrasonic_data) && (-1 != ultrasonic_data))
+    {
+        robotVisionVoyager->stop();
+        start_tts_avoid = std::chrono::steady_clock::now();
+        log_mutex.lock();
+        logFile << log_time() << "[Obstacle Avoiding] Obstacle Detected!" << endl;
+        log_mutex.unlock();
+        tts_mutex.lock();
+        TextToSpeech::display_custom_message("Stop! Atenție! Obstacol Detectat!");
+        tts_mutex.unlock();
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+
+std::chrono::duration<double> ObstacleAvoidance::obstacle_avoid()
+{
+    
+    std::chrono::duration<double> time_skipped = std::chrono::seconds(0);
+    // Direction side = choose_avoiding_side();
+    // @ToDo
+    Direction side = Direction::RIGHT;
+    TextToSpeech::display_custom_message("Obstacolul ar trebui ocolit pe partea dreapta! Faceți doi pași în dreapta, mergeți înainte 2 pași, iar apoi faceți doi pași în stânga");
+    auto end_tts = std::chrono::steady_clock::now();
+
+    auto start_time = std::chrono::steady_clock::now();
+    log_mutex.lock();
+    logFile << log_time() << "[Obstacle Avoiding] Start Avoiding" << endl;
+    log_mutex.unlock();
+    if (side == Direction::RIGHT)
+    {
+        log_mutex.lock();
+        logFile << log_time() << "[Obstacle Avoiding] Avoiding an obstacle - choosed right side to avoid" << endl;
+        log_mutex.unlock();
+        avoid_simple_obstacle_right_side();
+    }
+    else if (side == Direction::LEFT)
+    {
+        log_mutex.lock();
+        logFile << log_time() << "[Obstacle Avoiding] Avoiding an obstacle - choosed left side to avoid" << endl;
+        log_mutex.unlock();
+        avoid_simple_obstacle_left_side();
+    }
+    log_mutex.lock();
+    logFile << log_time() << "[Obstacle Avoiding] Obstacle Avoided Successfully!" << endl;
+    log_mutex.unlock();
+    auto end_time = std::chrono::steady_clock::now(); 
+    time_skipped = (end_tts - start_tts_avoid) + (end_time - start_time) * 1.2; //'(' ')' for better visibility in code
+    logFile << log_time() << "[Obstacle Avoiding] Time Skipped: " << time_skipped.count() << endl;
+    return time_skipped;
 }
 
 

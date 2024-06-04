@@ -89,7 +89,12 @@ bool ApplicationModule::TASK_RFID_READER_COMM(optional<string> route_name)
                         room_description_message += string(tag_info.room_description) + "\n\n\n\n\n\n";
                     }
                     strcpy(last_room_name, tag_info.room_name);
-                    thread display_details(TextToSpeech::display_custom_message, room_description_message);
+                    
+                    /* Send data for displaying the tag info */
+                    std::lock_guard<std::mutex> lock(speak_mutex);
+                    global_message = room_description_message;
+                    speak.store(true);
+                    speaking_condition.notify_all();
                 }
 
                 string tag_info_route_name = string(tag_info.room_name);
@@ -117,6 +122,9 @@ bool ApplicationModule::TASK_RFID_READER_COMM(optional<string> route_name)
 bool ApplicationModule::TASK_ROUTE_PLAYING(string route_name)
 {
      RouteRecordPlayer::play_route_conditioned(route_name);
+     log_mutex.lock();
+     logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Aborted Successfully --- " << endl;
+     log_mutex.unlock();
      return true;
 }
 

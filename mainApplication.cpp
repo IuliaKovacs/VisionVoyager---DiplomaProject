@@ -237,12 +237,12 @@ int main(int argc, char *argv[])
     /* Thread testing part */
 
     thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, "../RouteDatabase/Section A/Secretariat.txt");
-    thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
+    // thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
     thread speaking_thread(ApplicationModule::TASK_SPEAKING);
     // thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
     // thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
     route_player_thread.join();
-    safety_thread.join();
+    // safety_thread.join();
     speaking_thread.join();
     // camera_thread.join();
     // voice_recognition_thread.join();

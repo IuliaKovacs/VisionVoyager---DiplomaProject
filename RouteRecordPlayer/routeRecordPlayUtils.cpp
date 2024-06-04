@@ -2,12 +2,14 @@
 #include "../RouteRegistration/routeRegistrationUtils.h"
 #include <fstream>
 #include <chrono>
+#include <ctime>
 #include "../LineFollower/lineFollower.h"
 #include "../ApplicationModule/application.h"
 
 
 VisionVoyager* RouteRecordPlayer::robotVisionVoyager = nullptr;
 Building_Section RouteRecordPlayer::current_section = Building_Section::UNKNOWN;
+bool RouteRecordPlayer::avoiding_activated;
 
 void RouteRecordPlayer::set_robot(VisionVoyager* robot)
 {
@@ -158,13 +160,12 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
 {
     ifstream Route_File(route_name);
     string line;
-    
+
     log_mutex.lock();
     logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " Route Playing Thread Started" << endl;
     logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Started playing route \"" << route_name << "\" ---" << endl;
     log_mutex.unlock();
-    
-    int ok = 0;
+
 
     while(!route_complete.load())
     {   
@@ -190,35 +191,50 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                 logFile << log_time() << command_name << " : " << milliseconds_to_count << endl;
                 log_mutex.unlock(); 
 
+
                 auto start_time = std::chrono::steady_clock::now();
                 auto end_time = start_time + std::chrono::milliseconds(milliseconds_to_count);
-                
-                if(ok == 0)
-                {   
-                    std::lock_guard<std::mutex> lock(speak_mutex);
-                    global_message = "Mesaj random pe care ar trebui sa il citeasca robotul \n\n\n\n si sa il spuna cu voce tare";
-                    speak.store(true);
-                    speaking_condition.notify_all();
-                    ok = 1;
-                }
 
-                while (std::chrono::steady_clock::now() < end_time) 
+
+                while ((std::chrono::steady_clock::now() < end_time)) 
                 {   
-                    // if(std::chrono::duration_cast<std::chrono::milliseconds>(end_time - std::chrono::steady_clock::now()).count() > 3000)
-                    // {
-                    //     ApplicationModule::TASK_RFID_READER_COMM(route_name);
-                    // }
+                    if(ObstacleAvoidance::check_forward_safety())
+                    {
+                        if(end_time - std::chrono::steady_clock::now() > std::chrono::seconds(10))
+                        {
+                            std::chrono::duration<double> time_skipped = ObstacleAvoidance::obstacle_avoid();
+                            end_time = end_time + std::chrono::duration_cast<std::chrono::steady_clock::duration>(time_skipped);
+                        }
+                        else
+                        {
+                            log_mutex.lock();
+                            logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Interrupted: Obstacle Detected! -> In this moment of route guiding the obstacle cannot be avoided! ---" << endl;
+                            logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Displaying acoustical warning ---" << endl;
+                            log_mutex.unlock();
+                            severe_error.store(true);
+                            error_type = SevereErrorType::IN_AIR;
+                            play_command("stop", 0);
+                            tts_mutex.lock();
+                            if(Language::EN == TextToSpeech::get_language())
+                            {   
+                                TextToSpeech::display_custom_message("In this moment of route guiding the obstacle cannot be avoided! \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
+                            }
+                            else
+                            {
+                                TextToSpeech::display_custom_message("În acest moment al rutei nu se poate ocoli obstacolul! \n\n\n Abandonare proces de ghidare! \n\n\n Contactați personalul clădirii!");
+                            }
+                            tts_mutex.unlock();
+                        }
+                    }
 
                     /* IMPORTANT: The threshold for IN AIR DETECTION must be calibrated before using this feature!
-                     * It depends on the surface on which the robot moves!
-                     */
+                     * It depends on the surface on which the robot moves! */
                     // if(true == LineFollower::verify_is_in_air())
                     // {
                     //     log_mutex.lock();
                     //     logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Interrupted: The robot is either in air or on the edge of something! ---" << endl;
                     //     logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Displaying acoustical warning ---" << endl;
                     //     log_mutex.unlock();
-                    //     // @ToDo - acoustical warning, update flags, abort the route playing
                     //     severe_error.store(true);
                     //     error_type = SevereErrorType::IN_AIR;
                     //     play_command("stop", 0);
@@ -240,8 +256,12 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                         log_mutex.lock();
                         logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " ...Aborting due to severe error..." << endl;
                         log_mutex.unlock();
+                        lock_guard<mutex> lock2(mtx);
+                        should_stop.store(true);
                         route_complete.store(true);
-                        break;
+                        cond_v.notify_all();
+                        speaking_condition.notify_all();
+                        return;
                     }
 
                     if(should_stop.load())
