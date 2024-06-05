@@ -6,8 +6,8 @@
 
 
 #define LINE_THRESHOLD 80
-#define STOP_VALUE 350
-#define IN_AIR_THRESHOLD 70
+#define STOP_VALUE 250
+#define IN_AIR_THRESHOLD 40  /* last value 70 */
 
 
 using namespace std;
@@ -30,7 +30,7 @@ class LineFollower
     static State last_state;
     static void get_grayscale_data();
     static vector<int> get_line_from_grayscale_data();
-    static bool verify_stop_condition();
+    static bool verify_no_line_available();
     static void search_line();
     static State compute_next_state(vector<int> grayscale_line_status);
     static void execute_move(State current_state);

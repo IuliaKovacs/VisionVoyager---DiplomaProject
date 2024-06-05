@@ -33,6 +33,13 @@ enum class SevereErrorType
     CAMERA_ERROR
 };
 
+enum class GuidingMode 
+{   
+    NO_GUIDING,
+    ROUTE_PLAYER_MODE,
+    LINE_FOLLOWER_MODE
+};
+
 extern ofstream logFile;
 extern mutex mtx;
 extern mutex log_mutex;
@@ -46,6 +53,7 @@ extern SevereErrorType error_type;
 extern condition_variable speaking_condition;
 extern atomic<bool> speak;
 extern string global_message;
+extern GuidingMode guiding_mode;
 
 string log_time();
 

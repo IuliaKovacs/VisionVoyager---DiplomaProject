@@ -1,5 +1,7 @@
 #include "lineFollower.h"
 #include "../RouteRegistration/routeRegistrationUtils.h"
+#include "../TextToSpeach/textToSpeach.h"
+#include "../ObstacleAvoidance/obstacleAvoidanceUtils.h"
 
 using namespace std;
 
@@ -55,22 +57,81 @@ void LineFollower::follow_line()
             log_mutex.unlock();
         }
 
-        if (verify_is_in_air())
+
+        if(ObstacleAvoidance::check_forward_safety())
         {
+            (void)ObstacleAvoidance::obstacle_avoid();
+        }
+
+        if (verify_is_in_air())
+        {   
             robotVisionVoyager->stop();
-            RouteRegistration::set_moving_state(MovingState::STATIONARY);
-            RouteRegistration::end_registration();
+            log_mutex.lock();
+            logFile << log_time() << LOG_THREAD_LINE_FOLLOWER_PREFIX << " --- Route Interrupted: The robot is either in air or on the edge of something! ---" << endl;
+            logFile << log_time() << LOG_THREAD_LINE_FOLLOWER_PREFIX << " --- Displaying acoustical warning ---" << endl;
+            log_mutex.unlock();
+            severe_error.store(true);
+            error_type = SevereErrorType::IN_AIR;  
+            tts_mutex.lock();
+            if(Language::EN == TextToSpeech::get_language())
+            {   
+                TextToSpeech::display_custom_message("The robot is in the air or on the edge of something \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
+            }
+            else
+            {
+                TextToSpeech::display_custom_message("Robotul este în aer sau pe marginea unei prăpăstii! \n\n\n Abandonare proces de ghidare \n\n\n Contactați personalul clădirii!");
+            }
+            tts_mutex.unlock();
+        }
+
+        /* check for severe error. e.g. robot is in the air, motor issue etc */
+        if(severe_error.load())
+        {
+            robotVisionVoyager->stop(); 
+            log_mutex.lock();
+            logFile << log_time() << LOG_THREAD_LINE_FOLLOWER_PREFIX << " ...Aborting due to severe error..." << endl;
+            log_mutex.unlock();
+            lock_guard<mutex> lock2(mtx);
+            should_stop.store(true);
             route_complete.store(true);
-            break;
+            cond_v.notify_all();
+            speaking_condition.notify_all();
+            return;
+        }
+
+        /* check if waiting command was given */
+        if(should_stop.load())
+        {   
+            robotVisionVoyager->stop();
+            log_mutex.lock();
+            logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " ...Waiting... - Intervention from user - must wait the start signal" << endl;
+            log_mutex.unlock();
+            std::unique_lock<std::mutex> lock(mtx);
+            cond_v.wait(lock, []{ return !should_stop.load(); });
+            robotVisionVoyager->move_forward();
+            log_mutex.lock();
+            logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " Waiting Ended " << endl;
+            log_mutex.unlock();
         }     
 
         // logFile << log_time() << stop_counter << endl;
-        if (verify_stop_condition())
+        if (verify_no_line_available())
         {   
             RouteRegistration::set_moving_state(MovingState::STATIONARY);
             RouteRegistration::end_registration();
+            //@ToDo RFID stop tag - daca am gasit tagul destinatie -> ruta completa, altfel mesaj corespunzator - nu mai avem linie de urmarit si nici nu suntem la destinatie
+            log_mutex.lock();
+            logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route completed --- " << endl;
+            log_mutex.unlock();
+            lock_guard<mutex> lock2(mtx);
+            should_stop.store(true);
             route_complete.store(true);
-            break;
+            cond_v.notify_all();
+            tts_mutex.lock();
+            TextToSpeech::display_destination();
+            tts_mutex.unlock();
+            speaking_condition.notify_all();
+            return;
         }
 
         get_grayscale_data();
@@ -92,7 +153,7 @@ bool LineFollower::verify_is_in_air()
 }
 
 
-bool LineFollower::verify_stop_condition()
+bool LineFollower::verify_no_line_available()
 {
     if (stop_counter >= STOP_VALUE)
     {

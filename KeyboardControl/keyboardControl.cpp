@@ -34,6 +34,7 @@ void KeyboardControl::initialize_keyboard_control()
  void KeyboardControl::F11_listening_loop()
  {
     chrono::seconds interval(5);
+    logFile << log_time() << "[MainApp] End F11 Interval" << endl;
     auto start_time = chrono::steady_clock::now();
 
     struct termios initial_settings, new_settings;
@@ -70,6 +71,7 @@ void KeyboardControl::initialize_keyboard_control()
             }
         }
     }
+    logFile << log_time() << "[MainApp] End F11 Interval" << endl;
  }
 
  bool KeyboardControl::get_F11_pressed()

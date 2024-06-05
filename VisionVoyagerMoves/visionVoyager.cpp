@@ -9,6 +9,8 @@
 #define WHEEL_CIRCUMFERENCE (2 * CONSTANT_PI * WHEEL_RADIUS) // m - meters
 
 #define THRESHOLD_WHEEL_ROTATION_TIME 2000 // ms - miliseconds 
+#define THRESHOLD_WHEEL_ROTATION_TIME_MIN_RP 1000
+#define THRESHOLD_WHEEL_ROTATION_TIME_MIN_LF 1900
 
 namespace py = pybind11;
 using namespace std;
@@ -263,6 +265,16 @@ SevereErrorType VisionVoyager::check_hall_sensors_timing()
         return SevereErrorType::GPIO_ERROR;
     }
 
+    int THRESHOLD_WHEEL_ROTATION_TIME_MIN;
+    if( GuidingMode::ROUTE_PLAYER_MODE == guiding_mode)
+    {
+        THRESHOLD_WHEEL_ROTATION_TIME_MIN = THRESHOLD_WHEEL_ROTATION_TIME_MIN_RP;
+    }
+    else if( GuidingMode::LINE_FOLLOWER_MODE == guiding_mode)
+    {
+        THRESHOLD_WHEEL_ROTATION_TIME_MIN = THRESHOLD_WHEEL_ROTATION_TIME_MIN_LF;
+    }
+
     log_mutex.lock();
     logFile << log_time() << LOG_HALL_SENSORS_PREFIX << " Hall Sensors Feature ready for use!" << endl;
     log_mutex.unlock();
@@ -329,10 +341,10 @@ SevereErrorType VisionVoyager::check_hall_sensors_timing()
                     /* Taking the period in accound only if the robot is not at the start of the moving, otherwise the calculated period would be eronate */
                     if(true == last_moving_state)
                     {    
-                        // logFile << log_time() << LOG_HALL_SENSORS_PREFIX << "[Right Motor] time_difference from last period: " << time_difference.count() << "ms" << endl;
+                        logFile << log_time() << LOG_HALL_SENSORS_PREFIX << "[Right Motor] time_difference from last period: " << time_difference.count() << "ms" << endl;
                         
                         /* Checking if the wheel rotation took longer than usual and if so -> LOW VOLTAGE warning */
-                        if((time_difference.count() > 1000) && (time_difference.count() < 2000))
+                        if((time_difference.count() > THRESHOLD_WHEEL_ROTATION_TIME_MIN) && (time_difference.count() < THRESHOLD_WHEEL_ROTATION_TIME))
                         {
                             logFile << log_time() << LOG_HALL_SENSORS_PREFIX << "[Right Motor] WARNING: LOW VOLTAGE DETECTED!" << endl;
                             result = SevereErrorType::LOW_VOLTAGE;
@@ -352,7 +364,7 @@ SevereErrorType VisionVoyager::check_hall_sensors_timing()
                                 }
                                 log_mutex.lock();
                                 float average_period = sum / last_10_time_intervals_right.size();
-                                logFile << log_time() << LOG_HALL_SENSORS_PREFIX << "[Right Motor] average period: " << average_period << "ms" << endl;
+                                // logFile << log_time() << LOG_HALL_SENSORS_PREFIX << "[Right Motor] average period: " << average_period << "ms" << endl;
                                 /* transforming the period in secods from miliseconds */
                                 float average_period_s = average_period / 1000.0;
                                 /* omega = (2*PI)/T  <=> angular speed = (2 * PI)/period */
@@ -380,9 +392,9 @@ SevereErrorType VisionVoyager::check_hall_sensors_timing()
                     // logFile << log_time() << LOG_HALL_SENSORS_PREFIX << "[Left Motor] Magnet detected!" << endl;
                     last_spin_left = current_spin_left;
                     if(true == last_moving_state)
-                    {  
+                    {   
                         /* Checking if the wheel rotation took longer than usual and if so -> LOW VOLTAGE warning */
-                        if((time_difference.count() > 1000) && (time_difference.count() < 2000))
+                        if((time_difference.count() > THRESHOLD_WHEEL_ROTATION_TIME_MIN) && (time_difference.count() < THRESHOLD_WHEEL_ROTATION_TIME))
                         {
                             logFile << log_time() << LOG_HALL_SENSORS_PREFIX << "[Left Motor] WARNING: LOW VOLTAGE DETECTED!" << endl;
                             result = SevereErrorType::LOW_VOLTAGE;
@@ -390,7 +402,9 @@ SevereErrorType VisionVoyager::check_hall_sensors_timing()
 
                         index_l = ((index_l + 1) % last_10_time_intervals_left.size());
                         last_10_time_intervals_left[index_l] = time_difference.count();
-                        // logFile << log_time() << LOG_HALL_SENSORS_PREFIX << "[Left Motor] time_difference from last period: " << time_difference.count() << "ms" << endl;
+                        
+                        logFile << log_time() << LOG_HALL_SENSORS_PREFIX << "[Left Motor] time_difference from last period: " << time_difference.count() << "ms" << endl;
+                        
                         if(index_l == 9)
                         {
                             float sum = 0.0f;
@@ -400,7 +414,7 @@ SevereErrorType VisionVoyager::check_hall_sensors_timing()
 
                             log_mutex.lock();
                             float average_period = sum / last_10_time_intervals_left.size();
-                            logFile << log_time() << LOG_HALL_SENSORS_PREFIX << "[Left Motor] average period: " << average_period << "ms" << endl;
+                            // logFile << log_time() << LOG_HALL_SENSORS_PREFIX << "[Left Motor] average period: " << average_period << "ms" << endl;
                             /* transforming the period in secods from miliseconds */
                             float average_period_s = average_period / 1000.0;
                             /* omega = (2*PI)/T  <=> angular speed = (2 * PI)/period */

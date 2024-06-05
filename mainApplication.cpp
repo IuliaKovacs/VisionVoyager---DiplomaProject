@@ -22,6 +22,7 @@ map<std::string, int> route_map_no = {
 condition_variable speaking_condition;
 atomic<bool> speak(false);
 string global_message;
+GuidingMode guiding_mode = GuidingMode::NO_GUIDING;
 
 string log_time()
 {
@@ -234,15 +235,29 @@ int main(int argc, char *argv[])
     /* ---- End of Normal User Mode part ---- */
 
 
-    /* Thread testing part */
-
-    thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, "../RouteDatabase/Section A/Secretariat.txt");
+    /* Thread testing part - route player */
+    // guiding_mode = GuidingMode::ROUTE_PLAYER_MODE;
+    // thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, "../RouteDatabase/Section A/Secretariat.txt");
     // thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
+    // thread speaking_thread(ApplicationModule::TASK_SPEAKING);
+    // thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
+    // thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
+    // route_player_thread.join();
+    // safety_thread.join();
+    // speaking_thread.join();
+    // camera_thread.join();
+    // voice_recognition_thread.join();
+
+
+    /* Thread testing part - line follower */
+    guiding_mode = GuidingMode::LINE_FOLLOWER_MODE;
+    thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
+    thread line_follower_thread(ApplicationModule::TASK_LINE_FOLLOWING);
     thread speaking_thread(ApplicationModule::TASK_SPEAKING);
     // thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
     // thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
-    route_player_thread.join();
-    // safety_thread.join();
+    line_follower_thread.join();
+    safety_thread.join();
     speaking_thread.join();
     // camera_thread.join();
     // voice_recognition_thread.join();
