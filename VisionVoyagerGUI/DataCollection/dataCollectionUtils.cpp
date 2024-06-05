@@ -61,14 +61,23 @@ void AdminModeWindow::initialize_chart()
     axisX->append(categories);
     chart->addAxis(axisX, Qt::AlignBottom);
     series->attachAxis(axisX);
+    QFont axisFont;
+    axisFont.setPointSize(12); 
+    chart->axisX()->setLabelsFont(axisFont);
 
     auto axisY = new QValueAxis;
-    axisY->setRange(0,15);
+    axisY->setRange(0,40);
     chart->addAxis(axisY, Qt::AlignLeft);
     series->attachAxis(axisY);
 
+    QFont font = chart->legend()->font();
+    font.setPointSize(12); 
+    chart->legend()->setFont(font);
+
     chart->legend()->setVisible(true);
     chart->legend()->setAlignment(Qt::AlignBottom);
+
+    // chart->legend()->setInteractive(true);
 }
 
 

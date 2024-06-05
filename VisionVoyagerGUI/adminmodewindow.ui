@@ -765,10 +765,10 @@ border-radius: 10px;</string>
      <widget class="QWidget" name="verticalLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>100</x>
-        <y>70</y>
-        <width>1101</width>
-        <height>331</height>
+        <x>40</x>
+        <y>60</y>
+        <width>841</width>
+        <height>561</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="chartLayout"/>
@@ -776,10 +776,10 @@ border-radius: 10px;</string>
      <widget class="QListView" name="logsListView">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>440</y>
-        <width>791</width>
-        <height>192</height>
+        <x>920</x>
+        <y>60</y>
+        <width>331</width>
+        <height>561</height>
        </rect>
       </property>
      </widget>
