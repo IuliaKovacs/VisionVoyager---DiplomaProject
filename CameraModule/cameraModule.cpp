@@ -42,7 +42,7 @@ void CameraModule::display_camera_capture()
 
 
 
-void CameraModule::capture_image(string path_to_store)
+string CameraModule::capture_image(string path_to_store)
 {
     static int no = 0;
     no++;
@@ -60,10 +60,12 @@ void CameraModule::capture_image(string path_to_store)
         logFile << log_time() << "Error: Failed to capture image" << endl;
     }
 
-    if (!cv::imwrite(path_to_store + "/image" + to_string(no) + ".jpg", image)) 
+    string img_path = path_to_store + "/image" + to_string(no) + ".jpg";
+    if (!cv::imwrite(img_path, image)) 
     {
         logFile << log_time() << "Error: Failed to store the image to " << path_to_store << endl;
     }
 
     cap.release();
+    return img_path;
 }

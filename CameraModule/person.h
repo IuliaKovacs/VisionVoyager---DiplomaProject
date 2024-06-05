@@ -38,6 +38,11 @@ public:
             role = Role::Building_Staff;
         }
     }
+
+    string get_id()
+    {
+        return id;
+    }
     
     string get_first_name()
     {

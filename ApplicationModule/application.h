@@ -34,7 +34,7 @@ class ApplicationModule
 public:
     static bool TASK_LINE_FOLLOWING();
     static bool TASK_ROUTE_PLAYING(string route_name);
-    static bool TASK_CAMERA_MODULE();
+    static void TASK_CAMERA_MODULE();
     static bool TASK_RFID_READER_COMM(optional<string> route_name);
     static bool TASK_ADMIN_MODE_WINDOW(int argc, char *argv[]);
     static bool TASK_VOICE_RECOGNITION_WAIT();

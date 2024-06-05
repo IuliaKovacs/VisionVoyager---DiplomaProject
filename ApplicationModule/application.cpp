@@ -7,6 +7,9 @@
 #include <ctime>
 #include <OpenXLSX.hpp>
 
+#define CAPTURED_IMAGES_PATH "../CameraModule/CapturedImages"
+#define TEMP_CAPTURED_IMG "../CameraModule/CapturedImages/temp.png"
+
 using namespace std;
 using namespace OpenXLSX;
 
@@ -16,17 +19,46 @@ bool ApplicationModule::TASK_LINE_FOLLOWING()
     return true;
 }
 
-bool ApplicationModule::TASK_CAMERA_MODULE()
+void ApplicationModule::TASK_CAMERA_MODULE()
 {
-    for (int i = 0; i < 10; ++i) {
-    CameraModule::capture_image("../CameraModule/CapturedImages");
-    /* process image*/
-    std::time_t currentTime = std::time(nullptr); 
-    logFile << log_time() << " -- 2 -- Thread TASK_CAMERA_MODULE processing image at datetime: " << std::ctime(&currentTime) << endl;
-    std::this_thread::sleep_for(std::chrono::milliseconds(200)); 
+    log_mutex.lock();
+    logFile << log_time() << LOG_THREAD_CAMERA_PREFIX << " Camera Thread Started " << endl;
+    log_mutex.unlock();
+    CameraModule::create_csv_database_file();
+
+    while(!route_complete.load())
+    {
+        std::unique_lock<std::mutex> lock(camera_mutex);
+        camera_condition.wait(lock, []{ return (!moving.load()); });
+        string source_file =  CameraModule::capture_image(CAPTURED_IMAGES_PATH);
+        log_mutex.lock();
+        logFile << log_time() << LOG_THREAD_CAMERA_PREFIX << " Took a photo " << endl;
+        log_mutex.unlock();
+        string destination_file = TEMP_CAPTURED_IMG;
+        ifstream source_stream(source_file, std::ios::binary);
+        ofstream destination_stream(destination_file, std::ios::binary);
+        destination_stream << source_stream.rdbuf();
+        source_stream.close();
+        destination_stream.close();
+        // process image and display message if it is a recognized person in it 
+        int result = CameraModule::recognize_face(TEMP_CAPTURED_IMG);
+        log_mutex.lock();
+        logFile << log_time() << LOG_THREAD_CAMERA_PREFIX << " Label result: s" << result << endl;
+        log_mutex.unlock();
+        if(-1 != result)
+        {
+            //@ToDo RO + EN
+            Person recognized_person = CameraModule::get_person_by_id("s" + to_string(result));
+            string tts_person = "Persoana: \n" + recognized_person.get_first_name() + "  " + recognized_person.get_last_name();
+            log_mutex.lock();
+            logFile << log_time() << LOG_THREAD_CAMERA_PREFIX << " Recogized person: " << recognized_person.get_first_name() + "  " + recognized_person.get_last_name() << endl;
+            log_mutex.unlock();
+            tts_person = tts_person + " este lângă tine. \n\n\n Dacă ai întrebări este la dispoziția ta!" + "\n\n\n  Rol: " + recognized_person.get_role();
+            TextToSpeech::display_custom_message(tts_person); 
+        }
     }
 
-    return true;
+    // @ToDo - after the route is completed - check for 10 seconds if a person from staff is recognized
 }
 
 bool ApplicationModule::TASK_RFID_READER_COMM(optional<string> route_name)

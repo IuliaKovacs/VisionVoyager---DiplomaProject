@@ -9,10 +9,12 @@ mutex mtx;
 mutex log_mutex;
 mutex tts_mutex;
 mutex speak_mutex;
+mutex camera_mutex;
 condition_variable cond_v;
 atomic<bool> should_stop(false); 
 atomic<bool> route_complete(false);
 atomic<bool> severe_error(false);
+atomic<bool> moving(false);
 SevereErrorType error_type = SevereErrorType::NO_ERROR;
 map<std::string, int> route_map_no = {
     {"ONE", 0},
@@ -20,6 +22,7 @@ map<std::string, int> route_map_no = {
     {"THREE", 2}
 };
 condition_variable speaking_condition;
+condition_variable camera_condition;
 atomic<bool> speak(false);
 string global_message;
 GuidingMode guiding_mode = GuidingMode::NO_GUIDING;
@@ -119,15 +122,13 @@ int main(int argc, char *argv[])
     
     // KeyboardControl::F11_listening_loop();
     // bool Admin_Mode = KeyboardControl::get_F11_pressed();
-    ApplicationModule::increment_excel_route_count("../RouteDatabase/Section A/Secretariat.txt");
-    bool Admin_Mode = false;
 
-    if(true == Admin_Mode)
-    {   
-        logFile << log_time() << "[MainApp] --- Starting Admin Mode Window ---" << endl;
-        thread admin_mode_window_thread(ApplicationModule::TASK_ADMIN_MODE_WINDOW, argc, argv);
-        admin_mode_window_thread.join();
-    }
+    // if(true == Admin_Mode)
+    // {   
+    //     logFile << log_time() << "[MainApp] --- Starting Admin Mode Window ---" << endl;
+    //     thread admin_mode_window_thread(ApplicationModule::TASK_ADMIN_MODE_WINDOW, argc, argv);
+    //     admin_mode_window_thread.join();
+    // }
 
     /* ---- End of Admin Mode part ---- */
 
@@ -256,12 +257,12 @@ int main(int argc, char *argv[])
     // thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
     // thread line_follower_thread(ApplicationModule::TASK_LINE_FOLLOWING);
     // thread speaking_thread(ApplicationModule::TASK_SPEAKING);
-    // thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
+    thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
     // thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
     // line_follower_thread.join();
     // safety_thread.join();
     // speaking_thread.join();
-    // camera_thread.join();
+    camera_thread.join();
     // voice_recognition_thread.join();
 
     terminate_main_app();

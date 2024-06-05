@@ -40,10 +40,11 @@ public:
     static cv::Mat resize_and_apply_grayscale(const fs::path& input_path);
     static bool detect_face_and_preprocess_if_so(string test_image_path);
     static bool detect_lowerbody(string test_image_path);
-    static void capture_image(string path_to_store);
+    static string capture_image(string path_to_store);
     static vector<Person>& get_recognized_persons();
     static void write_recognized_persons();
     static void update_faces_dataset_namings();
+    static Person get_person_by_id(string id);
 };
 
 #endif //CAMERA_MODULE

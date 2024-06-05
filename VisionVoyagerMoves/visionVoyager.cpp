@@ -15,7 +15,7 @@
 namespace py = pybind11;
 using namespace std;
 
-atomic<bool> moving(false);
+
 
 VisionVoyager::VisionVoyager() 
 {   

@@ -300,3 +300,17 @@ void CameraModule::update_faces_dataset_namings()
         }
     }
 }
+
+
+ Person CameraModule::get_person_by_id(string result_id)
+ {
+    for(Person p : recognized_persons)
+    {
+        cout << "\"" << p.get_id() << "\"" << "<->" << "\"" << result_id << "\"" << endl;
+        if(p.get_id() == result_id)
+        {
+            return p;
+        }
+    }
+    throw runtime_error("Unreachable code reached"); 
+ }
