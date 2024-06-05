@@ -40,6 +40,7 @@ public:
     static bool TASK_VOICE_RECOGNITION_WAIT();
     static bool TASK_SAFETY_MEASURES();
     static bool TASK_SPEAKING();
+    static void increment_excel_route_count(string route_name);
 
 };
 

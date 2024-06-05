@@ -8,6 +8,10 @@
 #include <condition_variable>
 
 
+#define ROUTE_DATA_EXCEL_PATH "../VisionVoyagerGUI/DataCollection/RoutesData.xlsx"
+#define SHEET_ROUTE_NAME "RoutesData"
+
+
 #define LOGS_PATH "../VisionVoyagerGUI/DataCollection/Logs/"
 #define LOG_THREAD_VOICE_PREFIX "[Thread][VoiceRecognition]"
 #define LOG_THREAD_LINE_FOLLOWER_PREFIX "[Thread][Line Follower]"

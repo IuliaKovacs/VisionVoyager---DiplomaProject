@@ -119,7 +119,8 @@ int main(int argc, char *argv[])
     
     // KeyboardControl::F11_listening_loop();
     // bool Admin_Mode = KeyboardControl::get_F11_pressed();
-    bool Admin_Mode = false;
+    ApplicationModule::increment_excel_route_count("Secretariat");
+    bool Admin_Mode = true;
 
     if(true == Admin_Mode)
     {   
@@ -250,15 +251,15 @@ int main(int argc, char *argv[])
 
 
     /* Thread testing part - line follower */
-    guiding_mode = GuidingMode::LINE_FOLLOWER_MODE;
-    thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
-    thread line_follower_thread(ApplicationModule::TASK_LINE_FOLLOWING);
-    thread speaking_thread(ApplicationModule::TASK_SPEAKING);
+    // guiding_mode = GuidingMode::LINE_FOLLOWER_MODE;
+    // thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
+    // thread line_follower_thread(ApplicationModule::TASK_LINE_FOLLOWING);
+    // thread speaking_thread(ApplicationModule::TASK_SPEAKING);
     // thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
     // thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
-    line_follower_thread.join();
-    safety_thread.join();
-    speaking_thread.join();
+    // line_follower_thread.join();
+    // safety_thread.join();
+    // speaking_thread.join();
     // camera_thread.join();
     // voice_recognition_thread.join();
 

@@ -188,3 +188,4 @@ void AdminModeWindow::populate_logs_list()
 
     ui->logsListView->setModel(model);
 }
+

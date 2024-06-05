@@ -7,10 +7,13 @@ set(SOURCES
 add_library(Application STATIC ${SOURCES})
 
 
+set(OpenXLSX_DIR "~/OpenXLSX/build")
+
+
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Core Gui Multimedia MultimediaWidgets Quick)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Core Gui Multimedia MultimediaWidgets Quick)
 find_package(OpenCV REQUIRED)
-
+find_package(OpenXLSX REQUIRED)
 
 
 target_link_libraries(Application PRIVATE
@@ -23,6 +26,7 @@ target_link_libraries(Application PRIVATE
     Qt${QT_VERSION_MAJOR}::Quick
     ${OpenCV_LIBS}
     VoiceRecognition
+    OpenXLSX::OpenXLSX
 )
 
 target_include_directories(Application PRIVATE ${OpenCV_INCLUDE_DIRS})

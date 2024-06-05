@@ -49,7 +49,7 @@ QLabel
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -776,9 +776,9 @@ border-radius: 10px;</string>
      <widget class="QListView" name="logsListView">
       <property name="geometry">
        <rect>
-        <x>100</x>
+        <x>270</x>
         <y>440</y>
-        <width>511</width>
+        <width>791</width>
         <height>192</height>
        </rect>
       </property>

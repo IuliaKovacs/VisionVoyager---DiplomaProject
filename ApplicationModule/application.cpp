@@ -5,8 +5,10 @@
 #include "../RFID/RFID_Manager.h"
 #include <chrono>
 #include <ctime>
+#include <OpenXLSX.hpp>
 
 using namespace std;
+using namespace OpenXLSX;
 
 bool ApplicationModule::TASK_LINE_FOLLOWING()
 {
@@ -211,4 +213,30 @@ bool ApplicationModule::TASK_SPEAKING()
             global_message = "";
         }
     }
+}
+
+
+void ApplicationModule::increment_excel_route_count(string route_name)
+{
+    XLDocument doc;
+    doc.open(ROUTE_DATA_EXCEL_PATH);
+    auto wks = doc.workbook().worksheet(SHEET_ROUTE_NAME);
+
+    QBarSeries *series = new QBarSeries;
+
+    for(int i = 2; i <= wks.rowCount(); i++)
+    {   
+        string route = wks.cell(i, 1).value().get<std::string>();
+
+        if (route == route_name) 
+        {
+            int selection_counter = wks.cell(i, 3).value().get<int>();
+            selection_counter++;
+            wks.cell(i, 3).value() = selection_counter;
+        }
+    }
+
+    doc.save();
+    doc.close();
+    logFile << log_time() << "[Data Collection] Row count update has been made - Excel Updated " << endl;
 }
