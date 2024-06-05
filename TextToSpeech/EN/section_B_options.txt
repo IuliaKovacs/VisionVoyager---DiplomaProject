@@ -1,0 +1,18 @@
+Now that you selected the building section. You must select a route from the following: 
+
+Route 1. To the Secretariat ETC.
+
+
+for the Secretariat ETC say "ONE"
+
+
+
+
+Route 2. To the Secretariat AC.
+
+
+for the Secretariat AC say "TWO"
+
+
+
+

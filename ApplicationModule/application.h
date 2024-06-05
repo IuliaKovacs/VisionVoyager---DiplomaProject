@@ -9,7 +9,7 @@
 #include "../ObstacleAvoidance/obstacleAvoidanceUtils.h"
 #include "../CameraModule/cameraModule.h"
 #include "../VoiceRecognition/voiceRecognition.h"
-#include "../TextToSpeach/textToSpeach.h"
+#include "../TextToSpeech/textToSpeech.h"
 #include "application_utils.h"
 #include <optional>
 #include <pybind11/embed.h>
@@ -40,7 +40,7 @@ public:
     static bool TASK_VOICE_RECOGNITION_WAIT();
     static bool TASK_SAFETY_MEASURES();
     static bool TASK_SPEAKING();
-    static void increment_excel_route_count(string route_name);
+    static void increment_excel_route_count(string route_path);
 
 };
 

@@ -22,7 +22,7 @@ add_subdirectory(LineFollower)
 add_subdirectory(ObstacleAvoidance)
 add_subdirectory(CameraModule)
 add_subdirectory(VoiceRecognition)
-add_subdirectory(TextToSpeach)
+add_subdirectory(TextToSpeech)
 add_subdirectory(ApplicationModule)
 add_subdirectory(VisionVoyagerGUI)
 add_subdirectory(RFID)
@@ -60,7 +60,7 @@ target_link_libraries(VisionVoyager PRIVATE pybind11::embed
                                             ObstacleAvoidance
                                             CameraModule
                                             VoiceRecognition
-                                            TextToSpeach
+                                            TextToSpeech
                                             Application
                                             VisionVoyagerGUI
                                             )

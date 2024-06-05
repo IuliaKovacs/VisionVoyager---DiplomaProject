@@ -119,8 +119,8 @@ int main(int argc, char *argv[])
     
     // KeyboardControl::F11_listening_loop();
     // bool Admin_Mode = KeyboardControl::get_F11_pressed();
-    // ApplicationModule::increment_excel_route_count("Secretariat");
-    bool Admin_Mode = true;
+    ApplicationModule::increment_excel_route_count("../RouteDatabase/Section A/Secretariat.txt");
+    bool Admin_Mode = false;
 
     if(true == Admin_Mode)
     {   
@@ -202,6 +202,7 @@ int main(int argc, char *argv[])
     //                 logFile << log_time() << "[MainApp] The selected route is: \"" << route_path << "\"" << endl;
 
     //                 /* Start executing in paralell the Route Playing, Camera + Obstacle Detectio, Voice Recognition and RFID Reader Communication Tasks */
+    //                 ApplicationModule::increment_excel_route_count(route_path); 
     //                 thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, route_path);
     //                 // thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
     //                 thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);

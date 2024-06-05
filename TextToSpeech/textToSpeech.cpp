@@ -1,62 +1,62 @@
 #include <string>
 #include <vector>
-#include "textToSpeach.h"
+#include "textToSpeech.h"
 #include "../RouteRegistration/routeRegistrationUtils.h"
 
 #define VISION_VOYAGER_RO_VOICE "vv"
 #define VISION_VOYAGER_EN_VOICE "mb-en1"
-#define LANGUAGE_FILE_PATH "../TextToSpeach/language.txt"
+#define LANGUAGE_FILE_PATH "../TextToSpeech/language.txt"
 
 #define MODE_OPTIONS_FILE(arg) \
     ( \
-        (arg == Language::RO) ?  "\"../TextToSpeach/RO/mode_options.txt\"" : \
-                                      "\"../TextToSpeach/EN/mode_options.txt\""  \
+        (arg == Language::RO) ?  "\"../TextToSpeech/RO/mode_options.txt\"" : \
+                                      "\"../TextToSpeech/EN/mode_options.txt\""  \
     )
 
 
 
 #define OPTION1_MESSAGE_FILE(arg) \
     ( \
-        (arg == Language::RO) ?  "\"../TextToSpeach/RO/option1.txt\"" : \
-                                      "\"../TextToSpeach/EN/option1.txt\""  \
+        (arg == Language::RO) ?  "\"../TextToSpeech/RO/option1.txt\"" : \
+                                      "\"../TextToSpeech/EN/option1.txt\""  \
     )
 
 
 #define OPTION2_MESSAGE_FILE(arg) \
     ( \
-        (arg == Language::RO) ?  "\"../TextToSpeach/RO/option2.txt\"" : \
-                                      "\"../TextToSpeach/EN/option2.txt\""  \
+        (arg == Language::RO) ?  "\"../TextToSpeech/RO/option2.txt\"" : \
+                                      "\"../TextToSpeech/EN/option2.txt\""  \
     )
 
 
 #define HELLO_MESSAGE_FILE(arg) \
     ( \
-        (arg == Language::RO) ?  "\"../TextToSpeach/RO/hello_message.txt\"" : \
-                                      "\"../TextToSpeach/EN/hello_message.txt\""  \
+        (arg == Language::RO) ?  "\"../TextToSpeech/RO/hello_message.txt\"" : \
+                                      "\"../TextToSpeech/EN/hello_message.txt\""  \
     )
 
 #define SECTION_A_MESSAGE_FILE(arg) \
     ( \
-        (arg == Language::RO) ?  "\"../TextToSpeach/RO/section_A_options.txt\"" : \
-                                      "\"../TextToSpeach/EN/section_A_options.txt\""  \
+        (arg == Language::RO) ?  "\"../TextToSpeech/RO/section_A_options.txt\"" : \
+                                      "\"../TextToSpeech/EN/section_A_options.txt\""  \
     )
 
 #define SECTION_B_MESSAGE_FILE(arg) \
     ( \
-        (arg == Language::RO) ?  "\"../TextToSpeach/RO/section_B_options.txt\"" : \
-                                      "\"../TextToSpeach/EN/section_B_options.txt\""  \
+        (arg == Language::RO) ?  "\"../TextToSpeech/RO/section_B_options.txt\"" : \
+                                      "\"../TextToSpeech/EN/section_B_options.txt\""  \
     )
 
 #define SECTION_C_MESSAGE_FILE(arg) \
     ( \
-        (arg == Language::RO) ?  "\"../TextToSpeach/RO/section_C_options.txt\"" : \
-                                      "\"../TextToSpeach/EN/section_C_options.txt\""  \
+        (arg == Language::RO) ?  "\"../TextToSpeech/RO/section_C_options.txt\"" : \
+                                      "\"../TextToSpeech/EN/section_C_options.txt\""  \
     )
 
 #define REPEAT_MESSAGE_FILE(arg) \
     ( \
-        (arg == Language::RO) ?  "\"../TextToSpeach/RO/repeat_selection.txt\"" : \
-                                      "\"../TextToSpeach/EN/repeat_selection.txt\""  \
+        (arg == Language::RO) ?  "\"../TextToSpeech/RO/repeat_selection.txt\"" : \
+                                      "\"../TextToSpeech/EN/repeat_selection.txt\""  \
     )
     
 
@@ -208,7 +208,7 @@ void TextToSpeech::initialize_route_display_files()
 
 void TextToSpeech::initialize_section_options_file_RO()
 {
-    ofstream SectionOptionsFileRO("../TextToSpeach/RO/option1.txt", ios_base::trunc);
+    ofstream SectionOptionsFileRO("../TextToSpeech/RO/option1.txt", ios_base::trunc);
     if (SectionOptionsFileRO.is_open())
     {
         SectionOptionsFileRO << "Ai selectat opțiunea pentru urmărirea unei rute. Trebuie să selectezi o secțiune dintre următoarele:" << endl << endl;
@@ -255,7 +255,7 @@ void TextToSpeech::initialize_section_options_file_RO()
 
 void TextToSpeech::initialize_section_options_file_EN()
 {
-    ofstream SectionOptionsFileEN("../TextToSpeach/EN/option1.txt", ios_base::trunc);
+    ofstream SectionOptionsFileEN("../TextToSpeech/EN/option1.txt", ios_base::trunc);
     if (SectionOptionsFileEN.is_open())
     {
         SectionOptionsFileEN << "You selected the Route Follower option. You must select a route from the following:" << endl << endl;
@@ -323,7 +323,7 @@ void TextToSpeech::initialize_route_display_files_RO()
         }
        
 
-        ofstream RouteOptionsFileRO("../TextToSpeach/RO/section_" + string(1, c) + "_options.txt", ios_base::trunc);
+        ofstream RouteOptionsFileRO("../TextToSpeech/RO/section_" + string(1, c) + "_options.txt", ios_base::trunc);
         if (RouteOptionsFileRO.is_open())
         {
             RouteOptionsFileRO << "Acum că ai selectat secțiunea. Trebuie să selectezi o rută dintre următoarele:" << endl << endl;
@@ -363,7 +363,7 @@ void TextToSpeech::initialize_route_display_files_EN()
         }
        
 
-        ofstream RouteOptionsFileEN("../TextToSpeach/EN/section_" + string(1, c) + "_options.txt", ios_base::trunc);
+        ofstream RouteOptionsFileEN("../TextToSpeech/EN/section_" + string(1, c) + "_options.txt", ios_base::trunc);
         if (RouteOptionsFileEN.is_open())
         {
             RouteOptionsFileEN << "Now that you selected the building section. You must select a route from the following: " << endl << endl;

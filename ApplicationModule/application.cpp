@@ -216,8 +216,14 @@ bool ApplicationModule::TASK_SPEAKING()
 }
 
 
-void ApplicationModule::increment_excel_route_count(string route_name)
+void ApplicationModule::increment_excel_route_count(string route_path)
 {
+    string route = RouteRegistration::get_route_name_from_path(route_path);
+    size_t found = route.find(".txt");
+    if (found != std::string::npos) {
+        route.erase(found, 4);
+    }
+
     XLDocument doc;
     doc.open(ROUTE_DATA_EXCEL_PATH);
     auto wks = doc.workbook().worksheet(SHEET_ROUTE_NAME);
@@ -228,7 +234,7 @@ void ApplicationModule::increment_excel_route_count(string route_name)
     {   
         string route = wks.cell(i, 1).value().get<std::string>();
 
-        if (route == route_name) 
+        if (route == route) 
         {
             int selection_counter = wks.cell(i, 3).value().get<int>();
             selection_counter++;
@@ -238,5 +244,5 @@ void ApplicationModule::increment_excel_route_count(string route_name)
 
     doc.save();
     doc.close();
-    logFile << log_time() << "[Data Collection] Row count update has been made - Excel Updated " << endl;
+    logFile << log_time() << "[Data Collection] Counter update for \"" << route << "\" has been made - Excel Updated " << endl;
 }

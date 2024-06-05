@@ -12,7 +12,7 @@
 #include "../ApplicationModule/application_utils.h"
 #include "../RouteRegistration/routeRegistrationUtils.h"
 #include "../KeyboardControl/keyboardControl.h"
-#include "../TextToSpeach/textToSpeach.h"
+#include "../TextToSpeech/textToSpeech.h"
 
 using namespace std;
 
