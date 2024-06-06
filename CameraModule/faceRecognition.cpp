@@ -63,7 +63,7 @@ int CameraModule::recognize_face(string test_image_path)
     /* To be used when camera gives false positives -  Additional check for an image to verify if it does really contain a face */
     if (false == detect_face_and_preprocess_if_so(test_image_path))
     {   
-        logFile << log_time() << "Predicted class = -1" << ", The image is not coresponding, does not contain a face!" << endl;
+        // logFile << log_time() << "Predicted class = -1" << ", The image is not coresponding, does not contain a face!" << endl;
         return -1;
     }
     
@@ -82,7 +82,7 @@ int CameraModule::recognize_face(string test_image_path)
     double confidence = 0.0;
     model->predict(test_image, predicted_label, confidence);
 
-    logFile << log_time() << "Predicted class = " << predicted_label << ", Confidence = " << confidence << endl;
+    // logFile << log_time() << "Predicted class = " << predicted_label << ", Confidence = " << confidence << endl;
 
     remove(test_image_path.c_str());
 

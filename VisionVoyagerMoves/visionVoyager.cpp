@@ -11,6 +11,7 @@
 #define THRESHOLD_WHEEL_ROTATION_TIME 2000 // ms - miliseconds 
 #define THRESHOLD_WHEEL_ROTATION_TIME_MIN_RP 1000
 #define THRESHOLD_WHEEL_ROTATION_TIME_MIN_LF 1900
+#define NUMBER_OF_PERIODS 10
 
 namespace py = pybind11;
 using namespace std;
@@ -78,16 +79,18 @@ void VisionVoyager::initialize_python_embedding()
 
 void VisionVoyager::move_forward()
 {   
-    lock_guard<mutex> lock2(mtx);
     moving.store(true);
+    camera_condition.notify_all();
     this->picar_python_object.attr("forward")(this->speed);
+    logFile << log_time() << "Moving forward" << endl;
 }
 
 void VisionVoyager::move_backward() 
 {   
-    lock_guard<mutex> lock2(mtx);
     moving.store(true);
+    camera_condition.notify_all();
     this->picar_python_object.attr("backward")(this->speed);
+    logFile << log_time() << "Moving backward" << endl;
 }
 
 void VisionVoyager::turn_left_one_degree() 
@@ -129,10 +132,10 @@ void VisionVoyager::turn_right_max()
 
 void VisionVoyager::stop() 
 {   
-    lock_guard<mutex> lock2(mtx);
     moving.store(false);
     camera_condition.notify_all();
     this->picar_python_object.attr("stop")();
+    logFile << log_time() << "Stopped" << endl;
 }
 
 
@@ -288,9 +291,8 @@ SevereErrorType VisionVoyager::check_hall_sensors_timing()
     auto last_spin_right = std::chrono::steady_clock::now();
     auto last_spin_left = std::chrono::steady_clock::now();
 
-    /* @ToDo replace magic numbers */
-    vector<long long> last_10_time_intervals_right(10, 0);
-    vector<long long> last_10_time_intervals_left(10, 0);
+    vector<long long> last_10_time_intervals_right(NUMBER_OF_PERIODS, 0);
+    vector<long long> last_10_time_intervals_left(NUMBER_OF_PERIODS, 0);
     int index_r = -1; //this index will help tracking the latest 10 time intervals/periods
     int index_l = -1; //this index will help tracking the latest 10 time intervals/periods
     bool last_moving_state = false;
@@ -320,7 +322,7 @@ SevereErrorType VisionVoyager::check_hall_sensors_timing()
                     log_mutex.unlock();
                     lock_guard<mutex> lock2(mtx);
                     severe_error.store(true);
-                    cond_v.notify_all();
+                    waiting_condition.notify_all();
                     return SevereErrorType::MOTOR_ERROR;
                 }
             }
@@ -342,7 +344,7 @@ SevereErrorType VisionVoyager::check_hall_sensors_timing()
                     /* Taking the period in accound only if the robot is not at the start of the moving, otherwise the calculated period would be eronate */
                     if(true == last_moving_state)
                     {    
-                        logFile << log_time() << LOG_HALL_SENSORS_PREFIX << "[Right Motor] time_difference from last period: " << time_difference.count() << "ms" << endl;
+                        // logFile << log_time() << LOG_HALL_SENSORS_PREFIX << "[Right Motor] time_difference from last period: " << time_difference.count() << "ms" << endl;
                         
                         /* Checking if the wheel rotation took longer than usual and if so -> LOW VOLTAGE warning */
                         if((time_difference.count() > THRESHOLD_WHEEL_ROTATION_TIME_MIN) && (time_difference.count() < THRESHOLD_WHEEL_ROTATION_TIME))
@@ -404,7 +406,7 @@ SevereErrorType VisionVoyager::check_hall_sensors_timing()
                         index_l = ((index_l + 1) % last_10_time_intervals_left.size());
                         last_10_time_intervals_left[index_l] = time_difference.count();
                         
-                        logFile << log_time() << LOG_HALL_SENSORS_PREFIX << "[Left Motor] time_difference from last period: " << time_difference.count() << "ms" << endl;
+                        // logFile << log_time() << LOG_HALL_SENSORS_PREFIX << "[Left Motor] time_difference from last period: " << time_difference.count() << "ms" << endl;
                         
                         if(index_l == 9)
                         {

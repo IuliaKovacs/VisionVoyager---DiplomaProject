@@ -9,7 +9,7 @@
 
 #define CAPTURED_IMAGES_PATH "../CameraModule/CapturedImages"
 #define TEMP_CAPTURED_IMG "../CameraModule/CapturedImages/temp.png"
-#define MILISECONDS_FOR_CAMERA_RECOGNITION 10000 // ms - miliseconds
+#define MILISECONDS_FOR_CAMERA_RECOGNITION 1000 // ms - miliseconds
 
 using namespace std;
 using namespace OpenXLSX;
@@ -30,6 +30,7 @@ void ApplicationModule::TASK_CAMERA_MODULE()
     while(!route_complete.load())
     {
         std::unique_lock<std::mutex> lock(camera_mutex);
+        logFile << moving.load() << endl;
         camera_condition.wait(lock, []{ return (!moving.load() || route_complete.load()); });
         capture_photo_and_send_to_process();
     }
@@ -168,7 +169,7 @@ bool ApplicationModule::TASK_VOICE_RECOGNITION_WAIT()
         if (!route_complete.load())
         {
             /* Listening for the keyword "start" in order to continue the guidigng */
-            VoiceRecognition::loop_recognition();
+            VoiceRecognition::loop_recognition_for_start();
         }
     }
 

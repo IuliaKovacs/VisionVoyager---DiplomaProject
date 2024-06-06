@@ -260,7 +260,7 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                         should_stop.store(true);
                         route_complete.store(true);
                         camera_condition.notify_all();
-                        cond_v.notify_all();
+                        waiting_condition.notify_all();
                         speaking_condition.notify_all();
                         return;
                     }
@@ -273,7 +273,7 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                         log_mutex.unlock();
                         auto wait_start_time = std::chrono::steady_clock::now();
                         std::unique_lock<std::mutex> lock(mtx);
-                        cond_v.wait(lock, []{ return !should_stop.load(); });
+                        waiting_condition.wait(lock, []{ return !should_stop.load(); });
                         auto wait_end_time = std::chrono::steady_clock::now();
                         end_time += wait_end_time - wait_start_time;
                         play_command("forward", 0, 1);
@@ -305,12 +305,12 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                 lock_guard<mutex> lock2(mtx);
                 should_stop.store(true);
                 route_complete.store(true);
-                cond_v.notify_all();
+                waiting_condition.notify_all();
                 camera_condition.notify_all();
+                speaking_condition.notify_all();
                 tts_mutex.lock();
                 TextToSpeech::display_destination();
                 tts_mutex.unlock();
-                speaking_condition.notify_all();
             }
         }
     }

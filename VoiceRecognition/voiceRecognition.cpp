@@ -52,7 +52,7 @@ static FILE * popen_sox(int sample_rate)
 }
 
 
-void VoiceRecognition::loop_recognition()
+void VoiceRecognition::loop_recognition_for_start()
 {
     ps_decoder_t *decoder;
     ps_endpointer_t *ep;
@@ -135,12 +135,14 @@ void VoiceRecognition::loop_recognition()
             {
                 ps_end_utt(decoder);
                 if ((hyp = ps_get_hyp(decoder, NULL)) != NULL)
-                {
+                {   
+                    cout << "PARTIAL RESULT: " << hyp << endl;
                     if ((strstr("start",hyp) == 0) || (strstr("hello",hyp) == 0) || (strstr("go",hyp) == 0)) 
                     {
                         start_flag = true;
                         should_stop.store(false);
-                        cond_v.notify_all();
+                        std::unique_lock<std::mutex> lock(mtx);
+                        waiting_condition.notify_all();
                         log_mutex.lock();
                         logFile << log_time() << LOG_THREAD_VOICE_PREFIX << " Recognized \"" << hyp << "\" keyword" << endl;
                         log_mutex.unlock();
@@ -360,11 +362,12 @@ void VoiceRecognition::loop_listening_for_wait()
                 ps_end_utt(decoder);
                 if ((hyp = ps_get_hyp(decoder, NULL)) != NULL)
                 {
+                    cout << "PARTIAL RESULT: " << hyp << endl;
                     if ((strstr("stop",hyp) == 0) || (strstr("wait",hyp) == 0)) 
                     {
                         wait_flag = true;
                         should_stop.store(true);
-                        cond_v.notify_all();
+                        // waiting_condition.notify_all();
                         log_mutex.lock();
                         logFile << log_time() << LOG_THREAD_VOICE_PREFIX << " Recognized \"" << hyp << "\" keyword" << endl;
                         log_mutex.unlock();

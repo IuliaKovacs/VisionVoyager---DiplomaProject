@@ -42,21 +42,7 @@ void LineFollower::follow_line()
     robotVisionVoyager->set_speed(1);
 
     while(true)
-    {
-        if(should_stop.load())
-        {   
-            robotVisionVoyager->stop();
-            RouteRegistration::set_moving_state(MovingState::STATIONARY);
-            log_mutex.lock();
-            logFile << log_time() << LOG_THREAD_LINE_FOLLOWER_PREFIX << " ...Waiting... - Intervention from user - must wait the start signal" << endl;
-            log_mutex.unlock();
-            std::unique_lock<std::mutex> lock(mtx);
-            cond_v.wait(lock, []{ return !should_stop.load(); });
-            log_mutex.lock();
-            logFile << log_time() << LOG_THREAD_LINE_FOLLOWER_PREFIX << " Waiting Ended " << endl;
-            log_mutex.unlock();
-        }
-
+    {   
 
         if(ObstacleAvoidance::check_forward_safety())
         {
@@ -94,8 +80,9 @@ void LineFollower::follow_line()
             lock_guard<mutex> lock2(mtx);
             should_stop.store(true);
             route_complete.store(true);
-            cond_v.notify_all();
+            waiting_condition.notify_all();
             speaking_condition.notify_all();
+            camera_condition.notify_all();
             return;
         }
 
@@ -103,11 +90,12 @@ void LineFollower::follow_line()
         if(should_stop.load())
         {   
             robotVisionVoyager->stop();
+            RouteRegistration::set_moving_state(MovingState::STATIONARY);
             log_mutex.lock();
             logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " ...Waiting... - Intervention from user - must wait the start signal" << endl;
             log_mutex.unlock();
             std::unique_lock<std::mutex> lock(mtx);
-            cond_v.wait(lock, []{ return !should_stop.load(); });
+            waiting_condition.wait(lock, []{ return !should_stop.load(); });
             robotVisionVoyager->move_forward();
             log_mutex.lock();
             logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " Waiting Ended " << endl;
@@ -115,6 +103,7 @@ void LineFollower::follow_line()
         }     
 
         // logFile << log_time() << stop_counter << endl;
+
         if (verify_no_line_available())
         {   
             RouteRegistration::set_moving_state(MovingState::STATIONARY);
@@ -126,11 +115,12 @@ void LineFollower::follow_line()
             lock_guard<mutex> lock2(mtx);
             should_stop.store(true);
             route_complete.store(true);
-            cond_v.notify_all();
+            waiting_condition.notify_all();
             tts_mutex.lock();
             TextToSpeech::display_destination();
             tts_mutex.unlock();
             speaking_condition.notify_all();
+            camera_condition.notify_all();
             return;
         }
 

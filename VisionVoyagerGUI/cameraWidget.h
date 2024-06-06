@@ -21,7 +21,7 @@ private:
     cv::VideoCapture *videoCapture; 
     cv::Mat frame; 
 
-    void initCamera();
+    bool initCamera();
 };
 
 #endif // CAMERA_WIDGET_H

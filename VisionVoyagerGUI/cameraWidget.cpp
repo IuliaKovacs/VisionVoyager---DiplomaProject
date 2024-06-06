@@ -1,12 +1,18 @@
 #include "cameraWidget.h"
 #include <QPainter>
+#include "../ApplicationModule/application_utils.h"
 
 CameraWidget::CameraWidget(QWidget *parent) : QWidget(parent)
 {
-    initCamera();
+    bool result = initCamera();
+
+    if(false == result)
+    {
+        logFile << log_time() << "[Camera Module] Error: There is an error with initializing Camera Module (cameraWidget)" << endl;
+    }
 }
 
-CameraWidget::~CameraWidget()
+CameraWidget::~CameraWidget() 
 {
     delete videoCapture;
 }
@@ -25,13 +31,14 @@ void CameraWidget::paintEvent(QPaintEvent *event)
     painter.drawImage(QPoint(0, 0), scaledImage);    
 }
 
-void CameraWidget::initCamera()
+/* @ToDo TTS - Solve what to do if camera is not available! */
+bool CameraWidget::initCamera()
 {
 
     videoCapture = new cv::VideoCapture(0);
     if (!videoCapture->isOpened()) 
     {
-       /* @ToDo - Solve what to do if camera is not available! */
+       return false;
     }
 
     *videoCapture >> frame;
@@ -44,4 +51,5 @@ void CameraWidget::initCamera()
         update();
     });
     timer->start(30); 
+    return true;
 }

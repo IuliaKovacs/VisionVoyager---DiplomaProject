@@ -23,7 +23,7 @@ class VoiceRecognition
 
 public:
 
-    static void loop_recognition();
+    static void loop_recognition_for_start();
     static string timed_listening_recognition_for_options();
     static void loop_listening_for_wait();
 };

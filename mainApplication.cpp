@@ -10,7 +10,6 @@ mutex log_mutex;
 mutex tts_mutex;
 mutex speak_mutex;
 mutex camera_mutex;
-condition_variable cond_v;
 atomic<bool> should_stop(false); 
 atomic<bool> route_complete(false);
 atomic<bool> severe_error(false);
@@ -21,6 +20,7 @@ map<std::string, int> route_map_no = {
     {"TWO", 1},
     {"THREE", 2}
 };
+condition_variable waiting_condition;
 condition_variable speaking_condition;
 condition_variable camera_condition;
 atomic<bool> speak(false);
@@ -94,29 +94,12 @@ int main(int argc, char *argv[])
     /* pybind11 specific - starts the interpreter and maintains it alive */
     py::scoped_interpreter guard{}; 
 
-    /* @ToDo make initialization look clean */
     VisionVoyager robot = VisionVoyager();
     RouteRecordPlayer::set_robot(&robot);
     KeyboardControl::set_robot(&robot);
     LineFollower::set_robot(&robot);
     ObstacleAvoidance::set_robot(&robot);
 
-    /* --- Start Face Recognition Test --- */
-
-    // CameraModule::create_csv_database_file();
-    // std::string source_file = "../CameraModule/image.png";
-    // std::string destination_file = "../CameraModule/image1.png";
-    // std::ifstream source_stream(source_file, std::ios::binary);
-    // std::ofstream destination_stream(destination_file, std::ios::binary);
-    // destination_stream << source_stream.rdbuf();
-    // source_stream.close();
-    // destination_stream.close();
-    // int result = CameraModule::recognize_face("../CameraModule/image1.png");
-    // logFile << log_time() << "s" << result << endl;
-
-    /* --- End Face Recognition Test --- */
-
-    
 
     /* ---- Start of Admin Mode part ---- */
     
@@ -136,6 +119,9 @@ int main(int argc, char *argv[])
 
     /* ---- Start of Normal User Mode part ---- */
 
+    thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
+
+
     // if(true != Admin_Mode)
     // {
     //     logFile << log_time() << "[MainApp] --- Starting Normal User Mode ---" << endl;
@@ -143,7 +129,7 @@ int main(int argc, char *argv[])
     //     TextToSpeech::display_hello_message();
 
     //     /* StandBy/Sleep state until "start" or "hello" is recognized */
-    //     VoiceRecognition::loop_recognition();
+    //     VoiceRecognition::loop_recognition_for_start();
     //     logFile << log_time() << "[MainApp] Activation keyword recognized " << endl;
         
 
@@ -205,10 +191,8 @@ int main(int argc, char *argv[])
     //                 /* Start executing in paralell the Route Playing, Camera + Obstacle Detectio, Voice Recognition and RFID Reader Communication Tasks */
     //                 ApplicationModule::increment_excel_route_count(route_path); 
     //                 thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, route_path);
-    //                 // thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
     //                 thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
     //                 route_player_thread.join();
-    //                 // camera_thread.join();
     //                 voice_recognition_thread.join();
 
     //                 break;
@@ -221,12 +205,9 @@ int main(int argc, char *argv[])
 
     //                 /* Start executing in paralell the Line Following, Camera, Voice Recognition and RFID Reader Communication Tasks */
     //                 thread line_follower_thread(ApplicationModule::TASK_LINE_FOLLOWING);
-    //                 thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
     //                 thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
     //                 line_follower_thread.join();
-    //                 camera_thread.join();
     //                 voice_recognition_thread.join();
-
     //                 break;
     //             }
     //         }
@@ -239,18 +220,15 @@ int main(int argc, char *argv[])
 
 
     /* Thread testing part - route player */
-    // guiding_mode = GuidingMode::ROUTE_PLAYER_MODE;
-    thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    guiding_mode = GuidingMode::ROUTE_PLAYER_MODE;
     thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, "../RouteDatabase/Section A/Secretariat.txt");
-    // thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
-    // thread speaking_thread(ApplicationModule::TASK_SPEAKING);
-    // thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
+    thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
+    thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
+    thread speaking_thread(ApplicationModule::TASK_SPEAKING);
     route_player_thread.join();
-    // safety_thread.join();
-    // speaking_thread.join();
-    camera_thread.join();
-    // voice_recognition_thread.join();
+    safety_thread.join();
+    speaking_thread.join();
+    voice_recognition_thread.join();
 
 
     /* Thread testing part - line follower */
@@ -258,14 +236,13 @@ int main(int argc, char *argv[])
     // thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
     // thread line_follower_thread(ApplicationModule::TASK_LINE_FOLLOWING);
     // thread speaking_thread(ApplicationModule::TASK_SPEAKING);
-    // thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
     // thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
     // line_follower_thread.join();
     // safety_thread.join();
     // speaking_thread.join();
-    // camera_thread.join();
     // voice_recognition_thread.join();
 
+    camera_thread.join();
     terminate_main_app();
 
     return 0;
