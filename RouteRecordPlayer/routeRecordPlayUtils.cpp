@@ -259,6 +259,7 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                         lock_guard<mutex> lock2(mtx);
                         should_stop.store(true);
                         route_complete.store(true);
+                        camera_condition.notify_all();
                         cond_v.notify_all();
                         speaking_condition.notify_all();
                         return;
@@ -305,6 +306,7 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                 should_stop.store(true);
                 route_complete.store(true);
                 cond_v.notify_all();
+                camera_condition.notify_all();
                 tts_mutex.lock();
                 TextToSpeech::display_destination();
                 tts_mutex.unlock();

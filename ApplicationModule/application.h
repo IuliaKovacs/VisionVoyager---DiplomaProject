@@ -31,6 +31,8 @@ enum class ApplicationState
 
 class ApplicationModule
 {
+    static void capture_photo_and_send_to_process();
+
 public:
     static bool TASK_LINE_FOLLOWING();
     static bool TASK_ROUTE_PLAYING(string route_name);

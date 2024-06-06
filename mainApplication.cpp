@@ -240,15 +240,16 @@ int main(int argc, char *argv[])
 
     /* Thread testing part - route player */
     // guiding_mode = GuidingMode::ROUTE_PLAYER_MODE;
-    // thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, "../RouteDatabase/Section A/Secretariat.txt");
+    thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, "../RouteDatabase/Section A/Secretariat.txt");
     // thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
     // thread speaking_thread(ApplicationModule::TASK_SPEAKING);
-    // thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
     // thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
-    // route_player_thread.join();
+    route_player_thread.join();
     // safety_thread.join();
     // speaking_thread.join();
-    // camera_thread.join();
+    camera_thread.join();
     // voice_recognition_thread.join();
 
 
@@ -257,12 +258,12 @@ int main(int argc, char *argv[])
     // thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
     // thread line_follower_thread(ApplicationModule::TASK_LINE_FOLLOWING);
     // thread speaking_thread(ApplicationModule::TASK_SPEAKING);
-    thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
+    // thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
     // thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
     // line_follower_thread.join();
     // safety_thread.join();
     // speaking_thread.join();
-    camera_thread.join();
+    // camera_thread.join();
     // voice_recognition_thread.join();
 
     terminate_main_app();

@@ -131,6 +131,7 @@ void VisionVoyager::stop()
 {   
     lock_guard<mutex> lock2(mtx);
     moving.store(false);
+    camera_condition.notify_all();
     this->picar_python_object.attr("stop")();
 }
 
