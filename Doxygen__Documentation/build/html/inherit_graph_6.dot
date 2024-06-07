@@ -1,0 +1,10 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="12",labelfontname="Helvetica",labelfontsize="12"];
+  node [fontname="Helvetica",fontsize="12",shape=record];
+  rankdir="LR";
+  Node0 [label="QLabel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classQLabel.html",tooltip=" "];
+  Node0 -> Node1 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node1 [label="FileDropWidget",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classFileDropWidget.html",tooltip=" "];
+}

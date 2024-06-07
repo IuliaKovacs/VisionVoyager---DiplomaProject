@@ -1,0 +1,32 @@
+digraph "ApplicationModule::TASK_LINE_FOLLOWING"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="12",labelfontname="Helvetica",labelfontsize="12"];
+  node [fontname="Helvetica",fontsize="12",shape=record];
+  rankdir="LR";
+  Node1 [label="ApplicationModule::TASK_LINE_FOLLOWING",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node2 [label="LineFollower::follow_line",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classLineFollower.html#a39522a2dadc7c9bc06ad9136fdd6bca4",tooltip=" "];
+  Node2 -> Node3 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node3 [label="ObstacleAvoidance::check_forward_safety",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classObstacleAvoidance.html#a0c503d77cc7489def3a547d7517e1ab3",tooltip=" "];
+  Node3 -> Node4 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node4 [label="TextToSpeech::display_custom_message",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTextToSpeech.html#a99b87bb8485c7c92ad24bab0cfecc056",tooltip=" "];
+  Node3 -> Node5 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node5 [label="log_time",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$application__utils_8h.html#a49dec5f7745652d5fb54f79a2981a086",tooltip=" "];
+  Node2 -> Node4 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node2 -> Node6 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node6 [label="TextToSpeech::display_destination",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTextToSpeech.html#a7d1d39c9f88c85329e1e51456dc29583",tooltip=" "];
+  Node2 -> Node7 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node7 [label="RouteRegistration::end_registration",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classRouteRegistration.html#a589fc71ea9a72c820ff71b0723f10414",tooltip=" "];
+  Node2 -> Node8 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node8 [label="TextToSpeech::get_language",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTextToSpeech.html#ab369797b4b0621e4ad155585973ca5a8",tooltip=" "];
+  Node2 -> Node5 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node2 -> Node9 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node9 [label="ObstacleAvoidance::obstacle_avoid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classObstacleAvoidance.html#a6078557dc651247045892b67604fdd78",tooltip=" "];
+  Node9 -> Node4 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node9 -> Node5 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node2 -> Node10 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node10 [label="RouteRegistration::register_current_move",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classRouteRegistration.html#a28c7caf92ef7082a98f674c966d13705",tooltip=" "];
+  Node2 -> Node11 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node11 [label="RouteRegistration::set_moving_state",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classRouteRegistration.html#a86d40e169b0cff46751aef67bf3dbfe1",tooltip=" "];
+}

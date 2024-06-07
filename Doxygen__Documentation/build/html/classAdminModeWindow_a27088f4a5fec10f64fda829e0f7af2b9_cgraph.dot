@@ -1,0 +1,36 @@
+digraph "AdminModeWindow::on_addRecognizedFaceButton_clicked"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="12",labelfontname="Helvetica",labelfontsize="12"];
+  node [fontname="Helvetica",fontsize="12",shape=record];
+  rankdir="LR";
+  Node1 [label="AdminModeWindow::on_addRecognizedFaceButton_clicked",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node2 [label="CameraModule::add_new_recognized_subject",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classCameraModule.html#a77892125dd2d0e13fa63a3b0142de052",tooltip=" "];
+  Node2 -> Node3 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node3 [label="log_time",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$application__utils_8h.html#a49dec5f7745652d5fb54f79a2981a086",tooltip=" "];
+  Node1 -> Node4 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node4 [label="FileDropWidget::clearFileList",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classFileDropWidget.html#adcc8ea02c5a6bd61d5317844113349df",tooltip=" "];
+  Node1 -> Node5 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node5 [label="CameraModule::count_recognized_subjects",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classCameraModule.html#abae4f5007a5fff6b83bf7f8b97e9f359",tooltip=" "];
+  Node1 -> Node6 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node6 [label="CameraModule::create_csv_database_file",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classCameraModule.html#a283a7ef45577f00a5f02619e844fa3c3",tooltip=" "];
+  Node6 -> Node3 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node1 -> Node7 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node7 [label="AdminModeWindow::get_filename_from_path",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classAdminModeWindow.html#aeeae3dfb57d44cb48c8ed38a319d45a5",tooltip=" "];
+  Node1 -> Node8 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node8 [label="CameraModule::get_recognized_persons",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classCameraModule.html#a89ebff0e47f435b1bf6601954847a69b",tooltip=" "];
+  Node1 -> Node9 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node9 [label="FileDropWidget::getFileListWidget",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classFileDropWidget.html#a60b51316809bfc9151041b56cc7ffe2a",tooltip=" "];
+  Node1 -> Node10 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node10 [label="FileDropWidget::getListCount",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classFileDropWidget.html#a9939aeb33293599a296edba9f9f0526a",tooltip=" "];
+  Node1 -> Node11 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node11 [label="AdminModeWindow::load_recognized_persons",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classAdminModeWindow.html#aa8754a16de830e6ce46b95c57b765e31",tooltip=" "];
+  Node11 -> Node8 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node11 -> Node12 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node12 [label="AdminModeWindow::update_subject_display",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classAdminModeWindow.html#a4b249f7ef489bca3541516a30c1e5c83",tooltip=" "];
+  Node12 -> Node3 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node1 -> Node3 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node1 -> Node13 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node13 [label="CameraModule::write_recognized_persons",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classCameraModule.html#af79ca1a1d81f32cc5503100f7807776b",tooltip=" "];
+}

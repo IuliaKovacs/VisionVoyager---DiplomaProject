@@ -1,0 +1,9 @@
+digraph "VoiceRecognition"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="12",labelfontname="Helvetica",labelfontsize="12"];
+  node [fontname="Helvetica",fontsize="12",shape=record];
+  Node1 [label="{VoiceRecognition\n||+ static void loop_recognition_for_start()\l+ static string timed_listening_recognition_for_options()\l+ static void loop_listening_for_wait()\l- static bool record_audio()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [color="grey25",fontsize="12",style="solid",label=" -start_flag" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node2 [label="{bool\n||}",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+}

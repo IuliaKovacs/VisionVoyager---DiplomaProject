@@ -1,0 +1,23 @@
+digraph "ApplicationModule::TASK_VOICE_RECOGNITION_WAIT"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="12",labelfontname="Helvetica",labelfontsize="12"];
+  node [fontname="Helvetica",fontsize="12",shape=record];
+  rankdir="LR";
+  Node1 [label="ApplicationModule::TASK_VOICE_RECOGNITION_WAIT",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node2 [label="log_time",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$application__utils_8h.html#a49dec5f7745652d5fb54f79a2981a086",tooltip=" "];
+  Node1 -> Node3 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node3 [label="VoiceRecognition::loop_listening_for_wait",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classVoiceRecognition.html#afb64bd3550871f28a936c1e90aea93af",tooltip=" "];
+  Node3 -> Node4 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node4 [label="catch_sig",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$voiceRecognition_8cpp.html#aef913ca2eca27e906cb92195f14de2f4",tooltip=" "];
+  Node3 -> Node2 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node3 -> Node5 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node5 [label="popen_sox",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$voiceRecognition_8cpp.html#a07797270736fb41791b737ab9bf5bbbf",tooltip=" "];
+  Node5 -> Node2 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node1 -> Node6 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node6 [label="VoiceRecognition::loop_recognition_for_start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classVoiceRecognition.html#a1fa5f53fb770e30ded9aa78e6a5077e2",tooltip=" "];
+  Node6 -> Node4 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node6 -> Node2 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node6 -> Node5 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+}

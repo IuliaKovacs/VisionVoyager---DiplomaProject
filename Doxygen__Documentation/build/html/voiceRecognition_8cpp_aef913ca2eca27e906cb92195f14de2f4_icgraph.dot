@@ -1,0 +1,18 @@
+digraph "catch_sig"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="12",labelfontname="Helvetica",labelfontsize="12"];
+  node [fontname="Helvetica",fontsize="12",shape=record];
+  rankdir="RL";
+  Node1 [label="catch_sig",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node2 [label="VoiceRecognition::loop_listening_for_wait",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classVoiceRecognition.html#afb64bd3550871f28a936c1e90aea93af",tooltip=" "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node3 [label="ApplicationModule::TASK_VOICE_RECOGNITION_WAIT",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classApplicationModule.html#a1fb13ba044f7d88ca5953b639ac0db5b",tooltip=" "];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node4 [label="main",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$mainApplication_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97",tooltip=" "];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node5 [label="VoiceRecognition::loop_recognition_for_start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classVoiceRecognition.html#a1fa5f53fb770e30ded9aa78e6a5077e2",tooltip=" "];
+  Node5 -> Node4 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node5 -> Node3 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+}

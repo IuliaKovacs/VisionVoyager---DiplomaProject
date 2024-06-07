@@ -1,0 +1,13 @@
+digraph "VoiceRecognition::loop_recognition_for_start"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="12",labelfontname="Helvetica",labelfontsize="12"];
+  node [fontname="Helvetica",fontsize="12",shape=record];
+  rankdir="RL";
+  Node1 [label="VoiceRecognition::loop_recognition_for_start",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node2 [label="main",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$mainApplication_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node3 [label="ApplicationModule::TASK_VOICE_RECOGNITION_WAIT",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classApplicationModule.html#a1fb13ba044f7d88ca5953b639ac0db5b",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+}

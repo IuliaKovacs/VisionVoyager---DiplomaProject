@@ -1,0 +1,9 @@
+digraph "DataCollection" {
+  compound=true
+  node [ fontsize="12", fontname="Helvetica"];
+  edge [ labelfontsize="12", labelfontname="Helvetica"];
+  subgraph clusterdir_5319ee97279cf14dc66c5a9b80a6edf5 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="VisionVoyagerGUI" fontname="Helvetica", fontsize="12", URL="dir_5319ee97279cf14dc66c5a9b80a6edf5.html"]
+  dir_0e5d89b177173390eeba6fbb2ce58acd [shape=box, label="DataCollection", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_0e5d89b177173390eeba6fbb2ce58acd.html"];
+  }
+}
