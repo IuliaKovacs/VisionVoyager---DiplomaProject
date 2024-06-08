@@ -40,6 +40,7 @@ public:
     static void set_robot(VisionVoyager* robot);
     static void follow_line();
     static bool verify_is_in_air();
+    static bool get_line_status();
 };
 
 

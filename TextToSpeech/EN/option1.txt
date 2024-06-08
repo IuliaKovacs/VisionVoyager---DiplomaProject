@@ -1,6 +1,7 @@
 You selected the Route Follower option. You must select a route from the following:
 
-Section A
+Section 
+A
 
 
    This section comprises the following rooms: 
@@ -12,7 +13,8 @@ Section A
 
 
 
-Section B
+Section 
+C
 
 
    This section comprises the following rooms: 
@@ -22,7 +24,7 @@ Section B
        Secretariat AC.
 
 
-   for the Section B say "TWO"
+   for the Section C say "THREE"
 
 
 

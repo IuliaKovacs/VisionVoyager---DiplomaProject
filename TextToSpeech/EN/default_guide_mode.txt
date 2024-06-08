@@ -1,0 +1,5 @@
+The option 1, for guiding you over a route was chosen by default because there is no line available!
+
+
+
+If you want to use the line follower, please contact the building staff!

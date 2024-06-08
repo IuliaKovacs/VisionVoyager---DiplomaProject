@@ -30,7 +30,6 @@ void ApplicationModule::TASK_CAMERA_MODULE()
     while(!route_complete.load())
     {
         std::unique_lock<std::mutex> lock(camera_mutex);
-        logFile << moving.load() << endl;
         camera_condition.wait(lock, []{ return (!moving.load() || route_complete.load()); });
         capture_photo_and_send_to_process();
     }
@@ -272,7 +271,7 @@ void ApplicationModule::capture_photo_and_send_to_process()
 {
     string source_file =  CameraModule::capture_image(CAPTURED_IMAGES_PATH);
     log_mutex.lock();
-    logFile << log_time() << LOG_THREAD_CAMERA_PREFIX << " Took a photo " << endl;
+    // logFile << log_time() << LOG_THREAD_CAMERA_PREFIX << " Took a photo " << endl;
     log_mutex.unlock();
     string destination_file = TEMP_CAPTURED_IMG;
     ifstream source_stream(source_file, std::ios::binary);
@@ -283,7 +282,7 @@ void ApplicationModule::capture_photo_and_send_to_process()
     // process image and display message if it is a recognized person in it 
     int result = CameraModule::recognize_face(TEMP_CAPTURED_IMG);
     log_mutex.lock();
-    logFile << log_time() << LOG_THREAD_CAMERA_PREFIX << " Label result: s" << result << endl;
+    // logFile << log_time() << LOG_THREAD_CAMERA_PREFIX << " Label result: s" << result << endl;
     log_mutex.unlock();
 
     if(-1 != result)
@@ -297,4 +296,43 @@ void ApplicationModule::capture_photo_and_send_to_process()
         tts_person = tts_person + " este lângă tine. \n\n\n Dacă ai întrebări este la dispoziția ta!" + "\n\n\n  Rol: " + recognized_person.get_role();
         TextToSpeech::display_custom_message(tts_person); 
     }
+}
+
+
+
+void ApplicationModule::MODE_1_ROUTE_PLAYING(string route_path)
+{
+    guiding_mode = GuidingMode::ROUTE_PLAYER_MODE;
+
+    string route = RouteRegistration::get_route_name_from_path(route_path);
+    size_t found = route.find(".txt");
+    if (found != std::string::npos) {
+        route.erase(found, 4);
+    }
+    //@ToDo Ro/En
+    string msg = "Atenție, pornim!! \n\n\n Voi începe să redau ruta " + route;
+    TextToSpeech::display_custom_message(msg);
+
+    thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, route_path);
+    thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
+    thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
+    thread speaking_thread(ApplicationModule::TASK_SPEAKING);
+    route_player_thread.join();
+    safety_thread.join();
+    speaking_thread.join();
+    voice_recognition_thread.join();
+}
+
+void ApplicationModule::MODE_2_LINE_FOLLOWER()
+{
+    guiding_mode = GuidingMode::LINE_FOLLOWER_MODE;
+    string msg = "Atenție, pornim!! \n\n\n Voi începe să urmăresc linia";
+    thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
+    thread line_follower_thread(ApplicationModule::TASK_LINE_FOLLOWING);
+    thread speaking_thread(ApplicationModule::TASK_SPEAKING);
+    thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
+    line_follower_thread.join();
+    safety_thread.join();
+    speaking_thread.join();
+    voice_recognition_thread.join();
 }

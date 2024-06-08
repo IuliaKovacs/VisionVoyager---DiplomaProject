@@ -7,7 +7,7 @@
 #include <time.h>
 
 #define SOX_COMMAND "sox -q -r %d -c 1 -b 16 -e signed-integer -d -t raw -"
-#define RECORDING_DURATION_SECONDS 5
+#define RECORDING_DURATION_SECONDS 3
 #define SAMPLE_RATE 16000 
 #define NUM_CHANNELS  1
 #define TEMP_AUDIO_FILE_PATH "../VoiceRecognition/recorded_audio.wav"
@@ -17,8 +17,29 @@
 
 using namespace std;
 int global_done = 0;
-/* @ToDo - reset start_flag in specific cases */
 bool VoiceRecognition::start_flag = false;
+
+
+char* extract_first_word(const char* hyp) {
+    if (hyp == nullptr) {
+        return nullptr;
+    }
+
+    // Determina lungimea substringului până la întâlnirea primului spațiu sau sfârșitul șirului
+    size_t length = 0;
+    while (hyp[length] != '\0' && hyp[length] != ' ') {
+        length++;
+    }
+
+    // Creează un nou array de caractere pentru substring
+    char* substring = new char[length + 1]; // +1 pentru terminatorul nul
+    for (size_t i = 0; i < length; ++i) {
+        substring[i] = hyp[i];
+    }
+    substring[length] = '\0'; // Adăugăm terminatorul nul la sfârșit
+
+    return substring;
+}
 
 
 static void catch_sig(int signum) 
@@ -136,7 +157,7 @@ void VoiceRecognition::loop_recognition_for_start()
                 ps_end_utt(decoder);
                 if ((hyp = ps_get_hyp(decoder, NULL)) != NULL)
                 {   
-                    cout << "PARTIAL RESULT: " << hyp << endl;
+                    logFile << log_time() << "PARTIAL RESULT: " << hyp << endl;
                     if ((strstr("start",hyp) == 0) || (strstr("hello",hyp) == 0) || (strstr("go",hyp) == 0)) 
                     {
                         start_flag = true;
@@ -165,6 +186,7 @@ void VoiceRecognition::loop_recognition_for_start()
 
 bool VoiceRecognition::record_audio()
 {
+    system("aplay ../VoiceRecognition/blip_start.wav");
     string command = "arecord -d " + to_string(RECORDING_DURATION_SECONDS) +
             " -f S16_LE -r " + to_string(SAMPLE_RATE) +
             " -c " + to_string(NUM_CHANNELS) + " " + TEMP_AUDIO_FILE_PATH;
@@ -175,6 +197,7 @@ bool VoiceRecognition::record_audio()
     if (result == 0) 
     {
         logFile << log_time() << "Audio recording complete" << endl;
+        system("aplay ../VoiceRecognition/blip_stop.wav");
         return true;
     } 
     else 
@@ -188,7 +211,8 @@ bool VoiceRecognition::record_audio()
 string VoiceRecognition::timed_listening_recognition_for_options()
 {
     record_audio();
-    string recognized_word;
+    string recognized_word = "UNKNOWN";
+    const char *hyp;
 
     ps_decoder_t *decoder;
     ps_config_t *config;
@@ -249,24 +273,24 @@ string VoiceRecognition::timed_listening_recognition_for_options()
 
     if (ps_get_hyp(decoder, NULL) != NULL)
     {
-        recognized_word = ps_get_hyp(decoder, NULL);
-        if (strstr("ONE", recognized_word.c_str()) == 0)
+        hyp = ps_get_hyp(decoder, NULL);
+        logFile << log_time() << "PARTIAL RESULT: \"" << hyp << "\"" << endl;
+        
+        if (strcmp("one",extract_first_word(hyp)) == 0) 
         {
+            logFile << log_time() << "ONE" << endl;
             recognized_word = "ONE";
         }
-        else if (strstr("TWO", recognized_word.c_str()) == 0)
+        else if (strcmp("two",extract_first_word(hyp)) == 0)
         {
+            logFile << log_time() << "TWO" << endl;
             recognized_word = "TWO";
         }
-        else if (strstr("THREE", recognized_word.c_str()) == 0)
+        else if (strcmp("three",extract_first_word(hyp)) == 0)
         {
+            logFile << log_time() << "THREE" << endl;
             recognized_word = "THREE";
         }
-        else
-        {
-            recognized_word = "UNKNOWN";
-        }
-        logFile << log_time() << "Recognized word: " << recognized_word << endl;
     }
 
     if (fclose(fh) < 0)
@@ -362,7 +386,7 @@ void VoiceRecognition::loop_listening_for_wait()
                 ps_end_utt(decoder);
                 if ((hyp = ps_get_hyp(decoder, NULL)) != NULL)
                 {
-                    cout << "PARTIAL RESULT: " << hyp << endl;
+                    logFile << log_time() << "PARTIAL RESULT: " << hyp << endl;
                     if ((strstr("stop",hyp) == 0) || (strstr("wait",hyp) == 0)) 
                     {
                         wait_flag = true;

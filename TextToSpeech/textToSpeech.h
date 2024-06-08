@@ -28,6 +28,7 @@ public:
     static void display_menu_options();
     static void display_option1_message();
     static void display_option2_message();
+    static void display_default_mode();
     static void display_hello_message();
     static void display_section_A_options_message();
     static void display_section_B_options_message();

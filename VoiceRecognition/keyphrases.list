@@ -1,4 +1,7 @@
-ok /1e-0.1/
-one /1e-1/
-two /1e-1/
-three /1e-2/
+two/1e-6/
+one/1e-10/
+three/1e-16/
+
+
+
+

@@ -1,4 +1,4 @@
-You selected option 1.
+You selected option 2.
 
 We will follow a line to the destination.
 

@@ -1,18 +1,2 @@
 Acum că ai selectat secțiunea. Trebuie să selectezi o rută dintre următoarele:
 
-Ruta 1. Către Secretariat ETC.
-
-
-pentru Secretariat ETC rostește "ONE"
-
-
-
-
-Ruta 2. Către Secretariat AC.
-
-
-pentru Secretariat AC rostește "TWO"
-
-
-
-

@@ -1,6 +1,7 @@
 Ai selectat opțiunea pentru urmărirea unei rute. Trebuie să selectezi o secțiune dintre următoarele:
 
-Secțiunea A
+Secțiunea 
+A
 
 
    Această secțiune cuprinde următoarele săli: 
@@ -12,7 +13,8 @@ Secțiunea A
 
 
 
-Secțiunea B
+Secțiunea 
+C
 
 
    Această secțiune cuprinde următoarele săli: 
@@ -22,7 +24,7 @@ Secțiunea B
        Secretariat AC.
 
 
-   Pentru Secțiunea B rostește "TWO"
+   Pentru Secțiunea C rostește "THREE"
 
 
 

@@ -43,6 +43,8 @@ public:
     static bool TASK_SAFETY_MEASURES();
     static bool TASK_SPEAKING();
     static void increment_excel_route_count(string route_path);
+    static void MODE_1_ROUTE_PLAYING(string route_path);
+    static void MODE_2_LINE_FOLLOWER();
 
 };
 

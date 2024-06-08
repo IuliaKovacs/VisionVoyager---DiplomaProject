@@ -33,6 +33,15 @@ vector<int> LineFollower::get_line_from_grayscale_data()
 }
 
 
+bool LineFollower::get_line_status()
+{
+    get_grayscale_data();
+    vector<int> grayscale_line_status = get_line_from_grayscale_data();
+
+    return ((grayscale_line_status[0] == 1) || (grayscale_line_status[1] == 1) || (grayscale_line_status[2] == 1));
+}
+
+
 void LineFollower::follow_line()
 {
     State current_state = State::UNKNOWN;

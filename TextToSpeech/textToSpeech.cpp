@@ -28,6 +28,12 @@
                                       "\"../TextToSpeech/EN/option2.txt\""  \
     )
 
+#define OPTION_DEFAULT_MESSAGE_FILE(arg) \
+    ( \
+        (arg == Language::RO) ?  "\"../TextToSpeech/RO/default_guide_mode.txt\"" : \
+                                      "\"../TextToSpeech/EN/default_guide_mode.txt\""  \
+    )
+
 
 #define HELLO_MESSAGE_FILE(arg) \
     ( \
@@ -162,6 +168,12 @@ void TextToSpeech::display_option2_message()
     system(command.c_str());
 }
 
+void TextToSpeech::display_default_mode()
+{
+    string command = "espeak -v " + string(CHOOSE_LANGUAGE(language)) + " -s 150 " + " -f " + string(OPTION_DEFAULT_MESSAGE_FILE(language));
+    system(command.c_str());
+}
+
 void TextToSpeech::display_section_A_options_message()
 {   
     logFile << log_time() << "[TTS] Displaying section A routes " << endl;
@@ -234,7 +246,7 @@ void TextToSpeech::initialize_section_options_file_RO()
         
             if(0 < routes.size())
             {
-                SectionOptionsFileRO << "Secțiunea " <<  string(1, c) << endl << endl << endl;
+                SectionOptionsFileRO << "Secțiunea \n" <<  string(1, c) << endl << endl << endl;
                 SectionOptionsFileRO << "   Această secțiune cuprinde următoarele săli: " << endl;
 
                 for(int i = 1; i <= routes.size(); i++)
@@ -281,7 +293,7 @@ void TextToSpeech::initialize_section_options_file_EN()
         
             if(0 < routes.size())
             {
-                SectionOptionsFileEN << "Section " <<  string(1, c) << endl << endl << endl;
+                SectionOptionsFileEN << "Section \n" <<  string(1, c) << endl << endl << endl;
                 SectionOptionsFileEN << "   This section comprises the following rooms: " << endl;
 
                 for(int i = 1; i <= routes.size(); i++)

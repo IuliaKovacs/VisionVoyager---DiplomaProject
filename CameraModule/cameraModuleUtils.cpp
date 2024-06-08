@@ -237,12 +237,12 @@ bool CameraModule::detect_face_and_preprocess_if_so(string test_image_path)
     }
     else if (1 < faces.size())
     {
-        logFile << log_time() << "Too many faces in the image!" << endl;
+        // logFile << log_time() << "Too many faces in the image!" << endl;
         return true;
     }
     else if (1 > faces.size())
     {
-        logFile << log_time() << "The image doesn't contain a face! " << endl;
+        // logFile << log_time() << "The image doesn't contain a face! " << endl;
         return false;
     }
 }

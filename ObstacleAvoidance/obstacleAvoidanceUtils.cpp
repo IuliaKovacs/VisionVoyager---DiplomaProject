@@ -112,8 +112,19 @@ void ObstacleAvoidance::avoid_simple_obstacle_left_side()
 
 bool ObstacleAvoidance::check_forward_safety()
 {
+    static int counter = 0;
+
     get_ultrasonic_data();
-    if((DANGER_DISTANCE_THRESHOLD > ultrasonic_data) && (-1 != ultrasonic_data))
+    if(DANGER_DISTANCE_THRESHOLD > ultrasonic_data)
+    {
+        counter++;
+    }
+    else
+    {
+        counter = 0;
+    }
+
+    if((DANGER_DISTANCE_THRESHOLD > ultrasonic_data) && (-1 != ultrasonic_data) && (counter >= 3))
     {
         robotVisionVoyager->stop();
         start_tts_avoid = std::chrono::steady_clock::now();
