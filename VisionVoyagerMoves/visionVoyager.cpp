@@ -9,7 +9,7 @@
 #define WHEEL_CIRCUMFERENCE (2 * CONSTANT_PI * WHEEL_RADIUS) // m - meters
 
 #define THRESHOLD_WHEEL_ROTATION_TIME 2000 // ms - miliseconds 
-#define THRESHOLD_WHEEL_ROTATION_TIME_MIN_RP 1000
+#define THRESHOLD_WHEEL_ROTATION_TIME_MIN_RP 1600
 #define THRESHOLD_WHEEL_ROTATION_TIME_MIN_LF 1900
 #define NUMBER_OF_PERIODS 10
 
@@ -388,6 +388,9 @@ SevereErrorType VisionVoyager::check_hall_sensors_timing()
             {
                 auto current_spin_left = std::chrono::steady_clock::now();
                 auto time_difference = std::chrono::duration_cast<std::chrono::milliseconds>(current_spin_left - last_spin_left);
+
+                // logFile << log_time() << LOG_HALL_SENSORS_PREFIX << "[Left Motor] time_difference from last period: " << time_difference.count() << "ms" << endl;
+
                 /* simulating a kind of debounce */
                 if(time_difference.count() > 100)
                 {   

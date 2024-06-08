@@ -38,7 +38,7 @@ void RouteRecordPlayer::play_command(string command_name, int miliseconds, optio
         if (command_arg)
         {
             robotVisionVoyager->set_dir_angle(command_arg.value());
-            if(miliseconds > 2500)
+            if(miliseconds > 1200)
             {
                 if(20 <= command_arg.value())
                 {   

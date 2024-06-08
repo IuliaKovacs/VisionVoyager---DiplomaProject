@@ -396,15 +396,20 @@ void TextToSpeech::initialize_route_display_files_EN()
 
 void TextToSpeech::display_turn_right()
 {   
-    string command = "espeak -v " + string(CHOOSE_LANGUAGE(Language::EN)) + " -s 150 " + "\" turn right \"";
-    system(command.c_str());
+
+    std::lock_guard<std::mutex> lock(speak_mutex);
+    global_message = "turn right";
+    speak.store(true);
+    speaking_condition.notify_all();
 }
 
 
 void TextToSpeech::display_turn_left()
 {   
-    string command = "espeak -v " + string(CHOOSE_LANGUAGE(Language::EN)) + " -s 150 " + "\" turn left \"";
-    system(command.c_str());
+    std::lock_guard<std::mutex> lock(speak_mutex);
+    global_message = "turn left";
+    speak.store(true);
+    speaking_condition.notify_all();
 }
 
 
