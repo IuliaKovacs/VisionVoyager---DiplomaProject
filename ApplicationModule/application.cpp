@@ -303,6 +303,7 @@ void ApplicationModule::capture_photo_and_send_to_process()
 void ApplicationModule::MODE_1_ROUTE_PLAYING(string route_path)
 {
     guiding_mode = GuidingMode::ROUTE_PLAYER_MODE;
+    increment_excel_route_count(route_path); 
 
     string route = RouteRegistration::get_route_name_from_path(route_path);
     size_t found = route.find(".txt");

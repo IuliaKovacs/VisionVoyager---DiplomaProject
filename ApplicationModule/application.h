@@ -19,19 +19,10 @@ using namespace std;
 
 extern ofstream logFile;
 
-enum class ApplicationState 
-{
-    STANDBY,
-    MENU_DISPLAY,
-    LINE_FOLLOWING,
-    ROUTE_PLAYING,
-    ADMIN_MODE
-};
-
-
 class ApplicationModule
 {
     static void capture_photo_and_send_to_process();
+    static void increment_excel_route_count(string route_path);
 
 public:
     static bool TASK_LINE_FOLLOWING();
@@ -42,7 +33,6 @@ public:
     static bool TASK_VOICE_RECOGNITION_WAIT();
     static bool TASK_SAFETY_MEASURES();
     static bool TASK_SPEAKING();
-    static void increment_excel_route_count(string route_path);
     static void MODE_1_ROUTE_PLAYING(string route_path);
     static void MODE_2_LINE_FOLLOWER();
 

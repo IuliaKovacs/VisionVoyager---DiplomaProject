@@ -234,7 +234,6 @@ int main(int argc, char *argv[])
                         route_path += ".txt";
                         logFile << log_time() << "[MainApp] The selected route is: \"" << route_path << "\"" << endl;
                         /* Start executing in paralell the Route Playing, Safety, Voice Recognition and RFID tag display Tasks */
-                        ApplicationModule::increment_excel_route_count(route_path); 
                         ApplicationModule::MODE_1_ROUTE_PLAYING(route_path);
                         break;
                     }
@@ -275,7 +274,6 @@ int main(int argc, char *argv[])
                 route_path += ".txt";
                 logFile << log_time() << "[MainApp] The selected route is: \"" << route_path << "\"" << endl;
                 /* Start executing in paralell the Route Playing, Safety, Voice Recognition and RFID tag display Tasks */
-                ApplicationModule::increment_excel_route_count(route_path); 
                 ApplicationModule::MODE_1_ROUTE_PLAYING(route_path);
             }
         }
