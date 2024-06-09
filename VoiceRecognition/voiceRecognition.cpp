@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <chrono>
 
 #define SOX_COMMAND "sox -q -r %d -c 1 -b 16 -e signed-integer -d -t raw -"
 #define RECORDING_DURATION_SECONDS 3
@@ -409,4 +410,133 @@ void VoiceRecognition::loop_listening_for_wait()
     ps_endpointer_free(ep);
     ps_free(decoder);
     ps_config_free(config);
+}
+
+
+
+
+
+string VoiceRecognition::loop_listening_for_choices()
+{
+    ps_decoder_t *decoder;
+    ps_endpointer_t *ep;
+    FILE *sox;
+    short *frame;
+    size_t frame_size;
+    bool wait_flag = false;
+    string recognized_word = "UNKNOWN";
+    auto start_time = std::chrono::steady_clock::now();
+    auto end_time = start_time + std::chrono::milliseconds(5000);
+
+    ps_config_t *config = ps_config_init(NULL);
+
+    ps_config_set_str(config, "kws", KEYPHRASES_LIST);
+    ps_default_search_args(config);
+
+    decoder = ps_init(config);
+
+    if (decoder == NULL)
+    {
+         logFile << log_time() << "Error: PocketSphinx decoder init failed\n" << endl;
+    }   
+
+    ps_vad_mode_t vad_mode = PS_VAD_LOOSE;
+    ep = ps_endpointer_init(0, 0.0, vad_mode, 0, 0);
+    if (ep == NULL)
+    {
+        logFile << log_time() << "Error: PocketSphinx endpointer init failed\n" << endl;
+    }
+
+    // system("aplay ../VoiceRecognition/blip_start.wav");
+    sox = popen_sox(ps_endpointer_sample_rate(ep));
+    frame_size = ps_endpointer_frame_size(ep);
+
+    if ((frame = (short *)malloc(frame_size * sizeof(frame[0]))) == NULL)
+    {
+        logFile << log_time() << "Error: Failed to allocate frame" << endl;
+    }
+
+    if (signal(SIGINT, catch_sig) == SIG_ERR)
+    {
+        logFile << log_time() << "Error: Failed to set SIGINT handler" << endl;
+    }
+
+    logFile << log_time() << "Start listening..." << endl;
+
+    while ((std::chrono::steady_clock::now() < end_time)) 
+    {
+        const int16 *speech;
+        int prev_in_speech = ps_endpointer_in_speech(ep);
+        size_t len, end_samples;
+
+        if ((len = fread(frame, sizeof(frame[0]), frame_size, sox)) != frame_size) 
+        {
+            if (len > 0) 
+            {
+                speech = ps_endpointer_end_stream(ep, frame, frame_size, &end_samples);
+            } 
+            else 
+            {
+                break;
+            }
+        } 
+        else 
+        {
+            speech = ps_endpointer_process(ep, frame);
+        }
+
+        if (speech != NULL) 
+        {
+            const char *hyp;
+            if (!prev_in_speech) 
+            {
+                ps_start_utt(decoder);
+            }
+
+            if (ps_process_raw(decoder, speech, frame_size, FALSE, FALSE) < 0)
+            {
+                logFile << log_time() << "Error: ps_process_raw() failed\n" << endl; 
+            }
+
+            if (!ps_endpointer_in_speech(ep)) 
+            {
+                ps_end_utt(decoder);
+                if ((hyp = ps_get_hyp(decoder, NULL)) != NULL)
+                {
+                    logFile << log_time() << "PARTIAL RESULT: \"" << hyp << "\"" << endl;
+                    if (strcmp("one",extract_first_word(hyp)) == 0) 
+                    {
+                        logFile << log_time() << "ONE" << endl;
+                        recognized_word = "ONE"; 
+                        break;
+                    }
+                    else if (strcmp("two",extract_first_word(hyp)) == 0)
+                    {
+                        logFile << log_time() << "TWO" << endl;
+                        recognized_word = "TWO";
+                        break;
+                    }
+                    else if (strcmp("three",extract_first_word(hyp)) == 0)
+                    {
+                        logFile << log_time() << "THREE" << endl;
+                        recognized_word = "THREE";
+                        break;
+                    }
+                    break;
+                }    
+            }
+        }
+    }
+    // system("aplay ../VoiceRecognition/blip_stop.wav");
+
+    free(frame);
+    if (pclose(sox) < 0)
+    {
+        logFile << log_time() << "Error: Failed to pclose(sox)" << endl;
+    }
+    ps_endpointer_free(ep);
+    ps_free(decoder);
+    ps_config_free(config);
+
+    return recognized_word;
 }

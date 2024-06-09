@@ -8,7 +8,7 @@
 #include <vector>
 #include <string>
 
-#define DANGER_DISTANCE_THRESHOLD 25
+#define DANGER_DISTANCE_THRESHOLD 35
 
 
 enum class Direction

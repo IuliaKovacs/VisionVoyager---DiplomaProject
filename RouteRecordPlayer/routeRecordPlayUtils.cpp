@@ -58,7 +58,7 @@ void RouteRecordPlayer::play_command(string command_name, int miliseconds, optio
         {
             throw std::runtime_error("There was an error in setting parameters!");
         }
-        robotVisionVoyager->move_forward();
+        // robotVisionVoyager->move_forward();
     }
     else if (command_name.compare("set_cam_pan_angle") == 0)
     {   
@@ -70,7 +70,7 @@ void RouteRecordPlayer::play_command(string command_name, int miliseconds, optio
         {
             throw std::runtime_error("There was an error in setting parameters!");
         }
-        robotVisionVoyager->move_forward();
+        // robotVisionVoyager->move_forward();
     }
     else if (command_name.compare("set_camera_tilt_angle") == 0)
     {   
@@ -82,7 +82,7 @@ void RouteRecordPlayer::play_command(string command_name, int miliseconds, optio
         {
             throw std::runtime_error("There was an error in setting parameters!");
         }
-        robotVisionVoyager->move_forward();
+        // robotVisionVoyager->move_forward();
     }
     else if (command_name.compare("forward") == 0)
     {   
@@ -200,9 +200,10 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                 {   
                     if(ObstacleAvoidance::check_forward_safety())
                     {
-                        if(end_time - std::chrono::steady_clock::now() > std::chrono::seconds(10))
+                        if((end_time - std::chrono::steady_clock::now()) > std::chrono::seconds(7))
                         {
                             std::chrono::duration<double> time_skipped = ObstacleAvoidance::obstacle_avoid();
+                            robotVisionVoyager->move_forward();
                             end_time = end_time + std::chrono::duration_cast<std::chrono::steady_clock::duration>(time_skipped);
                         }
                         else
@@ -267,15 +268,18 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
 
                     if(should_stop.load())
                     {   
+                        auto wait_start_time = std::chrono::steady_clock::now();
                         play_command("stop", 0);
                         log_mutex.lock();
                         logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " ...Waiting... - Intervention from user - must wait the start signal" << endl;
                         log_mutex.unlock();
-                        auto wait_start_time = std::chrono::steady_clock::now();
                         std::unique_lock<std::mutex> lock(mtx);
                         waiting_condition.wait(lock, []{ return !should_stop.load(); });
                         auto wait_end_time = std::chrono::steady_clock::now();
-                        end_time += wait_end_time - wait_start_time;
+                        end_time = end_time + (wait_end_time - wait_start_time);
+                        // log_mutex.lock();
+                        // logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << "New End Time: " << end_time << endl;
+                        // log_mutex.unlock();
                         play_command("forward", 0, 1);
                         log_mutex.lock();
                         logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " Waiting Ended " << endl;

@@ -69,20 +69,20 @@ void ObstacleAvoidance::avoid_simple_obstacle_right_side()
 {
     robotVisionVoyager->move_forward();
 
-    robotVisionVoyager->turn_right_max();
-    this_thread::sleep_for(std::chrono::milliseconds(1400));
+    robotVisionVoyager->set_dir_angle(25);
+    this_thread::sleep_for(std::chrono::milliseconds(1200));
     robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
-    this_thread::sleep_for(std::chrono::milliseconds(460));
-    robotVisionVoyager->turn_left_max();
-    this_thread::sleep_for(std::chrono::milliseconds(900));
+    this_thread::sleep_for(std::chrono::milliseconds(600));
+    robotVisionVoyager->set_dir_angle(-25);
+    this_thread::sleep_for(std::chrono::milliseconds(1100));
     robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
     this_thread::sleep_for(std::chrono::milliseconds(1500));
-    robotVisionVoyager->turn_left_max();
-    this_thread::sleep_for(std::chrono::milliseconds(875));
+    robotVisionVoyager->set_dir_angle(-25);
+    this_thread::sleep_for(std::chrono::milliseconds(975));
     robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
-    this_thread::sleep_for(std::chrono::milliseconds(460));
-    robotVisionVoyager->turn_right_max();
-    this_thread::sleep_for(std::chrono::milliseconds(1100));
+    this_thread::sleep_for(std::chrono::milliseconds(1000));
+    robotVisionVoyager->set_dir_angle(25);
+    this_thread::sleep_for(std::chrono::milliseconds(900));
     robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
 }
 
@@ -150,7 +150,7 @@ std::chrono::duration<double> ObstacleAvoidance::obstacle_avoid()
     // Direction side = choose_avoiding_side();
     // @ToDo
     Direction side = Direction::RIGHT;
-    TextToSpeech::display_custom_message("Obstacolul ar trebui ocolit pe partea dreapta! Faceți doi pași în dreapta, mergeți înainte 2 pași, iar apoi faceți doi pași în stânga");
+    TextToSpeech::display_custom_message("Obstacolul ar trebui ocolit pe partea dreapta! Faceți un pas în dreapta, mergeți înainte 2 pași, iar apoi faceți un pas în stânga");
     auto end_tts = std::chrono::steady_clock::now();
 
     auto start_time = std::chrono::steady_clock::now();

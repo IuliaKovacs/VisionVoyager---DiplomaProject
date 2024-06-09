@@ -93,7 +93,7 @@ string select_route_and_start()
 {   
     string route_path = "";
     TextToSpeech::display_option1_message();
-    string section_option = VoiceRecognition::timed_listening_recognition_for_options();
+    string section_option = VoiceRecognition::loop_listening_for_choices();
 
     if(strcmp("UNKNOWN", section_option.c_str()) != 0)
     {
@@ -102,7 +102,7 @@ string select_route_and_start()
             while(true)
             {
                 TextToSpeech::display_section_A_options_message();
-                string section_route = VoiceRecognition::timed_listening_recognition_for_options();
+                string section_route = VoiceRecognition::loop_listening_for_choices();
                 int index = route_map_no[section_route];
                 if(index < RouteRegistration::get_section_A_routes().size())
                 {   
@@ -118,7 +118,7 @@ string select_route_and_start()
             while(true)
             {
                 TextToSpeech::display_section_B_options_message();
-                string section_route = VoiceRecognition::timed_listening_recognition_for_options();
+                string section_route = VoiceRecognition::loop_listening_for_choices();
                 int index = route_map_no[section_route];
                 if(index < RouteRegistration::get_section_B_routes().size())
                 {
@@ -134,7 +134,7 @@ string select_route_and_start()
             while(true)
             {
                 TextToSpeech::display_section_C_options_message();
-                string section_route = VoiceRecognition::timed_listening_recognition_for_options();
+                string section_route = VoiceRecognition::loop_listening_for_choices();
                 int index = route_map_no[section_route];
                 if(index < RouteRegistration::get_section_C_routes().size())
                 {   
@@ -207,7 +207,7 @@ int main(int argc, char *argv[])
             if(line_follow_available)
             {
                 TextToSpeech::display_menu_options();
-                option = VoiceRecognition::timed_listening_recognition_for_options();
+                option = VoiceRecognition::loop_listening_for_choices();
 
                 if((strcmp("UNKNOWN", option.c_str()) != 0) && (strcmp("THREE", option.c_str()) != 0))
                 {
