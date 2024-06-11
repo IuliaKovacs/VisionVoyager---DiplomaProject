@@ -25,90 +25,8 @@ void ObstacleAvoidance::get_ultrasonic_data()
 
 Direction ObstacleAvoidance::choose_avoiding_side()
 {
-    robotVisionVoyager->stop();
-    this_thread::sleep_for(std::chrono::milliseconds(1000));
-    robotVisionVoyager->set_dir_angle(DIR_MAX);
-    robotVisionVoyager->move_forward();
-    this_thread::sleep_for(std::chrono::milliseconds(600));
-    robotVisionVoyager->stop();
-    get_ultrasonic_data();
-    logFile << log_time() << ultrasonic_data << endl;
-    this_thread::sleep_for(std::chrono::milliseconds(1000));
-    robotVisionVoyager->move_backward();
-    this_thread::sleep_for(std::chrono::milliseconds(900));
-    robotVisionVoyager->stop();
-    this_thread::sleep_for(std::chrono::milliseconds(200));
-    robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
-    
-
-    if ((DANGER_DISTANCE_THRESHOLD < ultrasonic_data) || (-1 == ultrasonic_data))
-    {
-        return Direction::RIGHT;
-    }
-
-    robotVisionVoyager->set_dir_angle(DIR_MIN);
-    robotVisionVoyager->move_forward();
-    this_thread::sleep_for(std::chrono::milliseconds(600));
-    robotVisionVoyager->stop();
-    get_ultrasonic_data();
-    logFile << log_time() << ultrasonic_data << endl;
-    this_thread::sleep_for(std::chrono::milliseconds(1000));
-    robotVisionVoyager->move_backward();
-    this_thread::sleep_for(std::chrono::milliseconds(900));
-    robotVisionVoyager->stop();
-    this_thread::sleep_for(std::chrono::milliseconds(200));
-    robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
-
-    if ((DANGER_DISTANCE_THRESHOLD < ultrasonic_data) || (-1 == ultrasonic_data))
-    {
-        return Direction::LEFT;
-    }
+    return Direction::RIGHT;
 }
-
-void ObstacleAvoidance::avoid_simple_obstacle_right_side()
-{
-    robotVisionVoyager->move_forward();
-
-    robotVisionVoyager->set_dir_angle(25);
-    this_thread::sleep_for(std::chrono::milliseconds(1200));
-    robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
-    this_thread::sleep_for(std::chrono::milliseconds(600));
-    robotVisionVoyager->set_dir_angle(-25);
-    this_thread::sleep_for(std::chrono::milliseconds(1100));
-    robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
-    this_thread::sleep_for(std::chrono::milliseconds(1500));
-    robotVisionVoyager->set_dir_angle(-25);
-    this_thread::sleep_for(std::chrono::milliseconds(975));
-    robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
-    this_thread::sleep_for(std::chrono::milliseconds(1000));
-    robotVisionVoyager->set_dir_angle(25);
-    this_thread::sleep_for(std::chrono::milliseconds(900));
-    robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
-}
-
-
-
-void ObstacleAvoidance::avoid_simple_obstacle_left_side()
-{
-    robotVisionVoyager->move_forward();
-   
-    robotVisionVoyager->turn_left_max();
-    this_thread::sleep_for(std::chrono::milliseconds(1400));
-    robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
-    this_thread::sleep_for(std::chrono::milliseconds(460));
-    robotVisionVoyager->turn_right_max();
-    this_thread::sleep_for(std::chrono::milliseconds(900));
-    robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
-    this_thread::sleep_for(std::chrono::milliseconds(1500));
-    robotVisionVoyager->turn_right_max();
-    this_thread::sleep_for(std::chrono::milliseconds(875));
-    robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
-    this_thread::sleep_for(std::chrono::milliseconds(460));
-    robotVisionVoyager->turn_left_max();
-    this_thread::sleep_for(std::chrono::milliseconds(1100));
-    robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE); 
-}
-
 
 bool ObstacleAvoidance::check_forward_safety()
 {
@@ -147,8 +65,6 @@ std::chrono::duration<double> ObstacleAvoidance::obstacle_avoid()
 {
     
     std::chrono::duration<double> time_skipped = std::chrono::seconds(0);
-    // Direction side = choose_avoiding_side();
-    // @ToDo
     Direction side = Direction::RIGHT;
     TextToSpeech::display_custom_message("Obstacolul ar trebui ocolit pe partea dreapta! Faceți un pas în dreapta, mergeți înainte 2 pași, iar apoi faceți un pas în stânga");
     auto end_tts = std::chrono::steady_clock::now();
@@ -162,60 +78,26 @@ std::chrono::duration<double> ObstacleAvoidance::obstacle_avoid()
         log_mutex.lock();
         logFile << log_time() << "[Obstacle Avoiding] Avoiding an obstacle - choosed right side to avoid" << endl;
         log_mutex.unlock();
-        avoid_simple_obstacle_right_side();
+        // avoid_simple_obstacle_right_side(); @ToDo
+        RouteRecordPlayer::avoid_right();
     }
     else if (side == Direction::LEFT)
     {
         log_mutex.lock();
         logFile << log_time() << "[Obstacle Avoiding] Avoiding an obstacle - choosed left side to avoid" << endl;
         log_mutex.unlock();
-        avoid_simple_obstacle_left_side();
+        // avoid_simple_obstacle_left_side(); @ToDo
     }
     log_mutex.lock();
     logFile << log_time() << "[Obstacle Avoiding] Obstacle Avoided Successfully!" << endl;
     log_mutex.unlock();
     auto end_time = std::chrono::steady_clock::now(); 
-    time_skipped = (end_tts - start_tts_avoid) + (end_time - start_time) * 1.2; //'(' ')' for better visibility in code
+    time_skipped = (end_tts - start_tts_avoid) + (end_time - start_time); //'(' ')' for better visibility in code
     logFile << log_time() << "[Obstacle Avoiding] Time Skipped: " << time_skipped.count() << endl;
     return time_skipped;
 }
 
 
-
-void ObstacleAvoidance::simulate_real_case()
-{
-    robotVisionVoyager->move_forward();
-    robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
-
-    while(true)
-    {
-        get_ultrasonic_data();
-        if(DANGER_DISTANCE_THRESHOLD > ultrasonic_data)
-        {
-            Direction side = choose_avoiding_side();
-
-            if (side == Direction::RIGHT)
-            {
-                avoid_simple_obstacle_right_side();
-                logFile << log_time() << "right" << endl;
-            }
-            else if (side == Direction::LEFT)
-            {
-                avoid_simple_obstacle_left_side();
-                logFile << log_time() << "left" << endl;
-            }
-            else 
-            {
-                /* special case -> maybe wait for the object to pass or be removed (?) */
-                this_thread::sleep_for(std::chrono::milliseconds(5000));
-            }
-
-            robotVisionVoyager->stop();
-            break;
-        }
-    }
-
-}
 
 
 void ObstacleAvoidance::return_on_track()
@@ -256,14 +138,15 @@ void ObstacleAvoidance::return_on_track()
         {
             command_arg = stoi(command_arg_aux);
 
-            if (command_arg == DIR_MIN)
-            {
-                command_arg = DIR_MAX;
-            }
-            else if (command_arg == DIR_MAX)
-            {
-                command_arg = DIR_MIN;
-            }
+            // @To be replaced with new commands
+            // if (command_arg == DIR_MIN)
+            // {
+            //     command_arg = DIR_MAX;
+            // }
+            // else if (command_arg == DIR_MAX)
+            // {
+            //     command_arg = DIR_MIN;
+            // }
         }
         else
         {
@@ -330,3 +213,5 @@ void ObstacleAvoidance::reverse_route(string route_name)
 
     robotVisionVoyager->stop();
 }
+
+

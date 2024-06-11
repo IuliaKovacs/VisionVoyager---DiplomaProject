@@ -34,7 +34,8 @@ enum class SevereErrorType
     GPIO_ERROR,
     IN_AIR,
     LOW_VOLTAGE,
-    CAMERA_ERROR
+    CAMERA_ERROR,
+    ROUTE_ERROR
 };
 
 enum class GuidingMode 

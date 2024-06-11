@@ -8,9 +8,8 @@
 #define CONSTANT_PI 3.14159265358979323846
 #define WHEEL_CIRCUMFERENCE (2 * CONSTANT_PI * WHEEL_RADIUS) // m - meters
 
-#define THRESHOLD_WHEEL_ROTATION_TIME 2000 // ms - miliseconds 
-#define THRESHOLD_WHEEL_ROTATION_TIME_MIN_RP 1600
-#define THRESHOLD_WHEEL_ROTATION_TIME_MIN_LF 1900
+#define THRESHOLD_WHEEL_ROTATION_TIME 3000 // ms - miliseconds 
+#define THRESHOLD_WHEEL_ROTATION_TIME_MIN 2000
 #define NUMBER_OF_PERIODS 10
 
 namespace py = pybind11;
@@ -269,16 +268,6 @@ SevereErrorType VisionVoyager::check_hall_sensors_timing()
         return SevereErrorType::GPIO_ERROR;
     }
 
-    int THRESHOLD_WHEEL_ROTATION_TIME_MIN;
-    if( GuidingMode::ROUTE_PLAYER_MODE == guiding_mode)
-    {
-        THRESHOLD_WHEEL_ROTATION_TIME_MIN = THRESHOLD_WHEEL_ROTATION_TIME_MIN_RP;
-    }
-    else if( GuidingMode::LINE_FOLLOWER_MODE == guiding_mode)
-    {
-        THRESHOLD_WHEEL_ROTATION_TIME_MIN = THRESHOLD_WHEEL_ROTATION_TIME_MIN_LF;
-    }
-
     log_mutex.lock();
     logFile << log_time() << LOG_HALL_SENSORS_PREFIX << " Hall Sensors Feature ready for use!" << endl;
     log_mutex.unlock();
@@ -300,7 +289,8 @@ SevereErrorType VisionVoyager::check_hall_sensors_timing()
 
     while((!route_complete.load()) && (!severe_error.load()))
     {   
-        if(true == moving.load())
+        bool moving_state = moving.load(); 
+        if(true == moving_state)
         {   
             /* reset last spin timestamp if the robot is just starting to move again */
             if(false == last_moving_state)
@@ -444,8 +434,15 @@ SevereErrorType VisionVoyager::check_hall_sensors_timing()
             }
         }
 
-        last_moving_state = moving.load();
+        last_moving_state = moving_state;
     }
 
     return result;
+}
+
+
+void VisionVoyager::set_direction_limits(int left_max, int right_max)
+{
+    DIR_MIN = left_max;
+    DIR_MAX = right_max;
 }

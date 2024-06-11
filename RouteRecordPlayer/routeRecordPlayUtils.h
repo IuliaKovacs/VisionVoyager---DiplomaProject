@@ -33,6 +33,7 @@ public:
     static void play_route(string route_name);
     static void play_route_conditioned(string route_name);
     static SevereErrorType check_motors_feedback();
+    static void avoid_right();
     friend void ObstacleAvoidance::return_on_track();
     friend void ObstacleAvoidance::reverse_route(string route_name);
 };

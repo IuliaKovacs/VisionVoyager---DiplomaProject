@@ -26,9 +26,6 @@ class ObstacleAvoidance
     static VisionVoyager* robotVisionVoyager;
     static float ultrasonic_data;
     static std::chrono::time_point<std::chrono::steady_clock> start_tts_avoid;
-    static void simulate_real_case();
-    static void avoid_simple_obstacle_right_side();
-    static void avoid_simple_obstacle_left_side();
     static Direction choose_avoiding_side();
 
 public:
@@ -41,7 +38,6 @@ public:
     static void return_on_track();
     /* The robot should turn back on the same route in case it fails to avoid the obstacle -> it must arrive at the starting point, exactly as it started the avoiding process */
     static void reverse_route(string route_name);
-    
 };
 
 

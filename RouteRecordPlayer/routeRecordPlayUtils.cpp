@@ -7,6 +7,9 @@
 #include "../ApplicationModule/application.h"
 
 
+#define OBSTACLE_RIGHT_AVOID_FILE "../RouteDatabase/avoid_obstacle.txt"
+
+
 VisionVoyager* RouteRecordPlayer::robotVisionVoyager = nullptr;
 Building_Section RouteRecordPlayer::current_section = Building_Section::UNKNOWN;
 bool RouteRecordPlayer::avoiding_activated;
@@ -325,3 +328,127 @@ SevereErrorType RouteRecordPlayer::check_motors_feedback()
     return robotVisionVoyager->check_hall_sensors_timing();
 }
 
+
+void RouteRecordPlayer::avoid_right()
+{
+    ifstream Route_File(OBSTACLE_RIGHT_AVOID_FILE);
+    string line;
+
+    while(getline(Route_File,line))
+    {   
+        string command_name = extract_command_name(line);
+        string command_arg = extract_command_argument(line);
+        
+        if (getline(Route_File,line))
+        {
+            int milliseconds_to_count = stoi(line);
+
+            if (command_arg == ")")
+            {
+                play_command(command_name, milliseconds_to_count);
+            }
+            else 
+            {
+                play_command(command_name, milliseconds_to_count, stoi(command_arg));
+            }
+        
+            log_mutex.lock();
+            logFile << log_time() << command_name << " : " << milliseconds_to_count << endl;
+            log_mutex.unlock(); 
+
+
+            auto start_time = std::chrono::steady_clock::now();
+            auto end_time = start_time + std::chrono::milliseconds(milliseconds_to_count);
+
+
+            while ((std::chrono::steady_clock::now() < end_time)) 
+            {   
+                // if(distanta f mica de un obiect)
+                // {
+                //     log_mutex.lock();
+                //     logFile << log_time() << "[Obstacle Avoiding]" << " --- Route Interrupted: Obstacle Detected! -> In this moment of route guiding the obstacle cannot be avoided! ---" << endl;
+                //     log_mutex.unlock();
+                //     severe_error.store(true);
+                //     error_type = SevereErrorType::ROUTE_ERROR;
+                //     play_command("stop", 0);
+                //     tts_mutex.lock();
+                //     if(Language::EN == TextToSpeech::get_language())
+                //     {   
+                //         TextToSpeech::display_custom_message("In this moment of route guiding the obstacle cannot be avoided! \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
+                //     }
+                //     else
+                //     {
+                //         TextToSpeech::display_custom_message("În acest moment al rutei nu se poate ocoli obstacolul! \n\n\n Abandonare proces de ghidare! \n\n\n Contactați personalul clădirii!");
+                //     }
+                //     tts_mutex.unlock();
+                // }
+
+                /* IMPORTANT: The threshold for IN AIR DETECTION must be calibrated before using this feature!
+                    * It depends on the surface on which the robot moves! */
+                // if(true == LineFollower::verify_is_in_air())
+                // {
+                //     log_mutex.lock();
+                //     logFile << log_time() << "[Obstacle Avoidance]" << " --- Route Interrupted: The robot is either in air or on the edge of something! ---" << endl;
+                //     logFile << log_time() << "[Obstacle Avoidance]" << " --- Displaying acoustical warning ---" << endl;
+                //     log_mutex.unlock();
+                //     severe_error.store(true);
+                //     error_type = SevereErrorType::IN_AIR;
+                //     play_command("stop", 0);
+                //     tts_mutex.lock();
+                //     if(Language::EN == TextToSpeech::get_language())
+                //     {   
+                //         TextToSpeech::display_custom_message("The robot is in the air or on the edge of something \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
+                //     }
+                //     else
+                //     {
+                //         TextToSpeech::display_custom_message("Robotul este în aer sau pe marginea unei prăpăstii! \n\n\n Abandonare proces de ghidare \n\n\n Contactați personalul clădirii!");
+                //     }
+                //     tts_mutex.unlock();
+                // }
+
+                if(severe_error.load())
+                {
+                    play_command("stop", 0);  
+                    log_mutex.lock();
+                    logFile << log_time() << "[Obstacle Avoidance]" << " ...Aborting due to severe error..." << endl;
+                    log_mutex.unlock();
+                    lock_guard<mutex> lock2(mtx);
+                    should_stop.store(true);
+                    route_complete.store(true);
+                    camera_condition.notify_all();
+                    waiting_condition.notify_all();
+                    speaking_condition.notify_all();
+                    return;
+                }
+
+                if(should_stop.load())
+                {   
+                    auto wait_start_time = std::chrono::steady_clock::now();
+                    play_command("stop", 0);
+                    log_mutex.lock();
+                    logFile << log_time() << "[Obstacle Avoidance]" << " ...Waiting... - Intervention from user - must wait the start signal" << endl;
+                    log_mutex.unlock();
+                    std::unique_lock<std::mutex> lock(mtx);
+                    waiting_condition.wait(lock, []{ return !should_stop.load(); });
+                    auto wait_end_time = std::chrono::steady_clock::now();
+                    end_time = end_time + (wait_end_time - wait_start_time);
+                    play_command("forward", 0, 1);
+                    log_mutex.lock();
+                    logFile << log_time() << "[Obstacle Avoidance]" << " Waiting Ended " << endl;
+                    log_mutex.unlock();
+                }
+            }
+        }
+        else
+        {
+            if (command_arg == ")")
+            {
+                play_command(command_name, 0);
+            }
+            else 
+            {
+                play_command(command_name, 0, stoi(command_arg));
+            }
+        }
+    }
+}

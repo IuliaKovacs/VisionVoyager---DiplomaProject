@@ -37,8 +37,8 @@ class RouteRegistration
     static void delete_duplicate_line_commands(); 
     static void create_record_for_route(); 
     static string compute_new_route_name();
-    static vector<string> split_path(const string& path); /* @ToDo check if still needed or has to be removed */
-    static string get_section_from_path(const string& path); /* @ToDo check if still needed or has to be removed */
+    static vector<string> split_path(const string& path); /* @NOT USED check if still needed or has to be removed */
+    static string get_section_from_path(const string& path); /* @NOT USED check if still needed or has to be removed */
 
 public:
     RouteRegistration();

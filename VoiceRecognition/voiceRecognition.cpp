@@ -187,7 +187,7 @@ void VoiceRecognition::loop_recognition_for_start()
 
 bool VoiceRecognition::record_audio()
 {
-    system("aplay ../VoiceRecognition/blip_start.wav");
+    system("play ../VoiceRecognition/blip_start.wav");
     string command = "arecord -d " + to_string(RECORDING_DURATION_SECONDS) +
             " -f S16_LE -r " + to_string(SAMPLE_RATE) +
             " -c " + to_string(NUM_CHANNELS) + " " + TEMP_AUDIO_FILE_PATH;
@@ -198,7 +198,7 @@ bool VoiceRecognition::record_audio()
     if (result == 0) 
     {
         logFile << log_time() << "Audio recording complete" << endl;
-        system("aplay ../VoiceRecognition/blip_stop.wav");
+        system("play ../VoiceRecognition/blip_stop.wav");
         return true;
     } 
     else 
@@ -425,8 +425,6 @@ string VoiceRecognition::loop_listening_for_choices()
     size_t frame_size;
     bool wait_flag = false;
     string recognized_word = "UNKNOWN";
-    auto start_time = std::chrono::steady_clock::now();
-    auto end_time = start_time + std::chrono::milliseconds(5000);
 
     ps_config_t *config = ps_config_init(NULL);
 
@@ -447,7 +445,6 @@ string VoiceRecognition::loop_listening_for_choices()
         logFile << log_time() << "Error: PocketSphinx endpointer init failed\n" << endl;
     }
 
-    // system("aplay ../VoiceRecognition/blip_start.wav");
     sox = popen_sox(ps_endpointer_sample_rate(ep));
     frame_size = ps_endpointer_frame_size(ep);
 
@@ -461,7 +458,10 @@ string VoiceRecognition::loop_listening_for_choices()
         logFile << log_time() << "Error: Failed to set SIGINT handler" << endl;
     }
 
+    system("play ../VoiceRecognition/blip_start.wav");
     logFile << log_time() << "Start listening..." << endl;
+    auto start_time = std::chrono::steady_clock::now();
+    auto end_time = start_time + std::chrono::milliseconds(5000);
 
     while ((std::chrono::steady_clock::now() < end_time)) 
     {
@@ -502,23 +502,31 @@ string VoiceRecognition::loop_listening_for_choices()
             {
                 ps_end_utt(decoder);
                 if ((hyp = ps_get_hyp(decoder, NULL)) != NULL)
-                {
+                {   
+                    log_mutex.lock();
                     logFile << log_time() << "PARTIAL RESULT: \"" << hyp << "\"" << endl;
+                    log_mutex.unlock();
                     if (strcmp("one",extract_first_word(hyp)) == 0) 
-                    {
+                    {   
+                        log_mutex.lock();
                         logFile << log_time() << "ONE" << endl;
                         recognized_word = "ONE"; 
+                        log_mutex.unlock();
                         break;
                     }
                     else if (strcmp("two",extract_first_word(hyp)) == 0)
                     {
+                        log_mutex.lock();
                         logFile << log_time() << "TWO" << endl;
+                        log_mutex.unlock();
                         recognized_word = "TWO";
                         break;
                     }
                     else if (strcmp("three",extract_first_word(hyp)) == 0)
                     {
+                        log_mutex.lock();
                         logFile << log_time() << "THREE" << endl;
+                        log_mutex.unlock();
                         recognized_word = "THREE";
                         break;
                     }
@@ -527,7 +535,7 @@ string VoiceRecognition::loop_listening_for_choices()
             }
         }
     }
-    // system("aplay ../VoiceRecognition/blip_stop.wav");
+    system("play ../VoiceRecognition/blip_stop.wav");
 
     free(frame);
     if (pclose(sox) < 0)

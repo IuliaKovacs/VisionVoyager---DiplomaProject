@@ -304,24 +304,20 @@ void ApplicationModule::MODE_1_ROUTE_PLAYING(string route_path)
 {
     guiding_mode = GuidingMode::ROUTE_PLAYER_MODE;
     increment_excel_route_count(route_path); 
-
     string route = RouteRegistration::get_route_name_from_path(route_path);
-    size_t found = route.find(".txt");
-    if (found != std::string::npos) {
-        route.erase(found, 4);
-    }
     //@ToDo Ro/En
     string msg = "Atenție, pornim!! \n\n\n Voi începe să redau ruta " + route;
     TextToSpeech::display_custom_message(msg);
 
+    route_path += ".txt";
     thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, route_path);
-    thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
+    // thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
     thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
-    thread speaking_thread(ApplicationModule::TASK_SPEAKING);
+    // thread speaking_thread(ApplicationModule::TASK_SPEAKING);
     route_player_thread.join();
     safety_thread.join();
-    speaking_thread.join();
-    voice_recognition_thread.join();
+    // speaking_thread.join();
+    // voice_recognition_thread.join();
 }
 
 void ApplicationModule::MODE_2_LINE_FOLLOWER()

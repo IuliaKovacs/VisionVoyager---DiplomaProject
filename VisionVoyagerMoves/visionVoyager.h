@@ -14,9 +14,10 @@
 #define DEBUG_MSG(str) do { } while ( false )
 #endif
 
-
-#define DIR_MIN -30
-#define DIR_MAX 30
+#define DIR_MIN_RG -20
+#define DIR_MIN_LF -30
+#define DIR_MAX_RG 20
+#define DIR_MAX_LF 30
 #define DEFAULT_SPEED 10
 #define DEFAULT_WHEEL_ANGLE 0
 #define DEFAULT_PAN_ANGLE 0
@@ -37,6 +38,8 @@ class VisionVoyager
     py::object picar_python_module;
     py::object picar_python_class;
     py::object picar_python_object;
+    int DIR_MIN;
+    int DIR_MAX;
     int speed;
     int dir_angle;
     int camera_tilt_angle;
@@ -53,6 +56,7 @@ public:
     void set_dir_angle(int new_dir_angle);
     void set_camera_tilt_angle(int new_camera_tilt_angle);
     void set_cam_pan_angle(int new_camera_pan_angle);
+    void set_direction_limits(int left_max, int right_max);
     int get_speed();
     int get_dir_angle();
     int get_camera_tilt_angle();
