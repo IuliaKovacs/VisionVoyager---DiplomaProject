@@ -1,9 +1,0 @@
-digraph "QWidget"
-{
- // LATEX_PDF_SIZE
-  edge [fontname="Helvetica",fontsize="12",labelfontname="Helvetica",labelfontsize="12"];
-  node [fontname="Helvetica",fontsize="12",shape=record];
-  Node1 [label="{QWidget\n||}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
-  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="12",style="solid",arrowtail="onormal",fontname="Helvetica"];
-  Node2 [label="{CameraWidget\n|- cv::VideoCapture * videoCapture\l- cv::Mat frame\l|+  CameraWidget(QWidget *parent=nullptr)\l+  ~CameraWidget()\l# void paint_event(Qpaint_event *event) override\l- bool init_camera()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classCameraWidget.html",tooltip=" "];
-}

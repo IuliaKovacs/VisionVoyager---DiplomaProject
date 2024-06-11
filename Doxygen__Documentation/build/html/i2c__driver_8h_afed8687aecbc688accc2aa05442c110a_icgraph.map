@@ -1,8 +1,0 @@
-<map id="i2c_sendMessage" name="i2c_sendMessage">
-<area shape="rect" id="node1" title=" " alt="" coords="965,59,1127,88"/>
-<area shape="rect" id="node2" href="$RFID__Manager_8c.html#a052b1fff15bf9cff825a30739748be45" title=" " alt="" coords="748,59,917,88"/>
-<area shape="rect" id="node3" href="$RFID__Manager_8c.html#ad154f5c187d7830caf30b0e971583ed4" title=" " alt="" coords="497,5,652,35"/>
-<area shape="rect" id="node5" href="$RFID__Manager_8c.html#a23bcce4079e8f84bd19e169dc6107132" title=" " alt="" coords="449,59,700,88"/>
-<area shape="rect" id="node6" href="$RFID__Manager_8c.html#af03b7a9b7153d7b4aaf0a6f52fc9010d" title=" " alt="" coords="501,112,649,141"/>
-<area shape="rect" id="node4" href="$classApplicationModule.html#a25e8041073cdddae0c8718771624617b" title=" " alt="" coords="5,59,401,88"/>
-</map>

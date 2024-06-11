@@ -1,9 +1,0 @@
-digraph "QMainWindow"
-{
- // LATEX_PDF_SIZE
-  edge [fontname="Helvetica",fontsize="12",labelfontname="Helvetica",labelfontsize="12"];
-  node [fontname="Helvetica",fontsize="12",shape=record];
-  Node1 [label="{QMainWindow\n||}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
-  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="12",style="solid",arrowtail="onormal",fontname="Helvetica"];
-  Node2 [label="{AdminModeWindow\n|- Ui::AdminModeWindow * ui\l- CameraWidget * camera_widget\l- FileDropWidget * file_drop_widget_fr\l- FileDropWidget * file_drop_route\l- QChart * chart\l- int section_A_routes\l- int section_B_routes\l- int section_C_routes\l|+  AdminModeWindow(QWidget *parent=nullptr)\l+  ~AdminModeWindow()\l# void keyPressEvent(QKeyEvent *event)\l- void load_from_database()\l- void initialize_chart()\l- void delete_excel_row(int row)\l- void add_route_to_excel(string route_name, string section, int index)\l- void update_chart()\l- void load_recognized_persons()\land 6 more...\l- void on_addRecognizedFaceButton_clicked()\l- void on_startRegistrationButton_clicked()\l- void on_endReigstrationButton_clicked()\l- void on_saveChangesButton_clicked()\l- void on_insertRouteButton_clicked()\l- void on_deleteRouteButton_clicked()\land 5 more...\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classAdminModeWindow.html",tooltip=" "];
-}

@@ -1,9 +1,0 @@
-digraph "CameraModule" {
-  compound=true
-  node [ fontsize="12", fontname="Helvetica"];
-  edge [ labelfontsize="12", labelfontname="Helvetica"];
-  dir_e4e0f958b25787653fca657235517fc0 [shape=box, label="CameraModule", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_e4e0f958b25787653fca657235517fc0.html"];
-  dir_6f2a72d087e95a9c16afd5b6d47ed6d6 [shape=box label="ApplicationModule" URL="dir_6f2a72d087e95a9c16afd5b6d47ed6d6.html"];
-  dir_6f2a72d087e95a9c16afd5b6d47ed6d6->dir_e4e0f958b25787653fca657235517fc0 [headlabel="1", labeldistance=1.5 headhref="dir_000001_000002.html"];
-  dir_e4e0f958b25787653fca657235517fc0->dir_6f2a72d087e95a9c16afd5b6d47ed6d6 [headlabel="1", labeldistance=1.5 headhref="dir_000002_000001.html"];
-}
