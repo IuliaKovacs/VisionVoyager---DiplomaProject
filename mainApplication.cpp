@@ -14,6 +14,7 @@ atomic<bool> should_stop(false);
 atomic<bool> route_complete(false);
 atomic<bool> severe_error(false);
 atomic<bool> moving(false);
+atomic<bool> avoiding(false);
 SevereErrorType error_type = SevereErrorType::NO_ERROR;
 map<std::string, int> route_map_no = {
     {"ONE", 0},
@@ -288,11 +289,11 @@ int main(int argc, char *argv[])
 
     /* Thread testing part - route player */
     // ApplicationModule::MODE_1_ROUTE_PLAYING("../RouteDatabase/Section A/Secretariat AC");
-    ApplicationModule::MODE_1_ROUTE_PLAYING("../RouteDatabase/Section B/Rectorat");
+    // ApplicationModule::MODE_1_ROUTE_PLAYING("../RouteDatabase/Section B/Rectorat");
 
     /* Thread testing part - line follower */
-    // robot.set_direction_limits(DIR_MIN_LF, DIR_MAX_LF);
-    // ApplicationModule::MODE_2_LINE_FOLLOWER();
+    robot.set_direction_limits(DIR_MIN_LF, DIR_MAX_LF);
+    ApplicationModule::MODE_2_LINE_FOLLOWER();
 
     terminate_main_app();
 

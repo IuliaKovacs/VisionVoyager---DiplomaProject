@@ -56,6 +56,7 @@ extern atomic<bool> should_stop;
 extern atomic<bool> route_complete;
 extern atomic<bool> severe_error;  
 extern atomic<bool> moving;
+extern atomic<bool> avoiding;
 extern SevereErrorType error_type;
 extern condition_variable speaking_condition;
 extern condition_variable camera_condition;

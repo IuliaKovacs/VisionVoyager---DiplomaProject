@@ -1,7 +1,7 @@
 forward(1)
 0
 set_dir_servo_angle(20)
-600
+1250
 set_dir_servo_angle(0)
 600
 set_dir_servo_angle(-20)
@@ -9,10 +9,10 @@ set_dir_servo_angle(-20)
 set_dir_servo_angle(0)
 1300
 set_dir_servo_angle(-20)
-600
+1275
 set_dir_servo_angle(0)
-600
+720
 set_dir_servo_angle(20)
-1423
+1323
 set_dir_servo_angle(0)
 100

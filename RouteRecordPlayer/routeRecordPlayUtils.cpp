@@ -41,7 +41,7 @@ void RouteRecordPlayer::play_command(string command_name, int miliseconds, optio
         if (command_arg)
         {
             robotVisionVoyager->set_dir_angle(command_arg.value());
-            if(miliseconds > 1200)
+            if(miliseconds > 1200 && (!avoiding.load()))
             {
                 if(20 <= command_arg.value())
                 {   
@@ -92,9 +92,12 @@ void RouteRecordPlayer::play_command(string command_name, int miliseconds, optio
         if (command_arg)
         {
             robotVisionVoyager->set_speed(command_arg.value());
-            tts_mutex.lock();
-            TextToSpeech::display_go_forward();
-            tts_mutex.unlock();
+            if(!avoiding.load())
+            {
+                tts_mutex.lock();
+                TextToSpeech::display_go_forward();
+                tts_mutex.unlock();
+            }
         }
         else
         {
@@ -107,9 +110,12 @@ void RouteRecordPlayer::play_command(string command_name, int miliseconds, optio
         if (command_arg)
         {
             robotVisionVoyager->set_speed(command_arg.value());
-            tts_mutex.lock();
-            TextToSpeech::display_go_backward();
-            tts_mutex.unlock();
+            if(!avoiding.load())
+            {
+                tts_mutex.lock();
+                TextToSpeech::display_go_backward();
+                tts_mutex.unlock();
+            }
         }
         else
         {
@@ -201,58 +207,58 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
 
                 while ((std::chrono::steady_clock::now() < end_time)) 
                 {   
-                    // if(ObstacleAvoidance::check_forward_safety())
-                    // {
-                    //     if((end_time - std::chrono::steady_clock::now()) > std::chrono::seconds(7))
-                    //     {
-                    //         std::chrono::duration<double> time_skipped = ObstacleAvoidance::obstacle_avoid();
-                    //         robotVisionVoyager->move_forward();
-                    //         end_time = end_time + std::chrono::duration_cast<std::chrono::steady_clock::duration>(time_skipped);
-                    //     }
-                    //     else
-                    //     {
-                    //         log_mutex.lock();
-                    //         logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Interrupted: Obstacle Detected! -> In this moment of route guiding the obstacle cannot be avoided! ---" << endl;
-                    //         logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Displaying acoustical warning ---" << endl;
-                    //         log_mutex.unlock();
-                    //         severe_error.store(true);
-                    //         error_type = SevereErrorType::IN_AIR;
-                    //         play_command("stop", 0);
-                    //         tts_mutex.lock();
-                    //         if(Language::EN == TextToSpeech::get_language())
-                    //         {   
-                    //             TextToSpeech::display_custom_message("In this moment of route guiding the obstacle cannot be avoided! \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
-                    //         }
-                    //         else
-                    //         {
-                    //             TextToSpeech::display_custom_message("În acest moment al rutei nu se poate ocoli obstacolul! \n\n\n Abandonare proces de ghidare! \n\n\n Contactați personalul clădirii!");
-                    //         }
-                    //         tts_mutex.unlock();
-                    //     }
-                    // }
+                    if(ObstacleAvoidance::check_forward_safety())
+                    {
+                        if((end_time - std::chrono::steady_clock::now()) > std::chrono::seconds(7))
+                        {
+                            std::chrono::duration<double> time_skipped = ObstacleAvoidance::obstacle_avoid();
+                            robotVisionVoyager->move_forward();
+                            end_time = end_time + std::chrono::duration_cast<std::chrono::steady_clock::duration>(time_skipped);
+                        }
+                        else
+                        {
+                            log_mutex.lock();
+                            logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Interrupted: Obstacle Detected! -> In this moment of route guiding the obstacle cannot be avoided! ---" << endl;
+                            logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Displaying acoustical warning ---" << endl;
+                            log_mutex.unlock();
+                            severe_error.store(true);
+                            error_type = SevereErrorType::IN_AIR;
+                            play_command("stop", 0);
+                            tts_mutex.lock();
+                            if(Language::EN == TextToSpeech::get_language())
+                            {   
+                                TextToSpeech::display_custom_message("In this moment of route guiding the obstacle cannot be avoided! \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
+                            }
+                            else
+                            {
+                                TextToSpeech::display_custom_message("În acest moment al rutei nu se poate ocoli obstacolul! \n\n\n Abandonare proces de ghidare! \n\n\n Contactați personalul clădirii!");
+                            }
+                            tts_mutex.unlock();
+                        }
+                    }
 
                     /* IMPORTANT: The threshold for IN AIR DETECTION must be calibrated before using this feature!
                      * It depends on the surface on which the robot moves! */
-                    // if(true == LineFollower::verify_is_in_air())
-                    // {
-                    //     log_mutex.lock();
-                    //     logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Interrupted: The robot is either in air or on the edge of something! ---" << endl;
-                    //     logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Displaying acoustical warning ---" << endl;
-                    //     log_mutex.unlock();
-                    //     severe_error.store(true);
-                    //     error_type = SevereErrorType::IN_AIR;
-                    //     play_command("stop", 0);
-                    //     tts_mutex.lock();
-                    //     if(Language::EN == TextToSpeech::get_language())
-                    //     {   
-                    //         TextToSpeech::display_custom_message("The robot is in the air or on the edge of something \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
-                    //     }
-                    //     else
-                    //     {
-                    //         TextToSpeech::display_custom_message("Robotul este în aer sau pe marginea unei prăpăstii! \n\n\n Abandonare proces de ghidare \n\n\n Contactați personalul clădirii!");
-                    //     }
-                    //     tts_mutex.unlock();
-                    // }
+                    if(true == LineFollower::verify_is_in_air())
+                    {
+                        log_mutex.lock();
+                        logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Interrupted: The robot is either in air or on the edge of something! ---" << endl;
+                        logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Displaying acoustical warning ---" << endl;
+                        log_mutex.unlock();
+                        severe_error.store(true);
+                        error_type = SevereErrorType::IN_AIR;
+                        play_command("stop", 0);
+                        tts_mutex.lock();
+                        if(Language::EN == TextToSpeech::get_language())
+                        {   
+                            TextToSpeech::display_custom_message("The robot is in the air or on the edge of something \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
+                        }
+                        else
+                        {
+                            TextToSpeech::display_custom_message("Robotul este în aer sau pe marginea unei prăpăstii! \n\n\n Abandonare proces de ghidare \n\n\n Contactați personalul clădirii!");
+                        }
+                        tts_mutex.unlock();
+                    }
 
                     if(severe_error.load())
                     {
@@ -331,6 +337,7 @@ SevereErrorType RouteRecordPlayer::check_motors_feedback()
 
 void RouteRecordPlayer::avoid_right()
 {
+    avoiding.store(true);
     ifstream Route_File(OBSTACLE_RIGHT_AVOID_FILE);
     string line;
 
@@ -418,6 +425,7 @@ void RouteRecordPlayer::avoid_right()
                     camera_condition.notify_all();
                     waiting_condition.notify_all();
                     speaking_condition.notify_all();
+                    avoiding.store(false);
                     return;
                 }
 
@@ -451,4 +459,5 @@ void RouteRecordPlayer::avoid_right()
             }
         }
     }
+    avoiding.store(false);
 }
