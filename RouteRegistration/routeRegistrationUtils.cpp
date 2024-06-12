@@ -183,6 +183,17 @@ void RouteRegistration::create_record_for_route()
         {
             int duration_in_miliseconds = extract_the_miliseconds_between_two_commands(prev_line, line);
             Record_File << prev_line.substr(28) << endl;
+            if(GuidingMode::LINE_FOLLOWER_MODE == guiding_mode)
+            {
+                if(duration_in_miliseconds < 100)
+                {
+                    duration_in_miliseconds = 2000;
+                }
+                else
+                {
+                    duration_in_miliseconds = int(0.8 * duration_in_miliseconds);
+                }
+            }
             Record_File << duration_in_miliseconds << endl;
             prev_line = line;
         }

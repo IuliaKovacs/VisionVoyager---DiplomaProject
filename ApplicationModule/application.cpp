@@ -318,10 +318,10 @@ void ApplicationModule::MODE_1_ROUTE_PLAYING(string route_path)
     thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, route_path);
     // thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
     thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
-    // thread speaking_thread(ApplicationModule::TASK_SPEAKING);
+    thread speaking_thread(ApplicationModule::TASK_SPEAKING);
     route_player_thread.join();
     safety_thread.join();
-    // speaking_thread.join();
+    speaking_thread.join();
     // voice_recognition_thread.join();
 }
 
@@ -329,12 +329,12 @@ void ApplicationModule::MODE_2_LINE_FOLLOWER()
 {
     guiding_mode = GuidingMode::LINE_FOLLOWER_MODE;
     string msg = "Atenție, pornim!! \n\n\n Voi începe să urmăresc linia";
-    // thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
+    thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
     thread line_follower_thread(ApplicationModule::TASK_LINE_FOLLOWING);
     thread speaking_thread(ApplicationModule::TASK_SPEAKING);
     // thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
     line_follower_thread.join();
-    // safety_thread.join();
+    safety_thread.join();
     speaking_thread.join();
     // voice_recognition_thread.join();
 }

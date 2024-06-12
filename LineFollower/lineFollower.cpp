@@ -48,63 +48,60 @@ void LineFollower::follow_line()
     State current_state = State::UNKNOWN;
     State last_direction = State::UNKNOWN;
     std::chrono::time_point<std::chrono::steady_clock> direction_timer;
-    /* center direction servo before starting */
-    robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
-    RouteRegistration::register_current_move("set_dir_servo_angle", robotVisionVoyager->get_dir_angle());
-    robotVisionVoyager->set_speed(1);
     robotVisionVoyager->move_forward();
     TextToSpeech::display_go_forward();
+    RouteRegistration::register_current_move("forward", 1);
 
     while(true)
     {   
 
-        // if(ObstacleAvoidance::check_forward_safety())
-        // {
-        //     if(get_line_status())
-        //     {
-        //         (void)ObstacleAvoidance::obstacle_avoid();
-        //     }
-        //     else 
-        //     {
-        //         log_mutex.lock();
-        //         logFile << log_time() << LOG_THREAD_LINE_FOLLOWER_PREFIX << " --- Line Follow Interrupted: Obstacle Detected! -> In this moment of route guiding the obstacle cannot be avoided! ---" << endl;
-        //         logFile << log_time() << LOG_THREAD_LINE_FOLLOWER_PREFIX << " --- Displaying acoustical warning ---" << endl;
-        //         log_mutex.unlock();
-        //         severe_error.store(true);
-        //         error_type = SevereErrorType::ROUTE_ERROR;
-        //         tts_mutex.lock();
-        //         if(Language::EN == TextToSpeech::get_language())
-        //         {   
-        //             TextToSpeech::display_custom_message("In this moment of route guiding the obstacle cannot be avoided! \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
-        //         }
-        //         else
-        //         {
-        //             TextToSpeech::display_custom_message("În acest moment al rutei nu se poate ocoli obstacolul! \n\n\n Abandonare proces de ghidare! \n\n\n Contactați personalul clădirii!");
-        //         }
-        //         tts_mutex.unlock();
-        //     }
-        // }
+        if(ObstacleAvoidance::check_forward_safety())
+        {
+            if(get_line_status())
+            {
+                (void)ObstacleAvoidance::obstacle_avoid();
+            }
+            else 
+            {
+                log_mutex.lock();
+                logFile << log_time() << LOG_THREAD_LINE_FOLLOWER_PREFIX << " --- Line Follow Interrupted: Obstacle Detected! -> In this moment of route guiding the obstacle cannot be avoided! ---" << endl;
+                logFile << log_time() << LOG_THREAD_LINE_FOLLOWER_PREFIX << " --- Displaying acoustical warning ---" << endl;
+                log_mutex.unlock();
+                severe_error.store(true);
+                error_type = SevereErrorType::ROUTE_ERROR;
+                tts_mutex.lock();
+                if(Language::EN == TextToSpeech::get_language())
+                {   
+                    TextToSpeech::display_custom_message("In this moment of route guiding the obstacle cannot be avoided! \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
+                }
+                else
+                {
+                    TextToSpeech::display_custom_message("În acest moment al rutei nu se poate ocoli obstacolul! \n\n\n Abandonare proces de ghidare! \n\n\n Contactați personalul clădirii!");
+                }
+                tts_mutex.unlock();
+            }
+        }
 
-        // if (verify_is_in_air())
-        // {   
-        //     robotVisionVoyager->stop();
-        //     log_mutex.lock();
-        //     logFile << log_time() << LOG_THREAD_LINE_FOLLOWER_PREFIX << " --- Route Interrupted: The robot is either in air or on the edge of something! ---" << endl;
-        //     logFile << log_time() << LOG_THREAD_LINE_FOLLOWER_PREFIX << " --- Displaying acoustical warning ---" << endl;
-        //     log_mutex.unlock();
-        //     severe_error.store(true);
-        //     error_type = SevereErrorType::IN_AIR;  
-        //     tts_mutex.lock();
-        //     if(Language::EN == TextToSpeech::get_language())
-        //     {   
-        //         TextToSpeech::display_custom_message("The robot is in the air or on the edge of something \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
-        //     }
-        //     else
-        //     {
-        //         TextToSpeech::display_custom_message("Robotul este în aer sau pe marginea unei prăpăstii! \n\n\n Abandonare proces de ghidare \n\n\n Contactați personalul clădirii!");
-        //     }
-        //     tts_mutex.unlock();
-        // }
+        if (verify_is_in_air())
+        {   
+            robotVisionVoyager->stop();
+            log_mutex.lock();
+            logFile << log_time() << LOG_THREAD_LINE_FOLLOWER_PREFIX << " --- Route Interrupted: The robot is either in air or on the edge of something! ---" << endl;
+            logFile << log_time() << LOG_THREAD_LINE_FOLLOWER_PREFIX << " --- Displaying acoustical warning ---" << endl;
+            log_mutex.unlock();
+            severe_error.store(true);
+            error_type = SevereErrorType::IN_AIR;  
+            tts_mutex.lock();
+            if(Language::EN == TextToSpeech::get_language())
+            {   
+                TextToSpeech::display_custom_message("The robot is in the air or on the edge of something \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
+            }
+            else
+            {
+                TextToSpeech::display_custom_message("Robotul este în aer sau pe marginea unei prăpăstii! \n\n\n Abandonare proces de ghidare \n\n\n Contactați personalul clădirii!");
+            }
+            tts_mutex.unlock();
+        }
 
         /* check for severe error. e.g. robot is in the air, motor issue etc */
         if(severe_error.load())
@@ -187,9 +184,8 @@ void LineFollower::follow_line()
                 logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " Turn right " << endl;
                 log_mutex.unlock(); 
                 TextToSpeech::display_turn_right();
-                // robotVisionVoyager->stop();
-                // TextToSpeech::display_custom_message("Mergi la dreapta");
-                // robotVisionVoyager->move_forward();
+                RouteRegistration::register_current_move("set_dir_servo_angle", DIR_MAX_LF);
+                RouteRegistration::register_current_move("set_dir_servo_angle", DEFAULT_WHEEL_ANGLE);
             }
             else if(State::RIGHT == current_state)
             {   
@@ -197,9 +193,8 @@ void LineFollower::follow_line()
                 logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " Turn left " << endl;
                 log_mutex.unlock();
                 TextToSpeech::display_turn_left();
-                // robotVisionVoyager->stop();
-                // TextToSpeech::display_custom_message("Mergi la stanga");
-                // robotVisionVoyager->move_forward();
+                RouteRegistration::register_current_move("set_dir_servo_angle", DIR_MIN_LF);
+                RouteRegistration::register_current_move("set_dir_servo_angle", DEFAULT_WHEEL_ANGLE);
             }
             last_direction = State::UNKNOWN;
         }
@@ -242,13 +237,12 @@ void LineFollower::search_line()
     {   
         robotVisionVoyager->turn_right_max();
         /* search right */
-        RouteRegistration::register_current_move("set_dir_servo_angle", robotVisionVoyager->get_dir_angle());
     }
     else if (last_state == State::RIGHT)
     {
         robotVisionVoyager->turn_left_max();
         /* search left */
-        RouteRegistration::register_current_move("set_dir_servo_angle", robotVisionVoyager->get_dir_angle());
+        // RouteRegistration::register_current_move("set_dir_servo_angle", robotVisionVoyager->get_dir_angle());
     }
         
 }
@@ -305,25 +299,21 @@ void LineFollower::execute_move(State current_state)
     if (current_state == State::LEFT)
     {
         robotVisionVoyager->turn_right_max();
-        RouteRegistration::register_current_move("set_dir_servo_angle", robotVisionVoyager->get_dir_angle());
-        logFile << "LEFT" << endl;
+        // RouteRegistration::register_current_move("set_dir_servo_angle", robotVisionVoyager->get_dir_angle());
     }
     else if (current_state == State::RIGHT)
     {
         robotVisionVoyager->turn_left_max();
-        RouteRegistration::register_current_move("set_dir_servo_angle", robotVisionVoyager->get_dir_angle());
-        logFile << "RIGHT" << endl;
+        // RouteRegistration::register_current_move("set_dir_servo_angle", robotVisionVoyager->get_dir_angle());
     }
     else if (current_state == State::FORWARD)
     {
         robotVisionVoyager->set_dir_angle(DEFAULT_WHEEL_ANGLE);
-        RouteRegistration::register_current_move("set_dir_servo_angle", robotVisionVoyager->get_dir_angle());
+        // RouteRegistration::register_current_move("set_dir_servo_angle", robotVisionVoyager->get_dir_angle());
         RouteRegistration::set_moving_state(MovingState::MOVING_FORWARD);
-        logFile << "FORWARD" << endl;
     }
     else
     {   
-        logFile << "UNKNOWN" << endl;
         search_line();  
     }
 }

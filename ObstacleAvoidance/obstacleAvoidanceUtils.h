@@ -9,6 +9,7 @@
 #include <string>
 
 #define DANGER_DISTANCE_THRESHOLD 35
+#define SEVERE_DISTANCE_THRESHOLD 15
 
 
 enum class Direction

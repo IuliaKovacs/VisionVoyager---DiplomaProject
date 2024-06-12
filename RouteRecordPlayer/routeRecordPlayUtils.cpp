@@ -201,35 +201,35 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
 
                 while ((std::chrono::steady_clock::now() < end_time)) 
                 {   
-                    if(ObstacleAvoidance::check_forward_safety())
-                    {
-                        if((end_time - std::chrono::steady_clock::now()) > std::chrono::seconds(7))
-                        {
-                            std::chrono::duration<double> time_skipped = ObstacleAvoidance::obstacle_avoid();
-                            robotVisionVoyager->move_forward();
-                            end_time = end_time + std::chrono::duration_cast<std::chrono::steady_clock::duration>(time_skipped);
-                        }
-                        else
-                        {
-                            log_mutex.lock();
-                            logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Interrupted: Obstacle Detected! -> In this moment of route guiding the obstacle cannot be avoided! ---" << endl;
-                            logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Displaying acoustical warning ---" << endl;
-                            log_mutex.unlock();
-                            severe_error.store(true);
-                            error_type = SevereErrorType::IN_AIR;
-                            play_command("stop", 0);
-                            tts_mutex.lock();
-                            if(Language::EN == TextToSpeech::get_language())
-                            {   
-                                TextToSpeech::display_custom_message("In this moment of route guiding the obstacle cannot be avoided! \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
-                            }
-                            else
-                            {
-                                TextToSpeech::display_custom_message("În acest moment al rutei nu se poate ocoli obstacolul! \n\n\n Abandonare proces de ghidare! \n\n\n Contactați personalul clădirii!");
-                            }
-                            tts_mutex.unlock();
-                        }
-                    }
+                    // if(ObstacleAvoidance::check_forward_safety())
+                    // {
+                    //     if((end_time - std::chrono::steady_clock::now()) > std::chrono::seconds(7))
+                    //     {
+                    //         std::chrono::duration<double> time_skipped = ObstacleAvoidance::obstacle_avoid();
+                    //         robotVisionVoyager->move_forward();
+                    //         end_time = end_time + std::chrono::duration_cast<std::chrono::steady_clock::duration>(time_skipped);
+                    //     }
+                    //     else
+                    //     {
+                    //         log_mutex.lock();
+                    //         logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Interrupted: Obstacle Detected! -> In this moment of route guiding the obstacle cannot be avoided! ---" << endl;
+                    //         logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Displaying acoustical warning ---" << endl;
+                    //         log_mutex.unlock();
+                    //         severe_error.store(true);
+                    //         error_type = SevereErrorType::IN_AIR;
+                    //         play_command("stop", 0);
+                    //         tts_mutex.lock();
+                    //         if(Language::EN == TextToSpeech::get_language())
+                    //         {   
+                    //             TextToSpeech::display_custom_message("In this moment of route guiding the obstacle cannot be avoided! \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
+                    //         }
+                    //         else
+                    //         {
+                    //             TextToSpeech::display_custom_message("În acest moment al rutei nu se poate ocoli obstacolul! \n\n\n Abandonare proces de ghidare! \n\n\n Contactați personalul clădirii!");
+                    //         }
+                    //         tts_mutex.unlock();
+                    //     }
+                    // }
 
                     /* IMPORTANT: The threshold for IN AIR DETECTION must be calibrated before using this feature!
                      * It depends on the surface on which the robot moves! */

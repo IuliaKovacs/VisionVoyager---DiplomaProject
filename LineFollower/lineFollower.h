@@ -6,8 +6,8 @@
 
 
 #define LINE_THRESHOLD 80
-#define STOP_VALUE 200
-#define IN_AIR_THRESHOLD 40  /* last value 70 */
+#define STOP_VALUE 180
+#define IN_AIR_THRESHOLD 10  /* last value 70 */
 #define TURN_THRESHOLD 1400
 
 
