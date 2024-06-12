@@ -370,48 +370,47 @@ void RouteRecordPlayer::avoid_right()
 
             while ((std::chrono::steady_clock::now() < end_time)) 
             {   
-                // if(distanta f mica de un obiect)
-                // {
-                //     log_mutex.lock();
-                //     logFile << log_time() << "[Obstacle Avoiding]" << " --- Route Interrupted: Obstacle Detected! -> In this moment of route guiding the obstacle cannot be avoided! ---" << endl;
-                //     log_mutex.unlock();
-                //     severe_error.store(true);
-                //     error_type = SevereErrorType::ROUTE_ERROR;
-                //     play_command("stop", 0);
-                //     tts_mutex.lock();
-                //     if(Language::EN == TextToSpeech::get_language())
-                //     {   
-                //         TextToSpeech::display_custom_message("In this moment of route guiding the obstacle cannot be avoided! \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
-                //     }
-                //     else
-                //     {
-                //         TextToSpeech::display_custom_message("În acest moment al rutei nu se poate ocoli obstacolul! \n\n\n Abandonare proces de ghidare! \n\n\n Contactați personalul clădirii!");
-                //     }
-                //     tts_mutex.unlock();
-                // }
+                if(ObstacleAvoidance::check_severe_danger())
+                {
+                    log_mutex.lock();
+                    logFile << log_time() << "[Obstacle Avoiding]" << " --- Route Interrupted: Obstacle Detected! -> In this moment of route guiding the obstacle cannot be avoided! ---" << endl;
+                    log_mutex.unlock();
+                    severe_error.store(true);
+                    error_type = SevereErrorType::ROUTE_ERROR;
+                    tts_mutex.lock();
+                    if(Language::EN == TextToSpeech::get_language())
+                    {   
+                        TextToSpeech::display_custom_message("In this moment of route guiding the obstacle cannot be avoided! \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
+                    }
+                    else
+                    {
+                        TextToSpeech::display_custom_message("În acest moment al rutei nu se poate ocoli obstacolul! \n\n\n Abandonare proces de ghidare! \n\n\n Contactați personalul clădirii!");
+                    }
+                    tts_mutex.unlock();
+                }
 
                 /* IMPORTANT: The threshold for IN AIR DETECTION must be calibrated before using this feature!
                     * It depends on the surface on which the robot moves! */
-                // if(true == LineFollower::verify_is_in_air())
-                // {
-                //     log_mutex.lock();
-                //     logFile << log_time() << "[Obstacle Avoidance]" << " --- Route Interrupted: The robot is either in air or on the edge of something! ---" << endl;
-                //     logFile << log_time() << "[Obstacle Avoidance]" << " --- Displaying acoustical warning ---" << endl;
-                //     log_mutex.unlock();
-                //     severe_error.store(true);
-                //     error_type = SevereErrorType::IN_AIR;
-                //     play_command("stop", 0);
-                //     tts_mutex.lock();
-                //     if(Language::EN == TextToSpeech::get_language())
-                //     {   
-                //         TextToSpeech::display_custom_message("The robot is in the air or on the edge of something \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
-                //     }
-                //     else
-                //     {
-                //         TextToSpeech::display_custom_message("Robotul este în aer sau pe marginea unei prăpăstii! \n\n\n Abandonare proces de ghidare \n\n\n Contactați personalul clădirii!");
-                //     }
-                //     tts_mutex.unlock();
-                // }
+                if(true == LineFollower::verify_is_in_air())
+                {
+                    log_mutex.lock();
+                    logFile << log_time() << "[Obstacle Avoidance]" << " --- Route Interrupted: The robot is either in air or on the edge of something! ---" << endl;
+                    logFile << log_time() << "[Obstacle Avoidance]" << " --- Displaying acoustical warning ---" << endl;
+                    log_mutex.unlock();
+                    severe_error.store(true);
+                    error_type = SevereErrorType::IN_AIR;
+                    play_command("stop", 0);
+                    tts_mutex.lock();
+                    if(Language::EN == TextToSpeech::get_language())
+                    {   
+                        TextToSpeech::display_custom_message("The robot is in the air or on the edge of something \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
+                    }
+                    else
+                    {
+                        TextToSpeech::display_custom_message("Robotul este în aer sau pe marginea unei prăpăstii! \n\n\n Abandonare proces de ghidare \n\n\n Contactați personalul clădirii!");
+                    }
+                    tts_mutex.unlock();
+                }
 
                 if(severe_error.load())
                 {

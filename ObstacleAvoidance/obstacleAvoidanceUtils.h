@@ -33,6 +33,7 @@ public:
 
     static void set_robot(VisionVoyager* robot);
     static bool check_forward_safety();
+    static bool check_severe_danger();
     static std::chrono::duration<double> obstacle_avoid();
     static void get_ultrasonic_data();
     /* Function that should compute the moves in order to return back on the route we want to pursue */

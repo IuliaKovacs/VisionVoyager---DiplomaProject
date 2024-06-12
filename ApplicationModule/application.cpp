@@ -22,8 +22,8 @@ bool ApplicationModule::TASK_LINE_FOLLOWING()
     // {
     //     RouteRegistration::set_register_enabled_true();
     // }
-    // TextToSpeech::display_custom_message("Rostește un cuvânt de activare ca să pornim!");
-    // VoiceRecognition::loop_recognition_for_start();
+    TextToSpeech::display_custom_message("Rostește un cuvânt de activare ca să pornim!");
+    VoiceRecognition::loop_recognition_for_start();
     RouteRegistration::set_register_enabled_true();
     LineFollower::follow_line();
     return true;
@@ -332,9 +332,9 @@ void ApplicationModule::MODE_2_LINE_FOLLOWER()
     thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
     thread line_follower_thread(ApplicationModule::TASK_LINE_FOLLOWING);
     thread speaking_thread(ApplicationModule::TASK_SPEAKING);
-    // thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
+    thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
     line_follower_thread.join();
     safety_thread.join();
     speaking_thread.join();
-    // voice_recognition_thread.join();
+    voice_recognition_thread.join();
 }

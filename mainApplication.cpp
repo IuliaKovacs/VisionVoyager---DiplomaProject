@@ -289,11 +289,11 @@ int main(int argc, char *argv[])
 
     /* Thread testing part - route player */
     // ApplicationModule::MODE_1_ROUTE_PLAYING("../RouteDatabase/Section A/Secretariat AC");
-    // ApplicationModule::MODE_1_ROUTE_PLAYING("../RouteDatabase/Section B/Rectorat");
+    ApplicationModule::MODE_1_ROUTE_PLAYING("../RouteDatabase/Section B/Rectorat");
 
     /* Thread testing part - line follower */
-    robot.set_direction_limits(DIR_MIN_LF, DIR_MAX_LF);
-    ApplicationModule::MODE_2_LINE_FOLLOWER();
+    // robot.set_direction_limits(DIR_MIN_LF, DIR_MAX_LF);
+    // ApplicationModule::MODE_2_LINE_FOLLOWER();
 
     terminate_main_app();
 

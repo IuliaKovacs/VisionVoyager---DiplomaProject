@@ -61,6 +61,36 @@ bool ObstacleAvoidance::check_forward_safety()
 }
 
 
+bool ObstacleAvoidance::check_severe_danger()
+{
+    static int counter = 0;
+
+    get_ultrasonic_data();
+    if(SEVERE_DISTANCE_THRESHOLD > ultrasonic_data)
+    {
+        counter++;
+    }
+    else
+    {
+        counter = 0;
+    }
+
+    if((DANGER_DISTANCE_THRESHOLD > ultrasonic_data) && (-1 != ultrasonic_data) && (counter >= 3))
+    {
+        robotVisionVoyager->stop();
+        start_tts_avoid = std::chrono::steady_clock::now();
+        log_mutex.lock();
+        logFile << log_time() << "[Obstacle Avoiding] Severe Danger -> Obstacle Detected!" << endl;
+        log_mutex.unlock();
+        tts_mutex.lock();
+        TextToSpeech::display_custom_message("Stop! Atenție! Nou Obstacol Detectat!");
+        tts_mutex.unlock();
+        return true;
+    }
+    return false;
+}
+
+
 std::chrono::duration<double> ObstacleAvoidance::obstacle_avoid()
 {
     
