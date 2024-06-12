@@ -396,9 +396,15 @@ void TextToSpeech::initialize_route_display_files_EN()
 
 void TextToSpeech::display_turn_right()
 {   
-
     std::lock_guard<std::mutex> lock(speak_mutex);
-    global_message = "turn right";
+    if(Language::EN == language)
+    {
+        global_message = "turn right";
+    }
+    else
+    {
+        global_message = "mergi la dreapta"; 
+    }
     speak.store(true);
     speaking_condition.notify_all();
 }
@@ -407,42 +413,52 @@ void TextToSpeech::display_turn_right()
 void TextToSpeech::display_turn_left()
 {   
     std::lock_guard<std::mutex> lock(speak_mutex);
-    global_message = "turn left";
+    if(Language::EN == language)
+    {
+        global_message = "turn left";
+    }
+    else
+    {
+        global_message = "mergi la stânga"; 
+    }
+    speak.store(true);
+    speaking_condition.notify_all();
+}
+
+void TextToSpeech::display_go_forward()
+{   
+    std::lock_guard<std::mutex> lock(speak_mutex);
+    if(Language::EN == language)
+    {
+        global_message = "go forward";
+    }
+    else
+    {
+        global_message = "mergi în față"; 
+    }
+    speak.store(true);
+    speaking_condition.notify_all();
+}
+
+void TextToSpeech::display_go_backward()
+{   
+    std::lock_guard<std::mutex> lock(speak_mutex);
+    if(Language::EN == language)
+    {
+        global_message = "go backward";
+    }
+    else
+    {
+        global_message = "mergi în spate"; 
+    }
     speak.store(true);
     speaking_condition.notify_all();
 }
 
 
-void TextToSpeech::display_step_left()
-{   
-    string command = "espeak -v " + string(CHOOSE_LANGUAGE(Language::EN)) + " -s 150 " + "\" move one step right \"";
-    system(command.c_str());
-}
-
-
-void TextToSpeech::display_step_right()
-{   
-    string command = "espeak -v " + string(CHOOSE_LANGUAGE(Language::EN)) + " -s 150 " + "\" move one step left \"";
-    system(command.c_str());
-}
-
-
-void TextToSpeech::display_go_forward()
-{   
-    string command = "espeak -v " + string(CHOOSE_LANGUAGE(Language::EN)) + " -s 150 " + "\" go forward \"";
-    system(command.c_str());
-}
-
-void TextToSpeech::display_go_backward()
-{   
-    string command = "espeak -v " + string(CHOOSE_LANGUAGE(Language::EN)) + " -s 150 " + "\" go backward \"";
-    system(command.c_str());
-}
-
-
 void TextToSpeech::display_stop()
 {   
-    string command = "espeak -v " + string(CHOOSE_LANGUAGE(Language::EN)) + " -s 150 " + "\" stop \"";
+    string command = "espeak -v " + string(CHOOSE_LANGUAGE(get_language())) + " -s 150 " + "\" stop \"";
     system(command.c_str());
 }
 
@@ -450,7 +466,17 @@ void TextToSpeech::display_stop()
 
 void TextToSpeech::display_destination()
 {   
-    string command = "espeak -v " + string(CHOOSE_LANGUAGE(Language::EN)) + " -s 150 " + "\" destination reached! \"";
+    string command;
+    if(Language::EN == language)
+    {
+        command = "espeak -v " + string(CHOOSE_LANGUAGE(Language::EN)) + " -s 150 " + "\" destination reached! \"";
+    }
+    else
+    {
+        command = "espeak -v " + string(CHOOSE_LANGUAGE(Language::RO)) + " -s 150 " + "\" ai ajuns la destinație! \"";
+    }
+    speak.store(true);
+    speaking_condition.notify_all();
     system(command.c_str());
 }
 

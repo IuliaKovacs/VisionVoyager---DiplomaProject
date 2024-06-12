@@ -6,8 +6,9 @@
 
 
 #define LINE_THRESHOLD 80
-#define STOP_VALUE 250
+#define STOP_VALUE 200
 #define IN_AIR_THRESHOLD 40  /* last value 70 */
+#define TURN_THRESHOLD 1400
 
 
 using namespace std;

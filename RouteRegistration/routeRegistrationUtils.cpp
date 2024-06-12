@@ -64,6 +64,11 @@ bool RouteRegistration::create_route_file()
 
 void RouteRegistration::end_registration()
 {   
+    if(false == register_enabled)
+    {
+        return;
+    }
+
     register_current_move("stop");
     delete_duplicate_line_commands();
     create_record_for_route();

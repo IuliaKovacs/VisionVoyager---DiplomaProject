@@ -8,11 +8,3 @@ for the Secretariat ETC say "ONE"
 
 
 
-Route 2. To the Secretariat AC.
-
-
-for the Secretariat AC say "TWO"
-
-
-
-

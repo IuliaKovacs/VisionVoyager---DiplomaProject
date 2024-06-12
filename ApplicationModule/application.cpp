@@ -15,7 +15,16 @@ using namespace std;
 using namespace OpenXLSX;
 
 bool ApplicationModule::TASK_LINE_FOLLOWING()
-{
+{   
+    // TextToSpeech::display_custom_message("Rostește ONE dacă vrei să înregistrăm traseul");
+    // string option = VoiceRecognition::loop_listening_for_choices();
+    // if("ONE" == option)
+    // {
+    //     RouteRegistration::set_register_enabled_true();
+    // }
+    // TextToSpeech::display_custom_message("Rostește un cuvânt de activare ca să pornim!");
+    // VoiceRecognition::loop_recognition_for_start();
+    RouteRegistration::set_register_enabled_true();
     LineFollower::follow_line();
     return true;
 }
@@ -270,9 +279,7 @@ void ApplicationModule::increment_excel_route_count(string route_path)
 void ApplicationModule::capture_photo_and_send_to_process()
 {
     string source_file =  CameraModule::capture_image(CAPTURED_IMAGES_PATH);
-    log_mutex.lock();
-    // logFile << log_time() << LOG_THREAD_CAMERA_PREFIX << " Took a photo " << endl;
-    log_mutex.unlock();
+    logFile << log_time() << LOG_THREAD_CAMERA_PREFIX << " Took a photo " << endl;
     string destination_file = TEMP_CAPTURED_IMG;
     ifstream source_stream(source_file, std::ios::binary);
     ofstream destination_stream(destination_file, std::ios::binary);
@@ -281,9 +288,7 @@ void ApplicationModule::capture_photo_and_send_to_process()
     destination_stream.close();
     // process image and display message if it is a recognized person in it 
     int result = CameraModule::recognize_face(TEMP_CAPTURED_IMG);
-    log_mutex.lock();
     // logFile << log_time() << LOG_THREAD_CAMERA_PREFIX << " Label result: s" << result << endl;
-    log_mutex.unlock();
 
     if(-1 != result)
     {
@@ -324,12 +329,12 @@ void ApplicationModule::MODE_2_LINE_FOLLOWER()
 {
     guiding_mode = GuidingMode::LINE_FOLLOWER_MODE;
     string msg = "Atenție, pornim!! \n\n\n Voi începe să urmăresc linia";
-    thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
+    // thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
     thread line_follower_thread(ApplicationModule::TASK_LINE_FOLLOWING);
     thread speaking_thread(ApplicationModule::TASK_SPEAKING);
-    thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
+    // thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
     line_follower_thread.join();
-    safety_thread.join();
+    // safety_thread.join();
     speaking_thread.join();
-    voice_recognition_thread.join();
+    // voice_recognition_thread.join();
 }

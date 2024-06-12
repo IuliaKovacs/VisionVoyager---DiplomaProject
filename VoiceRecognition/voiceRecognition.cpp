@@ -22,23 +22,24 @@ bool VoiceRecognition::start_flag = false;
 
 
 char* extract_first_word(const char* hyp) {
-    if (hyp == nullptr) {
+    if (hyp == nullptr) 
+    {
         return nullptr;
     }
 
-    // Determina lungimea substringului până la întâlnirea primului spațiu sau sfârșitul șirului
     size_t length = 0;
-    while (hyp[length] != '\0' && hyp[length] != ' ') {
+    while (hyp[length] != '\0' && hyp[length] != ' ') 
+    {
         length++;
     }
 
-    // Creează un nou array de caractere pentru substring
-    char* substring = new char[length + 1]; // +1 pentru terminatorul nul
-    for (size_t i = 0; i < length; ++i) {
+    char* substring = new char[length + 1]; 
+
+    for (size_t i = 0; i < length; ++i) 
+    {
         substring[i] = hyp[i];
     }
-    substring[length] = '\0'; // Adăugăm terminatorul nul la sfârșit
-
+    substring[length] = '\0'; 
     return substring;
 }
 
@@ -158,7 +159,7 @@ void VoiceRecognition::loop_recognition_for_start()
                 ps_end_utt(decoder);
                 if ((hyp = ps_get_hyp(decoder, NULL)) != NULL)
                 {   
-                    logFile << log_time() << "PARTIAL RESULT: " << hyp << endl;
+                    logFile << log_time() << LOG_THREAD_VOICE_PREFIX << "PARTIAL RESULT: " << hyp << endl;
                     if ((strstr("start",hyp) == 0) || (strstr("hello",hyp) == 0) || (strstr("go",hyp) == 0)) 
                     {
                         start_flag = true;
@@ -275,7 +276,7 @@ string VoiceRecognition::timed_listening_recognition_for_options()
     if (ps_get_hyp(decoder, NULL) != NULL)
     {
         hyp = ps_get_hyp(decoder, NULL);
-        logFile << log_time() << "PARTIAL RESULT: \"" << hyp << "\"" << endl;
+        logFile << log_time() << LOG_THREAD_VOICE_PREFIX << "PARTIAL RESULT: \"" << hyp << "\"" << endl;
         
         if (strcmp("one",extract_first_word(hyp)) == 0) 
         {
@@ -387,7 +388,7 @@ void VoiceRecognition::loop_listening_for_wait()
                 ps_end_utt(decoder);
                 if ((hyp = ps_get_hyp(decoder, NULL)) != NULL)
                 {
-                    logFile << log_time() << "PARTIAL RESULT: " << hyp << endl;
+                    logFile << log_time() << LOG_THREAD_VOICE_PREFIX << "PARTIAL RESULT: " << hyp << endl;
                     if ((strstr("stop",hyp) == 0) || (strstr("wait",hyp) == 0)) 
                     {
                         wait_flag = true;
@@ -504,12 +505,12 @@ string VoiceRecognition::loop_listening_for_choices()
                 if ((hyp = ps_get_hyp(decoder, NULL)) != NULL)
                 {   
                     log_mutex.lock();
-                    logFile << log_time() << "PARTIAL RESULT: \"" << hyp << "\"" << endl;
+                    logFile << log_time() << LOG_THREAD_VOICE_PREFIX << "PARTIAL RESULT: \"" << hyp << "\"" << endl;
                     log_mutex.unlock();
                     if (strcmp("one",extract_first_word(hyp)) == 0) 
                     {   
                         log_mutex.lock();
-                        logFile << log_time() << "ONE" << endl;
+                        logFile << log_time() << LOG_THREAD_VOICE_PREFIX << "ONE" << endl;
                         recognized_word = "ONE"; 
                         log_mutex.unlock();
                         break;
@@ -517,7 +518,7 @@ string VoiceRecognition::loop_listening_for_choices()
                     else if (strcmp("two",extract_first_word(hyp)) == 0)
                     {
                         log_mutex.lock();
-                        logFile << log_time() << "TWO" << endl;
+                        logFile << log_time() << LOG_THREAD_VOICE_PREFIX << "TWO" << endl;
                         log_mutex.unlock();
                         recognized_word = "TWO";
                         break;
@@ -525,7 +526,7 @@ string VoiceRecognition::loop_listening_for_choices()
                     else if (strcmp("three",extract_first_word(hyp)) == 0)
                     {
                         log_mutex.lock();
-                        logFile << log_time() << "THREE" << endl;
+                        logFile << log_time() << LOG_THREAD_VOICE_PREFIX << "THREE" << endl;
                         log_mutex.unlock();
                         recognized_word = "THREE";
                         break;

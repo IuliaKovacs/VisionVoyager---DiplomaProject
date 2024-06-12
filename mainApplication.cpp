@@ -186,9 +186,11 @@ int main(int argc, char *argv[])
 
     // if(true != Admin_Mode)
     // {
-    //     // thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
+    //     thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
 
+    //     log_mutex.lock();
     //     logFile << log_time() << "[MainApp] --- Starting Normal User Mode ---" << endl;
+    //     log_mutex.unlock();
 
     //     TextToSpeech::display_hello_message();
 
@@ -276,7 +278,7 @@ int main(int argc, char *argv[])
     //             ApplicationModule::MODE_1_ROUTE_PLAYING(route_path);
     //         }
     //     }
-    //     // camera_thread.join();
+    //     camera_thread.join();
     // }
 
     
@@ -285,13 +287,13 @@ int main(int argc, char *argv[])
 
 
     /* Thread testing part - route player */
-    // ApplicationModule::MODE_1_ROUTE_PLAYING("../RouteDatabase/Section C/Secretariat AC");
+    // ApplicationModule::MODE_1_ROUTE_PLAYING("../RouteDatabase/Section A/Secretariat");
     // RouteRecordPlayer::play_route_conditioned("../RouteDatabase/Section A/Secretariat.txt");
-    RouteRecordPlayer::play_route_conditioned("../RouteDatabase/Section C/Secretariat AC.txt");
+    // RouteRecordPlayer::play_route_conditioned("../RouteDatabase/Section C/Secretariat AC.txt");
 
     /* Thread testing part - line follower */
-
-    // ApplicationModule::MODE_2_LINE_FOLLOWER();
+    robot.set_direction_limits(DIR_MIN_LF, DIR_MAX_LF);
+    ApplicationModule::MODE_2_LINE_FOLLOWER();
 
     terminate_main_app();
 
