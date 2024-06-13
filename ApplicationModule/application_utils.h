@@ -64,6 +64,9 @@ extern atomic<bool> speak;
 extern string global_message;
 extern GuidingMode guiding_mode;
 
+extern const char* vv_art;
+extern const char* signiture;
+
 string log_time();
 
 #endif //APPLICATION_UTILS_H

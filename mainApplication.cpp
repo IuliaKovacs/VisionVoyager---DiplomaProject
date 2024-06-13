@@ -29,6 +29,31 @@ string global_message;
 GuidingMode guiding_mode = GuidingMode::NO_GUIDING;
 
 
+const char* vv_art = R"(                                                                                                                        
+
+  _   __   _         _                   _   __                                    
+ | | / /  (_)  ___  (_) ___   ___       | | / / ___   __ __ ___ _  ___ _ ___   ____
+ | |/ /  / /  (_-< / / / _ \ / _ \      | |/ / / _ \ / // // _ `/ / _ `// -_) / __/
+ |___/  /_/  /___//_/  \___//_//_/      |___/  \___/ \_, / \_,_/  \_, / \__/ /_/   
+                                                    /___/        /___/             
+                                          
+)";
+
+
+const char* signiture = R"(                                                                                                                        
+
+
+     ________     _____        _  _          _  __                             
+    /  ____  \   |_   _|      | |(_)        | |/ /                             
+   /  / ___|  \    | |  _   _ | | _   __ _  | ' /  ___ __   __ __ _   ___  ___ 
+  |  | |       |   | | | | | || || | / _` | |  <  / _ \\ \ / // _` | / __|/ __|
+  |  | |___    |  _| |_| |_| || || || (_| | | . \| (_) |\ V /| (_| || (__ \__ \
+   \  \____|  /  |_____|\__,_||_||_| \__,_| |_|\_\\___/  \_/  \__,_| \___||___/
+    \________/                                                                 
+                                                                                                                  
+)";
+
+
 string log_time()
 {
     time_t now = time(nullptr);
@@ -72,6 +97,7 @@ void initialize_log_file()
 void initilize_main_app()
 {   
     initialize_log_file();
+    logFile << vv_art;
     logFile << " - START OF MAIN APPLICATION  " << log_time() << endl << endl;
     KeyboardControl::initialize_keyboard_control();
     RouteRegistration::initialize_route_registration();
@@ -86,6 +112,7 @@ void terminate_main_app()
 {
     KeyboardControl::shutdown_keyboard_control();
     logFile << endl << endl << " - END OF MAIN APPLICATION  " << log_time() << endl;
+    logFile << endl << endl << signiture;
     logFile.close();
 }
 
