@@ -1,9 +1,17 @@
 Now that you selected the building section. You must select a route from the following: 
 
-Route 1. To the Rectorat.
+Route 1. To the B527.
 
 
-for the Rectorat say "ONE"
+for the B527 say "ONE"
+
+
+
+
+Route 2. To the B528.
+
+
+for the B528 say "TWO"
 
 
 

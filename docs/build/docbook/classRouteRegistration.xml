@@ -1,0 +1,373 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classRouteRegistration" xml:lang="en-US">
+<title>RouteRegistration Class Reference</title>
+<indexterm><primary>RouteRegistration</primary></indexterm>
+<para>
+<computeroutput>#include &lt;routeRegistrationUtils.h&gt;</computeroutput>
+</para>
+Collaboration diagram for RouteRegistration:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRegistration__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_classRouteRegistration_1a95feaabd87641055d0a11e676999c1ef">RouteRegistration</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static void <link linkend="_classRouteRegistration_1a86d40e169b0cff46751aef67bf3dbfe1">set_moving_state</link> (<link linkend="_routeRegistrationUtils_8h_1a864ed44a06c2eac009f764824510579d">MovingState</link> <link linkend="_classRouteRegistration_1a660b6dbd0ae6d27223fcbc1854c6608d">moving_state</link>)</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classRouteRegistration_1a4defb894f4f0f786abeff2b92e1670be">set_register_enabled_true</link> ()</para>
+</listitem>
+            <listitem><para>static vector&lt; string &gt; &amp; <link linkend="_classRouteRegistration_1affd1ab8d38ba77fe7d312ee0f203cac1">get_route_paths</link> ()</para>
+</listitem>
+            <listitem><para>static string <link linkend="_classRouteRegistration_1a9ffd0dd6c979d3637b4ba780c52ecef4">get_route_database_directory_path</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classRouteRegistration_1a63899f0d267a097c0d0a99d2d08f9c0a">initialize_route_registration</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classRouteRegistration_1ac446dc83182f36466083c62ddd676dd6">display_possible_routes</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classRouteRegistration_1a28c7caf92ef7082a98f674c966d13705">register_current_move</link> (string move_name, optional&lt; int &gt; arg_value=nullopt)</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classRouteRegistration_1a7bcb2c91cacba16c925252c12546fd7a">register_speed_change</link> (int new_speed)</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classRouteRegistration_1a589fc71ea9a72c820ff71b0723f10414">end_registration</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classRouteRegistration_1a1bda1ba86785e2d73e0eb3d4991b28a5">prepare_route_paths</link> ()</para>
+</listitem>
+            <listitem><para>static string <link linkend="_classRouteRegistration_1a15d9097f3316ae303c7fa6dde1ad85f5">get_route_name_from_path</link> (const string &amp;path)</para>
+</listitem>
+            <listitem><para>static vector&lt; string &gt; <link linkend="_classRouteRegistration_1aa6a5445783818d8486d64af3db3cb937">get_section_A_routes</link> ()</para>
+</listitem>
+            <listitem><para>static vector&lt; string &gt; <link linkend="_classRouteRegistration_1ab740a0b50915060c58ecc77ec0c2137d">get_section_B_routes</link> ()</para>
+</listitem>
+            <listitem><para>static vector&lt; string &gt; <link linkend="_classRouteRegistration_1a81cc0463909e8046669dee322d8f0f35">get_section_C_routes</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static string <link linkend="_classRouteRegistration_1a126aca8e547ab7f652cc6146bc386582">get_current_timestamp</link> ()</para>
+</listitem>
+            <listitem><para>static bool <link linkend="_classRouteRegistration_1a020bb43b9f72d8bcf74a749a2096b956">create_route_file</link> ()</para>
+</listitem>
+            <listitem><para>static int <link linkend="_classRouteRegistration_1aba77b4b7629d23e58aeb133a3e0746d2">extract_the_miliseconds_between_two_commands</link> (string command_1, string command_2)</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classRouteRegistration_1a37653500a1629a373d794cb327c1de21">delete_duplicate_line_commands</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classRouteRegistration_1af73acefc7c654f6a284ebd02ad7ea616">create_record_for_route</link> ()</para>
+</listitem>
+            <listitem><para>static string <link linkend="_classRouteRegistration_1a01a7a179fa504dbe1846f4e2eed91f27">compute_new_route_name</link> ()</para>
+</listitem>
+            <listitem><para>static vector&lt; string &gt; <link linkend="_classRouteRegistration_1a42107c15b1c42df0c9fc9bdc89e80c30">split_path</link> (const string &amp;path)</para>
+</listitem>
+            <listitem><para>static string <link linkend="_classRouteRegistration_1a8cce2141cd2910fedd864d5bead531fd">get_section_from_path</link> (const string &amp;path)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para>static bool <link linkend="_classRouteRegistration_1a0c60b08efb82c382711a7ab4855cacaf">register_enabled</link> = <link linkend="_routeRegistrationUtils_8h_1a983c565909527a6ebc205c71d4d8e64a">REGISTRATION_DISABLED</link></para>
+</listitem>
+            <listitem><para>static string <link linkend="_classRouteRegistration_1a6d90773b55259b082ebc065b1d24b75a">route_database_directory_path</link> = &quot;../RouteDatabase/&quot;</para>
+</listitem>
+            <listitem><para>static vector&lt; string &gt; <link linkend="_classRouteRegistration_1a91288ee5fb8db48f516b48247e792067">route_paths</link></para>
+</listitem>
+            <listitem><para>static string <link linkend="_classRouteRegistration_1a3edcc51adda754b0564cf74bf0871e0c">current_route_name</link> = &quot;&quot;</para>
+</listitem>
+            <listitem><para>static <link linkend="_routeRegistrationUtils_8h_1a864ed44a06c2eac009f764824510579d">MovingState</link> <link linkend="_classRouteRegistration_1a660b6dbd0ae6d27223fcbc1854c6608d">moving_state</link> = <link linkend="_routeRegistrationUtils_8h_1a864ed44a06c2eac009f764824510579da4120eb7591bd0789af75a8973d5f9146">MovingState::STATIONARY</link></para>
+</listitem>
+            <listitem><para>static vector&lt; string &gt; <link linkend="_classRouteRegistration_1a8ae0e52506b6719344164b67a0ea3841">section_A_routes</link></para>
+</listitem>
+            <listitem><para>static vector&lt; string &gt; <link linkend="_classRouteRegistration_1a7ea7f8158dea05c55e18e6d1dedddad3">section_B_routes</link></para>
+</listitem>
+            <listitem><para>static vector&lt; string &gt; <link linkend="_classRouteRegistration_1aa6c9811dde6e22e203a544a12f42c0e1">section_C_routes</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_classRouteRegistration_1a95feaabd87641055d0a11e676999c1ef"/>    <section>
+    <title>RouteRegistration()</title>
+<indexterm><primary>RouteRegistration</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>RouteRegistration</secondary></indexterm>
+<para><computeroutput>RouteRegistration::RouteRegistration ( )</computeroutput></para></section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classRouteRegistration_1a01a7a179fa504dbe1846f4e2eed91f27"/>    <section>
+    <title>compute_new_route_name()</title>
+<indexterm><primary>compute_new_route_name</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>compute_new_route_name</secondary></indexterm>
+<para><computeroutput>string RouteRegistration::compute_new_route_name ( )<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classRouteRegistration_1af73acefc7c654f6a284ebd02ad7ea616"/>    <section>
+    <title>create_record_for_route()</title>
+<indexterm><primary>create_record_for_route</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>create_record_for_route</secondary></indexterm>
+<para><computeroutput>void RouteRegistration::create_record_for_route ( )<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classRouteRegistration_1a020bb43b9f72d8bcf74a749a2096b956"/>    <section>
+    <title>create_route_file()</title>
+<indexterm><primary>create_route_file</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>create_route_file</secondary></indexterm>
+<para><computeroutput>bool RouteRegistration::create_route_file ( )<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classRouteRegistration_1a37653500a1629a373d794cb327c1de21"/>    <section>
+    <title>delete_duplicate_line_commands()</title>
+<indexterm><primary>delete_duplicate_line_commands</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>delete_duplicate_line_commands</secondary></indexterm>
+<para><computeroutput>void RouteRegistration::delete_duplicate_line_commands ( )<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classRouteRegistration_1ac446dc83182f36466083c62ddd676dd6"/>    <section>
+    <title>display_possible_routes()</title>
+<indexterm><primary>display_possible_routes</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>display_possible_routes</secondary></indexterm>
+<para><computeroutput>void RouteRegistration::display_possible_routes ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRegistration_ac446dc83182f36466083c62ddd676dd6_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classRouteRegistration_1a589fc71ea9a72c820ff71b0723f10414"/>    <section>
+    <title>end_registration()</title>
+<indexterm><primary>end_registration</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>end_registration</secondary></indexterm>
+<para><computeroutput>void RouteRegistration::end_registration ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRegistration_a589fc71ea9a72c820ff71b0723f10414_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classRouteRegistration_1aba77b4b7629d23e58aeb133a3e0746d2"/>    <section>
+    <title>extract_the_miliseconds_between_two_commands()</title>
+<indexterm><primary>extract_the_miliseconds_between_two_commands</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>extract_the_miliseconds_between_two_commands</secondary></indexterm>
+<para><computeroutput>int RouteRegistration::extract_the_miliseconds_between_two_commands (string command_1, string command_2)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classRouteRegistration_1a126aca8e547ab7f652cc6146bc386582"/>    <section>
+    <title>get_current_timestamp()</title>
+<indexterm><primary>get_current_timestamp</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>get_current_timestamp</secondary></indexterm>
+<para><computeroutput>string RouteRegistration::get_current_timestamp ( )<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classRouteRegistration_1a9ffd0dd6c979d3637b4ba780c52ecef4"/>    <section>
+    <title>get_route_database_directory_path()</title>
+<indexterm><primary>get_route_database_directory_path</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>get_route_database_directory_path</secondary></indexterm>
+<para><computeroutput>string RouteRegistration::get_route_database_directory_path ( )<computeroutput>[static]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classRouteRegistration_1a15d9097f3316ae303c7fa6dde1ad85f5"/>    <section>
+    <title>get_route_name_from_path()</title>
+<indexterm><primary>get_route_name_from_path</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>get_route_name_from_path</secondary></indexterm>
+<para><computeroutput>string RouteRegistration::get_route_name_from_path (const string &amp; path)<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRegistration_a15d9097f3316ae303c7fa6dde1ad85f5_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRegistration_a15d9097f3316ae303c7fa6dde1ad85f5_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classRouteRegistration_1affd1ab8d38ba77fe7d312ee0f203cac1"/>    <section>
+    <title>get_route_paths()</title>
+<indexterm><primary>get_route_paths</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>get_route_paths</secondary></indexterm>
+<para><computeroutput>vector&lt; string &gt; &amp; RouteRegistration::get_route_paths ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRegistration_affd1ab8d38ba77fe7d312ee0f203cac1_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classRouteRegistration_1aa6a5445783818d8486d64af3db3cb937"/>    <section>
+    <title>get_section_A_routes()</title>
+<indexterm><primary>get_section_A_routes</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>get_section_A_routes</secondary></indexterm>
+<para><computeroutput>vector&lt; string &gt; RouteRegistration::get_section_A_routes ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRegistration_aa6a5445783818d8486d64af3db3cb937_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classRouteRegistration_1ab740a0b50915060c58ecc77ec0c2137d"/>    <section>
+    <title>get_section_B_routes()</title>
+<indexterm><primary>get_section_B_routes</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>get_section_B_routes</secondary></indexterm>
+<para><computeroutput>vector&lt; string &gt; RouteRegistration::get_section_B_routes ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRegistration_ab740a0b50915060c58ecc77ec0c2137d_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classRouteRegistration_1a81cc0463909e8046669dee322d8f0f35"/>    <section>
+    <title>get_section_C_routes()</title>
+<indexterm><primary>get_section_C_routes</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>get_section_C_routes</secondary></indexterm>
+<para><computeroutput>vector&lt; string &gt; RouteRegistration::get_section_C_routes ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRegistration_a81cc0463909e8046669dee322d8f0f35_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classRouteRegistration_1a8cce2141cd2910fedd864d5bead531fd"/>    <section>
+    <title>get_section_from_path()</title>
+<indexterm><primary>get_section_from_path</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>get_section_from_path</secondary></indexterm>
+<para><computeroutput>string RouteRegistration::get_section_from_path (const string &amp; path)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRegistration_a8cce2141cd2910fedd864d5bead531fd_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classRouteRegistration_1a63899f0d267a097c0d0a99d2d08f9c0a"/>    <section>
+    <title>initialize_route_registration()</title>
+<indexterm><primary>initialize_route_registration</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>initialize_route_registration</secondary></indexterm>
+<para><computeroutput>void RouteRegistration::initialize_route_registration ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRegistration_a63899f0d267a097c0d0a99d2d08f9c0a_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classRouteRegistration_1a1bda1ba86785e2d73e0eb3d4991b28a5"/>    <section>
+    <title>prepare_route_paths()</title>
+<indexterm><primary>prepare_route_paths</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>prepare_route_paths</secondary></indexterm>
+<para><computeroutput>void RouteRegistration::prepare_route_paths ( )<computeroutput>[static]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classRouteRegistration_1a28c7caf92ef7082a98f674c966d13705"/>    <section>
+    <title>register_current_move()</title>
+<indexterm><primary>register_current_move</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>register_current_move</secondary></indexterm>
+<para><computeroutput>void RouteRegistration::register_current_move (string move_name, optional&lt; int &gt; arg_value = <computeroutput>nullopt</computeroutput>
+)<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRegistration_a28c7caf92ef7082a98f674c966d13705_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classRouteRegistration_1a7bcb2c91cacba16c925252c12546fd7a"/>    <section>
+    <title>register_speed_change()</title>
+<indexterm><primary>register_speed_change</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>register_speed_change</secondary></indexterm>
+<para><computeroutput>void RouteRegistration::register_speed_change (int new_speed)<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRegistration_a7bcb2c91cacba16c925252c12546fd7a_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classRouteRegistration_1a86d40e169b0cff46751aef67bf3dbfe1"/>    <section>
+    <title>set_moving_state()</title>
+<indexterm><primary>set_moving_state</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>set_moving_state</secondary></indexterm>
+<para><computeroutput>void RouteRegistration::set_moving_state (<link linkend="_routeRegistrationUtils_8h_1a864ed44a06c2eac009f764824510579d">MovingState</link> moving_state)<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRegistration_a86d40e169b0cff46751aef67bf3dbfe1_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classRouteRegistration_1a4defb894f4f0f786abeff2b92e1670be"/>    <section>
+    <title>set_register_enabled_true()</title>
+<indexterm><primary>set_register_enabled_true</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>set_register_enabled_true</secondary></indexterm>
+<para><computeroutput>void RouteRegistration::set_register_enabled_true ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRegistration_a4defb894f4f0f786abeff2b92e1670be_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classRouteRegistration_1a42107c15b1c42df0c9fc9bdc89e80c30"/>    <section>
+    <title>split_path()</title>
+<indexterm><primary>split_path</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>split_path</secondary></indexterm>
+<para><computeroutput>vector&lt; string &gt; RouteRegistration::split_path (const string &amp; path)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRegistration_a42107c15b1c42df0c9fc9bdc89e80c30_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_classRouteRegistration_1a3edcc51adda754b0564cf74bf0871e0c"/>    <section>
+    <title>current_route_name</title>
+<indexterm><primary>current_route_name</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>current_route_name</secondary></indexterm>
+<para><computeroutput>string RouteRegistration::current_route_name = &quot;&quot;<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classRouteRegistration_1a660b6dbd0ae6d27223fcbc1854c6608d"/>    <section>
+    <title>moving_state</title>
+<indexterm><primary>moving_state</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>moving_state</secondary></indexterm>
+<para><computeroutput><link linkend="_routeRegistrationUtils_8h_1a864ed44a06c2eac009f764824510579d">MovingState</link> RouteRegistration::moving_state = <link linkend="_routeRegistrationUtils_8h_1a864ed44a06c2eac009f764824510579da4120eb7591bd0789af75a8973d5f9146">MovingState::STATIONARY</link><computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classRouteRegistration_1a0c60b08efb82c382711a7ab4855cacaf"/>    <section>
+    <title>register_enabled</title>
+<indexterm><primary>register_enabled</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>register_enabled</secondary></indexterm>
+<para><computeroutput>bool RouteRegistration::register_enabled = <link linkend="_routeRegistrationUtils_8h_1a983c565909527a6ebc205c71d4d8e64a">REGISTRATION_DISABLED</link><computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classRouteRegistration_1a6d90773b55259b082ebc065b1d24b75a"/>    <section>
+    <title>route_database_directory_path</title>
+<indexterm><primary>route_database_directory_path</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>route_database_directory_path</secondary></indexterm>
+<para><computeroutput>string RouteRegistration::route_database_directory_path = &quot;../RouteDatabase/&quot;<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classRouteRegistration_1a91288ee5fb8db48f516b48247e792067"/>    <section>
+    <title>route_paths</title>
+<indexterm><primary>route_paths</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>route_paths</secondary></indexterm>
+<para><computeroutput>vector&lt; string &gt; RouteRegistration::route_paths<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classRouteRegistration_1a8ae0e52506b6719344164b67a0ea3841"/>    <section>
+    <title>section_A_routes</title>
+<indexterm><primary>section_A_routes</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>section_A_routes</secondary></indexterm>
+<para><computeroutput>vector&lt; string &gt; RouteRegistration::section_A_routes<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classRouteRegistration_1a7ea7f8158dea05c55e18e6d1dedddad3"/>    <section>
+    <title>section_B_routes</title>
+<indexterm><primary>section_B_routes</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>section_B_routes</secondary></indexterm>
+<para><computeroutput>vector&lt; string &gt; RouteRegistration::section_B_routes<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classRouteRegistration_1aa6c9811dde6e22e203a544a12f42c0e1"/>    <section>
+    <title>section_C_routes</title>
+<indexterm><primary>section_C_routes</primary><secondary>RouteRegistration</secondary></indexterm>
+<indexterm><primary>RouteRegistration</primary><secondary>section_C_routes</secondary></indexterm>
+<para><computeroutput>vector&lt; string &gt; RouteRegistration::section_C_routes<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+<link linkend="_routeRegistrationUtils_8h">routeRegistrationUtils.h</link><link linkend="_routeRegistrationUtils_8cpp">routeRegistrationUtils.cpp</link></section>
+</section>

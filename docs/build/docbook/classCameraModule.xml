@@ -1,0 +1,387 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classCameraModule" xml:lang="en-US">
+<title>CameraModule Class Reference</title>
+<indexterm><primary>CameraModule</primary></indexterm>
+<para>
+<computeroutput>#include &lt;cameraModule.h&gt;</computeroutput>
+</para>
+Collaboration diagram for CameraModule:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraModule__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static void <link linkend="_classCameraModule_1a42160c932766ccdf0c94f1633de08f21">initialize_camera_module</link> ()</para>
+</listitem>
+            <listitem><para>static int <link linkend="_classCameraModule_1abae4f5007a5fff6b83bf7f8b97e9f359">count_recognized_subjects</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classCameraModule_1add91b499d7bf8e1699b976fd5fd2e0d9">display_camera_capture</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classCameraModule_1a77892125dd2d0e13fa63a3b0142de052">add_new_recognized_subject</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classCameraModule_1a283a7ef45577f00a5f02619e844fa3c3">create_csv_database_file</link> ()</para>
+</listitem>
+            <listitem><para>static int <link linkend="_classCameraModule_1acce1d733fe12cf24a1f60f8962d5f55d">recognize_face</link> (string test_image_path)</para>
+</listitem>
+            <listitem><para>static cv::Mat <link linkend="_classCameraModule_1a63c3bcc538f1ea285ab9bc808b873f2f">resize_and_apply_grayscale</link> (const fs::path &amp;input_path)</para>
+</listitem>
+            <listitem><para>static bool <link linkend="_classCameraModule_1af7151dae811cc5b9d6a29dc47fd5f54b">detect_face_and_preprocess_if_so</link> (string test_image_path)</para>
+</listitem>
+            <listitem><para>static bool <link linkend="_classCameraModule_1a9064f39ff853719e341a15d219cc3449">detect_lowerbody</link> (string test_image_path)</para>
+</listitem>
+            <listitem><para>static string <link linkend="_classCameraModule_1aca64f84ca9b37835872a33176559563c">capture_image</link> (string path_to_store)</para>
+</listitem>
+            <listitem><para>static vector&lt; <link linkend="_classPerson">Person</link> &gt; &amp; <link linkend="_classCameraModule_1a89ebff0e47f435b1bf6601954847a69b">get_recognized_persons</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classCameraModule_1af79ca1a1d81f32cc5503100f7807776b">write_recognized_persons</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classCameraModule_1a88b5bdbd4a694f6c02322b261f2f9634">update_faces_dataset_namings</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_classPerson">Person</link> <link linkend="_classCameraModule_1a38f6521aafadf9e8e8ea0cacb14c7fc5">get_person_by_id</link> (string id)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static void <link linkend="_classCameraModule_1aed5ee04ef1350bf5827967ca679e782e">read_recognized_persons</link> ()</para>
+</listitem>
+            <listitem><para>static bool <link linkend="_classCameraModule_1a03a6f7198e3246205d83b942fdc62677">resize_and_apply_grayscale_to_s</link> (const fs::path &amp;input_path, int subject_number)</para>
+</listitem>
+            <listitem><para>static bool <link linkend="_classCameraModule_1afdf2c003d3adf4803288c7a9f741c505">parse_raw_images_folder</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classCameraModule_1a71f58a0c2b6b2480728f349f9cba474f">read_images_from_csv</link> ()</para>
+</listitem>
+            <listitem><para>static bool <link linkend="_classCameraModule_1a5c11a5ef105e2213edd3da7a8980e0a2">check_data_valid</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para>static vector&lt; cv::Mat &gt; <link linkend="_classCameraModule_1adeb18a03f0a8e072540c9cdabbcdb20f">images</link></para>
+</listitem>
+            <listitem><para>static vector&lt; int &gt; <link linkend="_classCameraModule_1af4fe0b2539337ea2efba3a99b90d24f9">labels</link></para>
+</listitem>
+            <listitem><para>static int <link linkend="_classCameraModule_1a9ca9d48807d4eaf6d769051b5fddca6e">no_of_recognized_subjects</link> = <link linkend="_cameraModule_8h_1a48f61db21508f2b719ba4c55403a6f21">DEFAULT_NO_OF_RECOGNIZED_SUBJECTS</link></para>
+</listitem>
+            <listitem><para>static vector&lt; <link linkend="_classPerson">Person</link> &gt; <link linkend="_classCameraModule_1a95ea2ee52b6f954094b22564b78ef527">recognized_persons</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classCameraModule_1a77892125dd2d0e13fa63a3b0142de052"/>    <section>
+    <title>add_new_recognized_subject()</title>
+<indexterm><primary>add_new_recognized_subject</primary><secondary>CameraModule</secondary></indexterm>
+<indexterm><primary>CameraModule</primary><secondary>add_new_recognized_subject</secondary></indexterm>
+<para><computeroutput>void CameraModule::add_new_recognized_subject ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraModule_a77892125dd2d0e13fa63a3b0142de052_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraModule_a77892125dd2d0e13fa63a3b0142de052_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classCameraModule_1aca64f84ca9b37835872a33176559563c"/>    <section>
+    <title>capture_image()</title>
+<indexterm><primary>capture_image</primary><secondary>CameraModule</secondary></indexterm>
+<indexterm><primary>CameraModule</primary><secondary>capture_image</secondary></indexterm>
+<para><computeroutput>string CameraModule::capture_image (string path_to_store)<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraModule_aca64f84ca9b37835872a33176559563c_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraModule_aca64f84ca9b37835872a33176559563c_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classCameraModule_1a5c11a5ef105e2213edd3da7a8980e0a2"/>    <section>
+    <title>check_data_valid()</title>
+<indexterm><primary>check_data_valid</primary><secondary>CameraModule</secondary></indexterm>
+<indexterm><primary>CameraModule</primary><secondary>check_data_valid</secondary></indexterm>
+<para><computeroutput>bool CameraModule::check_data_valid ( )<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraModule_a5c11a5ef105e2213edd3da7a8980e0a2_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classCameraModule_1abae4f5007a5fff6b83bf7f8b97e9f359"/>    <section>
+    <title>count_recognized_subjects()</title>
+<indexterm><primary>count_recognized_subjects</primary><secondary>CameraModule</secondary></indexterm>
+<indexterm><primary>CameraModule</primary><secondary>count_recognized_subjects</secondary></indexterm>
+<para><computeroutput>int CameraModule::count_recognized_subjects ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraModule_abae4f5007a5fff6b83bf7f8b97e9f359_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classCameraModule_1a283a7ef45577f00a5f02619e844fa3c3"/>    <section>
+    <title>create_csv_database_file()</title>
+<indexterm><primary>create_csv_database_file</primary><secondary>CameraModule</secondary></indexterm>
+<indexterm><primary>CameraModule</primary><secondary>create_csv_database_file</secondary></indexterm>
+<para><computeroutput>void CameraModule::create_csv_database_file ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraModule_a283a7ef45577f00a5f02619e844fa3c3_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraModule_a283a7ef45577f00a5f02619e844fa3c3_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classCameraModule_1af7151dae811cc5b9d6a29dc47fd5f54b"/>    <section>
+    <title>detect_face_and_preprocess_if_so()</title>
+<indexterm><primary>detect_face_and_preprocess_if_so</primary><secondary>CameraModule</secondary></indexterm>
+<indexterm><primary>CameraModule</primary><secondary>detect_face_and_preprocess_if_so</secondary></indexterm>
+<para><computeroutput>bool CameraModule::detect_face_and_preprocess_if_so (string test_image_path)<computeroutput>[static]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classCameraModule_1a9064f39ff853719e341a15d219cc3449"/>    <section>
+    <title>detect_lowerbody()</title>
+<indexterm><primary>detect_lowerbody</primary><secondary>CameraModule</secondary></indexterm>
+<indexterm><primary>CameraModule</primary><secondary>detect_lowerbody</secondary></indexterm>
+<para><computeroutput>bool CameraModule::detect_lowerbody (string test_image_path)<computeroutput>[static]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classCameraModule_1add91b499d7bf8e1699b976fd5fd2e0d9"/>    <section>
+    <title>display_camera_capture()</title>
+<indexterm><primary>display_camera_capture</primary><secondary>CameraModule</secondary></indexterm>
+<indexterm><primary>CameraModule</primary><secondary>display_camera_capture</secondary></indexterm>
+<para><computeroutput>void CameraModule::display_camera_capture ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraModule_add91b499d7bf8e1699b976fd5fd2e0d9_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classCameraModule_1a38f6521aafadf9e8e8ea0cacb14c7fc5"/>    <section>
+    <title>get_person_by_id()</title>
+<indexterm><primary>get_person_by_id</primary><secondary>CameraModule</secondary></indexterm>
+<indexterm><primary>CameraModule</primary><secondary>get_person_by_id</secondary></indexterm>
+<para><computeroutput><link linkend="_classPerson">Person</link> CameraModule::get_person_by_id (string id)<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraModule_a38f6521aafadf9e8e8ea0cacb14c7fc5_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraModule_a38f6521aafadf9e8e8ea0cacb14c7fc5_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classCameraModule_1a89ebff0e47f435b1bf6601954847a69b"/>    <section>
+    <title>get_recognized_persons()</title>
+<indexterm><primary>get_recognized_persons</primary><secondary>CameraModule</secondary></indexterm>
+<indexterm><primary>CameraModule</primary><secondary>get_recognized_persons</secondary></indexterm>
+<para><computeroutput>vector&lt; <link linkend="_classPerson">Person</link> &gt; &amp; CameraModule::get_recognized_persons ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraModule_a89ebff0e47f435b1bf6601954847a69b_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classCameraModule_1a42160c932766ccdf0c94f1633de08f21"/>    <section>
+    <title>initialize_camera_module()</title>
+<indexterm><primary>initialize_camera_module</primary><secondary>CameraModule</secondary></indexterm>
+<indexterm><primary>CameraModule</primary><secondary>initialize_camera_module</secondary></indexterm>
+<para><computeroutput>void CameraModule::initialize_camera_module ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraModule_a42160c932766ccdf0c94f1633de08f21_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classCameraModule_1afdf2c003d3adf4803288c7a9f741c505"/>    <section>
+    <title>parse_raw_images_folder()</title>
+<indexterm><primary>parse_raw_images_folder</primary><secondary>CameraModule</secondary></indexterm>
+<indexterm><primary>CameraModule</primary><secondary>parse_raw_images_folder</secondary></indexterm>
+<para><computeroutput>bool CameraModule::parse_raw_images_folder ( )<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraModule_afdf2c003d3adf4803288c7a9f741c505_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classCameraModule_1a71f58a0c2b6b2480728f349f9cba474f"/>    <section>
+    <title>read_images_from_csv()</title>
+<indexterm><primary>read_images_from_csv</primary><secondary>CameraModule</secondary></indexterm>
+<indexterm><primary>CameraModule</primary><secondary>read_images_from_csv</secondary></indexterm>
+<para><computeroutput>void CameraModule::read_images_from_csv ( )<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraModule_a71f58a0c2b6b2480728f349f9cba474f_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classCameraModule_1aed5ee04ef1350bf5827967ca679e782e"/>    <section>
+    <title>read_recognized_persons()</title>
+<indexterm><primary>read_recognized_persons</primary><secondary>CameraModule</secondary></indexterm>
+<indexterm><primary>CameraModule</primary><secondary>read_recognized_persons</secondary></indexterm>
+<para><computeroutput>void CameraModule::read_recognized_persons ( )<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraModule_aed5ee04ef1350bf5827967ca679e782e_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classCameraModule_1acce1d733fe12cf24a1f60f8962d5f55d"/>    <section>
+    <title>recognize_face()</title>
+<indexterm><primary>recognize_face</primary><secondary>CameraModule</secondary></indexterm>
+<indexterm><primary>CameraModule</primary><secondary>recognize_face</secondary></indexterm>
+<para><computeroutput>int CameraModule::recognize_face (string test_image_path)<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraModule_acce1d733fe12cf24a1f60f8962d5f55d_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraModule_acce1d733fe12cf24a1f60f8962d5f55d_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classCameraModule_1a63c3bcc538f1ea285ab9bc808b873f2f"/>    <section>
+    <title>resize_and_apply_grayscale()</title>
+<indexterm><primary>resize_and_apply_grayscale</primary><secondary>CameraModule</secondary></indexterm>
+<indexterm><primary>CameraModule</primary><secondary>resize_and_apply_grayscale</secondary></indexterm>
+<para><computeroutput>cv::Mat CameraModule::resize_and_apply_grayscale (const fs::path &amp; input_path)<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraModule_a63c3bcc538f1ea285ab9bc808b873f2f_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classCameraModule_1a03a6f7198e3246205d83b942fdc62677"/>    <section>
+    <title>resize_and_apply_grayscale_to_s()</title>
+<indexterm><primary>resize_and_apply_grayscale_to_s</primary><secondary>CameraModule</secondary></indexterm>
+<indexterm><primary>CameraModule</primary><secondary>resize_and_apply_grayscale_to_s</secondary></indexterm>
+<para><computeroutput>bool CameraModule::resize_and_apply_grayscale_to_s (const fs::path &amp; input_path, int subject_number)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraModule_a03a6f7198e3246205d83b942fdc62677_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classCameraModule_1a88b5bdbd4a694f6c02322b261f2f9634"/>    <section>
+    <title>update_faces_dataset_namings()</title>
+<indexterm><primary>update_faces_dataset_namings</primary><secondary>CameraModule</secondary></indexterm>
+<indexterm><primary>CameraModule</primary><secondary>update_faces_dataset_namings</secondary></indexterm>
+<para><computeroutput>void CameraModule::update_faces_dataset_namings ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraModule_a88b5bdbd4a694f6c02322b261f2f9634_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraModule_a88b5bdbd4a694f6c02322b261f2f9634_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classCameraModule_1af79ca1a1d81f32cc5503100f7807776b"/>    <section>
+    <title>write_recognized_persons()</title>
+<indexterm><primary>write_recognized_persons</primary><secondary>CameraModule</secondary></indexterm>
+<indexterm><primary>CameraModule</primary><secondary>write_recognized_persons</secondary></indexterm>
+<para><computeroutput>void CameraModule::write_recognized_persons ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraModule_af79ca1a1d81f32cc5503100f7807776b_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_classCameraModule_1adeb18a03f0a8e072540c9cdabbcdb20f"/>    <section>
+    <title>images</title>
+<indexterm><primary>images</primary><secondary>CameraModule</secondary></indexterm>
+<indexterm><primary>CameraModule</primary><secondary>images</secondary></indexterm>
+<para><computeroutput>vector&lt; cv::Mat &gt; CameraModule::images<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classCameraModule_1af4fe0b2539337ea2efba3a99b90d24f9"/>    <section>
+    <title>labels</title>
+<indexterm><primary>labels</primary><secondary>CameraModule</secondary></indexterm>
+<indexterm><primary>CameraModule</primary><secondary>labels</secondary></indexterm>
+<para><computeroutput>vector&lt; int &gt; CameraModule::labels<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classCameraModule_1a9ca9d48807d4eaf6d769051b5fddca6e"/>    <section>
+    <title>no_of_recognized_subjects</title>
+<indexterm><primary>no_of_recognized_subjects</primary><secondary>CameraModule</secondary></indexterm>
+<indexterm><primary>CameraModule</primary><secondary>no_of_recognized_subjects</secondary></indexterm>
+<para><computeroutput>int CameraModule::no_of_recognized_subjects = <link linkend="_cameraModule_8h_1a48f61db21508f2b719ba4c55403a6f21">DEFAULT_NO_OF_RECOGNIZED_SUBJECTS</link><computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classCameraModule_1a95ea2ee52b6f954094b22564b78ef527"/>    <section>
+    <title>recognized_persons</title>
+<indexterm><primary>recognized_persons</primary><secondary>CameraModule</secondary></indexterm>
+<indexterm><primary>CameraModule</primary><secondary>recognized_persons</secondary></indexterm>
+<para><computeroutput>vector&lt; <link linkend="_classPerson">Person</link> &gt; CameraModule::recognized_persons<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+<link linkend="_cameraModule_8h">cameraModule.h</link><link linkend="_cameraModule_8cpp">cameraModule.cpp</link><link linkend="_cameraModuleUtils_8cpp">cameraModuleUtils.cpp</link><link linkend="_detectLowerbody_8cpp">detectLowerbody.cpp</link><link linkend="_faceRecognition_8cpp">faceRecognition.cpp</link></section>
+</section>

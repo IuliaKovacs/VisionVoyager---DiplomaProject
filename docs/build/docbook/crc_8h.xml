@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_crc_8h" xml:lang="en-US">
+<title>crc.h File Reference</title>
+<indexterm><primary>crc.h</primary></indexterm>
+<programlisting>#include &lt;stdint.h&gt;
+</programlisting>Include dependency graph for crc.h:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="crc_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="crc_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>uint16_t <link linkend="_crc_8h_1a0898fe7ac7544f0ddd2d793159cb8804">compute_crc</link> (const uint8_t *u8Buf, const uint8_t len)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_crc_8h_1a0898fe7ac7544f0ddd2d793159cb8804"/>    <section>
+    <title>compute_crc()</title>
+<indexterm><primary>compute_crc</primary><secondary>crc.h</secondary></indexterm>
+<indexterm><primary>crc.h</primary><secondary>compute_crc</secondary></indexterm>
+<para><computeroutput>uint16_t compute_crc (const uint8_t * u8Buf, const uint8_t len)</computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="crc_8h_a0898fe7ac7544f0ddd2d793159cb8804_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+</section>

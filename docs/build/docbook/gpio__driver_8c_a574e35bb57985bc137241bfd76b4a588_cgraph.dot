@@ -1,0 +1,10 @@
+digraph "gpio_line_request"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="12",labelfontname="Helvetica",labelfontsize="12"];
+  node [fontname="Helvetica",fontsize="12",shape=record];
+  rankdir="LR";
+  Node1 [label="gpio_line_request",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node2 [label="set_gpio_config",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$gpio__driver_8c.html#ab310bf36f2c27c38864660433f01058e",tooltip=" "];
+}

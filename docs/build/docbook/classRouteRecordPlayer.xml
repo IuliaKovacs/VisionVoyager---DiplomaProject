@@ -1,0 +1,253 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classRouteRecordPlayer" xml:lang="en-US">
+<title>RouteRecordPlayer Class Reference</title>
+<indexterm><primary>RouteRecordPlayer</primary></indexterm>
+<para>
+<computeroutput>#include &lt;routeRecordPlayUtils.h&gt;</computeroutput>
+</para>
+Collaboration diagram for RouteRecordPlayer:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRecordPlayer__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static void <link linkend="_classRouteRecordPlayer_1aa1e7a7b2bd0c04d702c735fef85ff232">set_robot</link> (<link linkend="_classVisionVoyager">VisionVoyager</link> *robot)</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classRouteRecordPlayer_1a76d8a0d375f71e39400815f1a61026eb">set_current_section</link> (<link linkend="_routeRecordPlayUtils_8h_1a54591b9d4c0e1df376b6dea14c0dbeca">Building_Section</link> section)</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classRouteRecordPlayer_1a059a21dacac4e4dbcbca9951f69ba471">play_route</link> (string route_name)</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classRouteRecordPlayer_1a01b86209646c510b7e610c16bb941aec">play_route_conditioned</link> (string route_name)</para>
+</listitem>
+            <listitem><para>static <link linkend="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7c">SevereErrorType</link> <link linkend="_classRouteRecordPlayer_1aba26f36a6cf6ff87269550dfa22f542d">check_motors_feedback</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classRouteRecordPlayer_1ad7d5733d1bf5ac046f0929e527d217bd">avoid_right</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static string <link linkend="_classRouteRecordPlayer_1a60a28925a3bb98dbdc969651a7ecd3b4">extract_command_name</link> (string command)</para>
+</listitem>
+            <listitem><para>static string <link linkend="_classRouteRecordPlayer_1af9fb4546449ca7c5c95449fca65d1b59">extract_command_argument</link> (string command)</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classRouteRecordPlayer_1a0c4c9998576d2f74fde43a613ba7a70f">play_command</link> (string command_name, int miliseconds, optional&lt; int &gt; arg_value=nullopt)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_classVisionVoyager">VisionVoyager</link> * <link linkend="_classRouteRecordPlayer_1adf29cea64636b1a3aae6c522da21d8ee">robotVisionVoyager</link> = nullptr</para>
+</listitem>
+            <listitem><para>static <link linkend="_routeRecordPlayUtils_8h_1a54591b9d4c0e1df376b6dea14c0dbeca">Building_Section</link> <link linkend="_classRouteRecordPlayer_1a279e6fe308617b853525142f8da17a4a">current_section</link> = <link linkend="_routeRecordPlayUtils_8h_1a54591b9d4c0e1df376b6dea14c0dbecaa696b031073e74bf2cb98e5ef201d4aa3">Building_Section::UNKNOWN</link></para>
+</listitem>
+            <listitem><para>static bool <link linkend="_classRouteRecordPlayer_1adc31151cb81ffff4f8735df918c77017">avoiding_activated</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Friends    </title>
+        <itemizedlist>
+            <listitem><para>void <link linkend="_classRouteRecordPlayer_1a27cf6cc69416f16b247c16c2c4e08dba">ObstacleAvoidance::return_on_track</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classRouteRecordPlayer_1a2aad885cedbcf594bbce8b51c5ba3837">ObstacleAvoidance::reverse_route</link> (string route_name)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classRouteRecordPlayer_1ad7d5733d1bf5ac046f0929e527d217bd"/>    <section>
+    <title>avoid_right()</title>
+<indexterm><primary>avoid_right</primary><secondary>RouteRecordPlayer</secondary></indexterm>
+<indexterm><primary>RouteRecordPlayer</primary><secondary>avoid_right</secondary></indexterm>
+<para><computeroutput>void RouteRecordPlayer::avoid_right ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRecordPlayer_ad7d5733d1bf5ac046f0929e527d217bd_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRecordPlayer_ad7d5733d1bf5ac046f0929e527d217bd_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classRouteRecordPlayer_1aba26f36a6cf6ff87269550dfa22f542d"/>    <section>
+    <title>check_motors_feedback()</title>
+<indexterm><primary>check_motors_feedback</primary><secondary>RouteRecordPlayer</secondary></indexterm>
+<indexterm><primary>RouteRecordPlayer</primary><secondary>check_motors_feedback</secondary></indexterm>
+<para><computeroutput><link linkend="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7c">SevereErrorType</link> RouteRecordPlayer::check_motors_feedback ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRecordPlayer_aba26f36a6cf6ff87269550dfa22f542d_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRecordPlayer_aba26f36a6cf6ff87269550dfa22f542d_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classRouteRecordPlayer_1af9fb4546449ca7c5c95449fca65d1b59"/>    <section>
+    <title>extract_command_argument()</title>
+<indexterm><primary>extract_command_argument</primary><secondary>RouteRecordPlayer</secondary></indexterm>
+<indexterm><primary>RouteRecordPlayer</primary><secondary>extract_command_argument</secondary></indexterm>
+<para><computeroutput>string RouteRecordPlayer::extract_command_argument (string command)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRecordPlayer_af9fb4546449ca7c5c95449fca65d1b59_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classRouteRecordPlayer_1a60a28925a3bb98dbdc969651a7ecd3b4"/>    <section>
+    <title>extract_command_name()</title>
+<indexterm><primary>extract_command_name</primary><secondary>RouteRecordPlayer</secondary></indexterm>
+<indexterm><primary>RouteRecordPlayer</primary><secondary>extract_command_name</secondary></indexterm>
+<para><computeroutput>string RouteRecordPlayer::extract_command_name (string command)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRecordPlayer_a60a28925a3bb98dbdc969651a7ecd3b4_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classRouteRecordPlayer_1a0c4c9998576d2f74fde43a613ba7a70f"/>    <section>
+    <title>play_command()</title>
+<indexterm><primary>play_command</primary><secondary>RouteRecordPlayer</secondary></indexterm>
+<indexterm><primary>RouteRecordPlayer</primary><secondary>play_command</secondary></indexterm>
+<para><computeroutput>void RouteRecordPlayer::play_command (string command_name, int miliseconds, optional&lt; int &gt; arg_value = <computeroutput>nullopt</computeroutput>
+)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRecordPlayer_a0c4c9998576d2f74fde43a613ba7a70f_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRecordPlayer_a0c4c9998576d2f74fde43a613ba7a70f_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classRouteRecordPlayer_1a059a21dacac4e4dbcbca9951f69ba471"/>    <section>
+    <title>play_route()</title>
+<indexterm><primary>play_route</primary><secondary>RouteRecordPlayer</secondary></indexterm>
+<indexterm><primary>RouteRecordPlayer</primary><secondary>play_route</secondary></indexterm>
+<para><computeroutput>void RouteRecordPlayer::play_route (string route_name)<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRecordPlayer_a059a21dacac4e4dbcbca9951f69ba471_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRecordPlayer_a059a21dacac4e4dbcbca9951f69ba471_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classRouteRecordPlayer_1a01b86209646c510b7e610c16bb941aec"/>    <section>
+    <title>play_route_conditioned()</title>
+<indexterm><primary>play_route_conditioned</primary><secondary>RouteRecordPlayer</secondary></indexterm>
+<indexterm><primary>RouteRecordPlayer</primary><secondary>play_route_conditioned</secondary></indexterm>
+<para><computeroutput>void RouteRecordPlayer::play_route_conditioned (string route_name)<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRecordPlayer_a01b86209646c510b7e610c16bb941aec_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRecordPlayer_a01b86209646c510b7e610c16bb941aec_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classRouteRecordPlayer_1a76d8a0d375f71e39400815f1a61026eb"/>    <section>
+    <title>set_current_section()</title>
+<indexterm><primary>set_current_section</primary><secondary>RouteRecordPlayer</secondary></indexterm>
+<indexterm><primary>RouteRecordPlayer</primary><secondary>set_current_section</secondary></indexterm>
+<para><computeroutput>void RouteRecordPlayer::set_current_section (<link linkend="_routeRecordPlayUtils_8h_1a54591b9d4c0e1df376b6dea14c0dbeca">Building_Section</link> section)<computeroutput>[static]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classRouteRecordPlayer_1aa1e7a7b2bd0c04d702c735fef85ff232"/>    <section>
+    <title>set_robot()</title>
+<indexterm><primary>set_robot</primary><secondary>RouteRecordPlayer</secondary></indexterm>
+<indexterm><primary>RouteRecordPlayer</primary><secondary>set_robot</secondary></indexterm>
+<para><computeroutput>void RouteRecordPlayer::set_robot (<link linkend="_classVisionVoyager">VisionVoyager</link> * robot)<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classRouteRecordPlayer_aa1e7a7b2bd0c04d702c735fef85ff232_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Friends And Related Function Documentation</title>
+<anchor xml:id="_classRouteRecordPlayer_1a27cf6cc69416f16b247c16c2c4e08dba"/>    <section>
+    <title>ObstacleAvoidance::return_on_track</title>
+<indexterm><primary>ObstacleAvoidance::return_on_track</primary><secondary>RouteRecordPlayer</secondary></indexterm>
+<indexterm><primary>RouteRecordPlayer</primary><secondary>ObstacleAvoidance::return_on_track</secondary></indexterm>
+<para><computeroutput>void <link linkend="_classObstacleAvoidance_1a8af127b924a766cf2f089fb8280d6bd0">ObstacleAvoidance::return_on_track</link> ( )<computeroutput>[friend]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classRouteRecordPlayer_1a2aad885cedbcf594bbce8b51c5ba3837"/>    <section>
+    <title>ObstacleAvoidance::reverse_route</title>
+<indexterm><primary>ObstacleAvoidance::reverse_route</primary><secondary>RouteRecordPlayer</secondary></indexterm>
+<indexterm><primary>RouteRecordPlayer</primary><secondary>ObstacleAvoidance::reverse_route</secondary></indexterm>
+<para><computeroutput>void <link linkend="_classObstacleAvoidance_1a40a456b655e64da944e440221f8bd1ab">ObstacleAvoidance::reverse_route</link> (string route_name)<computeroutput>[friend]</computeroutput></computeroutput></para></section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_classRouteRecordPlayer_1adc31151cb81ffff4f8735df918c77017"/>    <section>
+    <title>avoiding_activated</title>
+<indexterm><primary>avoiding_activated</primary><secondary>RouteRecordPlayer</secondary></indexterm>
+<indexterm><primary>RouteRecordPlayer</primary><secondary>avoiding_activated</secondary></indexterm>
+<para><computeroutput>bool RouteRecordPlayer::avoiding_activated<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classRouteRecordPlayer_1a279e6fe308617b853525142f8da17a4a"/>    <section>
+    <title>current_section</title>
+<indexterm><primary>current_section</primary><secondary>RouteRecordPlayer</secondary></indexterm>
+<indexterm><primary>RouteRecordPlayer</primary><secondary>current_section</secondary></indexterm>
+<para><computeroutput><link linkend="_routeRecordPlayUtils_8h_1a54591b9d4c0e1df376b6dea14c0dbeca">Building_Section</link> RouteRecordPlayer::current_section = <link linkend="_routeRecordPlayUtils_8h_1a54591b9d4c0e1df376b6dea14c0dbecaa696b031073e74bf2cb98e5ef201d4aa3">Building_Section::UNKNOWN</link><computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classRouteRecordPlayer_1adf29cea64636b1a3aae6c522da21d8ee"/>    <section>
+    <title>robotVisionVoyager</title>
+<indexterm><primary>robotVisionVoyager</primary><secondary>RouteRecordPlayer</secondary></indexterm>
+<indexterm><primary>RouteRecordPlayer</primary><secondary>robotVisionVoyager</secondary></indexterm>
+<para><computeroutput><link linkend="_classVisionVoyager">VisionVoyager</link> * RouteRecordPlayer::robotVisionVoyager = nullptr<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+<link linkend="_routeRecordPlayUtils_8h">routeRecordPlayUtils.h</link><link linkend="_routeRecordPlayUtils_8cpp">routeRecordPlayUtils.cpp</link></section>
+</section>

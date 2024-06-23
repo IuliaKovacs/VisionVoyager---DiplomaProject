@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_visionVoyager_8h" xml:lang="en-US">
+<title>visionVoyager.h File Reference</title>
+<indexterm><primary>visionVoyager.h</primary></indexterm>
+<programlisting>#include &lt;pybind11/embed.h&gt;
+#include &lt;pybind11/pybind11.h&gt;
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &quot;../ApplicationModule/application_utils.h&quot;
+</programlisting>Include dependency graph for visionVoyager.h:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="visionVoyager_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="visionVoyager_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>class <link linkend="_classVisionVoyager">VisionVoyager</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_visionVoyager_8h_1af1206b4d3bda8c4c8c9257f369a9e9e1">DEBUG_MSG</link>(str)   do { } while ( false )</para>
+</listitem>
+            <listitem><para>#define <link linkend="_visionVoyager_8h_1a2f94ee99592ea6ed890aea3c6e5d187e">DIR_MIN_RG</link>   -20</para>
+</listitem>
+            <listitem><para>#define <link linkend="_visionVoyager_8h_1abef41f5de56bdcfe5b2590b97a8f3b80">DIR_MIN_LF</link>   -30</para>
+</listitem>
+            <listitem><para>#define <link linkend="_visionVoyager_8h_1ab7146224eb28370977239ba53b5f9b37">DIR_MAX_RG</link>   20</para>
+</listitem>
+            <listitem><para>#define <link linkend="_visionVoyager_8h_1a32ee0b94a104addcf589dada075ff6ff">DIR_MAX_LF</link>   30</para>
+</listitem>
+            <listitem><para>#define <link linkend="_visionVoyager_8h_1afc945b2e8394478f97e2aabc7aebaf0e">DEFAULT_SPEED</link>   10</para>
+</listitem>
+            <listitem><para>#define <link linkend="_visionVoyager_8h_1adf5eafd1686f1f0579ccb56d267e1b69">DEFAULT_WHEEL_ANGLE</link>   0</para>
+</listitem>
+            <listitem><para>#define <link linkend="_visionVoyager_8h_1a91ffc6031bf0469ad5e4803d08a0fceb">DEFAULT_PAN_ANGLE</link>   0</para>
+</listitem>
+            <listitem><para>#define <link linkend="_visionVoyager_8h_1a79a9e02f6e644f43b8215c274e5c10ad">DEFAULT_TILT_ANGLE</link>   0</para>
+</listitem>
+            <listitem><para>#define <link linkend="_visionVoyager_8h_1a3a670def5d1c8a0ff6c43422d7c58ae1">CAM_PAN_MIN</link>   -90</para>
+</listitem>
+            <listitem><para>#define <link linkend="_visionVoyager_8h_1aeaa4e162788aba72ce183878d76e537c">CAM_PAN_MAX</link>   90</para>
+</listitem>
+            <listitem><para>#define <link linkend="_visionVoyager_8h_1a90794536f5be1f71f0cd9aa9aca02131">CAM_TILT_MIN</link>   -35</para>
+</listitem>
+            <listitem><para>#define <link linkend="_visionVoyager_8h_1ab9462cb1f8768b2fb5682351d04b4fbc">CAM_TILT_MAX</link>   65</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_visionVoyager_8h_1aeaa4e162788aba72ce183878d76e537c"/>    <section>
+    <title>CAM_PAN_MAX</title>
+<indexterm><primary>CAM_PAN_MAX</primary><secondary>visionVoyager.h</secondary></indexterm>
+<indexterm><primary>visionVoyager.h</primary><secondary>CAM_PAN_MAX</secondary></indexterm>
+<para><computeroutput>#define CAM_PAN_MAX   90</computeroutput></para>    </section><anchor xml:id="_visionVoyager_8h_1a3a670def5d1c8a0ff6c43422d7c58ae1"/>    <section>
+    <title>CAM_PAN_MIN</title>
+<indexterm><primary>CAM_PAN_MIN</primary><secondary>visionVoyager.h</secondary></indexterm>
+<indexterm><primary>visionVoyager.h</primary><secondary>CAM_PAN_MIN</secondary></indexterm>
+<para><computeroutput>#define CAM_PAN_MIN   -90</computeroutput></para>    </section><anchor xml:id="_visionVoyager_8h_1ab9462cb1f8768b2fb5682351d04b4fbc"/>    <section>
+    <title>CAM_TILT_MAX</title>
+<indexterm><primary>CAM_TILT_MAX</primary><secondary>visionVoyager.h</secondary></indexterm>
+<indexterm><primary>visionVoyager.h</primary><secondary>CAM_TILT_MAX</secondary></indexterm>
+<para><computeroutput>#define CAM_TILT_MAX   65</computeroutput></para>    </section><anchor xml:id="_visionVoyager_8h_1a90794536f5be1f71f0cd9aa9aca02131"/>    <section>
+    <title>CAM_TILT_MIN</title>
+<indexterm><primary>CAM_TILT_MIN</primary><secondary>visionVoyager.h</secondary></indexterm>
+<indexterm><primary>visionVoyager.h</primary><secondary>CAM_TILT_MIN</secondary></indexterm>
+<para><computeroutput>#define CAM_TILT_MIN   -35</computeroutput></para>    </section><anchor xml:id="_visionVoyager_8h_1af1206b4d3bda8c4c8c9257f369a9e9e1"/>    <section>
+    <title>DEBUG_MSG</title>
+<indexterm><primary>DEBUG_MSG</primary><secondary>visionVoyager.h</secondary></indexterm>
+<indexterm><primary>visionVoyager.h</primary><secondary>DEBUG_MSG</secondary></indexterm>
+<para><computeroutput>#define DEBUG_MSG( str)   do { } while ( false )</computeroutput></para>    </section><anchor xml:id="_visionVoyager_8h_1a91ffc6031bf0469ad5e4803d08a0fceb"/>    <section>
+    <title>DEFAULT_PAN_ANGLE</title>
+<indexterm><primary>DEFAULT_PAN_ANGLE</primary><secondary>visionVoyager.h</secondary></indexterm>
+<indexterm><primary>visionVoyager.h</primary><secondary>DEFAULT_PAN_ANGLE</secondary></indexterm>
+<para><computeroutput>#define DEFAULT_PAN_ANGLE   0</computeroutput></para>    </section><anchor xml:id="_visionVoyager_8h_1afc945b2e8394478f97e2aabc7aebaf0e"/>    <section>
+    <title>DEFAULT_SPEED</title>
+<indexterm><primary>DEFAULT_SPEED</primary><secondary>visionVoyager.h</secondary></indexterm>
+<indexterm><primary>visionVoyager.h</primary><secondary>DEFAULT_SPEED</secondary></indexterm>
+<para><computeroutput>#define DEFAULT_SPEED   10</computeroutput></para>    </section><anchor xml:id="_visionVoyager_8h_1a79a9e02f6e644f43b8215c274e5c10ad"/>    <section>
+    <title>DEFAULT_TILT_ANGLE</title>
+<indexterm><primary>DEFAULT_TILT_ANGLE</primary><secondary>visionVoyager.h</secondary></indexterm>
+<indexterm><primary>visionVoyager.h</primary><secondary>DEFAULT_TILT_ANGLE</secondary></indexterm>
+<para><computeroutput>#define DEFAULT_TILT_ANGLE   0</computeroutput></para>    </section><anchor xml:id="_visionVoyager_8h_1adf5eafd1686f1f0579ccb56d267e1b69"/>    <section>
+    <title>DEFAULT_WHEEL_ANGLE</title>
+<indexterm><primary>DEFAULT_WHEEL_ANGLE</primary><secondary>visionVoyager.h</secondary></indexterm>
+<indexterm><primary>visionVoyager.h</primary><secondary>DEFAULT_WHEEL_ANGLE</secondary></indexterm>
+<para><computeroutput>#define DEFAULT_WHEEL_ANGLE   0</computeroutput></para>    </section><anchor xml:id="_visionVoyager_8h_1a32ee0b94a104addcf589dada075ff6ff"/>    <section>
+    <title>DIR_MAX_LF</title>
+<indexterm><primary>DIR_MAX_LF</primary><secondary>visionVoyager.h</secondary></indexterm>
+<indexterm><primary>visionVoyager.h</primary><secondary>DIR_MAX_LF</secondary></indexterm>
+<para><computeroutput>#define DIR_MAX_LF   30</computeroutput></para>    </section><anchor xml:id="_visionVoyager_8h_1ab7146224eb28370977239ba53b5f9b37"/>    <section>
+    <title>DIR_MAX_RG</title>
+<indexterm><primary>DIR_MAX_RG</primary><secondary>visionVoyager.h</secondary></indexterm>
+<indexterm><primary>visionVoyager.h</primary><secondary>DIR_MAX_RG</secondary></indexterm>
+<para><computeroutput>#define DIR_MAX_RG   20</computeroutput></para>    </section><anchor xml:id="_visionVoyager_8h_1abef41f5de56bdcfe5b2590b97a8f3b80"/>    <section>
+    <title>DIR_MIN_LF</title>
+<indexterm><primary>DIR_MIN_LF</primary><secondary>visionVoyager.h</secondary></indexterm>
+<indexterm><primary>visionVoyager.h</primary><secondary>DIR_MIN_LF</secondary></indexterm>
+<para><computeroutput>#define DIR_MIN_LF   -30</computeroutput></para>    </section><anchor xml:id="_visionVoyager_8h_1a2f94ee99592ea6ed890aea3c6e5d187e"/>    <section>
+    <title>DIR_MIN_RG</title>
+<indexterm><primary>DIR_MIN_RG</primary><secondary>visionVoyager.h</secondary></indexterm>
+<indexterm><primary>visionVoyager.h</primary><secondary>DIR_MIN_RG</secondary></indexterm>
+<para><computeroutput>#define DIR_MIN_RG   -20</computeroutput></para></section>
+</section>
+</section>

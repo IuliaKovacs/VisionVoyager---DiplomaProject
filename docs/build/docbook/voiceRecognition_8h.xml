@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_voiceRecognition_8h" xml:lang="en-US">
+<title>voiceRecognition.h File Reference</title>
+<indexterm><primary>voiceRecognition.h</primary></indexterm>
+<programlisting>#include &quot;../ApplicationModule/application_utils.h&quot;
+#include &lt;pocketsphinx.h&gt;
+#include &lt;signal.h&gt;
+#include &lt;stdlib.h&gt;
+</programlisting>Include dependency graph for voiceRecognition.h:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="voiceRecognition_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="voiceRecognition_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>class <link linkend="_classVoiceRecognition">VoiceRecognition</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Enumerations    </title>
+        <itemizedlist>
+            <listitem><para>enum class <link linkend="_voiceRecognition_8h_1a6fa9cbce79694ce3771293ca948c7ae2">RecognitionType</link> { <link linkend="_voiceRecognition_8h_1a6fa9cbce79694ce3771293ca948c7ae2a0db45d2a4141101bdfe48e3314cfbca3">UNDEFINED</link>
+, <link linkend="_voiceRecognition_8h_1a6fa9cbce79694ce3771293ca948c7ae2aabfd3e123a6890134d38241c2394f018">TIMED_RECOGNITION</link>
+, <link linkend="_voiceRecognition_8h_1a6fa9cbce79694ce3771293ca948c7ae2a067654aeba06cca49eeca595d1841fc8">LIVE_RECOGNITION</link>
+ }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Enumeration Type Documentation</title>
+<anchor xml:id="_voiceRecognition_8h_1a6fa9cbce79694ce3771293ca948c7ae2"/>    <section>
+    <title>RecognitionType</title>
+<indexterm><primary>RecognitionType</primary><secondary>voiceRecognition.h</secondary></indexterm>
+<indexterm><primary>voiceRecognition.h</primary><secondary>RecognitionType</secondary></indexterm>
+<para><computeroutput>enum <link linkend="_voiceRecognition_8h_1a6fa9cbce79694ce3771293ca948c7ae2">RecognitionType</link><computeroutput>[strong]</computeroutput></computeroutput></para><informaltable frame="all">
+<title>Enumerator</title>
+    <tgroup cols="2" align="left" colsep="1" rowsep="1">
+      <colspec colname='c1'/>
+      <colspec colname='c2'/>
+<tbody>
+<row><entry><indexterm><primary>UNDEFINED</primary><secondary>voiceRecognition.h</secondary></indexterm>
+<indexterm><primary>voiceRecognition.h</primary><secondary>UNDEFINED</secondary></indexterm>
+<anchor xml:id="_voiceRecognition_8h_1a6fa9cbce79694ce3771293ca948c7ae2a0db45d2a4141101bdfe48e3314cfbca3"/>UNDEFINED</entry><entry></entry></row><row><entry><indexterm><primary>TIMED_RECOGNITION</primary><secondary>voiceRecognition.h</secondary></indexterm>
+<indexterm><primary>voiceRecognition.h</primary><secondary>TIMED_RECOGNITION</secondary></indexterm>
+<anchor xml:id="_voiceRecognition_8h_1a6fa9cbce79694ce3771293ca948c7ae2aabfd3e123a6890134d38241c2394f018"/>TIMED_RECOGNITION</entry><entry></entry></row><row><entry><indexterm><primary>LIVE_RECOGNITION</primary><secondary>voiceRecognition.h</secondary></indexterm>
+<indexterm><primary>voiceRecognition.h</primary><secondary>LIVE_RECOGNITION</secondary></indexterm>
+<anchor xml:id="_voiceRecognition_8h_1a6fa9cbce79694ce3771293ca948c7ae2a067654aeba06cca49eeca595d1841fc8"/>LIVE_RECOGNITION</entry><entry></entry></row>    </tbody>
+    </tgroup>
+</informaltable>
+</section>
+</section>
+</section>

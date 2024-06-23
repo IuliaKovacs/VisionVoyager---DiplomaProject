@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_keyboardControl_8cpp" xml:lang="en-US">
+<title>keyboardControl.cpp File Reference</title>
+<indexterm><primary>keyboardControl.cpp</primary></indexterm>
+<programlisting>#include &quot;keyboardControl.h&quot;
+#include &quot;../RouteRegistration/routeRegistrationUtils.h&quot;
+#include &quot;../RouteRecordPlayer/routeRecordPlayUtils.h&quot;
+#include &lt;sys/select.h&gt;
+#include &lt;termios.h&gt;
+</programlisting>Include dependency graph for keyboardControl.cpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="keyboardControl_8cpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para>const std::unordered_map&lt; std::string, int &gt; <link linkend="_keyboardControl_8cpp_1ab31c21937375c78d6946feda696cd3be">key_map</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Variable Documentation</title>
+<anchor xml:id="_keyboardControl_8cpp_1ab31c21937375c78d6946feda696cd3be"/>    <section>
+    <title>key_map</title>
+<indexterm><primary>key_map</primary><secondary>keyboardControl.cpp</secondary></indexterm>
+<indexterm><primary>keyboardControl.cpp</primary><secondary>key_map</secondary></indexterm>
+<para><computeroutput>const std::unordered_map&lt;std::string, int&gt; key_map</computeroutput></para><emphasis role="strong">Initial value:</emphasis><programlisting>{
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;Left&quot;</emphasis>,&#32;KEY_LEFT},
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;Up&quot;</emphasis>,&#32;KEY_UP},
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;Right&quot;</emphasis>,&#32;KEY_RIGHT},
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;Down&quot;</emphasis>,&#32;KEY_DOWN},
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;1&quot;</emphasis>,&#32;<emphasis role="charliteral">&apos;1&apos;</emphasis>},
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;2&quot;</emphasis>,&#32;<emphasis role="charliteral">&apos;2&apos;</emphasis>},
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;3&quot;</emphasis>,&#32;<emphasis role="charliteral">&apos;3&apos;</emphasis>},
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;4&quot;</emphasis>,&#32;<emphasis role="charliteral">&apos;4&apos;</emphasis>},
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;5&quot;</emphasis>,&#32;<emphasis role="charliteral">&apos;5&apos;</emphasis>},
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;6&quot;</emphasis>,&#32;<emphasis role="charliteral">&apos;6&apos;</emphasis>},
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;P&quot;</emphasis>,&#32;<emphasis role="charliteral">&apos;p&apos;</emphasis>},
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;O&quot;</emphasis>,&#32;<emphasis role="charliteral">&apos;o&apos;</emphasis>},
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;W&quot;</emphasis>,&#32;<emphasis role="charliteral">&apos;w&apos;</emphasis>},
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;A&quot;</emphasis>,&#32;<emphasis role="charliteral">&apos;a&apos;</emphasis>},
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;S&quot;</emphasis>,&#32;<emphasis role="charliteral">&apos;s&apos;</emphasis>},
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;D&quot;</emphasis>,&#32;<emphasis role="charliteral">&apos;d&apos;</emphasis>},
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;F&quot;</emphasis>,&#32;<emphasis role="charliteral">&apos;f&apos;</emphasis>},
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;R&quot;</emphasis>,&#32;<emphasis role="charliteral">&apos;r&apos;</emphasis>},
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;E&quot;</emphasis>,&#32;<emphasis role="charliteral">&apos;e&apos;</emphasis>},
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;X&quot;</emphasis>,&#32;<emphasis role="charliteral">&apos;x&apos;</emphasis>}
+}
+</programlisting></section>
+</section>
+</section>

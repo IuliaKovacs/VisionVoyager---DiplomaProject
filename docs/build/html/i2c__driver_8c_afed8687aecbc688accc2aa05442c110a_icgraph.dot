@@ -1,0 +1,20 @@
+digraph "i2c_sendMessage"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="12",labelfontname="Helvetica",labelfontsize="12"];
+  node [fontname="Helvetica",fontsize="12",shape=record];
+  rankdir="RL";
+  Node1 [label="i2c_sendMessage",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node2 [label="RFID_sendRequest",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$RFID__Manager_8c.html#a052b1fff15bf9cff825a30739748be45",tooltip=" "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node3 [label="RFID_get_Rooms",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$RFID__Manager_8c.html#ad154f5c187d7830caf30b0e971583ed4",tooltip=" "];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node4 [label="ApplicationModule::TASK_RFID_READER_COMM",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classApplicationModule.html#a25e8041073cdddae0c8718771624617b",tooltip=" "];
+  Node2 -> Node5 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node5 [label="RFID_get_System_Init_Status",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$RFID__Manager_8c.html#a23bcce4079e8f84bd19e169dc6107132",tooltip=" "];
+  Node5 -> Node4 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node2 -> Node6 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node6 [label="RFID_Send_Ping",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$RFID__Manager_8c.html#af03b7a9b7153d7b4aaf0a6f52fc9010d",tooltip=" "];
+  Node6 -> Node4 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+}

@@ -1,0 +1,7 @@
+digraph "ApplicationModule"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="12",labelfontname="Helvetica",labelfontsize="12"];
+  node [fontname="Helvetica",fontsize="12",shape=record];
+  Node1 [label="{ApplicationModule\n||+ static bool TASK_LINE_FOLLOWING()\l+ static bool TASK_ROUTE_PLAYING(string route_name)\l+ static void TASK_CAMERA_MODULE()\l+ static bool TASK_RFID_READER_COMM(optional\< string \> route_name)\l+ static bool TASK_ADMIN_MODE_WINDOW(int argc, char *argv[])\l+ static bool TASK_VOICE_RECOGNITION_WAIT()\land 4 more...\l- static void capture_photo_and_send_to_process()\l- static void increment_excel_route_count(string route_path)\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+}

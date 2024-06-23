@@ -1,0 +1,10 @@
+digraph "Person::get_first_name"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="12",labelfontname="Helvetica",labelfontsize="12"];
+  node [fontname="Helvetica",fontsize="12",shape=record];
+  rankdir="RL";
+  Node1 [label="Person::get_first_name",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node2 [label="ApplicationModule::capture_photo_and_send_to_process",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classApplicationModule.html#a129332dabe5e4022a726f6a3b9294ca3",tooltip=" "];
+}

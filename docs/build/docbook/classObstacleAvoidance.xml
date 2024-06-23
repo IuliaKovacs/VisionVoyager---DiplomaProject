@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classObstacleAvoidance" xml:lang="en-US">
+<title>ObstacleAvoidance Class Reference</title>
+<indexterm><primary>ObstacleAvoidance</primary></indexterm>
+<para>
+<computeroutput>#include &lt;obstacleAvoidanceUtils.h&gt;</computeroutput>
+</para>
+Collaboration diagram for ObstacleAvoidance:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classObstacleAvoidance__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static void <link linkend="_classObstacleAvoidance_1ab2d469c0282393134fa00fc00c4636e2">set_robot</link> (<link linkend="_classVisionVoyager">VisionVoyager</link> *robot)</para>
+</listitem>
+            <listitem><para>static bool <link linkend="_classObstacleAvoidance_1a0c503d77cc7489def3a547d7517e1ab3">check_forward_safety</link> ()</para>
+</listitem>
+            <listitem><para>static bool <link linkend="_classObstacleAvoidance_1aec17d58304daa660e2ee6f3ca7029154">check_severe_danger</link> ()</para>
+</listitem>
+            <listitem><para>static std::chrono::duration&lt; double &gt; <link linkend="_classObstacleAvoidance_1a6078557dc651247045892b67604fdd78">obstacle_avoid</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classObstacleAvoidance_1a06588d8cde299589af2a896ea3289277">get_ultrasonic_data</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classObstacleAvoidance_1a8af127b924a766cf2f089fb8280d6bd0">return_on_track</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classObstacleAvoidance_1a40a456b655e64da944e440221f8bd1ab">reverse_route</link> (string route_name)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_obstacleAvoidanceUtils_8h_1a224b9163917ac32fc95a60d8c1eec3aa">Direction</link> <link linkend="_classObstacleAvoidance_1afea44f943d103e05cb685c41adf8cc98">choose_avoiding_side</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_classVisionVoyager">VisionVoyager</link> * <link linkend="_classObstacleAvoidance_1aec0fd5be2312181485b57e4be2d0d295">robotVisionVoyager</link> = nullptr</para>
+</listitem>
+            <listitem><para>static float <link linkend="_classObstacleAvoidance_1aeb95f28e5399bc0eadb05675384b9c09">ultrasonic_data</link></para>
+</listitem>
+            <listitem><para>static std::chrono::time_point&lt; std::chrono::steady_clock &gt; <link linkend="_classObstacleAvoidance_1a18e33c55688799361fb246d039008c11">start_tts_avoid</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classObstacleAvoidance_1a0c503d77cc7489def3a547d7517e1ab3"/>    <section>
+    <title>check_forward_safety()</title>
+<indexterm><primary>check_forward_safety</primary><secondary>ObstacleAvoidance</secondary></indexterm>
+<indexterm><primary>ObstacleAvoidance</primary><secondary>check_forward_safety</secondary></indexterm>
+<para><computeroutput>bool ObstacleAvoidance::check_forward_safety ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classObstacleAvoidance_a0c503d77cc7489def3a547d7517e1ab3_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classObstacleAvoidance_a0c503d77cc7489def3a547d7517e1ab3_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classObstacleAvoidance_1aec17d58304daa660e2ee6f3ca7029154"/>    <section>
+    <title>check_severe_danger()</title>
+<indexterm><primary>check_severe_danger</primary><secondary>ObstacleAvoidance</secondary></indexterm>
+<indexterm><primary>ObstacleAvoidance</primary><secondary>check_severe_danger</secondary></indexterm>
+<para><computeroutput>bool ObstacleAvoidance::check_severe_danger ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classObstacleAvoidance_aec17d58304daa660e2ee6f3ca7029154_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classObstacleAvoidance_aec17d58304daa660e2ee6f3ca7029154_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classObstacleAvoidance_1afea44f943d103e05cb685c41adf8cc98"/>    <section>
+    <title>choose_avoiding_side()</title>
+<indexterm><primary>choose_avoiding_side</primary><secondary>ObstacleAvoidance</secondary></indexterm>
+<indexterm><primary>ObstacleAvoidance</primary><secondary>choose_avoiding_side</secondary></indexterm>
+<para><computeroutput><link linkend="_obstacleAvoidanceUtils_8h_1a224b9163917ac32fc95a60d8c1eec3aa">Direction</link> ObstacleAvoidance::choose_avoiding_side ( )<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classObstacleAvoidance_1a06588d8cde299589af2a896ea3289277"/>    <section>
+    <title>get_ultrasonic_data()</title>
+<indexterm><primary>get_ultrasonic_data</primary><secondary>ObstacleAvoidance</secondary></indexterm>
+<indexterm><primary>ObstacleAvoidance</primary><secondary>get_ultrasonic_data</secondary></indexterm>
+<para><computeroutput>void ObstacleAvoidance::get_ultrasonic_data ( )<computeroutput>[static]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classObstacleAvoidance_1a6078557dc651247045892b67604fdd78"/>    <section>
+    <title>obstacle_avoid()</title>
+<indexterm><primary>obstacle_avoid</primary><secondary>ObstacleAvoidance</secondary></indexterm>
+<indexterm><primary>ObstacleAvoidance</primary><secondary>obstacle_avoid</secondary></indexterm>
+<para><computeroutput>std::chrono::duration&lt; double &gt; ObstacleAvoidance::obstacle_avoid ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classObstacleAvoidance_a6078557dc651247045892b67604fdd78_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classObstacleAvoidance_a6078557dc651247045892b67604fdd78_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classObstacleAvoidance_1a8af127b924a766cf2f089fb8280d6bd0"/>    <section>
+    <title>return_on_track()</title>
+<indexterm><primary>return_on_track</primary><secondary>ObstacleAvoidance</secondary></indexterm>
+<indexterm><primary>ObstacleAvoidance</primary><secondary>return_on_track</secondary></indexterm>
+<para><computeroutput>void ObstacleAvoidance::return_on_track ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classObstacleAvoidance_a8af127b924a766cf2f089fb8280d6bd0_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classObstacleAvoidance_1a40a456b655e64da944e440221f8bd1ab"/>    <section>
+    <title>reverse_route()</title>
+<indexterm><primary>reverse_route</primary><secondary>ObstacleAvoidance</secondary></indexterm>
+<indexterm><primary>ObstacleAvoidance</primary><secondary>reverse_route</secondary></indexterm>
+<para><computeroutput>void ObstacleAvoidance::reverse_route (string route_name)<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classObstacleAvoidance_a40a456b655e64da944e440221f8bd1ab_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classObstacleAvoidance_1ab2d469c0282393134fa00fc00c4636e2"/>    <section>
+    <title>set_robot()</title>
+<indexterm><primary>set_robot</primary><secondary>ObstacleAvoidance</secondary></indexterm>
+<indexterm><primary>ObstacleAvoidance</primary><secondary>set_robot</secondary></indexterm>
+<para><computeroutput>void ObstacleAvoidance::set_robot (<link linkend="_classVisionVoyager">VisionVoyager</link> * robot)<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classObstacleAvoidance_ab2d469c0282393134fa00fc00c4636e2_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_classObstacleAvoidance_1aec0fd5be2312181485b57e4be2d0d295"/>    <section>
+    <title>robotVisionVoyager</title>
+<indexterm><primary>robotVisionVoyager</primary><secondary>ObstacleAvoidance</secondary></indexterm>
+<indexterm><primary>ObstacleAvoidance</primary><secondary>robotVisionVoyager</secondary></indexterm>
+<para><computeroutput><link linkend="_classVisionVoyager">VisionVoyager</link> * ObstacleAvoidance::robotVisionVoyager = nullptr<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classObstacleAvoidance_1a18e33c55688799361fb246d039008c11"/>    <section>
+    <title>start_tts_avoid</title>
+<indexterm><primary>start_tts_avoid</primary><secondary>ObstacleAvoidance</secondary></indexterm>
+<indexterm><primary>ObstacleAvoidance</primary><secondary>start_tts_avoid</secondary></indexterm>
+<para><computeroutput>std::chrono::time_point&lt; std::chrono::steady_clock &gt; ObstacleAvoidance::start_tts_avoid<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classObstacleAvoidance_1aeb95f28e5399bc0eadb05675384b9c09"/>    <section>
+    <title>ultrasonic_data</title>
+<indexterm><primary>ultrasonic_data</primary><secondary>ObstacleAvoidance</secondary></indexterm>
+<indexterm><primary>ObstacleAvoidance</primary><secondary>ultrasonic_data</secondary></indexterm>
+<para><computeroutput>float ObstacleAvoidance::ultrasonic_data<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+<link linkend="_obstacleAvoidanceUtils_8h">obstacleAvoidanceUtils.h</link><link linkend="_obstacleAvoidanceUtils_8cpp">obstacleAvoidanceUtils.cpp</link></section>
+</section>

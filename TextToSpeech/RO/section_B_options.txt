@@ -1,9 +1,17 @@
 Acum că ai selectat secțiunea. Trebuie să selectezi o rută dintre următoarele:
 
-Ruta 1. Către Rectorat.
+Ruta 1. Către B527.
 
 
-pentru Rectorat rostește "ONE"
+pentru B527 rostește "ONE"
+
+
+
+
+Ruta 2. Către B528.
+
+
+pentru B528 rostește "TWO"
 
 
 

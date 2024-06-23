@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_gpio__driver_8c" xml:lang="en-US">
+<title>gpio_driver.c File Reference</title>
+<indexterm><primary>gpio_driver.c</primary></indexterm>
+<programlisting>#include &lt;stdio.h&gt;
+#include &lt;linux/gpio.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;string.h&gt;
+#include &lt;errno.h&gt;
+#include &lt;sys/ioctl.h&gt;
+#include &lt;stdint.h&gt;
+#include &lt;stdlib.h&gt;
+#include &quot;gpio_driver.h&quot;
+</programlisting>Include dependency graph for gpio_driver.c:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="gpio__driver_8c__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_gpio__driver_8c_1a526e0f1819d0e6842cd5613069c5e7e8">GPIO_DEVICE</link>   &quot;/dev/gpiochip0&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_gpio__driver_8c_1a24e93be9c5baa3aeab7021b64e290672">ERR</link>(...)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_gpio__driver_8c_1afd70d511ed74a611b59d6b98fb52635c">DBG</link>(str, ...)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_gpio__driver_8c_1a405d1e0eeb97afad3e0fe118463c47b2">GPIO_MASK</link>   (1 &lt;&lt; <link linkend="_gpio__driver_8h_1a18070f8c7140f8ab3e2992e4e8277305">GPIO_PIN</link>)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>static struct gpio_v2_line_config <link linkend="_gpio__driver_8c_1ab310bf36f2c27c38864660433f01058e">set_gpio_config</link> (void)</para>
+</listitem>
+            <listitem><para>static <link linkend="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248">state_t</link> <link linkend="_gpio__driver_8c_1a574e35bb57985bc137241bfd76b4a588">gpio_line_request</link> (void)</para>
+</listitem>
+            <listitem><para><link linkend="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248">state_t</link> <link linkend="_gpio__driver_8c_1acfe2913e07c162e79d29cc05e77f8edb">gpio_init</link> (void)</para>
+</listitem>
+            <listitem><para><link linkend="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248">state_t</link> <link linkend="_gpio__driver_8c_1aad476fdf5856091afa16ae638821b5a9">gpio_set_output</link> (const <link linkend="_gpio__driver_8h_1ac9aa70f40f927170d73c836942365243">GPIO_state_t</link> gpio_state)</para>
+</listitem>
+            <listitem><para><link linkend="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248">state_t</link> <link linkend="_gpio__driver_8c_1a75f029a55ccc126f55a0ae7d3ed3cc7f">gpio_DeInit</link> (void)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para>static int <link linkend="_gpio__driver_8c_1a9097571b2af799b16ac887f41f06351d">gpio_system_fd</link></para>
+</listitem>
+            <listitem><para>static struct gpio_v2_line_request <link linkend="_gpio__driver_8c_1afff3ecfad4d87c3a5b3febfd62bdde2e">request</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_gpio__driver_8c_1afd70d511ed74a611b59d6b98fb52635c"/>    <section>
+    <title>DBG</title>
+<indexterm><primary>DBG</primary><secondary>gpio_driver.c</secondary></indexterm>
+<indexterm><primary>gpio_driver.c</primary><secondary>DBG</secondary></indexterm>
+<para><computeroutput>#define DBG( str,  ...)</computeroutput></para>    </section><anchor xml:id="_gpio__driver_8c_1a24e93be9c5baa3aeab7021b64e290672"/>    <section>
+    <title>ERR</title>
+<indexterm><primary>ERR</primary><secondary>gpio_driver.c</secondary></indexterm>
+<indexterm><primary>gpio_driver.c</primary><secondary>ERR</secondary></indexterm>
+<para><computeroutput>#define ERR( ...)</computeroutput></para>    </section><anchor xml:id="_gpio__driver_8c_1a526e0f1819d0e6842cd5613069c5e7e8"/>    <section>
+    <title>GPIO_DEVICE</title>
+<indexterm><primary>GPIO_DEVICE</primary><secondary>gpio_driver.c</secondary></indexterm>
+<indexterm><primary>gpio_driver.c</primary><secondary>GPIO_DEVICE</secondary></indexterm>
+<para><computeroutput>#define GPIO_DEVICE   &quot;/dev/gpiochip0&quot;</computeroutput></para>    </section><anchor xml:id="_gpio__driver_8c_1a405d1e0eeb97afad3e0fe118463c47b2"/>    <section>
+    <title>GPIO_MASK</title>
+<indexterm><primary>GPIO_MASK</primary><secondary>gpio_driver.c</secondary></indexterm>
+<indexterm><primary>gpio_driver.c</primary><secondary>GPIO_MASK</secondary></indexterm>
+<para><computeroutput>#define GPIO_MASK   (1 &lt;&lt; <link linkend="_gpio__driver_8h_1a18070f8c7140f8ab3e2992e4e8277305">GPIO_PIN</link>)</computeroutput></para></section>
+</section>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_gpio__driver_8c_1a75f029a55ccc126f55a0ae7d3ed3cc7f"/>    <section>
+    <title>gpio_DeInit()</title>
+<indexterm><primary>gpio_DeInit</primary><secondary>gpio_driver.c</secondary></indexterm>
+<indexterm><primary>gpio_driver.c</primary><secondary>gpio_DeInit</secondary></indexterm>
+<para><computeroutput><link linkend="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248">state_t</link> gpio_DeInit (void )</computeroutput></para>    </section><anchor xml:id="_gpio__driver_8c_1acfe2913e07c162e79d29cc05e77f8edb"/>    <section>
+    <title>gpio_init()</title>
+<indexterm><primary>gpio_init</primary><secondary>gpio_driver.c</secondary></indexterm>
+<indexterm><primary>gpio_driver.c</primary><secondary>gpio_init</secondary></indexterm>
+<para><computeroutput><link linkend="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248">state_t</link> gpio_init (void )</computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="gpio__driver_8c_acfe2913e07c162e79d29cc05e77f8edb_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_gpio__driver_8c_1a574e35bb57985bc137241bfd76b4a588"/>    <section>
+    <title>gpio_line_request()</title>
+<indexterm><primary>gpio_line_request</primary><secondary>gpio_driver.c</secondary></indexterm>
+<indexterm><primary>gpio_driver.c</primary><secondary>gpio_line_request</secondary></indexterm>
+<para><computeroutput>static <link linkend="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248">state_t</link> gpio_line_request (void )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="gpio__driver_8c_a574e35bb57985bc137241bfd76b4a588_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="gpio__driver_8c_a574e35bb57985bc137241bfd76b4a588_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_gpio__driver_8c_1aad476fdf5856091afa16ae638821b5a9"/>    <section>
+    <title>gpio_set_output()</title>
+<indexterm><primary>gpio_set_output</primary><secondary>gpio_driver.c</secondary></indexterm>
+<indexterm><primary>gpio_driver.c</primary><secondary>gpio_set_output</secondary></indexterm>
+<para><computeroutput><link linkend="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248">state_t</link> gpio_set_output (const <link linkend="_gpio__driver_8h_1ac9aa70f40f927170d73c836942365243">GPIO_state_t</link> gpio_state)</computeroutput></para>    </section><anchor xml:id="_gpio__driver_8c_1ab310bf36f2c27c38864660433f01058e"/>    <section>
+    <title>set_gpio_config()</title>
+<indexterm><primary>set_gpio_config</primary><secondary>gpio_driver.c</secondary></indexterm>
+<indexterm><primary>gpio_driver.c</primary><secondary>set_gpio_config</secondary></indexterm>
+<para><computeroutput>static struct gpio_v2_line_config set_gpio_config (void )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="gpio__driver_8c_ab310bf36f2c27c38864660433f01058e_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Variable Documentation</title>
+<anchor xml:id="_gpio__driver_8c_1a9097571b2af799b16ac887f41f06351d"/>    <section>
+    <title>gpio_system_fd</title>
+<indexterm><primary>gpio_system_fd</primary><secondary>gpio_driver.c</secondary></indexterm>
+<indexterm><primary>gpio_driver.c</primary><secondary>gpio_system_fd</secondary></indexterm>
+<para><computeroutput>int gpio_system_fd<computeroutput>[static]</computeroutput></computeroutput></para>    </section><anchor xml:id="_gpio__driver_8c_1afff3ecfad4d87c3a5b3febfd62bdde2e"/>    <section>
+    <title>request</title>
+<indexterm><primary>request</primary><secondary>gpio_driver.c</secondary></indexterm>
+<indexterm><primary>gpio_driver.c</primary><secondary>request</secondary></indexterm>
+<para><computeroutput>struct gpio_v2_line_request request<computeroutput>[static]</computeroutput></computeroutput></para></section>
+</section>
+</section>

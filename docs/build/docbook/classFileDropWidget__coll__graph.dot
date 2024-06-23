@@ -1,0 +1,13 @@
+digraph "FileDropWidget"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="12",labelfontname="Helvetica",labelfontsize="12"];
+  node [fontname="Helvetica",fontsize="12",shape=record];
+  Node1 [label="{FileDropWidget\n||+  FileDropWidget(QWidget *parent=nullptr)\l+ void setAcceptsSingleFile(bool accept)\l+ QListWidgetItem getFirstItem()\l+ QListWidget * getFileListWidget()\l+ int getListCount()\l+ void clearFileList()\l# void dragEnterEvent(QDragEnterEvent *event) override\l# void dragMoveEvent(QDragMoveEvent *event) override\l# void dropEvent(QDropEvent *event) override\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="12",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node2 [label="{QLabel\n||}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classQLabel.html",tooltip=" "];
+  Node3 -> Node1 [color="grey25",fontsize="12",style="solid",label=" -fileListWidget" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node3 [label="{QListWidget *\n||}",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node4 -> Node1 [color="grey25",fontsize="12",style="solid",label=" -acceptsSingleFile" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node4 [label="{bool\n||}",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+}

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_efa62b2fbc85c8c24adb0491b7b38ea2" xml:lang="en-US">
+<title>KeyboardControl Directory Reference</title>
+<indexterm><primary>KeyboardControl Directory Reference</primary></indexterm>
+Directory dependency graph for KeyboardControl:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="dir_efa62b2fbc85c8c24adb0491b7b38ea2_dep.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="_keyboardControl_8cpp">keyboardControl.cpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_keyboardControl_8h">keyboardControl.h</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

@@ -1,0 +1,20 @@
+digraph "LineFollower"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="12",labelfontname="Helvetica",labelfontsize="12"];
+  node [fontname="Helvetica",fontsize="12",shape=record];
+  Node1 [label="{LineFollower\n||+ static void set_robot(VisionVoyager *robot)\l+ static void follow_line()\l+ static bool verify_is_in_air()\l+ static bool get_line_status()\l- static void get_grayscale_data()\l- static vector\< int \> get_line_from_grayscale_data()\l- static bool verify_no_line_available()\l- static void search_line()\l- static State compute_next_state(vector\< int \> grayscale_line_status)\l- static void execute_move(State current_state)\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [color="grey25",fontsize="12",style="solid",label=" -last_state" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node2 [label="{static State\n||}",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node3 -> Node1 [color="grey25",fontsize="12",style="solid",label=" -grayscale_data" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node3 [label="{static vector\< int \>\n||}",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node4 -> Node1 [color="grey25",fontsize="12",style="solid",label=" -stop_counter" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node4 [label="{int\n||}",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node5 -> Node1 [color="grey25",fontsize="12",style="solid",label=" -robotVisionVoyager" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node5 [label="{VisionVoyager\n||+  VisionVoyager()\l+ void set_picar_python_object(py::object picar_python_object)\l+ void set_speed(int new_speed)\l+ void set_dir_angle(int new_dir_angle)\l+ void set_camera_tilt_angle(int new_camera_tilt_angle)\l+ void set_cam_pan_angle(int new_camera_pan_angle)\land 26 more...\l- void initialize_python_embedding()\l- vector\< int \> map_python_list_cpp_vector(py::list py_list)\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classVisionVoyager.html",tooltip=" "];
+  Node6 -> Node5 [color="grey25",fontsize="12",style="solid",label=" -angular_velocity\n-linear_velocity" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node6 [label="{float\n||}",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node4 -> Node5 [color="grey25",fontsize="12",style="solid",label=" -DIR_MAX\n-DIR_MIN\n-camera_pan_angle\n-camera_tilt_angle\n-dir_angle\n-speed" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node7 -> Node5 [color="grey25",fontsize="12",style="solid",label=" -picar_python_class\n-picar_python_module\n-picar_python_object" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node7 [label="{object\n||}",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+}

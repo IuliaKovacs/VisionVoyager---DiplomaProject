@@ -50,7 +50,14 @@ bool ObstacleAvoidance::check_forward_safety()
         logFile << log_time() << "[Obstacle Avoiding] Obstacle Detected!" << endl;
         log_mutex.unlock();
         tts_mutex.lock();
-        TextToSpeech::display_custom_message("Stop! Atenție! Obstacol Detectat!");
+        if(Language::EN == TextToSpeech::get_language())
+        {   
+            TextToSpeech::display_custom_message("Stop! Be careful! Obstacle Detected!");
+        }
+        else
+        {
+            TextToSpeech::display_custom_message("Stop! Atenție! Obstacol Detectat!");
+        }
         tts_mutex.unlock();
         return true;
     }
@@ -83,7 +90,14 @@ bool ObstacleAvoidance::check_severe_danger()
         logFile << log_time() << "[Obstacle Avoiding] Severe Danger -> Obstacle Detected!" << endl;
         log_mutex.unlock();
         tts_mutex.lock();
-        TextToSpeech::display_custom_message("Stop! Atenție! Nou Obstacol Detectat!");
+        if(Language::EN == TextToSpeech::get_language())
+        {   
+            TextToSpeech::display_custom_message("Stop! Be careful! A new obstacle is detected!");
+        }
+        else
+        {
+            TextToSpeech::display_custom_message("Stop! Atenție! Un nou obstacol detectat!");
+        }
         tts_mutex.unlock();
         return true;
     }
@@ -96,7 +110,14 @@ std::chrono::duration<double> ObstacleAvoidance::obstacle_avoid()
     
     std::chrono::duration<double> time_skipped = std::chrono::seconds(0);
     Direction side = Direction::RIGHT;
-    TextToSpeech::display_custom_message("Obstacolul ar trebui ocolit pe partea dreapta! Faceți un pas în dreapta, mergeți înainte 2 pași, iar apoi faceți un pas în stânga");
+    if(Language::EN == TextToSpeech::get_language())
+    {   
+        TextToSpeech::display_custom_message("The obstacle should be avoided on right side! Take a step to the right, two steps forward, and one step to the left");
+    }
+    else
+    {
+        TextToSpeech::display_custom_message("Obstacolul ar trebui ocolit pe partea dreapta! Faceți un pas în dreapta, mergeți înainte 2 pași, iar apoi faceți un pas în stânga");
+    }
     auto end_tts = std::chrono::steady_clock::now();
 
     auto start_time = std::chrono::steady_clock::now();

@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_textToSpeech_8h" xml:lang="en-US">
+<title>textToSpeech.h File Reference</title>
+<indexterm><primary>textToSpeech.h</primary></indexterm>
+<programlisting>#include &quot;../ApplicationModule/application_utils.h&quot;
+</programlisting>Include dependency graph for textToSpeech.h:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="textToSpeech_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="textToSpeech_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>class <link linkend="_classTextToSpeech">TextToSpeech</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Enumerations    </title>
+        <itemizedlist>
+            <listitem><para>enum class <link linkend="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705">Language</link> { <link linkend="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705af5b15f58cabad73d1bf2de7bcb89db6c">RO</link>
+, <link linkend="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705aaa85f1840e282d8a8304dbc2c0d7c9b2">EN</link>
+, <link linkend="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705a696b031073e74bf2cb98e5ef201d4aa3">UNKNOWN</link>
+ }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Enumeration Type Documentation</title>
+<anchor xml:id="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705"/>    <section>
+    <title>Language</title>
+<indexterm><primary>Language</primary><secondary>textToSpeech.h</secondary></indexterm>
+<indexterm><primary>textToSpeech.h</primary><secondary>Language</secondary></indexterm>
+<para><computeroutput>enum <link linkend="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705">Language</link><computeroutput>[strong]</computeroutput></computeroutput></para><informaltable frame="all">
+<title>Enumerator</title>
+    <tgroup cols="2" align="left" colsep="1" rowsep="1">
+      <colspec colname='c1'/>
+      <colspec colname='c2'/>
+<tbody>
+<row><entry><indexterm><primary>RO</primary><secondary>textToSpeech.h</secondary></indexterm>
+<indexterm><primary>textToSpeech.h</primary><secondary>RO</secondary></indexterm>
+<anchor xml:id="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705af5b15f58cabad73d1bf2de7bcb89db6c"/>RO</entry><entry></entry></row><row><entry><indexterm><primary>EN</primary><secondary>textToSpeech.h</secondary></indexterm>
+<indexterm><primary>textToSpeech.h</primary><secondary>EN</secondary></indexterm>
+<anchor xml:id="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705aaa85f1840e282d8a8304dbc2c0d7c9b2"/>EN</entry><entry></entry></row><row><entry><indexterm><primary>UNKNOWN</primary><secondary>textToSpeech.h</secondary></indexterm>
+<indexterm><primary>textToSpeech.h</primary><secondary>UNKNOWN</secondary></indexterm>
+<anchor xml:id="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705a696b031073e74bf2cb98e5ef201d4aa3"/>UNKNOWN</entry><entry></entry></row>    </tbody>
+    </tgroup>
+</informaltable>
+</section>
+</section>
+</section>

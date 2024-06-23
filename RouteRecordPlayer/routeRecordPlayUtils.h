@@ -5,6 +5,7 @@
 #include <optional>
 #include "../VisionVoyagerMoves/visionVoyager.h"
 #include "../ObstacleAvoidance/obstacleAvoidanceUtils.h"
+#include "../RFID/RFID_Manager.h"
 
 using namespace std;
 
@@ -34,6 +35,7 @@ public:
     static void play_route_conditioned(string route_name);
     static SevereErrorType check_motors_feedback();
     static void avoid_right();
+    static bool RFID_helper(RFID_Tag_Information *out_tag_info);
     friend void ObstacleAvoidance::return_on_track();
     friend void ObstacleAvoidance::reverse_route(string route_name);
 };

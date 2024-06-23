@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_person_8h" xml:lang="en-US">
+<title>person.h File Reference</title>
+<indexterm><primary>person.h</primary></indexterm>
+<programlisting>#include &lt;string&gt;
+</programlisting>Include dependency graph for person.h:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="person_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="person_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>class <link linkend="_classPerson">Person</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Enumerations    </title>
+        <itemizedlist>
+            <listitem><para>enum class <link linkend="_person_8h_1acdd79a1a4f81dd6ee5cddcb21149b951">Role</link> { <link linkend="_person_8h_1acdd79a1a4f81dd6ee5cddcb21149b951a89ea1c85de76a90480e83329027820c1">Secretary</link>
+, <link linkend="_person_8h_1acdd79a1a4f81dd6ee5cddcb21149b951ad39f2a8079b4b72d11fb10b5b4c0c2ab">Receptionist</link>
+, <link linkend="_person_8h_1acdd79a1a4f81dd6ee5cddcb21149b951a844fb29b9c3b2f8f2f82d2531da91b44">Building_Staff</link>
+ }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Enumeration Type Documentation</title>
+<anchor xml:id="_person_8h_1acdd79a1a4f81dd6ee5cddcb21149b951"/>    <section>
+    <title>Role</title>
+<indexterm><primary>Role</primary><secondary>person.h</secondary></indexterm>
+<indexterm><primary>person.h</primary><secondary>Role</secondary></indexterm>
+<para><computeroutput>enum <link linkend="_person_8h_1acdd79a1a4f81dd6ee5cddcb21149b951">Role</link><computeroutput>[strong]</computeroutput></computeroutput></para><informaltable frame="all">
+<title>Enumerator</title>
+    <tgroup cols="2" align="left" colsep="1" rowsep="1">
+      <colspec colname='c1'/>
+      <colspec colname='c2'/>
+<tbody>
+<row><entry><indexterm><primary>Secretary</primary><secondary>person.h</secondary></indexterm>
+<indexterm><primary>person.h</primary><secondary>Secretary</secondary></indexterm>
+<anchor xml:id="_person_8h_1acdd79a1a4f81dd6ee5cddcb21149b951a89ea1c85de76a90480e83329027820c1"/>Secretary</entry><entry></entry></row><row><entry><indexterm><primary>Receptionist</primary><secondary>person.h</secondary></indexterm>
+<indexterm><primary>person.h</primary><secondary>Receptionist</secondary></indexterm>
+<anchor xml:id="_person_8h_1acdd79a1a4f81dd6ee5cddcb21149b951ad39f2a8079b4b72d11fb10b5b4c0c2ab"/>Receptionist</entry><entry></entry></row><row><entry><indexterm><primary>Building_Staff</primary><secondary>person.h</secondary></indexterm>
+<indexterm><primary>person.h</primary><secondary>Building_Staff</secondary></indexterm>
+<anchor xml:id="_person_8h_1acdd79a1a4f81dd6ee5cddcb21149b951a844fb29b9c3b2f8f2f82d2531da91b44"/>Building_Staff</entry><entry></entry></row>    </tbody>
+    </tgroup>
+</informaltable>
+</section>
+</section>
+</section>

@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_gpio__driver_8h" xml:lang="en-US">
+<title>gpio_driver.h File Reference</title>
+<indexterm><primary>gpio_driver.h</primary></indexterm>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="gpio__driver_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_gpio__driver_8h_1a18070f8c7140f8ab3e2992e4e8277305">GPIO_PIN</link>   5</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Typedefs    </title>
+        <itemizedlist>
+            <listitem><para>typedef enum <link linkend="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248">state_t</link> <link linkend="_gpio__driver_8h_1a248f08a5b3f28dd8c361c64b0f30e8cc">state_t</link></para>
+</listitem>
+            <listitem><para>typedef enum <link linkend="_gpio__driver_8h_1ac9aa70f40f927170d73c836942365243">GPIO_state_t</link> <link linkend="_gpio__driver_8h_1ad6bcc352da83ab604628be4d77296be8">GPIO_state_t</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Enumerations    </title>
+        <itemizedlist>
+            <listitem><para>enum <link linkend="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248">state_t</link> { <link linkend="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248ad1e92beee38aa3f4fe6f965fca87afcc">STATE_OK</link>
+, <link linkend="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248a6781dc2c900a597382c4288b1def9f41">STATE_PENDING</link>
+, <link linkend="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248a711086ac090cca39f6e1cf12c80829a1">STATE_NOK</link>
+ }</para>
+</listitem>
+            <listitem><para>enum <link linkend="_gpio__driver_8h_1ac9aa70f40f927170d73c836942365243">GPIO_state_t</link> { <link linkend="_gpio__driver_8h_1ac9aa70f40f927170d73c836942365243a6a226f4143ca3b18999551694cdb72a8">LOW</link> = 0U
+, <link linkend="_gpio__driver_8h_1ac9aa70f40f927170d73c836942365243a0c3a1dacf94061154b3ee354359c5893">HIGH</link> = 1U
+ }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248">state_t</link> <link linkend="_gpio__driver_8h_1acfe2913e07c162e79d29cc05e77f8edb">gpio_init</link> (void)</para>
+</listitem>
+            <listitem><para><link linkend="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248">state_t</link> <link linkend="_gpio__driver_8h_1aad476fdf5856091afa16ae638821b5a9">gpio_set_output</link> (const <link linkend="_gpio__driver_8h_1ac9aa70f40f927170d73c836942365243">GPIO_state_t</link> gpio_state)</para>
+</listitem>
+            <listitem><para><link linkend="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248">state_t</link> <link linkend="_gpio__driver_8h_1a75f029a55ccc126f55a0ae7d3ed3cc7f">gpio_DeInit</link> (void)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_gpio__driver_8h_1a18070f8c7140f8ab3e2992e4e8277305"/>    <section>
+    <title>GPIO_PIN</title>
+<indexterm><primary>GPIO_PIN</primary><secondary>gpio_driver.h</secondary></indexterm>
+<indexterm><primary>gpio_driver.h</primary><secondary>GPIO_PIN</secondary></indexterm>
+<para><computeroutput>#define GPIO_PIN   5</computeroutput></para></section>
+</section>
+<section>
+<title>Typedef Documentation</title>
+<anchor xml:id="_gpio__driver_8h_1ad6bcc352da83ab604628be4d77296be8"/>    <section>
+    <title>GPIO_state_t</title>
+<indexterm><primary>GPIO_state_t</primary><secondary>gpio_driver.h</secondary></indexterm>
+<indexterm><primary>gpio_driver.h</primary><secondary>GPIO_state_t</secondary></indexterm>
+<para><computeroutput>typedef enum <link linkend="_gpio__driver_8h_1ac9aa70f40f927170d73c836942365243">GPIO_state_t</link> <link linkend="_gpio__driver_8h_1ac9aa70f40f927170d73c836942365243">GPIO_state_t</link></computeroutput></para>    </section><anchor xml:id="_gpio__driver_8h_1a248f08a5b3f28dd8c361c64b0f30e8cc"/>    <section>
+    <title>state_t</title>
+<indexterm><primary>state_t</primary><secondary>gpio_driver.h</secondary></indexterm>
+<indexterm><primary>gpio_driver.h</primary><secondary>state_t</secondary></indexterm>
+<para><computeroutput>typedef enum <link linkend="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248">state_t</link> <link linkend="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248">state_t</link></computeroutput></para></section>
+</section>
+<section>
+<title>Enumeration Type Documentation</title>
+<anchor xml:id="_gpio__driver_8h_1ac9aa70f40f927170d73c836942365243"/>    <section>
+    <title>GPIO_state_t</title>
+<indexterm><primary>GPIO_state_t</primary><secondary>gpio_driver.h</secondary></indexterm>
+<indexterm><primary>gpio_driver.h</primary><secondary>GPIO_state_t</secondary></indexterm>
+<para><computeroutput>enum <link linkend="_gpio__driver_8h_1ac9aa70f40f927170d73c836942365243">GPIO_state_t</link></computeroutput></para><informaltable frame="all">
+<title>Enumerator</title>
+    <tgroup cols="2" align="left" colsep="1" rowsep="1">
+      <colspec colname='c1'/>
+      <colspec colname='c2'/>
+<tbody>
+<row><entry><indexterm><primary>LOW</primary><secondary>gpio_driver.h</secondary></indexterm>
+<indexterm><primary>gpio_driver.h</primary><secondary>LOW</secondary></indexterm>
+<anchor xml:id="_gpio__driver_8h_1ac9aa70f40f927170d73c836942365243a6a226f4143ca3b18999551694cdb72a8"/>LOW</entry><entry></entry></row><row><entry><indexterm><primary>HIGH</primary><secondary>gpio_driver.h</secondary></indexterm>
+<indexterm><primary>gpio_driver.h</primary><secondary>HIGH</secondary></indexterm>
+<anchor xml:id="_gpio__driver_8h_1ac9aa70f40f927170d73c836942365243a0c3a1dacf94061154b3ee354359c5893"/>HIGH</entry><entry></entry></row>    </tbody>
+    </tgroup>
+</informaltable>
+    </section><anchor xml:id="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248"/>    <section>
+    <title>state_t</title>
+<indexterm><primary>state_t</primary><secondary>gpio_driver.h</secondary></indexterm>
+<indexterm><primary>gpio_driver.h</primary><secondary>state_t</secondary></indexterm>
+<para><computeroutput>enum <link linkend="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248">state_t</link></computeroutput></para><informaltable frame="all">
+<title>Enumerator</title>
+    <tgroup cols="2" align="left" colsep="1" rowsep="1">
+      <colspec colname='c1'/>
+      <colspec colname='c2'/>
+<tbody>
+<row><entry><indexterm><primary>STATE_OK</primary><secondary>gpio_driver.h</secondary></indexterm>
+<indexterm><primary>gpio_driver.h</primary><secondary>STATE_OK</secondary></indexterm>
+<anchor xml:id="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248ad1e92beee38aa3f4fe6f965fca87afcc"/>STATE_OK</entry><entry></entry></row><row><entry><indexterm><primary>STATE_PENDING</primary><secondary>gpio_driver.h</secondary></indexterm>
+<indexterm><primary>gpio_driver.h</primary><secondary>STATE_PENDING</secondary></indexterm>
+<anchor xml:id="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248a6781dc2c900a597382c4288b1def9f41"/>STATE_PENDING</entry><entry></entry></row><row><entry><indexterm><primary>STATE_NOK</primary><secondary>gpio_driver.h</secondary></indexterm>
+<indexterm><primary>gpio_driver.h</primary><secondary>STATE_NOK</secondary></indexterm>
+<anchor xml:id="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248a711086ac090cca39f6e1cf12c80829a1"/>STATE_NOK</entry><entry></entry></row>    </tbody>
+    </tgroup>
+</informaltable>
+</section>
+</section>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_gpio__driver_8h_1a75f029a55ccc126f55a0ae7d3ed3cc7f"/>    <section>
+    <title>gpio_DeInit()</title>
+<indexterm><primary>gpio_DeInit</primary><secondary>gpio_driver.h</secondary></indexterm>
+<indexterm><primary>gpio_driver.h</primary><secondary>gpio_DeInit</secondary></indexterm>
+<para><computeroutput><link linkend="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248">state_t</link> gpio_DeInit (void )</computeroutput></para>    </section><anchor xml:id="_gpio__driver_8h_1acfe2913e07c162e79d29cc05e77f8edb"/>    <section>
+    <title>gpio_init()</title>
+<indexterm><primary>gpio_init</primary><secondary>gpio_driver.h</secondary></indexterm>
+<indexterm><primary>gpio_driver.h</primary><secondary>gpio_init</secondary></indexterm>
+<para><computeroutput><link linkend="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248">state_t</link> gpio_init (void )</computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="gpio__driver_8h_acfe2913e07c162e79d29cc05e77f8edb_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_gpio__driver_8h_1aad476fdf5856091afa16ae638821b5a9"/>    <section>
+    <title>gpio_set_output()</title>
+<indexterm><primary>gpio_set_output</primary><secondary>gpio_driver.h</secondary></indexterm>
+<indexterm><primary>gpio_driver.h</primary><secondary>gpio_set_output</secondary></indexterm>
+<para><computeroutput><link linkend="_gpio__driver_8h_1aa0aafed44fec19806d8f9ad834be1248">state_t</link> gpio_set_output (const <link linkend="_gpio__driver_8h_1ac9aa70f40f927170d73c836942365243">GPIO_state_t</link> gpio_state)</computeroutput></para></section>
+</section>
+</section>

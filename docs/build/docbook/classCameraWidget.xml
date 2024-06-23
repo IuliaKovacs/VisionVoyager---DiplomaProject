@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classCameraWidget" xml:lang="en-US">
+<title>CameraWidget Class Reference</title>
+<indexterm><primary>CameraWidget</primary></indexterm>
+<para>
+<computeroutput>#include &lt;cameraWidget.h&gt;</computeroutput>
+</para>
+Inheritance diagram for CameraWidget:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraWidget__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Collaboration diagram for CameraWidget:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraWidget__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_classCameraWidget_1ad6b37c85ecd72a19ca54eb089f8dc70b">CameraWidget</link> (<link linkend="_classQWidget">QWidget</link> *parent=nullptr)</para>
+</listitem>
+            <listitem><para><link linkend="_classCameraWidget_1ac8ceae1653382675b396ec01a376d124">~CameraWidget</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Protected Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>void <link linkend="_classCameraWidget_1a631cfab1a4ee7d182cdfae5f9d51201b">paintEvent</link> (QPaintEvent *event) override</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>bool <link linkend="_classCameraWidget_1a150aefd151c734d60c313a3fbe418f56">initCamera</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para>cv::VideoCapture * <link linkend="_classCameraWidget_1a719011b1fd9a42dbafb45338b294c1b0">videoCapture</link></para>
+</listitem>
+            <listitem><para>cv::Mat <link linkend="_classCameraWidget_1aad10f2e0efdf47d2ae2a043e2db17ec9">frame</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_classCameraWidget_1ad6b37c85ecd72a19ca54eb089f8dc70b"/>    <section>
+    <title>CameraWidget()</title>
+<indexterm><primary>CameraWidget</primary><secondary>CameraWidget</secondary></indexterm>
+<indexterm><primary>CameraWidget</primary><secondary>CameraWidget</secondary></indexterm>
+<para><computeroutput>CameraWidget::CameraWidget (<link linkend="_classQWidget">QWidget</link> * parent = <computeroutput>nullptr</computeroutput>
+)<computeroutput>[explicit]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraWidget_ad6b37c85ecd72a19ca54eb089f8dc70b_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classCameraWidget_1ac8ceae1653382675b396ec01a376d124"/>    <section>
+    <title>~CameraWidget()</title>
+<indexterm><primary>~CameraWidget</primary><secondary>CameraWidget</secondary></indexterm>
+<indexterm><primary>CameraWidget</primary><secondary>~CameraWidget</secondary></indexterm>
+<para><computeroutput>CameraWidget::~CameraWidget ( )</computeroutput></para></section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classCameraWidget_1a150aefd151c734d60c313a3fbe418f56"/>    <section>
+    <title>initCamera()</title>
+<indexterm><primary>initCamera</primary><secondary>CameraWidget</secondary></indexterm>
+<indexterm><primary>CameraWidget</primary><secondary>initCamera</secondary></indexterm>
+<para><computeroutput>bool CameraWidget::initCamera ( )<computeroutput>[private]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classCameraWidget_a150aefd151c734d60c313a3fbe418f56_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classCameraWidget_1a631cfab1a4ee7d182cdfae5f9d51201b"/>    <section>
+    <title>paintEvent()</title>
+<indexterm><primary>paintEvent</primary><secondary>CameraWidget</secondary></indexterm>
+<indexterm><primary>CameraWidget</primary><secondary>paintEvent</secondary></indexterm>
+<para><computeroutput>void CameraWidget::paintEvent (QPaintEvent * event)<computeroutput>[override]</computeroutput>, <computeroutput>[protected]</computeroutput></computeroutput></para></section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_classCameraWidget_1aad10f2e0efdf47d2ae2a043e2db17ec9"/>    <section>
+    <title>frame</title>
+<indexterm><primary>frame</primary><secondary>CameraWidget</secondary></indexterm>
+<indexterm><primary>CameraWidget</primary><secondary>frame</secondary></indexterm>
+<para><computeroutput>cv::Mat CameraWidget::frame<computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classCameraWidget_1a719011b1fd9a42dbafb45338b294c1b0"/>    <section>
+    <title>videoCapture</title>
+<indexterm><primary>videoCapture</primary><secondary>CameraWidget</secondary></indexterm>
+<indexterm><primary>CameraWidget</primary><secondary>videoCapture</secondary></indexterm>
+<para><computeroutput>cv::VideoCapture* CameraWidget::videoCapture<computeroutput>[private]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+<link linkend="_cameraWidget_8h">cameraWidget.h</link><link linkend="_cameraWidget_8cpp">cameraWidget.cpp</link></section>
+</section>

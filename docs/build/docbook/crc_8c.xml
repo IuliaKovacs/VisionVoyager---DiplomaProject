@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_crc_8c" xml:lang="en-US">
+<title>crc.c File Reference</title>
+<indexterm><primary>crc.c</primary></indexterm>
+<programlisting>#include &quot;crc.h&quot;
+</programlisting>Include dependency graph for crc.c:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="crc_8c__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>uint16_t <link linkend="_crc_8c_1a0898fe7ac7544f0ddd2d793159cb8804">compute_crc</link> (const uint8_t *u8Buf, const uint8_t len)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para>static const uint16_t <link linkend="_crc_8c_1a789dd51c3952638579eb51ba1cd4b6f0">crctable</link> [16]</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_crc_8c_1a0898fe7ac7544f0ddd2d793159cb8804"/>    <section>
+    <title>compute_crc()</title>
+<indexterm><primary>compute_crc</primary><secondary>crc.c</secondary></indexterm>
+<indexterm><primary>crc.c</primary><secondary>compute_crc</secondary></indexterm>
+<para><computeroutput>uint16_t compute_crc (const uint8_t * u8Buf, const uint8_t len)</computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="crc_8c_a0898fe7ac7544f0ddd2d793159cb8804_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Variable Documentation</title>
+<anchor xml:id="_crc_8c_1a789dd51c3952638579eb51ba1cd4b6f0"/>    <section>
+    <title>crctable</title>
+<indexterm><primary>crctable</primary><secondary>crc.c</secondary></indexterm>
+<indexterm><primary>crc.c</primary><secondary>crctable</secondary></indexterm>
+<para><computeroutput>const uint16_t crctable[16]<computeroutput>[static]</computeroutput></computeroutput></para><emphasis role="strong">Initial value:</emphasis><programlisting>=&#32;
+{
+&#32;&#32;0x0000,&#32;0x1021,&#32;0x2042,&#32;0x3063,
+&#32;&#32;0x4084,&#32;0x50a5,&#32;0x60c6,&#32;0x70e7,
+&#32;&#32;0x8108,&#32;0x9129,&#32;0xa14a,&#32;0xb16b,
+&#32;&#32;0xc18c,&#32;0xd1ad,&#32;0xe1ce,&#32;0xf1ef,
+}
+</programlisting></section>
+</section>
+</section>

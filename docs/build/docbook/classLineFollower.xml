@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classLineFollower" xml:lang="en-US">
+<title>LineFollower Class Reference</title>
+<indexterm><primary>LineFollower</primary></indexterm>
+<para>
+<computeroutput>#include &lt;lineFollower.h&gt;</computeroutput>
+</para>
+Collaboration diagram for LineFollower:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classLineFollower__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static void <link linkend="_classLineFollower_1a75a0bea9adb05d4674ff994dc439f3c1">set_robot</link> (<link linkend="_classVisionVoyager">VisionVoyager</link> *robot)</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classLineFollower_1a39522a2dadc7c9bc06ad9136fdd6bca4">follow_line</link> ()</para>
+</listitem>
+            <listitem><para>static bool <link linkend="_classLineFollower_1af26edbdbca36ceefd7c8eeb635e1e041">verify_is_in_air</link> ()</para>
+</listitem>
+            <listitem><para>static bool <link linkend="_classLineFollower_1ab7d1093a92dec347f91a858e0d202652">get_line_status</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static void <link linkend="_classLineFollower_1a651344ce62495b57fce710fac2493136">get_grayscale_data</link> ()</para>
+</listitem>
+            <listitem><para>static vector&lt; int &gt; <link linkend="_classLineFollower_1a21b2b97a18d57c0de25b022e2a556e17">get_line_from_grayscale_data</link> ()</para>
+</listitem>
+            <listitem><para>static bool <link linkend="_classLineFollower_1a7440ab7a73f923cbefc099215b99e12c">verify_no_line_available</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classLineFollower_1ae69d33c6b7986da12a26d303f488091f">search_line</link> ()</para>
+</listitem>
+            <listitem><para>static <link linkend="_lineFollower_8h_1a5d74787dedbc4e11c1ab15bf487e61f8">State</link> <link linkend="_classLineFollower_1af1ddc0f82bccd41da40b6a914c79259b">compute_next_state</link> (vector&lt; int &gt; grayscale_line_status)</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classLineFollower_1aaa855aef66ea4b7559abe85ce5965450">execute_move</link> (<link linkend="_lineFollower_8h_1a5d74787dedbc4e11c1ab15bf487e61f8">State</link> current_state)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_classVisionVoyager">VisionVoyager</link> * <link linkend="_classLineFollower_1a8bf8cd6cc30103fbab967a4733036dc6">robotVisionVoyager</link> = nullptr</para>
+</listitem>
+            <listitem><para>static vector&lt; int &gt; <link linkend="_classLineFollower_1ae3a59556b32e6fe78a5c0f4372cd97b8">grayscale_data</link></para>
+</listitem>
+            <listitem><para>static int <link linkend="_classLineFollower_1a21f4f636d5861fad760ba965f030cc67">stop_counter</link> = 0</para>
+</listitem>
+            <listitem><para>static <link linkend="_lineFollower_8h_1a5d74787dedbc4e11c1ab15bf487e61f8">State</link> <link linkend="_classLineFollower_1a26202a90d49f35ffbd435c5a30444ea2">last_state</link> = <link linkend="_lineFollower_8h_1a5d74787dedbc4e11c1ab15bf487e61f8a696b031073e74bf2cb98e5ef201d4aa3">State::UNKNOWN</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classLineFollower_1af1ddc0f82bccd41da40b6a914c79259b"/>    <section>
+    <title>compute_next_state()</title>
+<indexterm><primary>compute_next_state</primary><secondary>LineFollower</secondary></indexterm>
+<indexterm><primary>LineFollower</primary><secondary>compute_next_state</secondary></indexterm>
+<para><computeroutput><link linkend="_lineFollower_8h_1a5d74787dedbc4e11c1ab15bf487e61f8">State</link> LineFollower::compute_next_state (vector&lt; int &gt; grayscale_line_status)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classLineFollower_1aaa855aef66ea4b7559abe85ce5965450"/>    <section>
+    <title>execute_move()</title>
+<indexterm><primary>execute_move</primary><secondary>LineFollower</secondary></indexterm>
+<indexterm><primary>LineFollower</primary><secondary>execute_move</secondary></indexterm>
+<para><computeroutput>void LineFollower::execute_move (<link linkend="_lineFollower_8h_1a5d74787dedbc4e11c1ab15bf487e61f8">State</link> current_state)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classLineFollower_aaa855aef66ea4b7559abe85ce5965450_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classLineFollower_1a39522a2dadc7c9bc06ad9136fdd6bca4"/>    <section>
+    <title>follow_line()</title>
+<indexterm><primary>follow_line</primary><secondary>LineFollower</secondary></indexterm>
+<indexterm><primary>LineFollower</primary><secondary>follow_line</secondary></indexterm>
+<para><computeroutput>void LineFollower::follow_line ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classLineFollower_a39522a2dadc7c9bc06ad9136fdd6bca4_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classLineFollower_a39522a2dadc7c9bc06ad9136fdd6bca4_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classLineFollower_1a651344ce62495b57fce710fac2493136"/>    <section>
+    <title>get_grayscale_data()</title>
+<indexterm><primary>get_grayscale_data</primary><secondary>LineFollower</secondary></indexterm>
+<indexterm><primary>LineFollower</primary><secondary>get_grayscale_data</secondary></indexterm>
+<para><computeroutput>void LineFollower::get_grayscale_data ( )<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classLineFollower_1a21b2b97a18d57c0de25b022e2a556e17"/>    <section>
+    <title>get_line_from_grayscale_data()</title>
+<indexterm><primary>get_line_from_grayscale_data</primary><secondary>LineFollower</secondary></indexterm>
+<indexterm><primary>LineFollower</primary><secondary>get_line_from_grayscale_data</secondary></indexterm>
+<para><computeroutput>vector&lt; int &gt; LineFollower::get_line_from_grayscale_data ( )<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classLineFollower_1ab7d1093a92dec347f91a858e0d202652"/>    <section>
+    <title>get_line_status()</title>
+<indexterm><primary>get_line_status</primary><secondary>LineFollower</secondary></indexterm>
+<indexterm><primary>LineFollower</primary><secondary>get_line_status</secondary></indexterm>
+<para><computeroutput>bool LineFollower::get_line_status ( )<computeroutput>[static]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classLineFollower_1ae69d33c6b7986da12a26d303f488091f"/>    <section>
+    <title>search_line()</title>
+<indexterm><primary>search_line</primary><secondary>LineFollower</secondary></indexterm>
+<indexterm><primary>LineFollower</primary><secondary>search_line</secondary></indexterm>
+<para><computeroutput>void LineFollower::search_line ( )<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classLineFollower_ae69d33c6b7986da12a26d303f488091f_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classLineFollower_1a75a0bea9adb05d4674ff994dc439f3c1"/>    <section>
+    <title>set_robot()</title>
+<indexterm><primary>set_robot</primary><secondary>LineFollower</secondary></indexterm>
+<indexterm><primary>LineFollower</primary><secondary>set_robot</secondary></indexterm>
+<para><computeroutput>void LineFollower::set_robot (<link linkend="_classVisionVoyager">VisionVoyager</link> * robot)<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classLineFollower_a75a0bea9adb05d4674ff994dc439f3c1_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classLineFollower_1af26edbdbca36ceefd7c8eeb635e1e041"/>    <section>
+    <title>verify_is_in_air()</title>
+<indexterm><primary>verify_is_in_air</primary><secondary>LineFollower</secondary></indexterm>
+<indexterm><primary>LineFollower</primary><secondary>verify_is_in_air</secondary></indexterm>
+<para><computeroutput>bool LineFollower::verify_is_in_air ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classLineFollower_af26edbdbca36ceefd7c8eeb635e1e041_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classLineFollower_1a7440ab7a73f923cbefc099215b99e12c"/>    <section>
+    <title>verify_no_line_available()</title>
+<indexterm><primary>verify_no_line_available</primary><secondary>LineFollower</secondary></indexterm>
+<indexterm><primary>LineFollower</primary><secondary>verify_no_line_available</secondary></indexterm>
+<para><computeroutput>bool LineFollower::verify_no_line_available ( )<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classLineFollower_a7440ab7a73f923cbefc099215b99e12c_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_classLineFollower_1ae3a59556b32e6fe78a5c0f4372cd97b8"/>    <section>
+    <title>grayscale_data</title>
+<indexterm><primary>grayscale_data</primary><secondary>LineFollower</secondary></indexterm>
+<indexterm><primary>LineFollower</primary><secondary>grayscale_data</secondary></indexterm>
+<para><computeroutput>vector&lt; int &gt; LineFollower::grayscale_data<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classLineFollower_1a26202a90d49f35ffbd435c5a30444ea2"/>    <section>
+    <title>last_state</title>
+<indexterm><primary>last_state</primary><secondary>LineFollower</secondary></indexterm>
+<indexterm><primary>LineFollower</primary><secondary>last_state</secondary></indexterm>
+<para><computeroutput><link linkend="_lineFollower_8h_1a5d74787dedbc4e11c1ab15bf487e61f8">State</link> LineFollower::last_state = <link linkend="_lineFollower_8h_1a5d74787dedbc4e11c1ab15bf487e61f8a696b031073e74bf2cb98e5ef201d4aa3">State::UNKNOWN</link><computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classLineFollower_1a8bf8cd6cc30103fbab967a4733036dc6"/>    <section>
+    <title>robotVisionVoyager</title>
+<indexterm><primary>robotVisionVoyager</primary><secondary>LineFollower</secondary></indexterm>
+<indexterm><primary>LineFollower</primary><secondary>robotVisionVoyager</secondary></indexterm>
+<para><computeroutput><link linkend="_classVisionVoyager">VisionVoyager</link> * LineFollower::robotVisionVoyager = nullptr<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classLineFollower_1a21f4f636d5861fad760ba965f030cc67"/>    <section>
+    <title>stop_counter</title>
+<indexterm><primary>stop_counter</primary><secondary>LineFollower</secondary></indexterm>
+<indexterm><primary>LineFollower</primary><secondary>stop_counter</secondary></indexterm>
+<para><computeroutput>int LineFollower::stop_counter = 0<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+<link linkend="_lineFollower_8h">lineFollower.h</link><link linkend="_lineFollower_8cpp">lineFollower.cpp</link></section>
+</section>

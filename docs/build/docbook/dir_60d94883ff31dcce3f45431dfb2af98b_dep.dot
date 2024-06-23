@@ -1,0 +1,9 @@
+digraph "VoiceRecognition" {
+  compound=true
+  node [ fontsize="12", fontname="Helvetica"];
+  edge [ labelfontsize="12", labelfontname="Helvetica"];
+  dir_60d94883ff31dcce3f45431dfb2af98b [shape=box, label="VoiceRecognition", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_60d94883ff31dcce3f45431dfb2af98b.html"];
+  dir_6f2a72d087e95a9c16afd5b6d47ed6d6 [shape=box label="ApplicationModule" URL="dir_6f2a72d087e95a9c16afd5b6d47ed6d6.html"];
+  dir_60d94883ff31dcce3f45431dfb2af98b->dir_6f2a72d087e95a9c16afd5b6d47ed6d6 [headlabel="1", labeldistance=1.5 headhref="dir_000014_000001.html"];
+  dir_6f2a72d087e95a9c16afd5b6d47ed6d6->dir_60d94883ff31dcce3f45431dfb2af98b [headlabel="1", labeldistance=1.5 headhref="dir_000001_000014.html"];
+}

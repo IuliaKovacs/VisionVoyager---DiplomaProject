@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_cameraModule_8h" xml:lang="en-US">
+<title>cameraModule.h File Reference</title>
+<indexterm><primary>cameraModule.h</primary></indexterm>
+<programlisting>#include &lt;opencv2/core.hpp&gt;
+#include &lt;string&gt;
+#include &lt;filesystem&gt;
+#include &lt;vector&gt;
+#include &quot;../ApplicationModule/application_utils.h&quot;
+#include &quot;person.h&quot;
+</programlisting>Include dependency graph for cameraModule.h:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="cameraModule_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="cameraModule_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>class <link linkend="_classCameraModule">CameraModule</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_cameraModule_8h_1aa876e97d81b9e9d80c71e7aa25de5b57">RAW_IMAGES_FOLDER_PATH</link>   &quot;../CameraModule/Raw_Images&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_cameraModule_8h_1aac85792a519cd60db501b2c460e9fdf8">FACES_DATASET_PATH</link>   &quot;../CameraModule/Faces_dataset&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_cameraModule_8h_1a48f61db21508f2b719ba4c55403a6f21">DEFAULT_NO_OF_RECOGNIZED_SUBJECTS</link>   0</para>
+</listitem>
+            <listitem><para>#define <link linkend="_cameraModule_8h_1a9227d3a8b479dc05f4c88f90cc08e30c">CSV_FILE_PATH</link>   &quot;../CameraModule/faces_csv.txt&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_cameraModule_8h_1a0665f01631ff24cdd041dcc4870a26b5">RECOGNIZED_PERSONS_FILE_PATH</link>   &quot;../CameraModule/recognized_persons.txt&quot;</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_cameraModule_8h_1a9227d3a8b479dc05f4c88f90cc08e30c"/>    <section>
+    <title>CSV_FILE_PATH</title>
+<indexterm><primary>CSV_FILE_PATH</primary><secondary>cameraModule.h</secondary></indexterm>
+<indexterm><primary>cameraModule.h</primary><secondary>CSV_FILE_PATH</secondary></indexterm>
+<para><computeroutput>#define CSV_FILE_PATH   &quot;../CameraModule/faces_csv.txt&quot;</computeroutput></para>    </section><anchor xml:id="_cameraModule_8h_1a48f61db21508f2b719ba4c55403a6f21"/>    <section>
+    <title>DEFAULT_NO_OF_RECOGNIZED_SUBJECTS</title>
+<indexterm><primary>DEFAULT_NO_OF_RECOGNIZED_SUBJECTS</primary><secondary>cameraModule.h</secondary></indexterm>
+<indexterm><primary>cameraModule.h</primary><secondary>DEFAULT_NO_OF_RECOGNIZED_SUBJECTS</secondary></indexterm>
+<para><computeroutput>#define DEFAULT_NO_OF_RECOGNIZED_SUBJECTS   0</computeroutput></para>    </section><anchor xml:id="_cameraModule_8h_1aac85792a519cd60db501b2c460e9fdf8"/>    <section>
+    <title>FACES_DATASET_PATH</title>
+<indexterm><primary>FACES_DATASET_PATH</primary><secondary>cameraModule.h</secondary></indexterm>
+<indexterm><primary>cameraModule.h</primary><secondary>FACES_DATASET_PATH</secondary></indexterm>
+<para><computeroutput>#define FACES_DATASET_PATH   &quot;../CameraModule/Faces_dataset&quot;</computeroutput></para>    </section><anchor xml:id="_cameraModule_8h_1aa876e97d81b9e9d80c71e7aa25de5b57"/>    <section>
+    <title>RAW_IMAGES_FOLDER_PATH</title>
+<indexterm><primary>RAW_IMAGES_FOLDER_PATH</primary><secondary>cameraModule.h</secondary></indexterm>
+<indexterm><primary>cameraModule.h</primary><secondary>RAW_IMAGES_FOLDER_PATH</secondary></indexterm>
+<para><computeroutput>#define RAW_IMAGES_FOLDER_PATH   &quot;../CameraModule/Raw_Images&quot;</computeroutput></para>    </section><anchor xml:id="_cameraModule_8h_1a0665f01631ff24cdd041dcc4870a26b5"/>    <section>
+    <title>RECOGNIZED_PERSONS_FILE_PATH</title>
+<indexterm><primary>RECOGNIZED_PERSONS_FILE_PATH</primary><secondary>cameraModule.h</secondary></indexterm>
+<indexterm><primary>cameraModule.h</primary><secondary>RECOGNIZED_PERSONS_FILE_PATH</secondary></indexterm>
+<para><computeroutput>#define RECOGNIZED_PERSONS_FILE_PATH   &quot;../CameraModule/recognized_persons.txt&quot;</computeroutput></para></section>
+</section>
+</section>

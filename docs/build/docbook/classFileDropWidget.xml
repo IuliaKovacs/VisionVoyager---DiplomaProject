@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classFileDropWidget" xml:lang="en-US">
+<title>FileDropWidget Class Reference</title>
+<indexterm><primary>FileDropWidget</primary></indexterm>
+<para>
+<computeroutput>#include &lt;fileDropWidget.h&gt;</computeroutput>
+</para>
+Inheritance diagram for FileDropWidget:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classFileDropWidget__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Collaboration diagram for FileDropWidget:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classFileDropWidget__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_classFileDropWidget_1a0411d3af2215b1eb519e6aaea0cf74cb">FileDropWidget</link> (<link linkend="_classQWidget">QWidget</link> *parent=nullptr)</para>
+</listitem>
+            <listitem><para>void <link linkend="_classFileDropWidget_1a707b92562adbac24addb6be125171aa6">setAcceptsSingleFile</link> (bool accept)</para>
+</listitem>
+            <listitem><para>QListWidgetItem <link linkend="_classFileDropWidget_1a006d84020d4f05b9e29b5ece9bf7d24e">getFirstItem</link> ()</para>
+</listitem>
+            <listitem><para>QListWidget * <link linkend="_classFileDropWidget_1a60b51316809bfc9151041b56cc7ffe2a">getFileListWidget</link> ()</para>
+</listitem>
+            <listitem><para>int <link linkend="_classFileDropWidget_1a9939aeb33293599a296edba9f9f0526a">getListCount</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classFileDropWidget_1adcc8ea02c5a6bd61d5317844113349df">clearFileList</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Protected Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>void <link linkend="_classFileDropWidget_1ab5a2f1277652eb6e3cbf698c3e801354">dragEnterEvent</link> (QDragEnterEvent *event) override</para>
+</listitem>
+            <listitem><para>void <link linkend="_classFileDropWidget_1a2e0ce7485e3f164b3db5dc6906ae241e">dragMoveEvent</link> (QDragMoveEvent *event) override</para>
+</listitem>
+            <listitem><para>void <link linkend="_classFileDropWidget_1a728a3e8bb9502a6e6c5055d8ee41340a">dropEvent</link> (QDropEvent *event) override</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para>QListWidget * <link linkend="_classFileDropWidget_1a42383ac515d5d54a150064e0f5694e83">fileListWidget</link></para>
+</listitem>
+            <listitem><para>bool <link linkend="_classFileDropWidget_1afdb804a627d72677ac5eec17629f0d24">acceptsSingleFile</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_classFileDropWidget_1a0411d3af2215b1eb519e6aaea0cf74cb"/>    <section>
+    <title>FileDropWidget()</title>
+<indexterm><primary>FileDropWidget</primary><secondary>FileDropWidget</secondary></indexterm>
+<indexterm><primary>FileDropWidget</primary><secondary>FileDropWidget</secondary></indexterm>
+<para><computeroutput>FileDropWidget::FileDropWidget (<link linkend="_classQWidget">QWidget</link> * parent = <computeroutput>nullptr</computeroutput>
+)</computeroutput></para></section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classFileDropWidget_1adcc8ea02c5a6bd61d5317844113349df"/>    <section>
+    <title>clearFileList()</title>
+<indexterm><primary>clearFileList</primary><secondary>FileDropWidget</secondary></indexterm>
+<indexterm><primary>FileDropWidget</primary><secondary>clearFileList</secondary></indexterm>
+<para><computeroutput>void FileDropWidget::clearFileList ( )</computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classFileDropWidget_adcc8ea02c5a6bd61d5317844113349df_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classFileDropWidget_1ab5a2f1277652eb6e3cbf698c3e801354"/>    <section>
+    <title>dragEnterEvent()</title>
+<indexterm><primary>dragEnterEvent</primary><secondary>FileDropWidget</secondary></indexterm>
+<indexterm><primary>FileDropWidget</primary><secondary>dragEnterEvent</secondary></indexterm>
+<para><computeroutput>void FileDropWidget::dragEnterEvent (QDragEnterEvent * event)<computeroutput>[override]</computeroutput>, <computeroutput>[protected]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classFileDropWidget_1a2e0ce7485e3f164b3db5dc6906ae241e"/>    <section>
+    <title>dragMoveEvent()</title>
+<indexterm><primary>dragMoveEvent</primary><secondary>FileDropWidget</secondary></indexterm>
+<indexterm><primary>FileDropWidget</primary><secondary>dragMoveEvent</secondary></indexterm>
+<para><computeroutput>void FileDropWidget::dragMoveEvent (QDragMoveEvent * event)<computeroutput>[override]</computeroutput>, <computeroutput>[protected]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classFileDropWidget_1a728a3e8bb9502a6e6c5055d8ee41340a"/>    <section>
+    <title>dropEvent()</title>
+<indexterm><primary>dropEvent</primary><secondary>FileDropWidget</secondary></indexterm>
+<indexterm><primary>FileDropWidget</primary><secondary>dropEvent</secondary></indexterm>
+<para><computeroutput>void FileDropWidget::dropEvent (QDropEvent * event)<computeroutput>[override]</computeroutput>, <computeroutput>[protected]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classFileDropWidget_1a60b51316809bfc9151041b56cc7ffe2a"/>    <section>
+    <title>getFileListWidget()</title>
+<indexterm><primary>getFileListWidget</primary><secondary>FileDropWidget</secondary></indexterm>
+<indexterm><primary>FileDropWidget</primary><secondary>getFileListWidget</secondary></indexterm>
+<para><computeroutput>QListWidget * FileDropWidget::getFileListWidget ( )</computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classFileDropWidget_a60b51316809bfc9151041b56cc7ffe2a_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classFileDropWidget_1a006d84020d4f05b9e29b5ece9bf7d24e"/>    <section>
+    <title>getFirstItem()</title>
+<indexterm><primary>getFirstItem</primary><secondary>FileDropWidget</secondary></indexterm>
+<indexterm><primary>FileDropWidget</primary><secondary>getFirstItem</secondary></indexterm>
+<para><computeroutput>QListWidgetItem FileDropWidget::getFirstItem ( )</computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classFileDropWidget_a006d84020d4f05b9e29b5ece9bf7d24e_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classFileDropWidget_1a9939aeb33293599a296edba9f9f0526a"/>    <section>
+    <title>getListCount()</title>
+<indexterm><primary>getListCount</primary><secondary>FileDropWidget</secondary></indexterm>
+<indexterm><primary>FileDropWidget</primary><secondary>getListCount</secondary></indexterm>
+<para><computeroutput>int FileDropWidget::getListCount ( )</computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classFileDropWidget_a9939aeb33293599a296edba9f9f0526a_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classFileDropWidget_1a707b92562adbac24addb6be125171aa6"/>    <section>
+    <title>setAcceptsSingleFile()</title>
+<indexterm><primary>setAcceptsSingleFile</primary><secondary>FileDropWidget</secondary></indexterm>
+<indexterm><primary>FileDropWidget</primary><secondary>setAcceptsSingleFile</secondary></indexterm>
+<para><computeroutput>void FileDropWidget::setAcceptsSingleFile (bool accept)</computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classFileDropWidget_a707b92562adbac24addb6be125171aa6_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_classFileDropWidget_1afdb804a627d72677ac5eec17629f0d24"/>    <section>
+    <title>acceptsSingleFile</title>
+<indexterm><primary>acceptsSingleFile</primary><secondary>FileDropWidget</secondary></indexterm>
+<indexterm><primary>FileDropWidget</primary><secondary>acceptsSingleFile</secondary></indexterm>
+<para><computeroutput>bool FileDropWidget::acceptsSingleFile<computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classFileDropWidget_1a42383ac515d5d54a150064e0f5694e83"/>    <section>
+    <title>fileListWidget</title>
+<indexterm><primary>fileListWidget</primary><secondary>FileDropWidget</secondary></indexterm>
+<indexterm><primary>FileDropWidget</primary><secondary>fileListWidget</secondary></indexterm>
+<para><computeroutput>QListWidget* FileDropWidget::fileListWidget<computeroutput>[private]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+<link linkend="_fileDropWidget_8h">fileDropWidget.h</link><link linkend="_fileDropWidget_8cpp">fileDropWidget.cpp</link></section>
+</section>

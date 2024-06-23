@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_obstacleAvoidanceUtils_8cpp" xml:lang="en-US">
+<title>obstacleAvoidanceUtils.cpp File Reference</title>
+<indexterm><primary>obstacleAvoidanceUtils.cpp</primary></indexterm>
+<programlisting>#include &quot;obstacleAvoidanceUtils.h&quot;
+#include &quot;../RouteRecordPlayer/routeRecordPlayUtils.h&quot;
+#include &quot;../TextToSpeech/textToSpeech.h&quot;
+</programlisting>Include dependency graph for obstacleAvoidanceUtils.cpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="obstacleAvoidanceUtils_8cpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>

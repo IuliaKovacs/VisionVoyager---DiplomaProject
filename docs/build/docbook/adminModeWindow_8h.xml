@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_adminModeWindow_8h" xml:lang="en-US">
+<title>adminModeWindow.h File Reference</title>
+<indexterm><primary>adminModeWindow.h</primary></indexterm>
+<programlisting>#include &lt;QApplication&gt;
+#include &lt;QMainWindow&gt;
+#include &lt;QtCharts/QtCharts&gt;
+#include &lt;opencv2/opencv.hpp&gt;
+#include &quot;cameraWidget.h&quot;
+#include &quot;fileDropWidget.h&quot;
+#include &quot;../ApplicationModule/application_utils.h&quot;
+#include &quot;../RouteRegistration/routeRegistrationUtils.h&quot;
+#include &quot;../KeyboardControl/keyboardControl.h&quot;
+#include &quot;../TextToSpeech/textToSpeech.h&quot;
+</programlisting>Include dependency graph for adminModeWindow.h:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="adminModeWindow_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="adminModeWindow_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>class <link linkend="_classAdminModeWindow">AdminModeWindow</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Namespaces    </title>
+        <itemizedlist>
+            <listitem><para> <link linkend="_namespaceUi">Ui</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>void <link linkend="_adminModeWindow_8h_1aad622144b7a6ffe27a05fa04e87f9a43">start_GUI</link> (int argc, char *argv[])</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_adminModeWindow_8h_1aad622144b7a6ffe27a05fa04e87f9a43"/>    <section>
+    <title>start_GUI()</title>
+<indexterm><primary>start_GUI</primary><secondary>adminModeWindow.h</secondary></indexterm>
+<indexterm><primary>adminModeWindow.h</primary><secondary>start_GUI</secondary></indexterm>
+<para><computeroutput>void start_GUI (int argc, char * argv[])</computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="adminModeWindow_8h_aad622144b7a6ffe27a05fa04e87f9a43_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+</section>

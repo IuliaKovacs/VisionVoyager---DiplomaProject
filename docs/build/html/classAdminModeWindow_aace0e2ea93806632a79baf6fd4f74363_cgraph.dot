@@ -1,0 +1,28 @@
+digraph "AdminModeWindow::on_deletePersonButton_clicked"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="12",labelfontname="Helvetica",labelfontsize="12"];
+  node [fontname="Helvetica",fontsize="12",shape=record];
+  rankdir="LR";
+  Node1 [label="AdminModeWindow::on_deletePersonButton_clicked",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node2 [label="CameraModule::create_csv_database_file",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classCameraModule.html#a283a7ef45577f00a5f02619e844fa3c3",tooltip=" "];
+  Node2 -> Node3 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node3 [label="log_time",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$application__utils_8h.html#a49dec5f7745652d5fb54f79a2981a086",tooltip=" "];
+  Node1 -> Node4 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node4 [label="AdminModeWindow::delete_subject_display",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classAdminModeWindow.html#a8b7e74f1b28ba762e89628cdae0e8751",tooltip=" "];
+  Node1 -> Node5 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node5 [label="CameraModule::get_recognized_persons",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classCameraModule.html#a89ebff0e47f435b1bf6601954847a69b",tooltip=" "];
+  Node1 -> Node6 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node6 [label="AdminModeWindow::load_recognized_persons",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classAdminModeWindow.html#aa8754a16de830e6ce46b95c57b765e31",tooltip=" "];
+  Node6 -> Node5 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node6 -> Node7 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node7 [label="AdminModeWindow::update_subject_display",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classAdminModeWindow.html#a4b249f7ef489bca3541516a30c1e5c83",tooltip=" "];
+  Node7 -> Node3 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node1 -> Node3 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node1 -> Node8 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node8 [label="CameraModule::update_faces_dataset_namings",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classCameraModule.html#a88b5bdbd4a694f6c02322b261f2f9634",tooltip=" "];
+  Node8 -> Node3 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node1 -> Node9 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node9 [label="CameraModule::write_recognized_persons",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classCameraModule.html#af79ca1a1d81f32cc5503100f7807776b",tooltip=" "];
+}

@@ -5,9 +5,30 @@
 #include <ctime>
 #include "../LineFollower/lineFollower.h"
 #include "../ApplicationModule/application.h"
+#include <stdio.h>
+
 
 
 #define OBSTACLE_RIGHT_AVOID_FILE "../RouteDatabase/avoid_obstacle.txt"
+
+
+typedef enum{
+    RFID_SEND_PING_EN,
+    RFID_START_SYSTEM_INIT_EN,
+    RFID_STATUS_SYSTEM_INIT_EN,
+    RFID_START_ROOM_SEARCH_EN,
+    RFID_STATUS_ROOM_SEARCH_EN,
+    RFID_START_GET_ROOMS_EN,
+    RFID_STATUS_GET_ROOMS_EN
+}RFID_Subsystem_request_en;
+
+static RFID_Subsystem_request_en request_state_en = RFID_SEND_PING_EN;
+uint8_t out_data;
+RFID_request_status_t st;
+RFID_Tag_Information tag_info;
+bool op_status;
+bool system_init_status;
+
 
 
 VisionVoyager* RouteRecordPlayer::robotVisionVoyager = nullptr;
@@ -169,6 +190,21 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
 {
     ifstream Route_File(route_name);
     string line;
+    char last_room_name[20] = "";
+    strcpy(tag_info.room_name, ""); 
+
+    RFID_init();
+    // st = RFID_Send_Ping();
+
+    // if(st == RFID_REQUEST_OK)
+    // {
+    //     logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " [RFID] Ping result: RFID_REQUEST_OK " << endl;
+    //     st = RFID_start_get_System_Init_Status(&system_init_status);
+    // }
+    // else
+    // {
+    //     // @ToDo TTS message
+    // }
 
     log_mutex.lock();
     logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " Route Playing Thread Started" << endl;
@@ -204,61 +240,114 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                 auto start_time = std::chrono::steady_clock::now();
                 auto end_time = start_time + std::chrono::milliseconds(milliseconds_to_count);
 
-
                 while ((std::chrono::steady_clock::now() < end_time)) 
                 {   
-                    if(ObstacleAvoidance::check_forward_safety())
+                    RFID_helper(&tag_info);
+
+                    if(strcmp(tag_info.room_name, "") != 0)
                     {
-                        if((end_time - std::chrono::steady_clock::now()) > std::chrono::seconds(7))
-                        {
-                            std::chrono::duration<double> time_skipped = ObstacleAvoidance::obstacle_avoid();
-                            robotVisionVoyager->move_forward();
-                            end_time = end_time + std::chrono::duration_cast<std::chrono::steady_clock::duration>(time_skipped);
-                        }
-                        else
-                        {
-                            log_mutex.lock();
-                            logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Interrupted: Obstacle Detected! -> In this moment of route guiding the obstacle cannot be avoided! ---" << endl;
-                            logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Displaying acoustical warning ---" << endl;
-                            log_mutex.unlock();
-                            severe_error.store(true);
-                            error_type = SevereErrorType::IN_AIR;
-                            play_command("stop", 0);
-                            tts_mutex.lock();
+                        if(strcmp(last_room_name, tag_info.room_name) != 0)
+                        {   
+                            string room_description_message;
+                            logFile << log_time() << LOG_RFID_PREFIX << " Room name: " << tag_info.room_name << endl;
+                            logFile << log_time() << LOG_RFID_PREFIX << " Room description: " << tag_info.room_description << endl;
+                            logFile << log_time() << LOG_RFID_PREFIX << " Room destination_status: " << tag_info.destination_node << endl;
                             if(Language::EN == TextToSpeech::get_language())
-                            {   
-                                TextToSpeech::display_custom_message("In this moment of route guiding the obstacle cannot be avoided! \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
+                            {
+                                if(false == tag_info.destination_node)
+                                {
+                                    room_description_message += "We pass by " + string(tag_info.room_name) + "\n\n\n\n\n\n";
+                                    room_description_message += "Use the waiting command to stop here! \n\n\n\n\n\n";
+                                }
+                                else
+                                {   
+                                    room_description_message += "We reached " + string(tag_info.room_name) + "\n\n\n\n\n\n";
+                                    room_description_message += "This is your destination! \n\n\n\n\n\n";
+                                }
+                                room_description_message += string(tag_info.room_description) + "\n\n\n\n\n\n";
                             }
                             else
                             {
-                                TextToSpeech::display_custom_message("În acest moment al rutei nu se poate ocoli obstacolul! \n\n\n Abandonare proces de ghidare! \n\n\n Contactați personalul clădirii!");
+                                if(false == tag_info.destination_node)
+                                {
+                                    room_description_message += "Trecem pe lângă " + string(tag_info.room_name) + "\n\n\n\n\n\n";
+                                    room_description_message += "Folosește comanda de așteptare dacă dorești să ne oprim aici! \n\n\n\n\n\n";
+                                }
+                                else
+                                {   
+                                    room_description_message += "Am ajuns la: " + string(tag_info.room_name) + "\n\n\n\n\n\n";
+                                    room_description_message += "Aceasta este destinația ta! \n\n\n\n\n\n";
+                                }
+                                room_description_message += string(tag_info.room_description) + "\n\n\n\n\n\n";
                             }
-                            tts_mutex.unlock();
+                            strcpy(last_room_name, tag_info.room_name);
+                            /* Send data for displaying the tag info */
+                            std::lock_guard<std::mutex> lock(speak_mutex);
+                            global_message = room_description_message;
+                            strcpy(tag_info.room_name, "");
+                            speak.store(true);
+                            speaking_condition.notify_all();
+                            string tag_info_route_name = string(tag_info.room_name);
+                            if((tag_info_route_name == RouteRegistration::get_route_name_from_path(route_name)) && (true == tag_info.destination_node))
+                            {
+                                route_complete.store(true);
+                                logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " [RFID] Destination Reached Successfully - check done by RFID Reader" << endl;
+                            }            
                         }
                     }
 
-                    /* IMPORTANT: The threshold for IN AIR DETECTION must be calibrated before using this feature!
-                     * It depends on the surface on which the robot moves! */
-                    if(true == LineFollower::verify_is_in_air())
-                    {
-                        log_mutex.lock();
-                        logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Interrupted: The robot is either in air or on the edge of something! ---" << endl;
-                        logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Displaying acoustical warning ---" << endl;
-                        log_mutex.unlock();
-                        severe_error.store(true);
-                        error_type = SevereErrorType::IN_AIR;
-                        play_command("stop", 0);
-                        tts_mutex.lock();
-                        if(Language::EN == TextToSpeech::get_language())
-                        {   
-                            TextToSpeech::display_custom_message("The robot is in the air or on the edge of something \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
-                        }
-                        else
-                        {
-                            TextToSpeech::display_custom_message("Robotul este în aer sau pe marginea unei prăpăstii! \n\n\n Abandonare proces de ghidare \n\n\n Contactați personalul clădirii!");
-                        }
-                        tts_mutex.unlock();
-                    }
+                    // if(ObstacleAvoidance::check_forward_safety())
+                    // {
+                    //     if((end_time - std::chrono::steady_clock::now()) > std::chrono::seconds(7))
+                    //     {
+                    //         std::chrono::duration<double> time_skipped = ObstacleAvoidance::obstacle_avoid();
+                    //         robotVisionVoyager->move_forward();
+                    //         end_time = end_time + std::chrono::duration_cast<std::chrono::steady_clock::duration>(time_skipped);
+                    //     }
+                    //     else
+                    //     {
+                    //         log_mutex.lock();
+                    //         logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Interrupted: Obstacle Detected! -> In this moment of route guiding the obstacle cannot be avoided! ---" << endl;
+                    //         logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Displaying acoustical warning ---" << endl;
+                    //         log_mutex.unlock();
+                    //         severe_error.store(true);
+                    //         error_type = SevereErrorType::IN_AIR;
+                    //         play_command("stop", 0);
+                    //         tts_mutex.lock();
+                    //         if(Language::EN == TextToSpeech::get_language())
+                    //         {   
+                    //             TextToSpeech::display_custom_message("In this moment of route guiding the obstacle cannot be avoided! \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
+                    //         }
+                    //         else
+                    //         {
+                    //             TextToSpeech::display_custom_message("În acest moment al rutei nu se poate ocoli obstacolul! \n\n\n Abandonare proces de ghidare! \n\n\n Contactați personalul clădirii!");
+                    //         }
+                    //         tts_mutex.unlock();
+                    //     }
+                    // }
+
+                    // /* IMPORTANT: The threshold for IN AIR DETECTION must be calibrated before using this feature!
+                    //  * It depends on the surface on which the robot moves! */
+                    // if(true == LineFollower::verify_is_in_air())
+                    // {
+                    //     log_mutex.lock();
+                    //     logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Interrupted: The robot is either in air or on the edge of something! ---" << endl;
+                    //     logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Displaying acoustical warning ---" << endl;
+                    //     log_mutex.unlock();
+                    //     severe_error.store(true);
+                    //     error_type = SevereErrorType::IN_AIR;
+                    //     play_command("stop", 0);
+                    //     tts_mutex.lock();
+                    //     if(Language::EN == TextToSpeech::get_language())
+                    //     {   
+                    //         TextToSpeech::display_custom_message("The robot is in the air or on the edge of something \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
+                    //     }
+                    //     else
+                    //     {
+                    //         TextToSpeech::display_custom_message("Robotul este în aer sau pe marginea unei prăpăstii! \n\n\n Abandonare proces de ghidare \n\n\n Contactați personalul clădirii!");
+                    //     }
+                    //     tts_mutex.unlock();
+                    // }
 
                     if(severe_error.load())
                     {
@@ -459,4 +548,123 @@ void RouteRecordPlayer::avoid_right()
         }
     }
     avoiding.store(false);
+}
+
+
+bool RouteRecordPlayer::RFID_helper(RFID_Tag_Information *out_tag_info)
+{
+    static bool result = false;
+
+    switch(request_state_en)
+    {
+        case RFID_SEND_PING_EN:
+            st = RFID_Send_Ping();
+            if(st == RFID_REQUEST_OK)
+            {
+                request_state_en = RFID_START_SYSTEM_INIT_EN;
+            }
+            else
+            {
+                request_state_en = RFID_SEND_PING_EN;
+            }
+
+        break;
+
+        case RFID_START_SYSTEM_INIT_EN:
+        st = RFID_start_get_System_Init_Status(&system_init_status);
+        if(st == RFID_REQUEST_PENDING)
+        {
+            request_state_en = RFID_STATUS_SYSTEM_INIT_EN;
+        }
+        else if((st == RFID_REQUEST_OK) && (system_init_status == true))
+        {
+            request_state_en = RFID_START_ROOM_SEARCH_EN;
+        }
+        break;
+
+        case RFID_STATUS_SYSTEM_INIT_EN:
+        st = RFID_status_get_System_Init_Status(&system_init_status);
+        if((st == RFID_REQUEST_OK) && (system_init_status == true))
+        {
+            request_state_en = RFID_START_ROOM_SEARCH_EN;
+        }
+        else if(st == RFID_REQUEST_PENDING)
+        {
+            request_state_en = RFID_STATUS_SYSTEM_INIT_EN;
+        }
+        else 
+        {
+            cout << "RFID System not initalized\n";
+            request_state_en = RFID_SEND_PING_EN;
+        }
+        break;
+
+        case RFID_START_ROOM_SEARCH_EN:
+        st = RFID_start_Room_Search(&op_status);
+        result = false;
+
+        if(st == RFID_REQUEST_PENDING)
+        {
+            request_state_en = RFID_STATUS_ROOM_SEARCH_EN;
+        }
+        else if(st == RFID_REQUEST_OK && op_status == true)
+        {
+            request_state_en = RFID_START_GET_ROOMS_EN;
+        }
+
+        break;
+
+        case RFID_STATUS_ROOM_SEARCH_EN:
+        st = RFID_status_Room_Search(&op_status);
+        // cout << "st: " << st << endl;
+        // cout << "op_status: " << op_status << endl;
+        if(st == RFID_REQUEST_PENDING)
+        {
+            request_state_en = RFID_STATUS_ROOM_SEARCH_EN;
+        }
+        else if(st == RFID_REQUEST_OK && op_status == true)
+        {
+            request_state_en = RFID_START_GET_ROOMS_EN;
+        }
+        else if(st == RFID_REQUEST_OK && op_status == false)
+        {
+            request_state_en = RFID_START_ROOM_SEARCH_EN;
+        }
+        break;
+
+        case RFID_START_GET_ROOMS_EN:
+        st=RFID_start_get_Rooms(&op_status);
+        if(st == RFID_REQUEST_PENDING)
+        {
+            request_state_en = RFID_STATUS_GET_ROOMS_EN;
+        }
+        else if(st == RFID_REQUEST_OK && op_status == true)
+        {
+            request_state_en = RFID_STATUS_GET_ROOMS_EN;
+        }
+        break;
+
+        case RFID_STATUS_GET_ROOMS_EN:
+        st = RFID_status_get_Rooms(out_tag_info);
+        if(st == RFID_REQUEST_OK || st == RFID_REQUEST_NO_TAGS)
+        {
+            // static auto start_rfid = std::chrono::steady_clock::now();
+            // static chrono::time_point<std::chrono::steady_clock> end_rfid_time = start_rfid + std::chrono::milliseconds(1000);
+            
+            /*INSEAMNA CA E OK*/
+            // if(std::chrono::steady_clock::now() > end_rfid_time)
+            // {
+                request_state_en = RFID_START_ROOM_SEARCH_EN;
+                result = true;
+            //     start_rfid = std::chrono::steady_clock::now();
+            //     end_rfid_time = start_rfid + std::chrono::milliseconds(1000);
+            // }
+        }
+        break;
+
+        default:
+        break;
+    }
+    cout << request_state_en << endl;
+    return result;
 }

@@ -1,0 +1,433 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classVisionVoyager" xml:lang="en-US">
+<title>VisionVoyager Class Reference</title>
+<indexterm><primary>VisionVoyager</primary></indexterm>
+<para>
+<computeroutput>#include &lt;visionVoyager.h&gt;</computeroutput>
+</para>
+Collaboration diagram for VisionVoyager:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classVisionVoyager__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_classVisionVoyager_1afa66b802ba1b7b4153c87079230a2a9c">VisionVoyager</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classVisionVoyager_1a3451ab22e115b4a831bb7f8201d0361a">set_picar_python_object</link> (py::object <link linkend="_classVisionVoyager_1a6800d5fd52a8f527b75fbc4040335650">picar_python_object</link>)</para>
+</listitem>
+            <listitem><para>void <link linkend="_classVisionVoyager_1a9c48e07bf957fa80f37355ac9ccfdc8e">set_speed</link> (int new_speed)</para>
+</listitem>
+            <listitem><para>void <link linkend="_classVisionVoyager_1a7d9713a9270bcf9dddce9679caee6de8">set_dir_angle</link> (int new_dir_angle)</para>
+</listitem>
+            <listitem><para>void <link linkend="_classVisionVoyager_1a98196329b80a50e909f6c66586fa0b05">set_camera_tilt_angle</link> (int new_camera_tilt_angle)</para>
+</listitem>
+            <listitem><para>void <link linkend="_classVisionVoyager_1a364c7f8c3ec49544826427f1208b3d3c">set_cam_pan_angle</link> (int new_camera_pan_angle)</para>
+</listitem>
+            <listitem><para>void <link linkend="_classVisionVoyager_1a6fe91aaaebf89f8f9b8284c9a0c5beb0">set_direction_limits</link> (int left_max, int right_max)</para>
+</listitem>
+            <listitem><para>int <link linkend="_classVisionVoyager_1a1e3c7a80364c1d1c990b4cb5a02bed6b">get_speed</link> ()</para>
+</listitem>
+            <listitem><para>int <link linkend="_classVisionVoyager_1ab92b5ce42aaa0cac33abb28d7aa3bc75">get_dir_angle</link> ()</para>
+</listitem>
+            <listitem><para>int <link linkend="_classVisionVoyager_1a039cbe49c86047e05aaa17cdd524e650">get_camera_tilt_angle</link> ()</para>
+</listitem>
+            <listitem><para>int <link linkend="_classVisionVoyager_1aa70fc88d8e67160f6ac2de29831781d8">get_camera_pan_angle</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classVisionVoyager_1a105927b97892aeca85711d9b37da80d4">move_forward</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classVisionVoyager_1ac9b0cde061e110a787b72b82eb891c8e">move_backward</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classVisionVoyager_1a96a213c9d7e841da3e13ad05e416e7bb">turn_left_one_degree</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classVisionVoyager_1af2b3dd06765f3ce7da9731bee0f35668">turn_right_one_degree</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classVisionVoyager_1af40cd3447af738f3b1b17a4f228137ea">turn_left_max</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classVisionVoyager_1ac76a9f825bdac4fb7429a5f6ca496043">turn_right_max</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classVisionVoyager_1a2f79fcf31b519c4c2f7502c4fad22c54">stop</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classVisionVoyager_1a5becc466820a56f9d47b8a7876a6cfd1">camera_pan_left_one_degree</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classVisionVoyager_1a4915c4103e73857f35ee237183f5c4d6">camera_pan_right_one_degree</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classVisionVoyager_1aadb48fdb6a31dfd6a129c5a41b1db2a3">camera_pan_left_max</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classVisionVoyager_1a1ea1b362968ec4338ad5f1f955df0b5e">camera_pan_right_max</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classVisionVoyager_1ac75575717dce1bf0efc4ef1c0b8a811d">camera_tilt_up_one_degree</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classVisionVoyager_1a20c4296e9a0f2a8daa11dda972e36951">camera_tilt_down_one_degree</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classVisionVoyager_1a4d27c862024ffded85fb332da02f94c2">camera_tilt_up_max</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classVisionVoyager_1a2336c2719577791107c7784767d68fe8">camera_tilt_down_max</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classVisionVoyager_1a5c7aee7a6ea1b25c83531de1145ded0d">take_photo</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classVisionVoyager_1ab87c3dd13f431dcdef84ec57d8a3d009">speed_up</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classVisionVoyager_1afccd2cf3e9114e2a61f744064189f7ec">speed_down</link> ()</para>
+</listitem>
+            <listitem><para>vector&lt; int &gt; <link linkend="_classVisionVoyager_1af99f06b60f884efdae42ce67c5e334e0">read_grayscale_data</link> ()</para>
+</listitem>
+            <listitem><para>float <link linkend="_classVisionVoyager_1a23ffcbd98c7a1902a32c0ca442b1efe7">read_ultrasonic_data</link> ()</para>
+</listitem>
+            <listitem><para><link linkend="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7c">SevereErrorType</link> <link linkend="_classVisionVoyager_1a0b9c7621c4794cd3b9dd657133181a7e">check_hall_sensors_timing</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>void <link linkend="_classVisionVoyager_1a60551fa52742c466da894b2e92a3636e">initialize_python_embedding</link> ()</para>
+</listitem>
+            <listitem><para>vector&lt; int &gt; <link linkend="_classVisionVoyager_1a9ea744afdb841a3886b1d5c41fe0e437">map_python_list_cpp_vector</link> (py::list py_list)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para>py::object <link linkend="_classVisionVoyager_1ab3e3318934229fb3b47854fa639a554f">picar_python_module</link></para>
+</listitem>
+            <listitem><para>py::object <link linkend="_classVisionVoyager_1a6d44db594feaf72a53680beeba378fc2">picar_python_class</link></para>
+</listitem>
+            <listitem><para>py::object <link linkend="_classVisionVoyager_1a6800d5fd52a8f527b75fbc4040335650">picar_python_object</link></para>
+</listitem>
+            <listitem><para>int <link linkend="_classVisionVoyager_1abd73619e7a07ea577c1e015f70bfa501">DIR_MIN</link></para>
+</listitem>
+            <listitem><para>int <link linkend="_classVisionVoyager_1a4b0f55987c8df8e5f61971f650876932">DIR_MAX</link></para>
+</listitem>
+            <listitem><para>int <link linkend="_classVisionVoyager_1a0899eba45efe676eab94513112bc9fce">speed</link></para>
+</listitem>
+            <listitem><para>int <link linkend="_classVisionVoyager_1a4be244569929d6b6afad1a0deea965dd">dir_angle</link></para>
+</listitem>
+            <listitem><para>int <link linkend="_classVisionVoyager_1a02f415b46f54f78e0405b35c4a4d7b04">camera_tilt_angle</link></para>
+</listitem>
+            <listitem><para>int <link linkend="_classVisionVoyager_1acadd515407e28cf9d8bc75f34e0292db">camera_pan_angle</link></para>
+</listitem>
+            <listitem><para>float <link linkend="_classVisionVoyager_1a0e2cca2c993ac26ca60ab3d851acec88">angular_velocity</link> = 0.0f</para>
+</listitem>
+            <listitem><para>float <link linkend="_classVisionVoyager_1ab280d561e70b84ad03e9d1c11a24c5d6">linear_velocity</link> = 0.0f</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_classVisionVoyager_1afa66b802ba1b7b4153c87079230a2a9c"/>    <section>
+    <title>VisionVoyager()</title>
+<indexterm><primary>VisionVoyager</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>VisionVoyager</secondary></indexterm>
+<para><computeroutput>VisionVoyager::VisionVoyager ( )</computeroutput></para></section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classVisionVoyager_1aadb48fdb6a31dfd6a129c5a41b1db2a3"/>    <section>
+    <title>camera_pan_left_max()</title>
+<indexterm><primary>camera_pan_left_max</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>camera_pan_left_max</secondary></indexterm>
+<para><computeroutput>void VisionVoyager::camera_pan_left_max ( )</computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1a5becc466820a56f9d47b8a7876a6cfd1"/>    <section>
+    <title>camera_pan_left_one_degree()</title>
+<indexterm><primary>camera_pan_left_one_degree</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>camera_pan_left_one_degree</secondary></indexterm>
+<para><computeroutput>void VisionVoyager::camera_pan_left_one_degree ( )</computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1a1ea1b362968ec4338ad5f1f955df0b5e"/>    <section>
+    <title>camera_pan_right_max()</title>
+<indexterm><primary>camera_pan_right_max</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>camera_pan_right_max</secondary></indexterm>
+<para><computeroutput>void VisionVoyager::camera_pan_right_max ( )</computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1a4915c4103e73857f35ee237183f5c4d6"/>    <section>
+    <title>camera_pan_right_one_degree()</title>
+<indexterm><primary>camera_pan_right_one_degree</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>camera_pan_right_one_degree</secondary></indexterm>
+<para><computeroutput>void VisionVoyager::camera_pan_right_one_degree ( )</computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1a2336c2719577791107c7784767d68fe8"/>    <section>
+    <title>camera_tilt_down_max()</title>
+<indexterm><primary>camera_tilt_down_max</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>camera_tilt_down_max</secondary></indexterm>
+<para><computeroutput>void VisionVoyager::camera_tilt_down_max ( )</computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1a20c4296e9a0f2a8daa11dda972e36951"/>    <section>
+    <title>camera_tilt_down_one_degree()</title>
+<indexterm><primary>camera_tilt_down_one_degree</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>camera_tilt_down_one_degree</secondary></indexterm>
+<para><computeroutput>void VisionVoyager::camera_tilt_down_one_degree ( )</computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1a4d27c862024ffded85fb332da02f94c2"/>    <section>
+    <title>camera_tilt_up_max()</title>
+<indexterm><primary>camera_tilt_up_max</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>camera_tilt_up_max</secondary></indexterm>
+<para><computeroutput>void VisionVoyager::camera_tilt_up_max ( )</computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1ac75575717dce1bf0efc4ef1c0b8a811d"/>    <section>
+    <title>camera_tilt_up_one_degree()</title>
+<indexterm><primary>camera_tilt_up_one_degree</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>camera_tilt_up_one_degree</secondary></indexterm>
+<para><computeroutput>void VisionVoyager::camera_tilt_up_one_degree ( )</computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1a0b9c7621c4794cd3b9dd657133181a7e"/>    <section>
+    <title>check_hall_sensors_timing()</title>
+<indexterm><primary>check_hall_sensors_timing</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>check_hall_sensors_timing</secondary></indexterm>
+<para><computeroutput><link linkend="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7c">SevereErrorType</link> VisionVoyager::check_hall_sensors_timing ( )</computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classVisionVoyager_a0b9c7621c4794cd3b9dd657133181a7e_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classVisionVoyager_a0b9c7621c4794cd3b9dd657133181a7e_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classVisionVoyager_1aa70fc88d8e67160f6ac2de29831781d8"/>    <section>
+    <title>get_camera_pan_angle()</title>
+<indexterm><primary>get_camera_pan_angle</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>get_camera_pan_angle</secondary></indexterm>
+<para><computeroutput>int VisionVoyager::get_camera_pan_angle ( )</computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1a039cbe49c86047e05aaa17cdd524e650"/>    <section>
+    <title>get_camera_tilt_angle()</title>
+<indexterm><primary>get_camera_tilt_angle</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>get_camera_tilt_angle</secondary></indexterm>
+<para><computeroutput>int VisionVoyager::get_camera_tilt_angle ( )</computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1ab92b5ce42aaa0cac33abb28d7aa3bc75"/>    <section>
+    <title>get_dir_angle()</title>
+<indexterm><primary>get_dir_angle</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>get_dir_angle</secondary></indexterm>
+<para><computeroutput>int VisionVoyager::get_dir_angle ( )</computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1a1e3c7a80364c1d1c990b4cb5a02bed6b"/>    <section>
+    <title>get_speed()</title>
+<indexterm><primary>get_speed</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>get_speed</secondary></indexterm>
+<para><computeroutput>int VisionVoyager::get_speed ( )</computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1a60551fa52742c466da894b2e92a3636e"/>    <section>
+    <title>initialize_python_embedding()</title>
+<indexterm><primary>initialize_python_embedding</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>initialize_python_embedding</secondary></indexterm>
+<para><computeroutput>void VisionVoyager::initialize_python_embedding ( )<computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1a9ea744afdb841a3886b1d5c41fe0e437"/>    <section>
+    <title>map_python_list_cpp_vector()</title>
+<indexterm><primary>map_python_list_cpp_vector</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>map_python_list_cpp_vector</secondary></indexterm>
+<para><computeroutput>vector&lt; int &gt; VisionVoyager::map_python_list_cpp_vector (py::list py_list)<computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1ac9b0cde061e110a787b72b82eb891c8e"/>    <section>
+    <title>move_backward()</title>
+<indexterm><primary>move_backward</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>move_backward</secondary></indexterm>
+<para><computeroutput>void VisionVoyager::move_backward ( )</computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classVisionVoyager_ac9b0cde061e110a787b72b82eb891c8e_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classVisionVoyager_ac9b0cde061e110a787b72b82eb891c8e_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classVisionVoyager_1a105927b97892aeca85711d9b37da80d4"/>    <section>
+    <title>move_forward()</title>
+<indexterm><primary>move_forward</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>move_forward</secondary></indexterm>
+<para><computeroutput>void VisionVoyager::move_forward ( )</computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classVisionVoyager_a105927b97892aeca85711d9b37da80d4_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classVisionVoyager_a105927b97892aeca85711d9b37da80d4_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classVisionVoyager_1af99f06b60f884efdae42ce67c5e334e0"/>    <section>
+    <title>read_grayscale_data()</title>
+<indexterm><primary>read_grayscale_data</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>read_grayscale_data</secondary></indexterm>
+<para><computeroutput>vector&lt; int &gt; VisionVoyager::read_grayscale_data ( )</computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1a23ffcbd98c7a1902a32c0ca442b1efe7"/>    <section>
+    <title>read_ultrasonic_data()</title>
+<indexterm><primary>read_ultrasonic_data</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>read_ultrasonic_data</secondary></indexterm>
+<para><computeroutput>float VisionVoyager::read_ultrasonic_data ( )</computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1a364c7f8c3ec49544826427f1208b3d3c"/>    <section>
+    <title>set_cam_pan_angle()</title>
+<indexterm><primary>set_cam_pan_angle</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>set_cam_pan_angle</secondary></indexterm>
+<para><computeroutput>void VisionVoyager::set_cam_pan_angle (int new_camera_pan_angle)</computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classVisionVoyager_a364c7f8c3ec49544826427f1208b3d3c_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classVisionVoyager_1a98196329b80a50e909f6c66586fa0b05"/>    <section>
+    <title>set_camera_tilt_angle()</title>
+<indexterm><primary>set_camera_tilt_angle</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>set_camera_tilt_angle</secondary></indexterm>
+<para><computeroutput>void VisionVoyager::set_camera_tilt_angle (int new_camera_tilt_angle)</computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classVisionVoyager_a98196329b80a50e909f6c66586fa0b05_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classVisionVoyager_1a7d9713a9270bcf9dddce9679caee6de8"/>    <section>
+    <title>set_dir_angle()</title>
+<indexterm><primary>set_dir_angle</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>set_dir_angle</secondary></indexterm>
+<para><computeroutput>void VisionVoyager::set_dir_angle (int new_dir_angle)</computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classVisionVoyager_a7d9713a9270bcf9dddce9679caee6de8_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classVisionVoyager_1a6fe91aaaebf89f8f9b8284c9a0c5beb0"/>    <section>
+    <title>set_direction_limits()</title>
+<indexterm><primary>set_direction_limits</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>set_direction_limits</secondary></indexterm>
+<para><computeroutput>void VisionVoyager::set_direction_limits (int left_max, int right_max)</computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classVisionVoyager_a6fe91aaaebf89f8f9b8284c9a0c5beb0_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classVisionVoyager_1a3451ab22e115b4a831bb7f8201d0361a"/>    <section>
+    <title>set_picar_python_object()</title>
+<indexterm><primary>set_picar_python_object</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>set_picar_python_object</secondary></indexterm>
+<para><computeroutput>void VisionVoyager::set_picar_python_object (py::object picar_python_object)</computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1a9c48e07bf957fa80f37355ac9ccfdc8e"/>    <section>
+    <title>set_speed()</title>
+<indexterm><primary>set_speed</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>set_speed</secondary></indexterm>
+<para><computeroutput>void VisionVoyager::set_speed (int new_speed)</computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classVisionVoyager_a9c48e07bf957fa80f37355ac9ccfdc8e_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classVisionVoyager_1afccd2cf3e9114e2a61f744064189f7ec"/>    <section>
+    <title>speed_down()</title>
+<indexterm><primary>speed_down</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>speed_down</secondary></indexterm>
+<para><computeroutput>void VisionVoyager::speed_down ( )</computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1ab87c3dd13f431dcdef84ec57d8a3d009"/>    <section>
+    <title>speed_up()</title>
+<indexterm><primary>speed_up</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>speed_up</secondary></indexterm>
+<para><computeroutput>void VisionVoyager::speed_up ( )</computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1a2f79fcf31b519c4c2f7502c4fad22c54"/>    <section>
+    <title>stop()</title>
+<indexterm><primary>stop</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>stop</secondary></indexterm>
+<para><computeroutput>void VisionVoyager::stop ( )</computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classVisionVoyager_a2f79fcf31b519c4c2f7502c4fad22c54_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classVisionVoyager_a2f79fcf31b519c4c2f7502c4fad22c54_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classVisionVoyager_1a5c7aee7a6ea1b25c83531de1145ded0d"/>    <section>
+    <title>take_photo()</title>
+<indexterm><primary>take_photo</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>take_photo</secondary></indexterm>
+<para><computeroutput>void VisionVoyager::take_photo ( )</computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1af40cd3447af738f3b1b17a4f228137ea"/>    <section>
+    <title>turn_left_max()</title>
+<indexterm><primary>turn_left_max</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>turn_left_max</secondary></indexterm>
+<para><computeroutput>void VisionVoyager::turn_left_max ( )</computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1a96a213c9d7e841da3e13ad05e416e7bb"/>    <section>
+    <title>turn_left_one_degree()</title>
+<indexterm><primary>turn_left_one_degree</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>turn_left_one_degree</secondary></indexterm>
+<para><computeroutput>void VisionVoyager::turn_left_one_degree ( )</computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1ac76a9f825bdac4fb7429a5f6ca496043"/>    <section>
+    <title>turn_right_max()</title>
+<indexterm><primary>turn_right_max</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>turn_right_max</secondary></indexterm>
+<para><computeroutput>void VisionVoyager::turn_right_max ( )</computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1af2b3dd06765f3ce7da9731bee0f35668"/>    <section>
+    <title>turn_right_one_degree()</title>
+<indexterm><primary>turn_right_one_degree</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>turn_right_one_degree</secondary></indexterm>
+<para><computeroutput>void VisionVoyager::turn_right_one_degree ( )</computeroutput></para></section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_classVisionVoyager_1a0e2cca2c993ac26ca60ab3d851acec88"/>    <section>
+    <title>angular_velocity</title>
+<indexterm><primary>angular_velocity</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>angular_velocity</secondary></indexterm>
+<para><computeroutput>float VisionVoyager::angular_velocity = 0.0f<computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1acadd515407e28cf9d8bc75f34e0292db"/>    <section>
+    <title>camera_pan_angle</title>
+<indexterm><primary>camera_pan_angle</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>camera_pan_angle</secondary></indexterm>
+<para><computeroutput>int VisionVoyager::camera_pan_angle<computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1a02f415b46f54f78e0405b35c4a4d7b04"/>    <section>
+    <title>camera_tilt_angle</title>
+<indexterm><primary>camera_tilt_angle</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>camera_tilt_angle</secondary></indexterm>
+<para><computeroutput>int VisionVoyager::camera_tilt_angle<computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1a4be244569929d6b6afad1a0deea965dd"/>    <section>
+    <title>dir_angle</title>
+<indexterm><primary>dir_angle</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>dir_angle</secondary></indexterm>
+<para><computeroutput>int VisionVoyager::dir_angle<computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1a4b0f55987c8df8e5f61971f650876932"/>    <section>
+    <title>DIR_MAX</title>
+<indexterm><primary>DIR_MAX</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>DIR_MAX</secondary></indexterm>
+<para><computeroutput>int VisionVoyager::DIR_MAX<computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1abd73619e7a07ea577c1e015f70bfa501"/>    <section>
+    <title>DIR_MIN</title>
+<indexterm><primary>DIR_MIN</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>DIR_MIN</secondary></indexterm>
+<para><computeroutput>int VisionVoyager::DIR_MIN<computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1ab280d561e70b84ad03e9d1c11a24c5d6"/>    <section>
+    <title>linear_velocity</title>
+<indexterm><primary>linear_velocity</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>linear_velocity</secondary></indexterm>
+<para><computeroutput>float VisionVoyager::linear_velocity = 0.0f<computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1a6d44db594feaf72a53680beeba378fc2"/>    <section>
+    <title>picar_python_class</title>
+<indexterm><primary>picar_python_class</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>picar_python_class</secondary></indexterm>
+<para><computeroutput>py::object VisionVoyager::picar_python_class<computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1ab3e3318934229fb3b47854fa639a554f"/>    <section>
+    <title>picar_python_module</title>
+<indexterm><primary>picar_python_module</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>picar_python_module</secondary></indexterm>
+<para><computeroutput>py::object VisionVoyager::picar_python_module<computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1a6800d5fd52a8f527b75fbc4040335650"/>    <section>
+    <title>picar_python_object</title>
+<indexterm><primary>picar_python_object</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>picar_python_object</secondary></indexterm>
+<para><computeroutput>py::object VisionVoyager::picar_python_object<computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classVisionVoyager_1a0899eba45efe676eab94513112bc9fce"/>    <section>
+    <title>speed</title>
+<indexterm><primary>speed</primary><secondary>VisionVoyager</secondary></indexterm>
+<indexterm><primary>VisionVoyager</primary><secondary>speed</secondary></indexterm>
+<para><computeroutput>int VisionVoyager::speed<computeroutput>[private]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+<link linkend="_visionVoyager_8h">visionVoyager.h</link><link linkend="_visionVoyager_8cpp">visionVoyager.cpp</link></section>
+</section>

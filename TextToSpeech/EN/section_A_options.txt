@@ -8,10 +8,18 @@ for the Secretariat say "ONE"
 
 
 
-Route 2. To the Secretariat AC.
+Route 2. To the Auditorium.
 
 
-for the Secretariat AC say "TWO"
+for the Auditorium say "TWO"
+
+
+
+
+Route 3. To the Rectorat.
+
+
+for the Rectorat say "THREE"
 
 
 

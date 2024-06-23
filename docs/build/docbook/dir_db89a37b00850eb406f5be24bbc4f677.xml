@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_db89a37b00850eb406f5be24bbc4f677" xml:lang="en-US">
+<title>RFID Directory Reference</title>
+<indexterm><primary>RFID Directory Reference</primary></indexterm>
+Directory dependency graph for RFID:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="dir_db89a37b00850eb406f5be24bbc4f677_dep.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Directories    </title>
+        <itemizedlist>
+            <listitem><para>directory <link linkend="_dir_07ccf803a51350e4b0d5650e091eb177">GPIO</link></para>
+</listitem>
+            <listitem><para>directory <link linkend="_dir_45269472b4ed5d66ae14e268b8dc05d8">I2C</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="_crc_8c">crc.c</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_crc_8h">crc.h</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_RFID__Manager_8c">RFID_Manager.c</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_RFID__Manager_8h">RFID_Manager.h</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

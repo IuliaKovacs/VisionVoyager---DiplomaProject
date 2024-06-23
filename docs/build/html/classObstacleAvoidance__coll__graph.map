@@ -1,0 +1,9 @@
+<map id="ObstacleAvoidance" name="ObstacleAvoidance">
+<area shape="rect" id="node1" title=" " alt="" coords="395,532,873,739"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,312,348,397"/>
+<area shape="rect" id="node3" href="$classVisionVoyager.html" title=" " alt="" coords="372,243,896,467"/>
+<area shape="rect" id="node4" title=" " alt="" coords="433,5,491,91"/>
+<area shape="rect" id="node5" title=" " alt="" coords="613,5,655,91"/>
+<area shape="rect" id="node6" title=" " alt="" coords="788,5,859,91"/>
+<area shape="rect" id="node7" title=" " alt="" coords="921,312,1027,397"/>
+</map>

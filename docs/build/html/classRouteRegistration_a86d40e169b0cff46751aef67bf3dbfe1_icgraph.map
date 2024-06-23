@@ -1,0 +1,10 @@
+<map id="RouteRegistration::set_moving_state" name="RouteRegistration::set_moving_state">
+<area shape="rect" id="node1" title=" " alt="" coords="1257,85,1569,115"/>
+<area shape="rect" id="node2" href="$classLineFollower.html#aaa855aef66ea4b7559abe85ce5965450" title=" " alt="" coords="908,5,1156,35"/>
+<area shape="rect" id="node3" href="$classLineFollower.html#a39522a2dadc7c9bc06ad9136fdd6bca4" title=" " alt="" coords="925,59,1139,88"/>
+<area shape="rect" id="node6" href="$classKeyboardControl.html#ad308f58b7ff49c69207c5d8823e6b96d" title=" " alt="" coords="855,112,1209,141"/>
+<area shape="rect" id="node8" href="$classLineFollower.html#ae69d33c6b7986da12a26d303f488091f" title=" " alt="" coords="922,165,1142,195"/>
+<area shape="rect" id="node4" href="$classApplicationModule.html#aac8fe86ca66a0312b5e25e3381207b56" title=" " alt="" coords="440,59,807,88"/>
+<area shape="rect" id="node5" href="$classApplicationModule.html#adfcaf57051e24f5d200b10906297d5c3" title=" " alt="" coords="5,59,392,88"/>
+<area shape="rect" id="node7" href="$classAdminModeWindow.html#a91e133ee4ffdb8d057fdb35f3b5d1467" title=" " alt="" coords="472,112,775,141"/>
+</map>

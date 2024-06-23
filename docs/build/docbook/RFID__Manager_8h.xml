@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_RFID__Manager_8h" xml:lang="en-US">
+<title>RFID_Manager.h File Reference</title>
+<indexterm><primary>RFID_Manager.h</primary></indexterm>
+<programlisting>#include &lt;stdint.h&gt;
+#include &lt;stdbool.h&gt;
+</programlisting>Include dependency graph for RFID_Manager.h:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="RFID__Manager_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="RFID__Manager_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>struct <link linkend="_structRFID__Tag__Information">RFID_Tag_Information</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Typedefs    </title>
+        <itemizedlist>
+            <listitem><para>typedef enum <link linkend="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12">RFID_request_status_t</link> <link linkend="_RFID__Manager_8h_1abcae3c4929bde82f4b8657c5a8744d43">RFID_request_status_t</link></para>
+</listitem>
+            <listitem><para>typedef struct <link linkend="_structRFID__Tag__Information">RFID_Tag_Information</link> <link linkend="_RFID__Manager_8h_1adbf206354bdcb40fc94421263b4ebeb3">RFID_Tag_Information</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Enumerations    </title>
+        <itemizedlist>
+            <listitem><para>enum <link linkend="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12">RFID_request_status_t</link> { 
+<link linkend="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12a17ab637666460b9c8df5a5abb34ab7bd">RFID_REQUEST_OK</link>
+, <link linkend="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12a1e22d4f2135d579d4df6ac72d7d0973f">RFID_REQUEST_PENDING</link>
+, <link linkend="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12a57b6635a5956d4f1efbe8ad71f9d4ecf">RFID_REQUEST_NOK_INVALID_COMMAND</link>
+, <link linkend="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12acdfbd3e0d2c9c986a29920135c5b7705">RFID_REQUEST_NOK_INVALID_CRC</link>
+, 
+<link linkend="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12ac04cd287167d0bb420327e481400ef5e">RFID_REQUEST_NOK_TX_COMM_ERROR</link>
+, <link linkend="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12a12cc99e23e42887538177f6965c93f40">RFID_REQUEST_NOK_RX_COMM_ERROR</link>
+, <link linkend="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12a8a8105daa68c371cadfdd31962d332db">RFID_INVALID_TAG_INFORMATION</link>
+, <link linkend="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12aa0d39f778d3a48d2a71bfa178fe94bb9">RFID_REQUEST_NO_TAGS</link>
+ }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12">RFID_request_status_t</link> <link linkend="_RFID__Manager_8h_1aebd4e0f821d52567aea1f4c6738875d4">RFID_init</link> (void)</para>
+</listitem>
+            <listitem><para><link linkend="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12">RFID_request_status_t</link> <link linkend="_RFID__Manager_8h_1af03b7a9b7153d7b4aaf0a6f52fc9010d">RFID_Send_Ping</link> (void)</para>
+</listitem>
+            <listitem><para><link linkend="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12">RFID_request_status_t</link> <link linkend="_RFID__Manager_8h_1a23bcce4079e8f84bd19e169dc6107132">RFID_get_System_Init_Status</link> (bool *out_init_status)</para>
+</listitem>
+            <listitem><para><link linkend="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12">RFID_request_status_t</link> <link linkend="_RFID__Manager_8h_1ad154f5c187d7830caf30b0e971583ed4">RFID_get_Rooms</link> (<link linkend="_structRFID__Tag__Information">RFID_Tag_Information</link> *out_tag_info_ptr)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Typedef Documentation</title>
+<anchor xml:id="_RFID__Manager_8h_1abcae3c4929bde82f4b8657c5a8744d43"/>    <section>
+    <title>RFID_request_status_t</title>
+<indexterm><primary>RFID_request_status_t</primary><secondary>RFID_Manager.h</secondary></indexterm>
+<indexterm><primary>RFID_Manager.h</primary><secondary>RFID_request_status_t</secondary></indexterm>
+<para><computeroutput>typedef enum <link linkend="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12">RFID_request_status_t</link> <link linkend="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12">RFID_request_status_t</link></computeroutput></para>    </section><anchor xml:id="_RFID__Manager_8h_1adbf206354bdcb40fc94421263b4ebeb3"/>    <section>
+    <title>RFID_Tag_Information</title>
+<indexterm><primary>RFID_Tag_Information</primary><secondary>RFID_Manager.h</secondary></indexterm>
+<indexterm><primary>RFID_Manager.h</primary><secondary>RFID_Tag_Information</secondary></indexterm>
+<para><computeroutput>typedef struct <link linkend="_structRFID__Tag__Information">RFID_Tag_Information</link> <link linkend="_structRFID__Tag__Information">RFID_Tag_Information</link></computeroutput></para></section>
+</section>
+<section>
+<title>Enumeration Type Documentation</title>
+<anchor xml:id="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12"/>    <section>
+    <title>RFID_request_status_t</title>
+<indexterm><primary>RFID_request_status_t</primary><secondary>RFID_Manager.h</secondary></indexterm>
+<indexterm><primary>RFID_Manager.h</primary><secondary>RFID_request_status_t</secondary></indexterm>
+<para><computeroutput>enum <link linkend="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12">RFID_request_status_t</link></computeroutput></para><informaltable frame="all">
+<title>Enumerator</title>
+    <tgroup cols="2" align="left" colsep="1" rowsep="1">
+      <colspec colname='c1'/>
+      <colspec colname='c2'/>
+<tbody>
+<row><entry><indexterm><primary>RFID_REQUEST_OK</primary><secondary>RFID_Manager.h</secondary></indexterm>
+<indexterm><primary>RFID_Manager.h</primary><secondary>RFID_REQUEST_OK</secondary></indexterm>
+<anchor xml:id="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12a17ab637666460b9c8df5a5abb34ab7bd"/>RFID_REQUEST_OK</entry><entry></entry></row><row><entry><indexterm><primary>RFID_REQUEST_PENDING</primary><secondary>RFID_Manager.h</secondary></indexterm>
+<indexterm><primary>RFID_Manager.h</primary><secondary>RFID_REQUEST_PENDING</secondary></indexterm>
+<anchor xml:id="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12a1e22d4f2135d579d4df6ac72d7d0973f"/>RFID_REQUEST_PENDING</entry><entry></entry></row><row><entry><indexterm><primary>RFID_REQUEST_NOK_INVALID_COMMAND</primary><secondary>RFID_Manager.h</secondary></indexterm>
+<indexterm><primary>RFID_Manager.h</primary><secondary>RFID_REQUEST_NOK_INVALID_COMMAND</secondary></indexterm>
+<anchor xml:id="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12a57b6635a5956d4f1efbe8ad71f9d4ecf"/>RFID_REQUEST_NOK_INVALID_COMMAND</entry><entry></entry></row><row><entry><indexterm><primary>RFID_REQUEST_NOK_INVALID_CRC</primary><secondary>RFID_Manager.h</secondary></indexterm>
+<indexterm><primary>RFID_Manager.h</primary><secondary>RFID_REQUEST_NOK_INVALID_CRC</secondary></indexterm>
+<anchor xml:id="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12acdfbd3e0d2c9c986a29920135c5b7705"/>RFID_REQUEST_NOK_INVALID_CRC</entry><entry></entry></row><row><entry><indexterm><primary>RFID_REQUEST_NOK_TX_COMM_ERROR</primary><secondary>RFID_Manager.h</secondary></indexterm>
+<indexterm><primary>RFID_Manager.h</primary><secondary>RFID_REQUEST_NOK_TX_COMM_ERROR</secondary></indexterm>
+<anchor xml:id="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12ac04cd287167d0bb420327e481400ef5e"/>RFID_REQUEST_NOK_TX_COMM_ERROR</entry><entry></entry></row><row><entry><indexterm><primary>RFID_REQUEST_NOK_RX_COMM_ERROR</primary><secondary>RFID_Manager.h</secondary></indexterm>
+<indexterm><primary>RFID_Manager.h</primary><secondary>RFID_REQUEST_NOK_RX_COMM_ERROR</secondary></indexterm>
+<anchor xml:id="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12a12cc99e23e42887538177f6965c93f40"/>RFID_REQUEST_NOK_RX_COMM_ERROR</entry><entry></entry></row><row><entry><indexterm><primary>RFID_INVALID_TAG_INFORMATION</primary><secondary>RFID_Manager.h</secondary></indexterm>
+<indexterm><primary>RFID_Manager.h</primary><secondary>RFID_INVALID_TAG_INFORMATION</secondary></indexterm>
+<anchor xml:id="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12a8a8105daa68c371cadfdd31962d332db"/>RFID_INVALID_TAG_INFORMATION</entry><entry></entry></row><row><entry><indexterm><primary>RFID_REQUEST_NO_TAGS</primary><secondary>RFID_Manager.h</secondary></indexterm>
+<indexterm><primary>RFID_Manager.h</primary><secondary>RFID_REQUEST_NO_TAGS</secondary></indexterm>
+<anchor xml:id="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12aa0d39f778d3a48d2a71bfa178fe94bb9"/>RFID_REQUEST_NO_TAGS</entry><entry></entry></row>    </tbody>
+    </tgroup>
+</informaltable>
+</section>
+</section>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_RFID__Manager_8h_1ad154f5c187d7830caf30b0e971583ed4"/>    <section>
+    <title>RFID_get_Rooms()</title>
+<indexterm><primary>RFID_get_Rooms</primary><secondary>RFID_Manager.h</secondary></indexterm>
+<indexterm><primary>RFID_Manager.h</primary><secondary>RFID_get_Rooms</secondary></indexterm>
+<para><computeroutput><link linkend="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12">RFID_request_status_t</link> RFID_get_Rooms (<link linkend="_structRFID__Tag__Information">RFID_Tag_Information</link> * out_tag_info_ptr)</computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="RFID__Manager_8h_ad154f5c187d7830caf30b0e971583ed4_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="RFID__Manager_8h_ad154f5c187d7830caf30b0e971583ed4_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_RFID__Manager_8h_1a23bcce4079e8f84bd19e169dc6107132"/>    <section>
+    <title>RFID_get_System_Init_Status()</title>
+<indexterm><primary>RFID_get_System_Init_Status</primary><secondary>RFID_Manager.h</secondary></indexterm>
+<indexterm><primary>RFID_Manager.h</primary><secondary>RFID_get_System_Init_Status</secondary></indexterm>
+<para><computeroutput><link linkend="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12">RFID_request_status_t</link> RFID_get_System_Init_Status (bool * out_init_status)</computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="RFID__Manager_8h_a23bcce4079e8f84bd19e169dc6107132_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="RFID__Manager_8h_a23bcce4079e8f84bd19e169dc6107132_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_RFID__Manager_8h_1aebd4e0f821d52567aea1f4c6738875d4"/>    <section>
+    <title>RFID_init()</title>
+<indexterm><primary>RFID_init</primary><secondary>RFID_Manager.h</secondary></indexterm>
+<indexterm><primary>RFID_Manager.h</primary><secondary>RFID_init</secondary></indexterm>
+<para><computeroutput><link linkend="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12">RFID_request_status_t</link> RFID_init (void )</computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="RFID__Manager_8h_aebd4e0f821d52567aea1f4c6738875d4_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="RFID__Manager_8h_aebd4e0f821d52567aea1f4c6738875d4_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_RFID__Manager_8h_1af03b7a9b7153d7b4aaf0a6f52fc9010d"/>    <section>
+    <title>RFID_Send_Ping()</title>
+<indexterm><primary>RFID_Send_Ping</primary><secondary>RFID_Manager.h</secondary></indexterm>
+<indexterm><primary>RFID_Manager.h</primary><secondary>RFID_Send_Ping</secondary></indexterm>
+<para><computeroutput><link linkend="_RFID__Manager_8h_1ab0d10f3dfeafc2e63cca50e8529d7b12">RFID_request_status_t</link> RFID_Send_Ping (void )</computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="RFID__Manager_8h_af03b7a9b7153d7b4aaf0a6f52fc9010d_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="RFID__Manager_8h_af03b7a9b7153d7b4aaf0a6f52fc9010d_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+</section>

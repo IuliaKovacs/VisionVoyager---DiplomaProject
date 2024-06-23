@@ -1,0 +1,13 @@
+digraph "TextToSpeech" {
+  compound=true
+  node [ fontsize="12", fontname="Helvetica"];
+  edge [ labelfontsize="12", labelfontname="Helvetica"];
+  dir_49e2ee4e64f389364a03da388ee7ad65 [shape=box, label="TextToSpeech", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_49e2ee4e64f389364a03da388ee7ad65.html"];
+  dir_6f2a72d087e95a9c16afd5b6d47ed6d6 [shape=box label="ApplicationModule" URL="dir_6f2a72d087e95a9c16afd5b6d47ed6d6.html"];
+  dir_796b7a27f659f822bdb2878f6659fee3 [shape=box label="RouteRegistration" URL="dir_796b7a27f659f822bdb2878f6659fee3.html"];
+  dir_796b7a27f659f822bdb2878f6659fee3->dir_6f2a72d087e95a9c16afd5b6d47ed6d6 [headlabel="1", labeldistance=1.5 headhref="dir_000011_000001.html"];
+  dir_6f2a72d087e95a9c16afd5b6d47ed6d6->dir_49e2ee4e64f389364a03da388ee7ad65 [headlabel="1", labeldistance=1.5 headhref="dir_000001_000012.html"];
+  dir_6f2a72d087e95a9c16afd5b6d47ed6d6->dir_796b7a27f659f822bdb2878f6659fee3 [headlabel="1", labeldistance=1.5 headhref="dir_000001_000011.html"];
+  dir_49e2ee4e64f389364a03da388ee7ad65->dir_6f2a72d087e95a9c16afd5b6d47ed6d6 [headlabel="1", labeldistance=1.5 headhref="dir_000012_000001.html"];
+  dir_49e2ee4e64f389364a03da388ee7ad65->dir_796b7a27f659f822bdb2878f6659fee3 [headlabel="1", labeldistance=1.5 headhref="dir_000012_000011.html"];
+}

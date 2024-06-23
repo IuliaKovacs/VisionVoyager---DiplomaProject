@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_5766f2899eb1fddb06896647dbde4ab9" xml:lang="en-US">
+<title>LineFollower Directory Reference</title>
+<indexterm><primary>LineFollower Directory Reference</primary></indexterm>
+Directory dependency graph for LineFollower:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="dir_5766f2899eb1fddb06896647dbde4ab9_dep.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="_lineFollower_8cpp">lineFollower.cpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_lineFollower_8h">lineFollower.h</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

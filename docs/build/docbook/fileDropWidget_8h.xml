@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_fileDropWidget_8h" xml:lang="en-US">
+<title>fileDropWidget.h File Reference</title>
+<indexterm><primary>fileDropWidget.h</primary></indexterm>
+<programlisting>#include &lt;QWidget&gt;
+#include &lt;QLabel&gt;
+#include &lt;QListWidget&gt;
+#include &lt;QDragEnterEvent&gt;
+#include &lt;QDragMoveEvent&gt;
+#include &lt;QDropEvent&gt;
+#include &lt;QMimeData&gt;
+#include &lt;QUrl&gt;
+#include &lt;iostream&gt;
+</programlisting>Include dependency graph for fileDropWidget.h:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="fileDropWidget_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="fileDropWidget_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>class <link linkend="_classFileDropWidget">FileDropWidget</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

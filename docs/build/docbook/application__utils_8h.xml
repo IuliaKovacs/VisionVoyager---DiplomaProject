@@ -1,0 +1,309 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_application__utils_8h" xml:lang="en-US">
+<title>application_utils.h File Reference</title>
+<indexterm><primary>application_utils.h</primary></indexterm>
+<programlisting>#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;thread&gt;
+#include &lt;atomic&gt;
+#include &lt;condition_variable&gt;
+</programlisting>Include dependency graph for application_utils.h:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="application__utils_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="application__utils_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_application__utils_8h_1a3733a906364a7c0eca1624ebeefd4596">ROUTE_DATA_EXCEL_PATH</link>   &quot;../VisionVoyagerGUI/DataCollection/RoutesData.xlsx&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_application__utils_8h_1a7fb27dcea5e0fcc7eabed0fc2f6d898b">SHEET_ROUTE_NAME</link>   &quot;RoutesData&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_application__utils_8h_1a28552bdb4560ee9fab820cc15c55b646">LOGS_PATH</link>   &quot;../VisionVoyagerGUI/DataCollection/Logs/&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_application__utils_8h_1af16b59add40a1bc2f426bf27b2ecc643">LOG_THREAD_VOICE_PREFIX</link>   &quot;[Thread][<link linkend="_classVoiceRecognition">VoiceRecognition</link>]&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_application__utils_8h_1aff59603b462d0bc6df949e35e711aa5e">LOG_THREAD_LINE_FOLLOWER_PREFIX</link>   &quot;[Thread][Line Follower]&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_application__utils_8h_1afd5df783774a73d81af7dc773ea63575">LOG_THREAD_CAMERA_PREFIX</link>   &quot;[Thread][Camera]&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_application__utils_8h_1a05e06b41ac2a2729f6522d4aa19214a4">LOG_THREAD_ROUTE_PLAYER_PREFIX</link>   &quot;[Thread][Route Player]&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_application__utils_8h_1affbe9a01a266dfb3a72d8210d867ed1c">LOG_THREAD_ADMIN_PREFIX</link>   &quot;[Thread][Admin Mode]&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_application__utils_8h_1ad9d0e6eb293f75e95ed6be79689c47ff">LOG_THREAD_SPEAK_PREFIX</link>   &quot;[Thread][TTS Module]&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_application__utils_8h_1ac8f7b2bb8ee2ee434b0079144c552461">LOG_RFID_PREFIX</link>   &quot;[RFID Reader]&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_application__utils_8h_1a70b84424932b7f441c411d954c7be111">LOG_HALL_SENSORS_PREFIX</link>   &quot;[Hall Sensors]&quot;</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Enumerations    </title>
+        <itemizedlist>
+            <listitem><para>enum class <link linkend="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7c">SevereErrorType</link> { 
+<link linkend="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7cad306b6fdee05fe87455110ddf6501e6c">NO_ERROR</link>
+, <link linkend="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7ca0be7331a2626025ba9a274985f08f3f8">MOTOR_ERROR</link>
+, <link linkend="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7caba947e564edb1b26ccdf43975e6f20be">VOICE_RECOGNITION_ERROR</link>
+, <link linkend="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7ca214e42b8d68dcedebbdc4862e8abebc6">GPIO_ERROR</link>
+, 
+<link linkend="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7caf4a2ffa032f8450f09b7534c447a37b5">IN_AIR</link>
+, <link linkend="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7ca80c4f2ea6b3f33e7a89b395e16f782f0">LOW_VOLTAGE</link>
+, <link linkend="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7ca488dad7a5a7396cac3e594a788e18390">CAMERA_ERROR</link>
+, <link linkend="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7ca4ae49542eac0272d8499554e9ced817a">ROUTE_ERROR</link>
+ }</para>
+</listitem>
+            <listitem><para>enum class <link linkend="_application__utils_8h_1ae8dbf4356c44d679833a515752ca1d87">GuidingMode</link> { <link linkend="_application__utils_8h_1ae8dbf4356c44d679833a515752ca1d87af6c6534586f263af344e4d086fb33095">NO_GUIDING</link>
+, <link linkend="_application__utils_8h_1ae8dbf4356c44d679833a515752ca1d87a13123a20b80972e739e9f06e1ddbce5c">ROUTE_PLAYER_MODE</link>
+, <link linkend="_application__utils_8h_1ae8dbf4356c44d679833a515752ca1d87a770a93a23fa698afcbf5b3c0089e2492">LINE_FOLLOWER_MODE</link>
+ }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>string <link linkend="_application__utils_8h_1a49dec5f7745652d5fb54f79a2981a086">log_time</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para>ofstream <link linkend="_application__utils_8h_1af6fd65a690619ab800f6ddc3ff64eebb">logFile</link></para>
+</listitem>
+            <listitem><para>mutex <link linkend="_application__utils_8h_1a29ac681ec3efa9e30e1ab1ab251b47f9">mtx</link></para>
+</listitem>
+            <listitem><para>mutex <link linkend="_application__utils_8h_1a39289a780106bbc65294df3c2fa52c30">log_mutex</link></para>
+</listitem>
+            <listitem><para>mutex <link linkend="_application__utils_8h_1a6419ffdeb191ce5ad1c7a3233df44844">tts_mutex</link></para>
+</listitem>
+            <listitem><para>mutex <link linkend="_application__utils_8h_1a850fcb9a7a5e951eaac0b3a7349eb9cc">speak_mutex</link></para>
+</listitem>
+            <listitem><para>mutex <link linkend="_application__utils_8h_1a6392937081a10e4ae6eb2ae8a4a0c26f">camera_mutex</link></para>
+</listitem>
+            <listitem><para>condition_variable <link linkend="_application__utils_8h_1ab648739da84e80e6ee5bcdcbc5165ed0">waiting_condition</link></para>
+</listitem>
+            <listitem><para>atomic&lt; bool &gt; <link linkend="_application__utils_8h_1a6e33fd4eda06fed9e6485eb0e472c124">should_stop</link></para>
+</listitem>
+            <listitem><para>atomic&lt; bool &gt; <link linkend="_application__utils_8h_1a3ad667fb3a272e434ae2c59e6fa7bb23">route_complete</link></para>
+</listitem>
+            <listitem><para>atomic&lt; bool &gt; <link linkend="_application__utils_8h_1ae450fbe661c257b7ded64ea8037b203e">severe_error</link></para>
+</listitem>
+            <listitem><para>atomic&lt; bool &gt; <link linkend="_application__utils_8h_1a14043b49d883980478d476730afab85c">moving</link></para>
+</listitem>
+            <listitem><para>atomic&lt; bool &gt; <link linkend="_application__utils_8h_1abc3e6cc0134dd4e75cbbd77e6edf0b6c">avoiding</link></para>
+</listitem>
+            <listitem><para><link linkend="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7c">SevereErrorType</link> <link linkend="_application__utils_8h_1ad7cdb70d366cc0cb91e3c69093ce9d81">error_type</link></para>
+</listitem>
+            <listitem><para>condition_variable <link linkend="_application__utils_8h_1afc1412b3545e832b73ad34e1025b4230">speaking_condition</link></para>
+</listitem>
+            <listitem><para>condition_variable <link linkend="_application__utils_8h_1a8dee0b2f15c66cd20bd1c5878b9ec8b1">camera_condition</link></para>
+</listitem>
+            <listitem><para>atomic&lt; bool &gt; <link linkend="_application__utils_8h_1a2eba533e4f68ec79418c4a681b01b6cb">speak</link></para>
+</listitem>
+            <listitem><para>string <link linkend="_application__utils_8h_1aeb4ead7756ee619d8fed0211b6c7fa28">global_message</link></para>
+</listitem>
+            <listitem><para><link linkend="_application__utils_8h_1ae8dbf4356c44d679833a515752ca1d87">GuidingMode</link> <link linkend="_application__utils_8h_1a59b9aba0a00c84dbf1c89ce7049f063d">guiding_mode</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_application__utils_8h_1a70b84424932b7f441c411d954c7be111"/>    <section>
+    <title>LOG_HALL_SENSORS_PREFIX</title>
+<indexterm><primary>LOG_HALL_SENSORS_PREFIX</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>LOG_HALL_SENSORS_PREFIX</secondary></indexterm>
+<para><computeroutput>#define LOG_HALL_SENSORS_PREFIX   &quot;[Hall Sensors]&quot;</computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1ac8f7b2bb8ee2ee434b0079144c552461"/>    <section>
+    <title>LOG_RFID_PREFIX</title>
+<indexterm><primary>LOG_RFID_PREFIX</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>LOG_RFID_PREFIX</secondary></indexterm>
+<para><computeroutput>#define LOG_RFID_PREFIX   &quot;[RFID Reader]&quot;</computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1affbe9a01a266dfb3a72d8210d867ed1c"/>    <section>
+    <title>LOG_THREAD_ADMIN_PREFIX</title>
+<indexterm><primary>LOG_THREAD_ADMIN_PREFIX</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>LOG_THREAD_ADMIN_PREFIX</secondary></indexterm>
+<para><computeroutput>#define LOG_THREAD_ADMIN_PREFIX   &quot;[Thread][Admin Mode]&quot;</computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1afd5df783774a73d81af7dc773ea63575"/>    <section>
+    <title>LOG_THREAD_CAMERA_PREFIX</title>
+<indexterm><primary>LOG_THREAD_CAMERA_PREFIX</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>LOG_THREAD_CAMERA_PREFIX</secondary></indexterm>
+<para><computeroutput>#define LOG_THREAD_CAMERA_PREFIX   &quot;[Thread][Camera]&quot;</computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1aff59603b462d0bc6df949e35e711aa5e"/>    <section>
+    <title>LOG_THREAD_LINE_FOLLOWER_PREFIX</title>
+<indexterm><primary>LOG_THREAD_LINE_FOLLOWER_PREFIX</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>LOG_THREAD_LINE_FOLLOWER_PREFIX</secondary></indexterm>
+<para><computeroutput>#define LOG_THREAD_LINE_FOLLOWER_PREFIX   &quot;[Thread][Line Follower]&quot;</computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1a05e06b41ac2a2729f6522d4aa19214a4"/>    <section>
+    <title>LOG_THREAD_ROUTE_PLAYER_PREFIX</title>
+<indexterm><primary>LOG_THREAD_ROUTE_PLAYER_PREFIX</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>LOG_THREAD_ROUTE_PLAYER_PREFIX</secondary></indexterm>
+<para><computeroutput>#define LOG_THREAD_ROUTE_PLAYER_PREFIX   &quot;[Thread][Route Player]&quot;</computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1ad9d0e6eb293f75e95ed6be79689c47ff"/>    <section>
+    <title>LOG_THREAD_SPEAK_PREFIX</title>
+<indexterm><primary>LOG_THREAD_SPEAK_PREFIX</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>LOG_THREAD_SPEAK_PREFIX</secondary></indexterm>
+<para><computeroutput>#define LOG_THREAD_SPEAK_PREFIX   &quot;[Thread][TTS Module]&quot;</computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1af16b59add40a1bc2f426bf27b2ecc643"/>    <section>
+    <title>LOG_THREAD_VOICE_PREFIX</title>
+<indexterm><primary>LOG_THREAD_VOICE_PREFIX</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>LOG_THREAD_VOICE_PREFIX</secondary></indexterm>
+<para><computeroutput>#define LOG_THREAD_VOICE_PREFIX   &quot;[Thread][<link linkend="_classVoiceRecognition">VoiceRecognition</link>]&quot;</computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1a28552bdb4560ee9fab820cc15c55b646"/>    <section>
+    <title>LOGS_PATH</title>
+<indexterm><primary>LOGS_PATH</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>LOGS_PATH</secondary></indexterm>
+<para><computeroutput>#define LOGS_PATH   &quot;../VisionVoyagerGUI/DataCollection/Logs/&quot;</computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1a3733a906364a7c0eca1624ebeefd4596"/>    <section>
+    <title>ROUTE_DATA_EXCEL_PATH</title>
+<indexterm><primary>ROUTE_DATA_EXCEL_PATH</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>ROUTE_DATA_EXCEL_PATH</secondary></indexterm>
+<para><computeroutput>#define ROUTE_DATA_EXCEL_PATH   &quot;../VisionVoyagerGUI/DataCollection/RoutesData.xlsx&quot;</computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1a7fb27dcea5e0fcc7eabed0fc2f6d898b"/>    <section>
+    <title>SHEET_ROUTE_NAME</title>
+<indexterm><primary>SHEET_ROUTE_NAME</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>SHEET_ROUTE_NAME</secondary></indexterm>
+<para><computeroutput>#define SHEET_ROUTE_NAME   &quot;RoutesData&quot;</computeroutput></para></section>
+</section>
+<section>
+<title>Enumeration Type Documentation</title>
+<anchor xml:id="_application__utils_8h_1ae8dbf4356c44d679833a515752ca1d87"/>    <section>
+    <title>GuidingMode</title>
+<indexterm><primary>GuidingMode</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>GuidingMode</secondary></indexterm>
+<para><computeroutput>enum <link linkend="_application__utils_8h_1ae8dbf4356c44d679833a515752ca1d87">GuidingMode</link><computeroutput>[strong]</computeroutput></computeroutput></para><informaltable frame="all">
+<title>Enumerator</title>
+    <tgroup cols="2" align="left" colsep="1" rowsep="1">
+      <colspec colname='c1'/>
+      <colspec colname='c2'/>
+<tbody>
+<row><entry><indexterm><primary>NO_GUIDING</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>NO_GUIDING</secondary></indexterm>
+<anchor xml:id="_application__utils_8h_1ae8dbf4356c44d679833a515752ca1d87af6c6534586f263af344e4d086fb33095"/>NO_GUIDING</entry><entry></entry></row><row><entry><indexterm><primary>ROUTE_PLAYER_MODE</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>ROUTE_PLAYER_MODE</secondary></indexterm>
+<anchor xml:id="_application__utils_8h_1ae8dbf4356c44d679833a515752ca1d87a13123a20b80972e739e9f06e1ddbce5c"/>ROUTE_PLAYER_MODE</entry><entry></entry></row><row><entry><indexterm><primary>LINE_FOLLOWER_MODE</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>LINE_FOLLOWER_MODE</secondary></indexterm>
+<anchor xml:id="_application__utils_8h_1ae8dbf4356c44d679833a515752ca1d87a770a93a23fa698afcbf5b3c0089e2492"/>LINE_FOLLOWER_MODE</entry><entry></entry></row>    </tbody>
+    </tgroup>
+</informaltable>
+    </section><anchor xml:id="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7c"/>    <section>
+    <title>SevereErrorType</title>
+<indexterm><primary>SevereErrorType</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>SevereErrorType</secondary></indexterm>
+<para><computeroutput>enum <link linkend="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7c">SevereErrorType</link><computeroutput>[strong]</computeroutput></computeroutput></para><informaltable frame="all">
+<title>Enumerator</title>
+    <tgroup cols="2" align="left" colsep="1" rowsep="1">
+      <colspec colname='c1'/>
+      <colspec colname='c2'/>
+<tbody>
+<row><entry><indexterm><primary>NO_ERROR</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>NO_ERROR</secondary></indexterm>
+<anchor xml:id="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7cad306b6fdee05fe87455110ddf6501e6c"/>NO_ERROR</entry><entry></entry></row><row><entry><indexterm><primary>MOTOR_ERROR</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>MOTOR_ERROR</secondary></indexterm>
+<anchor xml:id="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7ca0be7331a2626025ba9a274985f08f3f8"/>MOTOR_ERROR</entry><entry></entry></row><row><entry><indexterm><primary>VOICE_RECOGNITION_ERROR</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>VOICE_RECOGNITION_ERROR</secondary></indexterm>
+<anchor xml:id="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7caba947e564edb1b26ccdf43975e6f20be"/>VOICE_RECOGNITION_ERROR</entry><entry></entry></row><row><entry><indexterm><primary>GPIO_ERROR</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>GPIO_ERROR</secondary></indexterm>
+<anchor xml:id="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7ca214e42b8d68dcedebbdc4862e8abebc6"/>GPIO_ERROR</entry><entry></entry></row><row><entry><indexterm><primary>IN_AIR</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>IN_AIR</secondary></indexterm>
+<anchor xml:id="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7caf4a2ffa032f8450f09b7534c447a37b5"/>IN_AIR</entry><entry></entry></row><row><entry><indexterm><primary>LOW_VOLTAGE</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>LOW_VOLTAGE</secondary></indexterm>
+<anchor xml:id="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7ca80c4f2ea6b3f33e7a89b395e16f782f0"/>LOW_VOLTAGE</entry><entry></entry></row><row><entry><indexterm><primary>CAMERA_ERROR</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>CAMERA_ERROR</secondary></indexterm>
+<anchor xml:id="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7ca488dad7a5a7396cac3e594a788e18390"/>CAMERA_ERROR</entry><entry></entry></row><row><entry><indexterm><primary>ROUTE_ERROR</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>ROUTE_ERROR</secondary></indexterm>
+<anchor xml:id="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7ca4ae49542eac0272d8499554e9ced817a"/>ROUTE_ERROR</entry><entry></entry></row>    </tbody>
+    </tgroup>
+</informaltable>
+</section>
+</section>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_application__utils_8h_1a49dec5f7745652d5fb54f79a2981a086"/>    <section>
+    <title>log_time()</title>
+<indexterm><primary>log_time</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>log_time</secondary></indexterm>
+<para><computeroutput>string log_time ( )</computeroutput></para></section>
+</section>
+<section>
+<title>Variable Documentation</title>
+<anchor xml:id="_application__utils_8h_1abc3e6cc0134dd4e75cbbd77e6edf0b6c"/>    <section>
+    <title>avoiding</title>
+<indexterm><primary>avoiding</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>avoiding</secondary></indexterm>
+<para><computeroutput>atomic&lt;bool&gt; avoiding<computeroutput>[extern]</computeroutput></computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1a8dee0b2f15c66cd20bd1c5878b9ec8b1"/>    <section>
+    <title>camera_condition</title>
+<indexterm><primary>camera_condition</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>camera_condition</secondary></indexterm>
+<para><computeroutput>condition_variable camera_condition<computeroutput>[extern]</computeroutput></computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1a6392937081a10e4ae6eb2ae8a4a0c26f"/>    <section>
+    <title>camera_mutex</title>
+<indexterm><primary>camera_mutex</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>camera_mutex</secondary></indexterm>
+<para><computeroutput>mutex camera_mutex<computeroutput>[extern]</computeroutput></computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1ad7cdb70d366cc0cb91e3c69093ce9d81"/>    <section>
+    <title>error_type</title>
+<indexterm><primary>error_type</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>error_type</secondary></indexterm>
+<para><computeroutput><link linkend="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7c">SevereErrorType</link> error_type<computeroutput>[extern]</computeroutput></computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1aeb4ead7756ee619d8fed0211b6c7fa28"/>    <section>
+    <title>global_message</title>
+<indexterm><primary>global_message</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>global_message</secondary></indexterm>
+<para><computeroutput>string global_message<computeroutput>[extern]</computeroutput></computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1a59b9aba0a00c84dbf1c89ce7049f063d"/>    <section>
+    <title>guiding_mode</title>
+<indexterm><primary>guiding_mode</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>guiding_mode</secondary></indexterm>
+<para><computeroutput><link linkend="_application__utils_8h_1ae8dbf4356c44d679833a515752ca1d87">GuidingMode</link> guiding_mode<computeroutput>[extern]</computeroutput></computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1a39289a780106bbc65294df3c2fa52c30"/>    <section>
+    <title>log_mutex</title>
+<indexterm><primary>log_mutex</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>log_mutex</secondary></indexterm>
+<para><computeroutput>mutex log_mutex<computeroutput>[extern]</computeroutput></computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1af6fd65a690619ab800f6ddc3ff64eebb"/>    <section>
+    <title>logFile</title>
+<indexterm><primary>logFile</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>logFile</secondary></indexterm>
+<para><computeroutput>ofstream logFile<computeroutput>[extern]</computeroutput></computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1a14043b49d883980478d476730afab85c"/>    <section>
+    <title>moving</title>
+<indexterm><primary>moving</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>moving</secondary></indexterm>
+<para><computeroutput>atomic&lt;bool&gt; moving<computeroutput>[extern]</computeroutput></computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1a29ac681ec3efa9e30e1ab1ab251b47f9"/>    <section>
+    <title>mtx</title>
+<indexterm><primary>mtx</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>mtx</secondary></indexterm>
+<para><computeroutput>mutex mtx<computeroutput>[extern]</computeroutput></computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1a3ad667fb3a272e434ae2c59e6fa7bb23"/>    <section>
+    <title>route_complete</title>
+<indexterm><primary>route_complete</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>route_complete</secondary></indexterm>
+<para><computeroutput>atomic&lt;bool&gt; route_complete<computeroutput>[extern]</computeroutput></computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1ae450fbe661c257b7ded64ea8037b203e"/>    <section>
+    <title>severe_error</title>
+<indexterm><primary>severe_error</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>severe_error</secondary></indexterm>
+<para><computeroutput>atomic&lt;bool&gt; severe_error<computeroutput>[extern]</computeroutput></computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1a6e33fd4eda06fed9e6485eb0e472c124"/>    <section>
+    <title>should_stop</title>
+<indexterm><primary>should_stop</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>should_stop</secondary></indexterm>
+<para><computeroutput>atomic&lt;bool&gt; should_stop<computeroutput>[extern]</computeroutput></computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1a2eba533e4f68ec79418c4a681b01b6cb"/>    <section>
+    <title>speak</title>
+<indexterm><primary>speak</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>speak</secondary></indexterm>
+<para><computeroutput>atomic&lt;bool&gt; speak<computeroutput>[extern]</computeroutput></computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1a850fcb9a7a5e951eaac0b3a7349eb9cc"/>    <section>
+    <title>speak_mutex</title>
+<indexterm><primary>speak_mutex</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>speak_mutex</secondary></indexterm>
+<para><computeroutput>mutex speak_mutex<computeroutput>[extern]</computeroutput></computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1afc1412b3545e832b73ad34e1025b4230"/>    <section>
+    <title>speaking_condition</title>
+<indexterm><primary>speaking_condition</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>speaking_condition</secondary></indexterm>
+<para><computeroutput>condition_variable speaking_condition<computeroutput>[extern]</computeroutput></computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1a6419ffdeb191ce5ad1c7a3233df44844"/>    <section>
+    <title>tts_mutex</title>
+<indexterm><primary>tts_mutex</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>tts_mutex</secondary></indexterm>
+<para><computeroutput>mutex tts_mutex<computeroutput>[extern]</computeroutput></computeroutput></para>    </section><anchor xml:id="_application__utils_8h_1ab648739da84e80e6ee5bcdcbc5165ed0"/>    <section>
+    <title>waiting_condition</title>
+<indexterm><primary>waiting_condition</primary><secondary>application_utils.h</secondary></indexterm>
+<indexterm><primary>application_utils.h</primary><secondary>waiting_condition</secondary></indexterm>
+<para><computeroutput>condition_variable waiting_condition<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+</section>
+</section>

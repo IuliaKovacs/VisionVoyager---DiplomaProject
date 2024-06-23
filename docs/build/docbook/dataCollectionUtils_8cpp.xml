@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dataCollectionUtils_8cpp" xml:lang="en-US">
+<title>dataCollectionUtils.cpp File Reference</title>
+<indexterm><primary>dataCollectionUtils.cpp</primary></indexterm>
+<programlisting>#include &lt;OpenXLSX.hpp&gt;
+#include &quot;../adminModeWindow.h&quot;
+#include &quot;../ui_adminmodewindow.h&quot;
+</programlisting>Include dependency graph for dataCollectionUtils.cpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="dataCollectionUtils_8cpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_dataCollectionUtils_8cpp_1a3733a906364a7c0eca1624ebeefd4596">ROUTE_DATA_EXCEL_PATH</link>   &quot;../VisionVoyagerGUI/DataCollection/RoutesData.xlsx&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_dataCollectionUtils_8cpp_1a7fb27dcea5e0fcc7eabed0fc2f6d898b">SHEET_ROUTE_NAME</link>   &quot;RoutesData&quot;</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_dataCollectionUtils_8cpp_1a3733a906364a7c0eca1624ebeefd4596"/>    <section>
+    <title>ROUTE_DATA_EXCEL_PATH</title>
+<indexterm><primary>ROUTE_DATA_EXCEL_PATH</primary><secondary>dataCollectionUtils.cpp</secondary></indexterm>
+<indexterm><primary>dataCollectionUtils.cpp</primary><secondary>ROUTE_DATA_EXCEL_PATH</secondary></indexterm>
+<para><computeroutput>#define ROUTE_DATA_EXCEL_PATH   &quot;../VisionVoyagerGUI/DataCollection/RoutesData.xlsx&quot;</computeroutput></para>    </section><anchor xml:id="_dataCollectionUtils_8cpp_1a7fb27dcea5e0fcc7eabed0fc2f6d898b"/>    <section>
+    <title>SHEET_ROUTE_NAME</title>
+<indexterm><primary>SHEET_ROUTE_NAME</primary><secondary>dataCollectionUtils.cpp</secondary></indexterm>
+<indexterm><primary>dataCollectionUtils.cpp</primary><secondary>SHEET_ROUTE_NAME</secondary></indexterm>
+<para><computeroutput>#define SHEET_ROUTE_NAME   &quot;RoutesData&quot;</computeroutput></para></section>
+</section>
+</section>

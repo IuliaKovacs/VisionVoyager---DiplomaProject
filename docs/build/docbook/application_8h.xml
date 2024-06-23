@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_application_8h" xml:lang="en-US">
+<title>application.h File Reference</title>
+<indexterm><primary>application.h</primary></indexterm>
+<programlisting>#include &quot;../VisionVoyagerMoves/visionVoyager.h&quot;
+#include &quot;../RouteRegistration/routeRegistrationUtils.h&quot;
+#include &quot;../RouteRecordPlayer/routeRecordPlayUtils.h&quot;
+#include &quot;../KeyboardControl/keyboardControl.h&quot;
+#include &quot;../LineFollower/lineFollower.h&quot;
+#include &quot;../ObstacleAvoidance/obstacleAvoidanceUtils.h&quot;
+#include &quot;../CameraModule/cameraModule.h&quot;
+#include &quot;../VoiceRecognition/voiceRecognition.h&quot;
+#include &quot;../TextToSpeech/textToSpeech.h&quot;
+#include &quot;application_utils.h&quot;
+#include &lt;optional&gt;
+#include &lt;pybind11/embed.h&gt;
+#include &lt;pybind11/pybind11.h&gt;
+</programlisting>Include dependency graph for application.h:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="application_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="application_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>class <link linkend="_classApplicationModule">ApplicationModule</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para>ofstream <link linkend="_application_8h_1af6fd65a690619ab800f6ddc3ff64eebb">logFile</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Variable Documentation</title>
+<anchor xml:id="_application_8h_1af6fd65a690619ab800f6ddc3ff64eebb"/>    <section>
+    <title>logFile</title>
+<indexterm><primary>logFile</primary><secondary>application.h</secondary></indexterm>
+<indexterm><primary>application.h</primary><secondary>logFile</secondary></indexterm>
+<para><computeroutput>ofstream logFile<computeroutput>[extern]</computeroutput></computeroutput></para></section>
+</section>
+</section>

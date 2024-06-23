@@ -1,0 +1,18 @@
+digraph "RouteRegistration::get_section_A_routes"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="12",labelfontname="Helvetica",labelfontsize="12"];
+  node [fontname="Helvetica",fontsize="12",shape=record];
+  rankdir="RL";
+  Node1 [label="RouteRegistration::get_section_A_routes",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node2 [label="TextToSpeech::initialize_route_display_files_EN",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTextToSpeech.html#a32c157580f9f8de4890578b0b4583fba",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node3 [label="TextToSpeech::initialize_route_display_files_RO",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTextToSpeech.html#abb053d282f6c74120a4a58151e110ac3",tooltip=" "];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node4 [label="TextToSpeech::initialize_section_options_file_EN",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTextToSpeech.html#adeea4fce50660ecabdfae8b47f350650",tooltip=" "];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node5 [label="TextToSpeech::initialize_section_options_file_RO",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTextToSpeech.html#a05a48493a32de9ddb184e61da4e723b7",tooltip=" "];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node6 [label="select_route_and_start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$mainApplication_8cpp.html#a06dbd4dc8b6bc06cf5f7b750ba4ccb50",tooltip=" "];
+}

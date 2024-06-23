@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_visionVoyager_8cpp" xml:lang="en-US">
+<title>visionVoyager.cpp File Reference</title>
+<indexterm><primary>visionVoyager.cpp</primary></indexterm>
+<programlisting>#include &quot;visionVoyager.h&quot;
+#include &lt;wiringPi.h&gt;
+</programlisting>Include dependency graph for visionVoyager.cpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="visionVoyager_8cpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_visionVoyager_8cpp_1a4d0cce9a5034507c1346cf4419605555">HALL_PIN_RIGHT_MOTOR</link>   4</para>
+</listitem>
+            <listitem><para>#define <link linkend="_visionVoyager_8cpp_1af0e5810aec44400c08f4897d9087b82a">HALL_PIN_LEFT_MOTOR</link>   17</para>
+</listitem>
+            <listitem><para>#define <link linkend="_visionVoyager_8cpp_1aaa6f04f6f0d7cf1008a53279acf49f07">WHEEL_RADIUS</link>   0.03175</para>
+</listitem>
+            <listitem><para>#define <link linkend="_visionVoyager_8cpp_1a45788c423ee8d47aed8949bded9763f1">CONSTANT_PI</link>   3.14159265358979323846</para>
+</listitem>
+            <listitem><para>#define <link linkend="_visionVoyager_8cpp_1ac7bcd34d0e5225abe7878a9ffec73c1d">WHEEL_CIRCUMFERENCE</link>   (2 * <link linkend="_visionVoyager_8cpp_1a45788c423ee8d47aed8949bded9763f1">CONSTANT_PI</link> * <link linkend="_visionVoyager_8cpp_1aaa6f04f6f0d7cf1008a53279acf49f07">WHEEL_RADIUS</link>)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_visionVoyager_8cpp_1a842a422a6848dcd870c620818477fb59">THRESHOLD_WHEEL_ROTATION_TIME</link>   3000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_visionVoyager_8cpp_1a2e93d4b67b3440ec1be6c40469a24c27">THRESHOLD_WHEEL_ROTATION_TIME_MIN</link>   2000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_visionVoyager_8cpp_1a38c14585c60efee0846218015708ef4e">NUMBER_OF_PERIODS</link>   10</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_visionVoyager_8cpp_1a45788c423ee8d47aed8949bded9763f1"/>    <section>
+    <title>CONSTANT_PI</title>
+<indexterm><primary>CONSTANT_PI</primary><secondary>visionVoyager.cpp</secondary></indexterm>
+<indexterm><primary>visionVoyager.cpp</primary><secondary>CONSTANT_PI</secondary></indexterm>
+<para><computeroutput>#define CONSTANT_PI   3.14159265358979323846</computeroutput></para>    </section><anchor xml:id="_visionVoyager_8cpp_1af0e5810aec44400c08f4897d9087b82a"/>    <section>
+    <title>HALL_PIN_LEFT_MOTOR</title>
+<indexterm><primary>HALL_PIN_LEFT_MOTOR</primary><secondary>visionVoyager.cpp</secondary></indexterm>
+<indexterm><primary>visionVoyager.cpp</primary><secondary>HALL_PIN_LEFT_MOTOR</secondary></indexterm>
+<para><computeroutput>#define HALL_PIN_LEFT_MOTOR   17</computeroutput></para>    </section><anchor xml:id="_visionVoyager_8cpp_1a4d0cce9a5034507c1346cf4419605555"/>    <section>
+    <title>HALL_PIN_RIGHT_MOTOR</title>
+<indexterm><primary>HALL_PIN_RIGHT_MOTOR</primary><secondary>visionVoyager.cpp</secondary></indexterm>
+<indexterm><primary>visionVoyager.cpp</primary><secondary>HALL_PIN_RIGHT_MOTOR</secondary></indexterm>
+<para><computeroutput>#define HALL_PIN_RIGHT_MOTOR   4</computeroutput></para>    </section><anchor xml:id="_visionVoyager_8cpp_1a38c14585c60efee0846218015708ef4e"/>    <section>
+    <title>NUMBER_OF_PERIODS</title>
+<indexterm><primary>NUMBER_OF_PERIODS</primary><secondary>visionVoyager.cpp</secondary></indexterm>
+<indexterm><primary>visionVoyager.cpp</primary><secondary>NUMBER_OF_PERIODS</secondary></indexterm>
+<para><computeroutput>#define NUMBER_OF_PERIODS   10</computeroutput></para>    </section><anchor xml:id="_visionVoyager_8cpp_1a842a422a6848dcd870c620818477fb59"/>    <section>
+    <title>THRESHOLD_WHEEL_ROTATION_TIME</title>
+<indexterm><primary>THRESHOLD_WHEEL_ROTATION_TIME</primary><secondary>visionVoyager.cpp</secondary></indexterm>
+<indexterm><primary>visionVoyager.cpp</primary><secondary>THRESHOLD_WHEEL_ROTATION_TIME</secondary></indexterm>
+<para><computeroutput>#define THRESHOLD_WHEEL_ROTATION_TIME   3000</computeroutput></para>    </section><anchor xml:id="_visionVoyager_8cpp_1a2e93d4b67b3440ec1be6c40469a24c27"/>    <section>
+    <title>THRESHOLD_WHEEL_ROTATION_TIME_MIN</title>
+<indexterm><primary>THRESHOLD_WHEEL_ROTATION_TIME_MIN</primary><secondary>visionVoyager.cpp</secondary></indexterm>
+<indexterm><primary>visionVoyager.cpp</primary><secondary>THRESHOLD_WHEEL_ROTATION_TIME_MIN</secondary></indexterm>
+<para><computeroutput>#define THRESHOLD_WHEEL_ROTATION_TIME_MIN   2000</computeroutput></para>    </section><anchor xml:id="_visionVoyager_8cpp_1ac7bcd34d0e5225abe7878a9ffec73c1d"/>    <section>
+    <title>WHEEL_CIRCUMFERENCE</title>
+<indexterm><primary>WHEEL_CIRCUMFERENCE</primary><secondary>visionVoyager.cpp</secondary></indexterm>
+<indexterm><primary>visionVoyager.cpp</primary><secondary>WHEEL_CIRCUMFERENCE</secondary></indexterm>
+<para><computeroutput>#define WHEEL_CIRCUMFERENCE   (2 * <link linkend="_visionVoyager_8cpp_1a45788c423ee8d47aed8949bded9763f1">CONSTANT_PI</link> * <link linkend="_visionVoyager_8cpp_1aaa6f04f6f0d7cf1008a53279acf49f07">WHEEL_RADIUS</link>)</computeroutput></para>    </section><anchor xml:id="_visionVoyager_8cpp_1aaa6f04f6f0d7cf1008a53279acf49f07"/>    <section>
+    <title>WHEEL_RADIUS</title>
+<indexterm><primary>WHEEL_RADIUS</primary><secondary>visionVoyager.cpp</secondary></indexterm>
+<indexterm><primary>visionVoyager.cpp</primary><secondary>WHEEL_RADIUS</secondary></indexterm>
+<para><computeroutput>#define WHEEL_RADIUS   0.03175</computeroutput></para></section>
+</section>
+</section>

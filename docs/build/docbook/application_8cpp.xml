@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_application_8cpp" xml:lang="en-US">
+<title>application.cpp File Reference</title>
+<indexterm><primary>application.cpp</primary></indexterm>
+<programlisting>#include &lt;pybind11/embed.h&gt;
+#include &lt;pybind11/pybind11.h&gt;
+#include &quot;../VisionVoyagerGUI/adminModeWindow.h&quot;
+#include &quot;application.h&quot;
+#include &quot;../RFID/RFID_Manager.h&quot;
+#include &lt;chrono&gt;
+#include &lt;ctime&gt;
+#include &lt;OpenXLSX.hpp&gt;
+</programlisting>Include dependency graph for application.cpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="application_8cpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_application_8cpp_1ada4a7a109338bd9b92dc91e09795a656">CAPTURED_IMAGES_PATH</link>   &quot;../CameraModule/CapturedImages&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_application_8cpp_1abfb2f6922a3c6f788eac58ccc582dc06">TEMP_CAPTURED_IMG</link>   &quot;../CameraModule/CapturedImages/temp.png&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_application_8cpp_1a96e65736bf152a1164870dc9f693d817">MILISECONDS_FOR_CAMERA_RECOGNITION</link>   1000</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_application_8cpp_1ada4a7a109338bd9b92dc91e09795a656"/>    <section>
+    <title>CAPTURED_IMAGES_PATH</title>
+<indexterm><primary>CAPTURED_IMAGES_PATH</primary><secondary>application.cpp</secondary></indexterm>
+<indexterm><primary>application.cpp</primary><secondary>CAPTURED_IMAGES_PATH</secondary></indexterm>
+<para><computeroutput>#define CAPTURED_IMAGES_PATH   &quot;../CameraModule/CapturedImages&quot;</computeroutput></para>    </section><anchor xml:id="_application_8cpp_1a96e65736bf152a1164870dc9f693d817"/>    <section>
+    <title>MILISECONDS_FOR_CAMERA_RECOGNITION</title>
+<indexterm><primary>MILISECONDS_FOR_CAMERA_RECOGNITION</primary><secondary>application.cpp</secondary></indexterm>
+<indexterm><primary>application.cpp</primary><secondary>MILISECONDS_FOR_CAMERA_RECOGNITION</secondary></indexterm>
+<para><computeroutput>#define MILISECONDS_FOR_CAMERA_RECOGNITION   1000</computeroutput></para>    </section><anchor xml:id="_application_8cpp_1abfb2f6922a3c6f788eac58ccc582dc06"/>    <section>
+    <title>TEMP_CAPTURED_IMG</title>
+<indexterm><primary>TEMP_CAPTURED_IMG</primary><secondary>application.cpp</secondary></indexterm>
+<indexterm><primary>application.cpp</primary><secondary>TEMP_CAPTURED_IMG</secondary></indexterm>
+<para><computeroutput>#define TEMP_CAPTURED_IMG   &quot;../CameraModule/CapturedImages/temp.png&quot;</computeroutput></para></section>
+</section>
+</section>

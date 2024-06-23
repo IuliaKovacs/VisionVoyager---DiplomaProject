@@ -1,0 +1,11 @@
+digraph "i2c_driver.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="12",labelfontname="Helvetica",labelfontsize="12"];
+  node [fontname="Helvetica",fontsize="12",shape=record];
+  Node1 [label="i2c_driver.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node2 [label="i2c_driver.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$i2c__driver_8c.html",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node3 [label="RFID_Manager.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$RFID__Manager_8c.html",tooltip=" "];
+}

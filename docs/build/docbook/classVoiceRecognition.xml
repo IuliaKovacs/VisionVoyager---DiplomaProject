@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classVoiceRecognition" xml:lang="en-US">
+<title>VoiceRecognition Class Reference</title>
+<indexterm><primary>VoiceRecognition</primary></indexterm>
+<para>
+<computeroutput>#include &lt;voiceRecognition.h&gt;</computeroutput>
+</para>
+Collaboration diagram for VoiceRecognition:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classVoiceRecognition__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static void <link linkend="_classVoiceRecognition_1a1fa5f53fb770e30ded9aa78e6a5077e2">loop_recognition_for_start</link> ()</para>
+</listitem>
+            <listitem><para>static string <link linkend="_classVoiceRecognition_1a90794e9b75205d69d3548e03d929c65f">timed_listening_recognition_for_options</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classVoiceRecognition_1afb64bd3550871f28a936c1e90aea93af">loop_listening_for_wait</link> ()</para>
+</listitem>
+            <listitem><para>static string <link linkend="_classVoiceRecognition_1ab45dcfedf7fe3dd09f4ec41b6f0146c1">loop_listening_for_choices</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static bool <link linkend="_classVoiceRecognition_1a7023efe0af5807cca61da8302ca92c0b">record_audio</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para>static bool <link linkend="_classVoiceRecognition_1ab35e543f50532795358e0ddb08fc2131">start_flag</link> = false</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classVoiceRecognition_1ab45dcfedf7fe3dd09f4ec41b6f0146c1"/>    <section>
+    <title>loop_listening_for_choices()</title>
+<indexterm><primary>loop_listening_for_choices</primary><secondary>VoiceRecognition</secondary></indexterm>
+<indexterm><primary>VoiceRecognition</primary><secondary>loop_listening_for_choices</secondary></indexterm>
+<para><computeroutput>string VoiceRecognition::loop_listening_for_choices ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classVoiceRecognition_ab45dcfedf7fe3dd09f4ec41b6f0146c1_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classVoiceRecognition_ab45dcfedf7fe3dd09f4ec41b6f0146c1_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classVoiceRecognition_1afb64bd3550871f28a936c1e90aea93af"/>    <section>
+    <title>loop_listening_for_wait()</title>
+<indexterm><primary>loop_listening_for_wait</primary><secondary>VoiceRecognition</secondary></indexterm>
+<indexterm><primary>VoiceRecognition</primary><secondary>loop_listening_for_wait</secondary></indexterm>
+<para><computeroutput>void VoiceRecognition::loop_listening_for_wait ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classVoiceRecognition_afb64bd3550871f28a936c1e90aea93af_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classVoiceRecognition_afb64bd3550871f28a936c1e90aea93af_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classVoiceRecognition_1a1fa5f53fb770e30ded9aa78e6a5077e2"/>    <section>
+    <title>loop_recognition_for_start()</title>
+<indexterm><primary>loop_recognition_for_start</primary><secondary>VoiceRecognition</secondary></indexterm>
+<indexterm><primary>VoiceRecognition</primary><secondary>loop_recognition_for_start</secondary></indexterm>
+<para><computeroutput>void VoiceRecognition::loop_recognition_for_start ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classVoiceRecognition_a1fa5f53fb770e30ded9aa78e6a5077e2_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classVoiceRecognition_a1fa5f53fb770e30ded9aa78e6a5077e2_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classVoiceRecognition_1a7023efe0af5807cca61da8302ca92c0b"/>    <section>
+    <title>record_audio()</title>
+<indexterm><primary>record_audio</primary><secondary>VoiceRecognition</secondary></indexterm>
+<indexterm><primary>VoiceRecognition</primary><secondary>record_audio</secondary></indexterm>
+<para><computeroutput>bool VoiceRecognition::record_audio ( )<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classVoiceRecognition_a7023efe0af5807cca61da8302ca92c0b_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classVoiceRecognition_1a90794e9b75205d69d3548e03d929c65f"/>    <section>
+    <title>timed_listening_recognition_for_options()</title>
+<indexterm><primary>timed_listening_recognition_for_options</primary><secondary>VoiceRecognition</secondary></indexterm>
+<indexterm><primary>VoiceRecognition</primary><secondary>timed_listening_recognition_for_options</secondary></indexterm>
+<para><computeroutput>string VoiceRecognition::timed_listening_recognition_for_options ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classVoiceRecognition_a90794e9b75205d69d3548e03d929c65f_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_classVoiceRecognition_1ab35e543f50532795358e0ddb08fc2131"/>    <section>
+    <title>start_flag</title>
+<indexterm><primary>start_flag</primary><secondary>VoiceRecognition</secondary></indexterm>
+<indexterm><primary>VoiceRecognition</primary><secondary>start_flag</secondary></indexterm>
+<para><computeroutput>bool VoiceRecognition::start_flag = false<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+<link linkend="_voiceRecognition_8h">voiceRecognition.h</link><link linkend="_voiceRecognition_8cpp">voiceRecognition.cpp</link></section>
+</section>

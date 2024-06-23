@@ -1,0 +1,10 @@
+digraph "ApplicationModule::TASK_VOICE_RECOGNITION_WAIT"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="12",labelfontname="Helvetica",labelfontsize="12"];
+  node [fontname="Helvetica",fontsize="12",shape=record];
+  rankdir="RL";
+  Node1 [label="ApplicationModule::TASK_VOICE_RECOGNITION_WAIT",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node2 [label="ApplicationModule::MODE_2_LINE_FOLLOWER",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classApplicationModule.html#adfcaf57051e24f5d200b10906297d5c3",tooltip=" "];
+}

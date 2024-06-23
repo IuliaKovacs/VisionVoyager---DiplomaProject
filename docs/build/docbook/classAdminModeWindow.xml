@@ -1,0 +1,522 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classAdminModeWindow" xml:lang="en-US">
+<title>AdminModeWindow Class Reference</title>
+<indexterm><primary>AdminModeWindow</primary></indexterm>
+<para>
+<computeroutput>#include &lt;adminModeWindow.h&gt;</computeroutput>
+</para>
+Inheritance diagram for AdminModeWindow:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow__inherit__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Collaboration diagram for AdminModeWindow:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_classAdminModeWindow_1a546a5f23f5c27f5cc12549795fb36b12">AdminModeWindow</link> (<link linkend="_classQWidget">QWidget</link> *parent=nullptr)</para>
+</listitem>
+            <listitem><para><link linkend="_classAdminModeWindow_1a2424926482d59effde0341d58bf645f2">~AdminModeWindow</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Protected Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>void <link linkend="_classAdminModeWindow_1a91e133ee4ffdb8d057fdb35f3b5d1467">keyPressEvent</link> (QKeyEvent *event)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Slots    </title>
+        <itemizedlist>
+            <listitem><para>void <link linkend="_classAdminModeWindow_1a27088f4a5fec10f64fda829e0f7af2b9">on_addRecognizedFaceButton_clicked</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classAdminModeWindow_1a65c7757366d2eaafce86faf3eb476ebd">on_startRegistrationButton_clicked</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classAdminModeWindow_1a829f239119dd21e7fc2e5301e6856a6c">on_endReigstrationButton_clicked</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classAdminModeWindow_1ade48920ef0c15bf4e33028cb6d37df62">on_saveChangesButton_clicked</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classAdminModeWindow_1a62f0b5673027b80f4adece1a8b8bd1b3">on_insertRouteButton_clicked</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classAdminModeWindow_1a2aaf4d63983e4f76518872d419dfca8e">on_deleteRouteButton_clicked</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classAdminModeWindow_1aace0e2ea93806632a79baf6fd4f74363">on_deletePersonButton_clicked</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classAdminModeWindow_1a14c55b160dd7c8bfe380f64e1221143c">on_logsListView_clicked</link> (const QModelIndex &amp;index)</para>
+</listitem>
+            <listitem><para>void <link linkend="_classAdminModeWindow_1a20aac21935dde330c5c3bd67638a1bf1">on_controlButton_clicked</link> (bool checked)</para>
+</listitem>
+            <listitem><para>void <link linkend="_classAdminModeWindow_1a1e9f24f265d9971cacf400327998d65e">on_enButton_clicked</link> (bool checked)</para>
+</listitem>
+            <listitem><para>void <link linkend="_classAdminModeWindow_1aa94834af1ea38731028eed71d5d839ca">on_roButton_clicked</link> (bool checked)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>void <link linkend="_classAdminModeWindow_1a5923cb634163ae2f92f05ad5d176508b">load_from_database</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classAdminModeWindow_1aa9bd7dc8deb575fb625529481daedcc3">initialize_chart</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classAdminModeWindow_1a7eefef4de0ede226d6121b04fbd80f13">delete_excel_row</link> (int row)</para>
+</listitem>
+            <listitem><para>void <link linkend="_classAdminModeWindow_1a31b68218f2ac1bd1255b5cdbb246b9a1">add_route_to_excel</link> (string route_name, string section, int index)</para>
+</listitem>
+            <listitem><para>void <link linkend="_classAdminModeWindow_1aa0325412e69ffc6b2e0da334e8a7b855">update_chart</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classAdminModeWindow_1aa8754a16de830e6ce46b95c57b765e31">load_recognized_persons</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classAdminModeWindow_1a4b249f7ef489bca3541516a30c1e5c83">update_subject_display</link> (int index, string first_name, char letter)</para>
+</listitem>
+            <listitem><para>void <link linkend="_classAdminModeWindow_1a8b7e74f1b28ba762e89628cdae0e8751">delete_subject_display</link> ()</para>
+</listitem>
+            <listitem><para>string <link linkend="_classAdminModeWindow_1aeeae3dfb57d44cb48c8ed38a319d45a5">get_filename_from_path</link> (string path)</para>
+</listitem>
+            <listitem><para>int <link linkend="_classAdminModeWindow_1a285a468a0413587e2e68f07452baa035">generateXLS</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classAdminModeWindow_1aa9331a3c1f787ce23c476d72ed5514a1">populate_logs_list</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_classAdminModeWindow_1adb00e8ddd4a7e603770d9751f64953b7">languge_buttons_set</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para>Ui::AdminModeWindow * <link linkend="_classAdminModeWindow_1a89c72aa471b723822027d23fb17694da">ui</link></para>
+</listitem>
+            <listitem><para><link linkend="_classCameraWidget">CameraWidget</link> * <link linkend="_classAdminModeWindow_1a926009eb720d86ff3df83993b25cd6e3">camera_widget</link></para>
+</listitem>
+            <listitem><para><link linkend="_classFileDropWidget">FileDropWidget</link> * <link linkend="_classAdminModeWindow_1a9490c641f5497bcab5d75bb38114acab">file_drop_widget_fr</link></para>
+</listitem>
+            <listitem><para><link linkend="_classFileDropWidget">FileDropWidget</link> * <link linkend="_classAdminModeWindow_1ab0868f8b5870970ec283b76f6fc3a00a">file_drop_route</link></para>
+</listitem>
+            <listitem><para>QChart * <link linkend="_classAdminModeWindow_1a3e029325329c2875f4908dd69af6effe">chart</link></para>
+</listitem>
+            <listitem><para>int <link linkend="_classAdminModeWindow_1a66b5a8b867ebdbea1f500349899b4549">section_A_routes</link> = 0</para>
+</listitem>
+            <listitem><para>int <link linkend="_classAdminModeWindow_1a426b5ce26030b3290d0d167ddb32d443">section_B_routes</link> = 0</para>
+</listitem>
+            <listitem><para>int <link linkend="_classAdminModeWindow_1ac636fc2c597b07a4ea08674071137a81">section_C_routes</link> = 0</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_classAdminModeWindow_1a546a5f23f5c27f5cc12549795fb36b12"/>    <section>
+    <title>AdminModeWindow()</title>
+<indexterm><primary>AdminModeWindow</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>AdminModeWindow</secondary></indexterm>
+<para><computeroutput>AdminModeWindow::AdminModeWindow (<link linkend="_classQWidget">QWidget</link> * parent = <computeroutput>nullptr</computeroutput>
+)</computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_a546a5f23f5c27f5cc12549795fb36b12_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classAdminModeWindow_1a2424926482d59effde0341d58bf645f2"/>    <section>
+    <title>~AdminModeWindow()</title>
+<indexterm><primary>~AdminModeWindow</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>~AdminModeWindow</secondary></indexterm>
+<para><computeroutput>AdminModeWindow::~AdminModeWindow ( )</computeroutput></para></section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classAdminModeWindow_1a31b68218f2ac1bd1255b5cdbb246b9a1"/>    <section>
+    <title>add_route_to_excel()</title>
+<indexterm><primary>add_route_to_excel</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>add_route_to_excel</secondary></indexterm>
+<para><computeroutput>void AdminModeWindow::add_route_to_excel (string route_name, string section, int index)<computeroutput>[private]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_a31b68218f2ac1bd1255b5cdbb246b9a1_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classAdminModeWindow_1a7eefef4de0ede226d6121b04fbd80f13"/>    <section>
+    <title>delete_excel_row()</title>
+<indexterm><primary>delete_excel_row</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>delete_excel_row</secondary></indexterm>
+<para><computeroutput>void AdminModeWindow::delete_excel_row (int row)<computeroutput>[private]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_a7eefef4de0ede226d6121b04fbd80f13_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classAdminModeWindow_1a8b7e74f1b28ba762e89628cdae0e8751"/>    <section>
+    <title>delete_subject_display()</title>
+<indexterm><primary>delete_subject_display</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>delete_subject_display</secondary></indexterm>
+<para><computeroutput>void AdminModeWindow::delete_subject_display ( )<computeroutput>[private]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_a8b7e74f1b28ba762e89628cdae0e8751_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classAdminModeWindow_1a285a468a0413587e2e68f07452baa035"/>    <section>
+    <title>generateXLS()</title>
+<indexterm><primary>generateXLS</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>generateXLS</secondary></indexterm>
+<para><computeroutput>int AdminModeWindow::generateXLS ( )<computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classAdminModeWindow_1aeeae3dfb57d44cb48c8ed38a319d45a5"/>    <section>
+    <title>get_filename_from_path()</title>
+<indexterm><primary>get_filename_from_path</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>get_filename_from_path</secondary></indexterm>
+<para><computeroutput>string AdminModeWindow::get_filename_from_path (string path)<computeroutput>[private]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_aeeae3dfb57d44cb48c8ed38a319d45a5_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classAdminModeWindow_1aa9bd7dc8deb575fb625529481daedcc3"/>    <section>
+    <title>initialize_chart()</title>
+<indexterm><primary>initialize_chart</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>initialize_chart</secondary></indexterm>
+<para><computeroutput>void AdminModeWindow::initialize_chart ( )<computeroutput>[private]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_aa9bd7dc8deb575fb625529481daedcc3_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_aa9bd7dc8deb575fb625529481daedcc3_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classAdminModeWindow_1a91e133ee4ffdb8d057fdb35f3b5d1467"/>    <section>
+    <title>keyPressEvent()</title>
+<indexterm><primary>keyPressEvent</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>keyPressEvent</secondary></indexterm>
+<para><computeroutput>void AdminModeWindow::keyPressEvent (QKeyEvent * event)<computeroutput>[protected]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_a91e133ee4ffdb8d057fdb35f3b5d1467_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classAdminModeWindow_1adb00e8ddd4a7e603770d9751f64953b7"/>    <section>
+    <title>languge_buttons_set()</title>
+<indexterm><primary>languge_buttons_set</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>languge_buttons_set</secondary></indexterm>
+<para><computeroutput>void AdminModeWindow::languge_buttons_set ( )<computeroutput>[private]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_adb00e8ddd4a7e603770d9751f64953b7_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_adb00e8ddd4a7e603770d9751f64953b7_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classAdminModeWindow_1a5923cb634163ae2f92f05ad5d176508b"/>    <section>
+    <title>load_from_database()</title>
+<indexterm><primary>load_from_database</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>load_from_database</secondary></indexterm>
+<para><computeroutput>void AdminModeWindow::load_from_database ( )<computeroutput>[private]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_a5923cb634163ae2f92f05ad5d176508b_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_a5923cb634163ae2f92f05ad5d176508b_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classAdminModeWindow_1aa8754a16de830e6ce46b95c57b765e31"/>    <section>
+    <title>load_recognized_persons()</title>
+<indexterm><primary>load_recognized_persons</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>load_recognized_persons</secondary></indexterm>
+<para><computeroutput>void AdminModeWindow::load_recognized_persons ( )<computeroutput>[private]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_aa8754a16de830e6ce46b95c57b765e31_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_aa8754a16de830e6ce46b95c57b765e31_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classAdminModeWindow_1a27088f4a5fec10f64fda829e0f7af2b9"/>    <section>
+    <title>on_addRecognizedFaceButton_clicked</title>
+<indexterm><primary>on_addRecognizedFaceButton_clicked</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>on_addRecognizedFaceButton_clicked</secondary></indexterm>
+<para><computeroutput>void AdminModeWindow::on_addRecognizedFaceButton_clicked ( )<computeroutput>[private]</computeroutput>, <computeroutput>[slot]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_a27088f4a5fec10f64fda829e0f7af2b9_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classAdminModeWindow_1a20aac21935dde330c5c3bd67638a1bf1"/>    <section>
+    <title>on_controlButton_clicked</title>
+<indexterm><primary>on_controlButton_clicked</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>on_controlButton_clicked</secondary></indexterm>
+<para><computeroutput>void AdminModeWindow::on_controlButton_clicked (bool checked)<computeroutput>[private]</computeroutput>, <computeroutput>[slot]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_a20aac21935dde330c5c3bd67638a1bf1_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classAdminModeWindow_1aace0e2ea93806632a79baf6fd4f74363"/>    <section>
+    <title>on_deletePersonButton_clicked</title>
+<indexterm><primary>on_deletePersonButton_clicked</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>on_deletePersonButton_clicked</secondary></indexterm>
+<para><computeroutput>void AdminModeWindow::on_deletePersonButton_clicked ( )<computeroutput>[private]</computeroutput>, <computeroutput>[slot]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_aace0e2ea93806632a79baf6fd4f74363_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classAdminModeWindow_1a2aaf4d63983e4f76518872d419dfca8e"/>    <section>
+    <title>on_deleteRouteButton_clicked</title>
+<indexterm><primary>on_deleteRouteButton_clicked</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>on_deleteRouteButton_clicked</secondary></indexterm>
+<para><computeroutput>void AdminModeWindow::on_deleteRouteButton_clicked ( )<computeroutput>[private]</computeroutput>, <computeroutput>[slot]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_a2aaf4d63983e4f76518872d419dfca8e_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classAdminModeWindow_1a1e9f24f265d9971cacf400327998d65e"/>    <section>
+    <title>on_enButton_clicked</title>
+<indexterm><primary>on_enButton_clicked</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>on_enButton_clicked</secondary></indexterm>
+<para><computeroutput>void AdminModeWindow::on_enButton_clicked (bool checked)<computeroutput>[private]</computeroutput>, <computeroutput>[slot]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_a1e9f24f265d9971cacf400327998d65e_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classAdminModeWindow_1a829f239119dd21e7fc2e5301e6856a6c"/>    <section>
+    <title>on_endReigstrationButton_clicked</title>
+<indexterm><primary>on_endReigstrationButton_clicked</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>on_endReigstrationButton_clicked</secondary></indexterm>
+<para><computeroutput>void AdminModeWindow::on_endReigstrationButton_clicked ( )<computeroutput>[private]</computeroutput>, <computeroutput>[slot]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_a829f239119dd21e7fc2e5301e6856a6c_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classAdminModeWindow_1a62f0b5673027b80f4adece1a8b8bd1b3"/>    <section>
+    <title>on_insertRouteButton_clicked</title>
+<indexterm><primary>on_insertRouteButton_clicked</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>on_insertRouteButton_clicked</secondary></indexterm>
+<para><computeroutput>void AdminModeWindow::on_insertRouteButton_clicked ( )<computeroutput>[private]</computeroutput>, <computeroutput>[slot]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_a62f0b5673027b80f4adece1a8b8bd1b3_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classAdminModeWindow_1a14c55b160dd7c8bfe380f64e1221143c"/>    <section>
+    <title>on_logsListView_clicked</title>
+<indexterm><primary>on_logsListView_clicked</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>on_logsListView_clicked</secondary></indexterm>
+<para><computeroutput>void AdminModeWindow::on_logsListView_clicked (const QModelIndex &amp; index)<computeroutput>[private]</computeroutput>, <computeroutput>[slot]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classAdminModeWindow_1aa94834af1ea38731028eed71d5d839ca"/>    <section>
+    <title>on_roButton_clicked</title>
+<indexterm><primary>on_roButton_clicked</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>on_roButton_clicked</secondary></indexterm>
+<para><computeroutput>void AdminModeWindow::on_roButton_clicked (bool checked)<computeroutput>[private]</computeroutput>, <computeroutput>[slot]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_aa94834af1ea38731028eed71d5d839ca_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classAdminModeWindow_1ade48920ef0c15bf4e33028cb6d37df62"/>    <section>
+    <title>on_saveChangesButton_clicked</title>
+<indexterm><primary>on_saveChangesButton_clicked</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>on_saveChangesButton_clicked</secondary></indexterm>
+<para><computeroutput>void AdminModeWindow::on_saveChangesButton_clicked ( )<computeroutput>[private]</computeroutput>, <computeroutput>[slot]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_ade48920ef0c15bf4e33028cb6d37df62_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classAdminModeWindow_1a65c7757366d2eaafce86faf3eb476ebd"/>    <section>
+    <title>on_startRegistrationButton_clicked</title>
+<indexterm><primary>on_startRegistrationButton_clicked</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>on_startRegistrationButton_clicked</secondary></indexterm>
+<para><computeroutput>void AdminModeWindow::on_startRegistrationButton_clicked ( )<computeroutput>[private]</computeroutput>, <computeroutput>[slot]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_a65c7757366d2eaafce86faf3eb476ebd_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classAdminModeWindow_1aa9331a3c1f787ce23c476d72ed5514a1"/>    <section>
+    <title>populate_logs_list()</title>
+<indexterm><primary>populate_logs_list</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>populate_logs_list</secondary></indexterm>
+<para><computeroutput>void AdminModeWindow::populate_logs_list ( )<computeroutput>[private]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_aa9331a3c1f787ce23c476d72ed5514a1_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classAdminModeWindow_1aa0325412e69ffc6b2e0da334e8a7b855"/>    <section>
+    <title>update_chart()</title>
+<indexterm><primary>update_chart</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>update_chart</secondary></indexterm>
+<para><computeroutput>void AdminModeWindow::update_chart ( )<computeroutput>[private]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_aa0325412e69ffc6b2e0da334e8a7b855_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classAdminModeWindow_1a4b249f7ef489bca3541516a30c1e5c83"/>    <section>
+    <title>update_subject_display()</title>
+<indexterm><primary>update_subject_display</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>update_subject_display</secondary></indexterm>
+<para><computeroutput>void AdminModeWindow::update_subject_display (int index, string first_name, char letter)<computeroutput>[private]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_a4b249f7ef489bca3541516a30c1e5c83_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classAdminModeWindow_a4b249f7ef489bca3541516a30c1e5c83_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_classAdminModeWindow_1a926009eb720d86ff3df83993b25cd6e3"/>    <section>
+    <title>camera_widget</title>
+<indexterm><primary>camera_widget</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>camera_widget</secondary></indexterm>
+<para><computeroutput><link linkend="_classCameraWidget">CameraWidget</link>* AdminModeWindow::camera_widget<computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classAdminModeWindow_1a3e029325329c2875f4908dd69af6effe"/>    <section>
+    <title>chart</title>
+<indexterm><primary>chart</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>chart</secondary></indexterm>
+<para><computeroutput>QChart* AdminModeWindow::chart<computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classAdminModeWindow_1ab0868f8b5870970ec283b76f6fc3a00a"/>    <section>
+    <title>file_drop_route</title>
+<indexterm><primary>file_drop_route</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>file_drop_route</secondary></indexterm>
+<para><computeroutput><link linkend="_classFileDropWidget">FileDropWidget</link>* AdminModeWindow::file_drop_route<computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classAdminModeWindow_1a9490c641f5497bcab5d75bb38114acab"/>    <section>
+    <title>file_drop_widget_fr</title>
+<indexterm><primary>file_drop_widget_fr</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>file_drop_widget_fr</secondary></indexterm>
+<para><computeroutput><link linkend="_classFileDropWidget">FileDropWidget</link>* AdminModeWindow::file_drop_widget_fr<computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classAdminModeWindow_1a66b5a8b867ebdbea1f500349899b4549"/>    <section>
+    <title>section_A_routes</title>
+<indexterm><primary>section_A_routes</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>section_A_routes</secondary></indexterm>
+<para><computeroutput>int AdminModeWindow::section_A_routes = 0<computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classAdminModeWindow_1a426b5ce26030b3290d0d167ddb32d443"/>    <section>
+    <title>section_B_routes</title>
+<indexterm><primary>section_B_routes</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>section_B_routes</secondary></indexterm>
+<para><computeroutput>int AdminModeWindow::section_B_routes = 0<computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classAdminModeWindow_1ac636fc2c597b07a4ea08674071137a81"/>    <section>
+    <title>section_C_routes</title>
+<indexterm><primary>section_C_routes</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>section_C_routes</secondary></indexterm>
+<para><computeroutput>int AdminModeWindow::section_C_routes = 0<computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classAdminModeWindow_1a89c72aa471b723822027d23fb17694da"/>    <section>
+    <title>ui</title>
+<indexterm><primary>ui</primary><secondary>AdminModeWindow</secondary></indexterm>
+<indexterm><primary>AdminModeWindow</primary><secondary>ui</secondary></indexterm>
+<para><computeroutput>Ui::AdminModeWindow* AdminModeWindow::ui<computeroutput>[private]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+<link linkend="_adminModeWindow_8h">adminModeWindow.h</link><link linkend="_adminModeUtils_8cpp">adminModeUtils.cpp</link><link linkend="_adminModeWindow_8cpp">adminModeWindow.cpp</link><link linkend="_dataCollectionUtils_8cpp">dataCollectionUtils.cpp</link></section>
+</section>

@@ -1,0 +1,12 @@
+digraph "initialize_log_file"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="12",labelfontname="Helvetica",labelfontsize="12"];
+  node [fontname="Helvetica",fontsize="12",shape=record];
+  rankdir="LR";
+  Node1 [label="initialize_log_file",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node2 [label="generate_log_filename",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$mainApplication_8cpp.html#afcbe6269a7d3ba425f4e88a8adaca8fc",tooltip=" "];
+  Node1 -> Node3 [color="midnightblue",fontsize="12",style="solid",fontname="Helvetica"];
+  Node3 [label="log_time",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$mainApplication_8cpp.html#a49dec5f7745652d5fb54f79a2981a086",tooltip=" "];
+}

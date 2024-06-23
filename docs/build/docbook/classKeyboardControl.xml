@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classKeyboardControl" xml:lang="en-US">
+<title>KeyboardControl Class Reference</title>
+<indexterm><primary>KeyboardControl</primary></indexterm>
+<para>
+<computeroutput>#include &lt;keyboardControl.h&gt;</computeroutput>
+</para>
+Collaboration diagram for KeyboardControl:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classKeyboardControl__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static void <link linkend="_classKeyboardControl_1aa5e0ac7152d04762e67d581f30999b17">set_robot</link> (<link linkend="_classVisionVoyager">VisionVoyager</link> *robot)</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classKeyboardControl_1a05466fcd9716f35118f9965878456cbc">initialize_keyboard_control</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classKeyboardControl_1a767403e17397fa924dd20a97381cb001">shutdown_keyboard_control</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classKeyboardControl_1aeb9602af4aedb306f49371735ebf9867">F11_listening_loop</link> ()</para>
+</listitem>
+            <listitem><para>static bool <link linkend="_classKeyboardControl_1acb2b53484d1b666d7b4819e33f2bf09f">get_F11_pressed</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classKeyboardControl_1ad308f58b7ff49c69207c5d8823e6b96d">keyboard_listening_loop</link> (string key_s)</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classKeyboardControl_1a724cc151883c988f509b9d196bdbb9d3">set_keyboard_control_active</link> (bool state)</para>
+</listitem>
+            <listitem><para>static bool <link linkend="_classKeyboardControl_1a87c0be9d1798e2487e9f6dd54bf85e85">get_keyboard_control_active</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static int <link linkend="_classKeyboardControl_1a7e5d89e952fa503f495e039630b663cc">map_key</link> (const string &amp;key)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_classVisionVoyager">VisionVoyager</link> * <link linkend="_classKeyboardControl_1a52b7e76d2d03093ebdfe4c48df7b0d50">robotVisionVoyager</link> = nullptr</para>
+</listitem>
+            <listitem><para>static bool <link linkend="_classKeyboardControl_1ada6d3d4bc24c26be1aa946313e46c838">F11_pressed</link> = false</para>
+</listitem>
+            <listitem><para>static const unordered_map&lt; string, int &gt; <link linkend="_classKeyboardControl_1a43520d2424e1cb2120e09c8db75b4535">keyMap</link></para>
+</listitem>
+            <listitem><para>static bool <link linkend="_classKeyboardControl_1aa94e5ce953d9f83d272a0940e9e28fce">keyboard_control_active</link> = false</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classKeyboardControl_1aeb9602af4aedb306f49371735ebf9867"/>    <section>
+    <title>F11_listening_loop()</title>
+<indexterm><primary>F11_listening_loop</primary><secondary>KeyboardControl</secondary></indexterm>
+<indexterm><primary>KeyboardControl</primary><secondary>F11_listening_loop</secondary></indexterm>
+<para><computeroutput>void KeyboardControl::F11_listening_loop ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classKeyboardControl_aeb9602af4aedb306f49371735ebf9867_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classKeyboardControl_aeb9602af4aedb306f49371735ebf9867_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classKeyboardControl_1acb2b53484d1b666d7b4819e33f2bf09f"/>    <section>
+    <title>get_F11_pressed()</title>
+<indexterm><primary>get_F11_pressed</primary><secondary>KeyboardControl</secondary></indexterm>
+<indexterm><primary>KeyboardControl</primary><secondary>get_F11_pressed</secondary></indexterm>
+<para><computeroutput>bool KeyboardControl::get_F11_pressed ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classKeyboardControl_acb2b53484d1b666d7b4819e33f2bf09f_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classKeyboardControl_1a87c0be9d1798e2487e9f6dd54bf85e85"/>    <section>
+    <title>get_keyboard_control_active()</title>
+<indexterm><primary>get_keyboard_control_active</primary><secondary>KeyboardControl</secondary></indexterm>
+<indexterm><primary>KeyboardControl</primary><secondary>get_keyboard_control_active</secondary></indexterm>
+<para><computeroutput>bool KeyboardControl::get_keyboard_control_active ( )<computeroutput>[static]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classKeyboardControl_1a05466fcd9716f35118f9965878456cbc"/>    <section>
+    <title>initialize_keyboard_control()</title>
+<indexterm><primary>initialize_keyboard_control</primary><secondary>KeyboardControl</secondary></indexterm>
+<indexterm><primary>KeyboardControl</primary><secondary>initialize_keyboard_control</secondary></indexterm>
+<para><computeroutput>void KeyboardControl::initialize_keyboard_control ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classKeyboardControl_a05466fcd9716f35118f9965878456cbc_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classKeyboardControl_1ad308f58b7ff49c69207c5d8823e6b96d"/>    <section>
+    <title>keyboard_listening_loop()</title>
+<indexterm><primary>keyboard_listening_loop</primary><secondary>KeyboardControl</secondary></indexterm>
+<indexterm><primary>KeyboardControl</primary><secondary>keyboard_listening_loop</secondary></indexterm>
+<para><computeroutput>void KeyboardControl::keyboard_listening_loop (string key_s)<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classKeyboardControl_ad308f58b7ff49c69207c5d8823e6b96d_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classKeyboardControl_ad308f58b7ff49c69207c5d8823e6b96d_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classKeyboardControl_1a7e5d89e952fa503f495e039630b663cc"/>    <section>
+    <title>map_key()</title>
+<indexterm><primary>map_key</primary><secondary>KeyboardControl</secondary></indexterm>
+<indexterm><primary>KeyboardControl</primary><secondary>map_key</secondary></indexterm>
+<para><computeroutput>int KeyboardControl::map_key (const string &amp; key)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classKeyboardControl_1a724cc151883c988f509b9d196bdbb9d3"/>    <section>
+    <title>set_keyboard_control_active()</title>
+<indexterm><primary>set_keyboard_control_active</primary><secondary>KeyboardControl</secondary></indexterm>
+<indexterm><primary>KeyboardControl</primary><secondary>set_keyboard_control_active</secondary></indexterm>
+<para><computeroutput>void KeyboardControl::set_keyboard_control_active (bool state)<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classKeyboardControl_a724cc151883c988f509b9d196bdbb9d3_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classKeyboardControl_1aa5e0ac7152d04762e67d581f30999b17"/>    <section>
+    <title>set_robot()</title>
+<indexterm><primary>set_robot</primary><secondary>KeyboardControl</secondary></indexterm>
+<indexterm><primary>KeyboardControl</primary><secondary>set_robot</secondary></indexterm>
+<para><computeroutput>void KeyboardControl::set_robot (<link linkend="_classVisionVoyager">VisionVoyager</link> * robot)<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classKeyboardControl_aa5e0ac7152d04762e67d581f30999b17_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classKeyboardControl_1a767403e17397fa924dd20a97381cb001"/>    <section>
+    <title>shutdown_keyboard_control()</title>
+<indexterm><primary>shutdown_keyboard_control</primary><secondary>KeyboardControl</secondary></indexterm>
+<indexterm><primary>KeyboardControl</primary><secondary>shutdown_keyboard_control</secondary></indexterm>
+<para><computeroutput>void KeyboardControl::shutdown_keyboard_control ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classKeyboardControl_a767403e17397fa924dd20a97381cb001_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_classKeyboardControl_1ada6d3d4bc24c26be1aa946313e46c838"/>    <section>
+    <title>F11_pressed</title>
+<indexterm><primary>F11_pressed</primary><secondary>KeyboardControl</secondary></indexterm>
+<indexterm><primary>KeyboardControl</primary><secondary>F11_pressed</secondary></indexterm>
+<para><computeroutput>bool KeyboardControl::F11_pressed = false<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classKeyboardControl_1aa94e5ce953d9f83d272a0940e9e28fce"/>    <section>
+    <title>keyboard_control_active</title>
+<indexterm><primary>keyboard_control_active</primary><secondary>KeyboardControl</secondary></indexterm>
+<indexterm><primary>KeyboardControl</primary><secondary>keyboard_control_active</secondary></indexterm>
+<para><computeroutput>bool KeyboardControl::keyboard_control_active = false<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classKeyboardControl_1a43520d2424e1cb2120e09c8db75b4535"/>    <section>
+    <title>keyMap</title>
+<indexterm><primary>keyMap</primary><secondary>KeyboardControl</secondary></indexterm>
+<indexterm><primary>KeyboardControl</primary><secondary>keyMap</secondary></indexterm>
+<para><computeroutput>const unordered_map&lt;string, int&gt; KeyboardControl::keyMap<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classKeyboardControl_1a52b7e76d2d03093ebdfe4c48df7b0d50"/>    <section>
+    <title>robotVisionVoyager</title>
+<indexterm><primary>robotVisionVoyager</primary><secondary>KeyboardControl</secondary></indexterm>
+<indexterm><primary>KeyboardControl</primary><secondary>robotVisionVoyager</secondary></indexterm>
+<para><computeroutput><link linkend="_classVisionVoyager">VisionVoyager</link> * KeyboardControl::robotVisionVoyager = nullptr<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+<link linkend="_keyboardControl_8h">keyboardControl.h</link><link linkend="_keyboardControl_8cpp">keyboardControl.cpp</link></section>
+</section>

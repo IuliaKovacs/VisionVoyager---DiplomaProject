@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_e4e0f958b25787653fca657235517fc0" xml:lang="en-US">
+<title>CameraModule Directory Reference</title>
+<indexterm><primary>CameraModule Directory Reference</primary></indexterm>
+Directory dependency graph for CameraModule:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="dir_e4e0f958b25787653fca657235517fc0_dep.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="_cameraModule_8cpp">cameraModule.cpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_cameraModule_8h">cameraModule.h</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_cameraModuleUtils_8cpp">cameraModuleUtils.cpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_detectLowerbody_8cpp">detectLowerbody.cpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_faceRecognition_8cpp">faceRecognition.cpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_person_8h">person.h</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

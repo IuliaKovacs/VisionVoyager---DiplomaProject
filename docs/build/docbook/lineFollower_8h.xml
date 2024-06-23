@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_lineFollower_8h" xml:lang="en-US">
+<title>lineFollower.h File Reference</title>
+<indexterm><primary>lineFollower.h</primary></indexterm>
+<programlisting>#include &quot;../VisionVoyagerMoves/visionVoyager.h&quot;
+#include &lt;vector&gt;
+</programlisting>Include dependency graph for lineFollower.h:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="lineFollower_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="lineFollower_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>class <link linkend="_classLineFollower">LineFollower</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_lineFollower_8h_1ac1076aa4dcde89c56a33e6eeddc80f82">LINE_THRESHOLD</link>   80</para>
+</listitem>
+            <listitem><para>#define <link linkend="_lineFollower_8h_1a887e1fed57ef93f8d59fe0c462a66482">STOP_VALUE</link>   70</para>
+</listitem>
+            <listitem><para>#define <link linkend="_lineFollower_8h_1aaf4c3f432e1fb0c9a8d99be556ad58f8">IN_AIR_THRESHOLD</link>   10  /* last value 70 */</para>
+</listitem>
+            <listitem><para>#define <link linkend="_lineFollower_8h_1a01b6eadfd986f1e1223dda61a7e11f4b">TURN_THRESHOLD</link>   1400</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Enumerations    </title>
+        <itemizedlist>
+            <listitem><para>enum class <link linkend="_lineFollower_8h_1a5d74787dedbc4e11c1ab15bf487e61f8">State</link> { <link linkend="_lineFollower_8h_1a5d74787dedbc4e11c1ab15bf487e61f8a696b031073e74bf2cb98e5ef201d4aa3">UNKNOWN</link>
+, <link linkend="_lineFollower_8h_1a5d74787dedbc4e11c1ab15bf487e61f8abfec72bb37910c61f36b6c29a1f7ec31">FORWARD</link>
+, <link linkend="_lineFollower_8h_1a5d74787dedbc4e11c1ab15bf487e61f8a684d325a7303f52e64011467ff5c5758">LEFT</link>
+, <link linkend="_lineFollower_8h_1a5d74787dedbc4e11c1ab15bf487e61f8a21507b40c80068eda19865706fdc2403">RIGHT</link>
+ }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_lineFollower_8h_1aaf4c3f432e1fb0c9a8d99be556ad58f8"/>    <section>
+    <title>IN_AIR_THRESHOLD</title>
+<indexterm><primary>IN_AIR_THRESHOLD</primary><secondary>lineFollower.h</secondary></indexterm>
+<indexterm><primary>lineFollower.h</primary><secondary>IN_AIR_THRESHOLD</secondary></indexterm>
+<para><computeroutput>#define IN_AIR_THRESHOLD   10  /* last value 70 */</computeroutput></para>    </section><anchor xml:id="_lineFollower_8h_1ac1076aa4dcde89c56a33e6eeddc80f82"/>    <section>
+    <title>LINE_THRESHOLD</title>
+<indexterm><primary>LINE_THRESHOLD</primary><secondary>lineFollower.h</secondary></indexterm>
+<indexterm><primary>lineFollower.h</primary><secondary>LINE_THRESHOLD</secondary></indexterm>
+<para><computeroutput>#define LINE_THRESHOLD   80</computeroutput></para>    </section><anchor xml:id="_lineFollower_8h_1a887e1fed57ef93f8d59fe0c462a66482"/>    <section>
+    <title>STOP_VALUE</title>
+<indexterm><primary>STOP_VALUE</primary><secondary>lineFollower.h</secondary></indexterm>
+<indexterm><primary>lineFollower.h</primary><secondary>STOP_VALUE</secondary></indexterm>
+<para><computeroutput>#define STOP_VALUE   70</computeroutput></para>    </section><anchor xml:id="_lineFollower_8h_1a01b6eadfd986f1e1223dda61a7e11f4b"/>    <section>
+    <title>TURN_THRESHOLD</title>
+<indexterm><primary>TURN_THRESHOLD</primary><secondary>lineFollower.h</secondary></indexterm>
+<indexterm><primary>lineFollower.h</primary><secondary>TURN_THRESHOLD</secondary></indexterm>
+<para><computeroutput>#define TURN_THRESHOLD   1400</computeroutput></para></section>
+</section>
+<section>
+<title>Enumeration Type Documentation</title>
+<anchor xml:id="_lineFollower_8h_1a5d74787dedbc4e11c1ab15bf487e61f8"/>    <section>
+    <title>State</title>
+<indexterm><primary>State</primary><secondary>lineFollower.h</secondary></indexterm>
+<indexterm><primary>lineFollower.h</primary><secondary>State</secondary></indexterm>
+<para><computeroutput>enum <link linkend="_lineFollower_8h_1a5d74787dedbc4e11c1ab15bf487e61f8">State</link><computeroutput>[strong]</computeroutput></computeroutput></para><informaltable frame="all">
+<title>Enumerator</title>
+    <tgroup cols="2" align="left" colsep="1" rowsep="1">
+      <colspec colname='c1'/>
+      <colspec colname='c2'/>
+<tbody>
+<row><entry><indexterm><primary>UNKNOWN</primary><secondary>lineFollower.h</secondary></indexterm>
+<indexterm><primary>lineFollower.h</primary><secondary>UNKNOWN</secondary></indexterm>
+<anchor xml:id="_lineFollower_8h_1a5d74787dedbc4e11c1ab15bf487e61f8a696b031073e74bf2cb98e5ef201d4aa3"/>UNKNOWN</entry><entry></entry></row><row><entry><indexterm><primary>FORWARD</primary><secondary>lineFollower.h</secondary></indexterm>
+<indexterm><primary>lineFollower.h</primary><secondary>FORWARD</secondary></indexterm>
+<anchor xml:id="_lineFollower_8h_1a5d74787dedbc4e11c1ab15bf487e61f8abfec72bb37910c61f36b6c29a1f7ec31"/>FORWARD</entry><entry></entry></row><row><entry><indexterm><primary>LEFT</primary><secondary>lineFollower.h</secondary></indexterm>
+<indexterm><primary>lineFollower.h</primary><secondary>LEFT</secondary></indexterm>
+<anchor xml:id="_lineFollower_8h_1a5d74787dedbc4e11c1ab15bf487e61f8a684d325a7303f52e64011467ff5c5758"/>LEFT</entry><entry></entry></row><row><entry><indexterm><primary>RIGHT</primary><secondary>lineFollower.h</secondary></indexterm>
+<indexterm><primary>lineFollower.h</primary><secondary>RIGHT</secondary></indexterm>
+<anchor xml:id="_lineFollower_8h_1a5d74787dedbc4e11c1ab15bf487e61f8a21507b40c80068eda19865706fdc2403"/>RIGHT</entry><entry></entry></row>    </tbody>
+    </tgroup>
+</informaltable>
+</section>
+</section>
+</section>

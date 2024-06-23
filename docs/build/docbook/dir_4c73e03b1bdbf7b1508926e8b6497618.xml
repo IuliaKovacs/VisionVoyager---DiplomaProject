@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_4c73e03b1bdbf7b1508926e8b6497618" xml:lang="en-US">
+<title>ObstacleAvoidance Directory Reference</title>
+<indexterm><primary>ObstacleAvoidance Directory Reference</primary></indexterm>
+Directory dependency graph for ObstacleAvoidance:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="dir_4c73e03b1bdbf7b1508926e8b6497618_dep.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="_obstacleAvoidanceUtils_8cpp">obstacleAvoidanceUtils.cpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_obstacleAvoidanceUtils_8h">obstacleAvoidanceUtils.h</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

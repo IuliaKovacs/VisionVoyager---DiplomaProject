@@ -16,13 +16,32 @@ using namespace OpenXLSX;
 
 bool ApplicationModule::TASK_LINE_FOLLOWING()
 {   
-    // TextToSpeech::display_custom_message("Rostește ONE dacă vrei să înregistrăm traseul");
+
+    tts_mutex.lock();
+    if(Language::EN == TextToSpeech::get_language())
+    {   
+        TextToSpeech::display_custom_message("Say ONE if you want to record the route");
+    }
+    else
+    {
+        TextToSpeech::display_custom_message("Rostește ONE dacă vrei să înregistrăm traseul");
+    }
+    tts_mutex.unlock();
     // string option = VoiceRecognition::loop_listening_for_choices();
     // if("ONE" == option)
     // {
     //     RouteRegistration::set_register_enabled_true();
     // }
-    TextToSpeech::display_custom_message("Rostește un cuvânt de activare ca să pornim!");
+    tts_mutex.lock();
+    if(Language::EN == TextToSpeech::get_language())
+    {   
+        TextToSpeech::display_custom_message("Use the activation command in order to start!");
+    }
+    else
+    {
+        TextToSpeech::display_custom_message("Rostește un cuvânt de activare ca să pornim!");
+    }
+    tts_mutex.unlock();
     VoiceRecognition::loop_recognition_for_start();
     RouteRegistration::set_register_enabled_true();
     LineFollower::follow_line();
@@ -58,92 +77,6 @@ void ApplicationModule::TASK_CAMERA_MODULE()
 
 bool ApplicationModule::TASK_RFID_READER_COMM(optional<string> route_name)
 {
-    uint8_t out_data;
-    RFID_request_status_t st;
-    RFID_Tag_Information tag_info;
-    bool system_init_status;
-
-    logFile << log_time() <<  LOG_RFID_PREFIX << " Start of RFID Reader Communication Thread " << endl;
-
-    RFID_init();
-
-    st = RFID_Send_Ping();
-    logFile << log_time() <<  LOG_RFID_PREFIX << " Ping Request Status = " << st << endl;
-
-    
-    if(st == RFID_REQUEST_OK)
-    {   
-        char last_room_name[20] = ""; //@ToDo
-
-        st = RFID_get_System_Init_Status(&system_init_status);
-        if((st == RFID_REQUEST_OK) && (system_init_status == true))
-        {   
-            st = RFID_get_Rooms(&tag_info);
-            logFile << log_time() <<  LOG_RFID_PREFIX << " Room Request Status = " << st << endl;
-
-            if(st == RFID_REQUEST_OK)
-            {   
-                if(strcmp(last_room_name, tag_info.room_name) != 0)
-                {   
-                    string room_description_message;
-                    logFile << log_time() << LOG_RFID_PREFIX << " Room name: " << tag_info.room_name << endl;
-                    logFile << log_time() << LOG_RFID_PREFIX << " Room description: " << tag_info.room_description << endl;
-                    logFile << log_time() << LOG_RFID_PREFIX << " Room destination_status: " << tag_info.destination_node << endl;
-                    if(Language::EN == TextToSpeech::get_language())
-                    {
-                        if(false == tag_info.destination_node)
-                        {
-                            room_description_message += "We pass by " + string(tag_info.room_name) + "\n\n\n\n\n\n";
-                            room_description_message += "Use the waiting command to stop here! \n\n\n\n\n\n";
-                        }
-                        else
-                        {   
-                            room_description_message += "We reached " + string(tag_info.room_name) + "\n\n\n\n\n\n";
-                            room_description_message += "This is your destination! \n\n\n\n\n\n";
-                        }
-                        room_description_message += string(tag_info.room_description) + "\n\n\n\n\n\n";
-                    }
-                    else
-                    {
-                        if(false == tag_info.destination_node)
-                        {
-                            room_description_message += "Trecem pe lângă " + string(tag_info.room_name) + "\n\n\n\n\n\n";
-                            room_description_message += "Folosește comanda de așteptare dacă dorești să ne oprim aici! \n\n\n\n\n\n";
-                        }
-                        else
-                        {   
-                            room_description_message += "Am ajuns la: " + string(tag_info.room_name) + "\n\n\n\n\n\n";
-                            room_description_message += "Aceasta este destinația ta! \n\n\n\n\n\n";
-                        }
-                        room_description_message += string(tag_info.room_description) + "\n\n\n\n\n\n";
-                    }
-                    strcpy(last_room_name, tag_info.room_name);
-                    
-                    /* Send data for displaying the tag info */
-                    std::lock_guard<std::mutex> lock(speak_mutex);
-                    global_message = room_description_message;
-                    speak.store(true);
-                    speaking_condition.notify_all();
-                }
-
-                string tag_info_route_name = string(tag_info.room_name);
-                if(route_name.has_value())
-                {
-                    if((tag_info_route_name == RouteRegistration::get_route_name_from_path(route_name.value())) && (true == tag_info.destination_node))
-                    {
-                        route_complete.store(true);
-                    }
-                }
-            }
-        }
-        // std::this_thread::sleep_for(std::chrono::milliseconds(1000)); 
-    }
-    else
-    {
-        return false;
-    }
-
-    // logFile << log_time() << LOG_RFID_PREFIX << " Ended successfully! " << endl;
     return true;
 }
 
@@ -298,7 +231,14 @@ void ApplicationModule::capture_photo_and_send_to_process()
         log_mutex.lock();
         logFile << log_time() << LOG_THREAD_CAMERA_PREFIX << " Recogized person: " << recognized_person.get_first_name() + "  " + recognized_person.get_last_name() << endl;
         log_mutex.unlock();
-        tts_person = tts_person + " este lângă tine. \n\n\n Dacă ai întrebări este la dispoziția ta!" + "\n\n\n  Rol: " + recognized_person.get_role();
+        if(Language::EN == TextToSpeech::get_language())
+        {   
+            tts_person = tts_person + " is next to you if you need support!" + "\n\n\n  Role: " + recognized_person.get_role();
+        }
+        else
+        {
+            tts_person = tts_person + " este lângă tine. \n\n\n Dacă ai întrebări este la dispoziția ta!" + "\n\n\n  Rol: " + recognized_person.get_role();
+        }
         TextToSpeech::display_custom_message(tts_person); 
     }
 }
@@ -310,8 +250,15 @@ void ApplicationModule::MODE_1_ROUTE_PLAYING(string route_path)
     guiding_mode = GuidingMode::ROUTE_PLAYER_MODE;
     increment_excel_route_count(route_path); 
     string route = RouteRegistration::get_route_name_from_path(route_path);
-    //@ToDo Ro/En
-    string msg = "Atenție, pornim!! \n\n\n Voi începe să redau ruta " + route;
+    string msg = "";
+    if(Language::EN == TextToSpeech::get_language())
+    {   
+        msg = "Attention! Start! \n\n\n I will start to guide you " + route;
+    }
+    else
+    {
+        msg = "Atenție, pornim!! \n\n\n Voi începe să redau ruta " + route;
+    }
     TextToSpeech::display_custom_message(msg);
 
     route_path += ".txt";
@@ -328,7 +275,15 @@ void ApplicationModule::MODE_1_ROUTE_PLAYING(string route_path)
 void ApplicationModule::MODE_2_LINE_FOLLOWER()
 {
     guiding_mode = GuidingMode::LINE_FOLLOWER_MODE;
-    string msg = "Atenție, pornim!! \n\n\n Voi începe să urmăresc linia";
+    string msg = "";
+    if(Language::EN == TextToSpeech::get_language())
+    {   
+        msg = "Atenție, pornim!! \n\n\n Voi începe să urmăresc linia";
+    }
+    else
+    {
+        msg = "Atenție, pornim!! \n\n\n Voi începe să urmăresc linia";
+    }
     thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
     thread line_follower_thread(ApplicationModule::TASK_LINE_FOLLOWING);
     thread speaking_thread(ApplicationModule::TASK_SPEAKING);

@@ -1,0 +1,486 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classTextToSpeech" xml:lang="en-US">
+<title>TextToSpeech Class Reference</title>
+<indexterm><primary>TextToSpeech</primary></indexterm>
+<para>
+<computeroutput>#include &lt;textToSpeech.h&gt;</computeroutput>
+</para>
+Collaboration diagram for TextToSpeech:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705">Language</link> <link linkend="_classTextToSpeech_1ab369797b4b0621e4ad155585973ca5a8">get_language</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1a11ebdfc7cc5d4e7f3741333f4945159b">inititalize_language</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1a9db68b9702829aa18f5fdcd1cb5971c2">set_language_RO</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1a2a8bb61f52b61163462ccd28d5000e68">set_language_EN</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1a0cc92aa82c99fa1909852b2415358675">display_menu_options</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1afce0c5d784f8a0e71f884ad15777d13d">display_option1_message</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1ad893d55d6c8820223880de4443d058e8">display_option2_message</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1a894717fa17501d741bb16330ff2d1429">display_default_mode</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1aee2b5000bbd97577be338d2fc4a91a05">display_hello_message</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1acc52b9e2fbd4411be37d3fc36b80897e">display_section_A_options_message</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1a12b143f899e4c23a6ca4c345b57f417a">display_section_B_options_message</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1ab9ba52cf557518c21d129e97035f6af4">display_section_C_options_message</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1ab84fa1637f328ba784778aeb7570c97f">display_repeat_message</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1a8ddd481b901aded007a11df32d269c17">initialize_route_display_files</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1a99b87bb8485c7c92ad24bab0cfecc056">display_custom_message</link> (string message)</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1a4a9b1994912c9b00834a41d152bf7716">display_turn_right</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1a64457668cc72250d0800735fc50eb271">display_turn_left</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1ae60b0acd08698bf49f2e8ea480ffff2c">display_step_right</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1a9e902579c1959183d7f101c4cb12ae17">display_step_left</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1a4b235e6b5c808820ae771b5d8a05e277">display_go_forward</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1a1286e2bd2e22bc8419cc6520019b7517">display_go_backward</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1add2c2fa8b3d3626f1b8498af8ad3a897">display_stop</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1a7d1d39c9f88c85329e1e51456dc29583">display_destination</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1a05a48493a32de9ddb184e61da4e723b7">initialize_section_options_file_RO</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1adeea4fce50660ecabdfae8b47f350650">initialize_section_options_file_EN</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1abb053d282f6c74120a4a58151e110ac3">initialize_route_display_files_RO</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classTextToSpeech_1a32c157580f9f8de4890578b0b4583fba">initialize_route_display_files_EN</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para>static <link linkend="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705">Language</link> <link linkend="_classTextToSpeech_1ae65b43553d5624e9e14d8fd01934032e">language</link> = <link linkend="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705a696b031073e74bf2cb98e5ef201d4aa3">Language::UNKNOWN</link></para>
+</listitem>
+            <listitem><para>static vector&lt; string &gt; <link linkend="_classTextToSpeech_1a418610fde00f18129e34f38a25591ab0">voice_commands</link> = {&quot;\&quot;ONE\&quot;&quot;, &quot;\&quot;TWO\&quot;&quot;, &quot;\&quot;THREE\&quot;&quot;}</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classTextToSpeech_1a99b87bb8485c7c92ad24bab0cfecc056"/>    <section>
+    <title>display_custom_message()</title>
+<indexterm><primary>display_custom_message</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>display_custom_message</secondary></indexterm>
+<para><computeroutput>void TextToSpeech::display_custom_message (string message)<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_a99b87bb8485c7c92ad24bab0cfecc056_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classTextToSpeech_1a894717fa17501d741bb16330ff2d1429"/>    <section>
+    <title>display_default_mode()</title>
+<indexterm><primary>display_default_mode</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>display_default_mode</secondary></indexterm>
+<para><computeroutput>void TextToSpeech::display_default_mode ( )<computeroutput>[static]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classTextToSpeech_1a7d1d39c9f88c85329e1e51456dc29583"/>    <section>
+    <title>display_destination()</title>
+<indexterm><primary>display_destination</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>display_destination</secondary></indexterm>
+<para><computeroutput>void TextToSpeech::display_destination ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_a7d1d39c9f88c85329e1e51456dc29583_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classTextToSpeech_1a1286e2bd2e22bc8419cc6520019b7517"/>    <section>
+    <title>display_go_backward()</title>
+<indexterm><primary>display_go_backward</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>display_go_backward</secondary></indexterm>
+<para><computeroutput>void TextToSpeech::display_go_backward ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_a1286e2bd2e22bc8419cc6520019b7517_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classTextToSpeech_1a4b235e6b5c808820ae771b5d8a05e277"/>    <section>
+    <title>display_go_forward()</title>
+<indexterm><primary>display_go_forward</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>display_go_forward</secondary></indexterm>
+<para><computeroutput>void TextToSpeech::display_go_forward ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_a4b235e6b5c808820ae771b5d8a05e277_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classTextToSpeech_1aee2b5000bbd97577be338d2fc4a91a05"/>    <section>
+    <title>display_hello_message()</title>
+<indexterm><primary>display_hello_message</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>display_hello_message</secondary></indexterm>
+<para><computeroutput>void TextToSpeech::display_hello_message ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_aee2b5000bbd97577be338d2fc4a91a05_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classTextToSpeech_1a0cc92aa82c99fa1909852b2415358675"/>    <section>
+    <title>display_menu_options()</title>
+<indexterm><primary>display_menu_options</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>display_menu_options</secondary></indexterm>
+<para><computeroutput>void TextToSpeech::display_menu_options ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_a0cc92aa82c99fa1909852b2415358675_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classTextToSpeech_1afce0c5d784f8a0e71f884ad15777d13d"/>    <section>
+    <title>display_option1_message()</title>
+<indexterm><primary>display_option1_message</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>display_option1_message</secondary></indexterm>
+<para><computeroutput>void TextToSpeech::display_option1_message ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_afce0c5d784f8a0e71f884ad15777d13d_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classTextToSpeech_1ad893d55d6c8820223880de4443d058e8"/>    <section>
+    <title>display_option2_message()</title>
+<indexterm><primary>display_option2_message</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>display_option2_message</secondary></indexterm>
+<para><computeroutput>void TextToSpeech::display_option2_message ( )<computeroutput>[static]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classTextToSpeech_1ab84fa1637f328ba784778aeb7570c97f"/>    <section>
+    <title>display_repeat_message()</title>
+<indexterm><primary>display_repeat_message</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>display_repeat_message</secondary></indexterm>
+<para><computeroutput>void TextToSpeech::display_repeat_message ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_ab84fa1637f328ba784778aeb7570c97f_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_ab84fa1637f328ba784778aeb7570c97f_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classTextToSpeech_1acc52b9e2fbd4411be37d3fc36b80897e"/>    <section>
+    <title>display_section_A_options_message()</title>
+<indexterm><primary>display_section_A_options_message</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>display_section_A_options_message</secondary></indexterm>
+<para><computeroutput>void TextToSpeech::display_section_A_options_message ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_acc52b9e2fbd4411be37d3fc36b80897e_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_acc52b9e2fbd4411be37d3fc36b80897e_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classTextToSpeech_1a12b143f899e4c23a6ca4c345b57f417a"/>    <section>
+    <title>display_section_B_options_message()</title>
+<indexterm><primary>display_section_B_options_message</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>display_section_B_options_message</secondary></indexterm>
+<para><computeroutput>void TextToSpeech::display_section_B_options_message ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_a12b143f899e4c23a6ca4c345b57f417a_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_a12b143f899e4c23a6ca4c345b57f417a_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classTextToSpeech_1ab9ba52cf557518c21d129e97035f6af4"/>    <section>
+    <title>display_section_C_options_message()</title>
+<indexterm><primary>display_section_C_options_message</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>display_section_C_options_message</secondary></indexterm>
+<para><computeroutput>void TextToSpeech::display_section_C_options_message ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_ab9ba52cf557518c21d129e97035f6af4_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_ab9ba52cf557518c21d129e97035f6af4_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classTextToSpeech_1a9e902579c1959183d7f101c4cb12ae17"/>    <section>
+    <title>display_step_left()</title>
+<indexterm><primary>display_step_left</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>display_step_left</secondary></indexterm>
+<para><computeroutput>static void TextToSpeech::display_step_left ( )<computeroutput>[static]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classTextToSpeech_1ae60b0acd08698bf49f2e8ea480ffff2c"/>    <section>
+    <title>display_step_right()</title>
+<indexterm><primary>display_step_right</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>display_step_right</secondary></indexterm>
+<para><computeroutput>static void TextToSpeech::display_step_right ( )<computeroutput>[static]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classTextToSpeech_1add2c2fa8b3d3626f1b8498af8ad3a897"/>    <section>
+    <title>display_stop()</title>
+<indexterm><primary>display_stop</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>display_stop</secondary></indexterm>
+<para><computeroutput>void TextToSpeech::display_stop ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_add2c2fa8b3d3626f1b8498af8ad3a897_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classTextToSpeech_1a64457668cc72250d0800735fc50eb271"/>    <section>
+    <title>display_turn_left()</title>
+<indexterm><primary>display_turn_left</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>display_turn_left</secondary></indexterm>
+<para><computeroutput>void TextToSpeech::display_turn_left ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_a64457668cc72250d0800735fc50eb271_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classTextToSpeech_1a4a9b1994912c9b00834a41d152bf7716"/>    <section>
+    <title>display_turn_right()</title>
+<indexterm><primary>display_turn_right</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>display_turn_right</secondary></indexterm>
+<para><computeroutput>void TextToSpeech::display_turn_right ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_a4a9b1994912c9b00834a41d152bf7716_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classTextToSpeech_1ab369797b4b0621e4ad155585973ca5a8"/>    <section>
+    <title>get_language()</title>
+<indexterm><primary>get_language</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>get_language</secondary></indexterm>
+<para><computeroutput><link linkend="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705">Language</link> TextToSpeech::get_language ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_ab369797b4b0621e4ad155585973ca5a8_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classTextToSpeech_1a8ddd481b901aded007a11df32d269c17"/>    <section>
+    <title>initialize_route_display_files()</title>
+<indexterm><primary>initialize_route_display_files</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>initialize_route_display_files</secondary></indexterm>
+<para><computeroutput>void TextToSpeech::initialize_route_display_files ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_a8ddd481b901aded007a11df32d269c17_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classTextToSpeech_1a32c157580f9f8de4890578b0b4583fba"/>    <section>
+    <title>initialize_route_display_files_EN()</title>
+<indexterm><primary>initialize_route_display_files_EN</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>initialize_route_display_files_EN</secondary></indexterm>
+<para><computeroutput>void TextToSpeech::initialize_route_display_files_EN ( )<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_a32c157580f9f8de4890578b0b4583fba_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classTextToSpeech_1abb053d282f6c74120a4a58151e110ac3"/>    <section>
+    <title>initialize_route_display_files_RO()</title>
+<indexterm><primary>initialize_route_display_files_RO</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>initialize_route_display_files_RO</secondary></indexterm>
+<para><computeroutput>void TextToSpeech::initialize_route_display_files_RO ( )<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_abb053d282f6c74120a4a58151e110ac3_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classTextToSpeech_1adeea4fce50660ecabdfae8b47f350650"/>    <section>
+    <title>initialize_section_options_file_EN()</title>
+<indexterm><primary>initialize_section_options_file_EN</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>initialize_section_options_file_EN</secondary></indexterm>
+<para><computeroutput>void TextToSpeech::initialize_section_options_file_EN ( )<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_adeea4fce50660ecabdfae8b47f350650_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classTextToSpeech_1a05a48493a32de9ddb184e61da4e723b7"/>    <section>
+    <title>initialize_section_options_file_RO()</title>
+<indexterm><primary>initialize_section_options_file_RO</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>initialize_section_options_file_RO</secondary></indexterm>
+<para><computeroutput>void TextToSpeech::initialize_section_options_file_RO ( )<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_a05a48493a32de9ddb184e61da4e723b7_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classTextToSpeech_1a11ebdfc7cc5d4e7f3741333f4945159b"/>    <section>
+    <title>inititalize_language()</title>
+<indexterm><primary>inititalize_language</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>inititalize_language</secondary></indexterm>
+<para><computeroutput>void TextToSpeech::inititalize_language ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_a11ebdfc7cc5d4e7f3741333f4945159b_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_a11ebdfc7cc5d4e7f3741333f4945159b_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classTextToSpeech_1a2a8bb61f52b61163462ccd28d5000e68"/>    <section>
+    <title>set_language_EN()</title>
+<indexterm><primary>set_language_EN</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>set_language_EN</secondary></indexterm>
+<para><computeroutput>void TextToSpeech::set_language_EN ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_a2a8bb61f52b61163462ccd28d5000e68_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_a2a8bb61f52b61163462ccd28d5000e68_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classTextToSpeech_1a9db68b9702829aa18f5fdcd1cb5971c2"/>    <section>
+    <title>set_language_RO()</title>
+<indexterm><primary>set_language_RO</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>set_language_RO</secondary></indexterm>
+<para><computeroutput>void TextToSpeech::set_language_RO ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_a9db68b9702829aa18f5fdcd1cb5971c2_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classTextToSpeech_a9db68b9702829aa18f5fdcd1cb5971c2_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_classTextToSpeech_1ae65b43553d5624e9e14d8fd01934032e"/>    <section>
+    <title>language</title>
+<indexterm><primary>language</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>language</secondary></indexterm>
+<para><computeroutput><link linkend="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705">Language</link> TextToSpeech::language = <link linkend="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705a696b031073e74bf2cb98e5ef201d4aa3">Language::UNKNOWN</link><computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classTextToSpeech_1a418610fde00f18129e34f38a25591ab0"/>    <section>
+    <title>voice_commands</title>
+<indexterm><primary>voice_commands</primary><secondary>TextToSpeech</secondary></indexterm>
+<indexterm><primary>TextToSpeech</primary><secondary>voice_commands</secondary></indexterm>
+<para><computeroutput>vector&lt; string &gt; TextToSpeech::voice_commands = {&quot;\&quot;ONE\&quot;&quot;, &quot;\&quot;TWO\&quot;&quot;, &quot;\&quot;THREE\&quot;&quot;}<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following files:</para>
+<link linkend="_textToSpeech_8h">textToSpeech.h</link><link linkend="_textToSpeech_8cpp">textToSpeech.cpp</link></section>
+</section>

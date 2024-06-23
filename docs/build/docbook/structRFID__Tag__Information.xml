@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_structRFID__Tag__Information" xml:lang="en-US">
+<title>RFID_Tag_Information Struct Reference</title>
+<indexterm><primary>RFID_Tag_Information</primary></indexterm>
+<para>
+<computeroutput>#include &lt;RFID_Manager.h&gt;</computeroutput>
+</para>
+Collaboration diagram for RFID_Tag_Information:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="structRFID__Tag__Information__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para>char <link linkend="_structRFID__Tag__Information_1ab1fb673417be534f50237f7627cbc6dd">room_name</link> [20]</para>
+</listitem>
+            <listitem><para>char <link linkend="_structRFID__Tag__Information_1a17ff0df549e4ec53a4d3530d559a70f1">room_description</link> [90]</para>
+</listitem>
+            <listitem><para>bool <link linkend="_structRFID__Tag__Information_1a5d77f09c8817c903f57263a3d71dbe3f">destination_node</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_structRFID__Tag__Information_1a5d77f09c8817c903f57263a3d71dbe3f"/>    <section>
+    <title>destination_node</title>
+<indexterm><primary>destination_node</primary><secondary>RFID_Tag_Information</secondary></indexterm>
+<indexterm><primary>RFID_Tag_Information</primary><secondary>destination_node</secondary></indexterm>
+<para><computeroutput>bool RFID_Tag_Information::destination_node</computeroutput></para>    </section><anchor xml:id="_structRFID__Tag__Information_1a17ff0df549e4ec53a4d3530d559a70f1"/>    <section>
+    <title>room_description</title>
+<indexterm><primary>room_description</primary><secondary>RFID_Tag_Information</secondary></indexterm>
+<indexterm><primary>RFID_Tag_Information</primary><secondary>room_description</secondary></indexterm>
+<para><computeroutput>char RFID_Tag_Information::room_description[90]</computeroutput></para>    </section><anchor xml:id="_structRFID__Tag__Information_1ab1fb673417be534f50237f7627cbc6dd"/>    <section>
+    <title>room_name</title>
+<indexterm><primary>room_name</primary><secondary>RFID_Tag_Information</secondary></indexterm>
+<indexterm><primary>RFID_Tag_Information</primary><secondary>room_name</secondary></indexterm>
+<para><computeroutput>char RFID_Tag_Information::room_name[20]</computeroutput></para></section>
+<para>
+The documentation for this struct was generated from the following file:</para>
+<link linkend="_RFID__Manager_8h">RFID_Manager.h</link></section>
+</section>

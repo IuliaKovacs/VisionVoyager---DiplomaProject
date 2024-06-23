@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_dir_5319ee97279cf14dc66c5a9b80a6edf5" xml:lang="en-US">
+<title>VisionVoyagerGUI Directory Reference</title>
+<indexterm><primary>VisionVoyagerGUI Directory Reference</primary></indexterm>
+Directory dependency graph for VisionVoyagerGUI:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="dir_5319ee97279cf14dc66c5a9b80a6edf5_dep.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Directories    </title>
+        <itemizedlist>
+            <listitem><para>directory <link linkend="_dir_0e5d89b177173390eeba6fbb2ce58acd">DataCollection</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Files    </title>
+        <itemizedlist>
+            <listitem><para>file <link linkend="_adminModeUtils_8cpp">adminModeUtils.cpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_adminModeWindow_8cpp">adminModeWindow.cpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_adminModeWindow_8h">adminModeWindow.h</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_cameraWidget_8cpp">cameraWidget.cpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_cameraWidget_8h">cameraWidget.h</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_fileDropWidget_8cpp">fileDropWidget.cpp</link></para>
+</listitem>
+            <listitem><para>file <link linkend="_fileDropWidget_8h">fileDropWidget.h</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>

@@ -8,10 +8,18 @@ pentru Secretariat rostește "ONE"
 
 
 
-Ruta 2. Către Secretariat AC.
+Ruta 2. Către Auditorium.
 
 
-pentru Secretariat AC rostește "TWO"
+pentru Auditorium rostește "TWO"
+
+
+
+
+Ruta 3. Către Rectorat.
+
+
+pentru Rectorat rostește "THREE"
 
 
 

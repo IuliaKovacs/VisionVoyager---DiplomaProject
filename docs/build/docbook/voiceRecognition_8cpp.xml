@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_voiceRecognition_8cpp" xml:lang="en-US">
+<title>voiceRecognition.cpp File Reference</title>
+<indexterm><primary>voiceRecognition.cpp</primary></indexterm>
+<programlisting>#include &quot;voiceRecognition.h&quot;
+#include &lt;pocketsphinx.h&gt;
+#include &lt;signal.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;time.h&gt;
+#include &lt;chrono&gt;
+</programlisting>Include dependency graph for voiceRecognition.cpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="voiceRecognition_8cpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_voiceRecognition_8cpp_1a55b2c0b37fa0aee3118d1512772da3c9">SOX_COMMAND</link>   &quot;sox -q -r %d -c 1 -b 16 -e signed-integer -d -t raw -&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_voiceRecognition_8cpp_1a8ae8568a42eb3546b07de03c99a88439">RECORDING_DURATION_SECONDS</link>   3</para>
+</listitem>
+            <listitem><para>#define <link linkend="_voiceRecognition_8cpp_1a4b76a0c2859cfd819a343a780070ee2b">SAMPLE_RATE</link>   16000</para>
+</listitem>
+            <listitem><para>#define <link linkend="_voiceRecognition_8cpp_1ae5597ce31d23d11493e6e674fe257d73">NUM_CHANNELS</link>   1</para>
+</listitem>
+            <listitem><para>#define <link linkend="_voiceRecognition_8cpp_1a5d0560a8615c9306e0fa826cbd5d87ae">TEMP_AUDIO_FILE_PATH</link>   &quot;../VoiceRecognition/recorded_audio.wav&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_voiceRecognition_8cpp_1ad6c691cdee8439f9a84031db736c4b89">START_KEYPHRASES_LIST</link>   &quot;../VoiceRecognition/start_keyphrase.list&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_voiceRecognition_8cpp_1a7426bfcc3e7e87a8de075d5986c42a83">KEYPHRASES_LIST</link>   &quot;../VoiceRecognition/keyphrases.list&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_voiceRecognition_8cpp_1a4f8336707987c7e5c9496b328927a453">WAIT_KEYPHRASES_LIST</link>   &quot;../VoiceRecognition/wait_keyphrase.list&quot;</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>char * <link linkend="_voiceRecognition_8cpp_1afc5a9ff1951dea8301abaeeb7971532c">extract_first_word</link> (const char *hyp)</para>
+</listitem>
+            <listitem><para>static void <link linkend="_voiceRecognition_8cpp_1aef913ca2eca27e906cb92195f14de2f4">catch_sig</link> (int signum)</para>
+</listitem>
+            <listitem><para>static FILE * <link linkend="_voiceRecognition_8cpp_1a07797270736fb41791b737ab9bf5bbbf">popen_sox</link> (int sample_rate)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para>int <link linkend="_voiceRecognition_8cpp_1aab32d563b1d9a745d0f18496bb3f41dc">global_done</link> = 0</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_voiceRecognition_8cpp_1a7426bfcc3e7e87a8de075d5986c42a83"/>    <section>
+    <title>KEYPHRASES_LIST</title>
+<indexterm><primary>KEYPHRASES_LIST</primary><secondary>voiceRecognition.cpp</secondary></indexterm>
+<indexterm><primary>voiceRecognition.cpp</primary><secondary>KEYPHRASES_LIST</secondary></indexterm>
+<para><computeroutput>#define KEYPHRASES_LIST   &quot;../VoiceRecognition/keyphrases.list&quot;</computeroutput></para>    </section><anchor xml:id="_voiceRecognition_8cpp_1ae5597ce31d23d11493e6e674fe257d73"/>    <section>
+    <title>NUM_CHANNELS</title>
+<indexterm><primary>NUM_CHANNELS</primary><secondary>voiceRecognition.cpp</secondary></indexterm>
+<indexterm><primary>voiceRecognition.cpp</primary><secondary>NUM_CHANNELS</secondary></indexterm>
+<para><computeroutput>#define NUM_CHANNELS   1</computeroutput></para>    </section><anchor xml:id="_voiceRecognition_8cpp_1a8ae8568a42eb3546b07de03c99a88439"/>    <section>
+    <title>RECORDING_DURATION_SECONDS</title>
+<indexterm><primary>RECORDING_DURATION_SECONDS</primary><secondary>voiceRecognition.cpp</secondary></indexterm>
+<indexterm><primary>voiceRecognition.cpp</primary><secondary>RECORDING_DURATION_SECONDS</secondary></indexterm>
+<para><computeroutput>#define RECORDING_DURATION_SECONDS   3</computeroutput></para>    </section><anchor xml:id="_voiceRecognition_8cpp_1a4b76a0c2859cfd819a343a780070ee2b"/>    <section>
+    <title>SAMPLE_RATE</title>
+<indexterm><primary>SAMPLE_RATE</primary><secondary>voiceRecognition.cpp</secondary></indexterm>
+<indexterm><primary>voiceRecognition.cpp</primary><secondary>SAMPLE_RATE</secondary></indexterm>
+<para><computeroutput>#define SAMPLE_RATE   16000</computeroutput></para>    </section><anchor xml:id="_voiceRecognition_8cpp_1a55b2c0b37fa0aee3118d1512772da3c9"/>    <section>
+    <title>SOX_COMMAND</title>
+<indexterm><primary>SOX_COMMAND</primary><secondary>voiceRecognition.cpp</secondary></indexterm>
+<indexterm><primary>voiceRecognition.cpp</primary><secondary>SOX_COMMAND</secondary></indexterm>
+<para><computeroutput>#define SOX_COMMAND   &quot;sox -q -r %d -c 1 -b 16 -e signed-integer -d -t raw -&quot;</computeroutput></para>    </section><anchor xml:id="_voiceRecognition_8cpp_1ad6c691cdee8439f9a84031db736c4b89"/>    <section>
+    <title>START_KEYPHRASES_LIST</title>
+<indexterm><primary>START_KEYPHRASES_LIST</primary><secondary>voiceRecognition.cpp</secondary></indexterm>
+<indexterm><primary>voiceRecognition.cpp</primary><secondary>START_KEYPHRASES_LIST</secondary></indexterm>
+<para><computeroutput>#define START_KEYPHRASES_LIST   &quot;../VoiceRecognition/start_keyphrase.list&quot;</computeroutput></para>    </section><anchor xml:id="_voiceRecognition_8cpp_1a5d0560a8615c9306e0fa826cbd5d87ae"/>    <section>
+    <title>TEMP_AUDIO_FILE_PATH</title>
+<indexterm><primary>TEMP_AUDIO_FILE_PATH</primary><secondary>voiceRecognition.cpp</secondary></indexterm>
+<indexterm><primary>voiceRecognition.cpp</primary><secondary>TEMP_AUDIO_FILE_PATH</secondary></indexterm>
+<para><computeroutput>#define TEMP_AUDIO_FILE_PATH   &quot;../VoiceRecognition/recorded_audio.wav&quot;</computeroutput></para>    </section><anchor xml:id="_voiceRecognition_8cpp_1a4f8336707987c7e5c9496b328927a453"/>    <section>
+    <title>WAIT_KEYPHRASES_LIST</title>
+<indexterm><primary>WAIT_KEYPHRASES_LIST</primary><secondary>voiceRecognition.cpp</secondary></indexterm>
+<indexterm><primary>voiceRecognition.cpp</primary><secondary>WAIT_KEYPHRASES_LIST</secondary></indexterm>
+<para><computeroutput>#define WAIT_KEYPHRASES_LIST   &quot;../VoiceRecognition/wait_keyphrase.list&quot;</computeroutput></para></section>
+</section>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_voiceRecognition_8cpp_1aef913ca2eca27e906cb92195f14de2f4"/>    <section>
+    <title>catch_sig()</title>
+<indexterm><primary>catch_sig</primary><secondary>voiceRecognition.cpp</secondary></indexterm>
+<indexterm><primary>voiceRecognition.cpp</primary><secondary>catch_sig</secondary></indexterm>
+<para><computeroutput>static void catch_sig (int signum)<computeroutput>[static]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="voiceRecognition_8cpp_aef913ca2eca27e906cb92195f14de2f4_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_voiceRecognition_8cpp_1afc5a9ff1951dea8301abaeeb7971532c"/>    <section>
+    <title>extract_first_word()</title>
+<indexterm><primary>extract_first_word</primary><secondary>voiceRecognition.cpp</secondary></indexterm>
+<indexterm><primary>voiceRecognition.cpp</primary><secondary>extract_first_word</secondary></indexterm>
+<para><computeroutput>char* extract_first_word (const char * hyp)</computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="voiceRecognition_8cpp_afc5a9ff1951dea8301abaeeb7971532c_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_voiceRecognition_8cpp_1a07797270736fb41791b737ab9bf5bbbf"/>    <section>
+    <title>popen_sox()</title>
+<indexterm><primary>popen_sox</primary><secondary>voiceRecognition.cpp</secondary></indexterm>
+<indexterm><primary>voiceRecognition.cpp</primary><secondary>popen_sox</secondary></indexterm>
+<para><computeroutput>static FILE* popen_sox (int sample_rate)<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="voiceRecognition_8cpp_a07797270736fb41791b737ab9bf5bbbf_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="voiceRecognition_8cpp_a07797270736fb41791b737ab9bf5bbbf_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Variable Documentation</title>
+<anchor xml:id="_voiceRecognition_8cpp_1aab32d563b1d9a745d0f18496bb3f41dc"/>    <section>
+    <title>global_done</title>
+<indexterm><primary>global_done</primary><secondary>voiceRecognition.cpp</secondary></indexterm>
+<indexterm><primary>voiceRecognition.cpp</primary><secondary>global_done</secondary></indexterm>
+<para><computeroutput>int global_done = 0</computeroutput></para></section>
+</section>
+</section>

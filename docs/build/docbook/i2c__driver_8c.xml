@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_i2c__driver_8c" xml:lang="en-US">
+<title>i2c_driver.c File Reference</title>
+<indexterm><primary>i2c_driver.c</primary></indexterm>
+<programlisting>#include &lt;stdio.h&gt;
+#include &lt;linux/i2c.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;string.h&gt;
+#include &lt;errno.h&gt;
+#include &lt;sys/ioctl.h&gt;
+#include &lt;stdint.h&gt;
+#include &lt;stdlib.h&gt;
+#include &quot;i2c_driver.h&quot;
+#include &lt;linux/i2c-dev.h&gt;
+</programlisting>Include dependency graph for i2c_driver.c:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="i2c__driver_8c__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_i2c__driver_8c_1ad72dbcf6d0153db1b8d8a58001feed83">DEBUG</link></para>
+</listitem>
+            <listitem><para>#define <link linkend="_i2c__driver_8c_1a24e93be9c5baa3aeab7021b64e290672">ERR</link>(...)   do { fprintf(stderr, &quot;Error in (%s), at line (%d) : %s\n&quot;, __FILE__, __LINE__, __VA_ARGS__);}while(0)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_i2c__driver_8c_1ae8924623ca601364965e3d88fb7f40fa">DBG</link>(...)   do { fprintf(stderr, __VA_ARGS__);}while(0)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_i2c__driver_8c_1a8a6c12d0194007da86226886cfce89b4">I2C_DEVICE</link>   &quot;/dev/i2c-1&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_i2c__driver_8c_1ae80f7af7f90aca152c5f72aa6aae882e">I2C_TX_REQUEST_PENDING_U8</link>   ((uint8_t)0x02U)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_i2c__driver_8h_1a7ef78b55fc83cfdc2167e4bd97464736">i2c_state_t</link> <link linkend="_i2c__driver_8c_1aa3c5b93155437853b375992c5c36e512">i2c_init</link> (void)</para>
+</listitem>
+            <listitem><para><link linkend="_i2c__driver_8h_1a7ef78b55fc83cfdc2167e4bd97464736">i2c_state_t</link> <link linkend="_i2c__driver_8c_1afed8687aecbc688accc2aa05442c110a">i2c_sendMessage</link> (const uint8_t *message, const uint8_t length)</para>
+</listitem>
+            <listitem><para><link linkend="_i2c__driver_8h_1a7ef78b55fc83cfdc2167e4bd97464736">i2c_state_t</link> <link linkend="_i2c__driver_8c_1ae1c90c161fc1f9e1fc7a551fe03a4e51">i2c_receiveMessage</link> (uint8_t *message, const uint8_t expectedlength)</para>
+</listitem>
+            <listitem><para><link linkend="_i2c__driver_8h_1a7ef78b55fc83cfdc2167e4bd97464736">i2c_state_t</link> <link linkend="_i2c__driver_8c_1a0634e57ddd8b3c52d29d21a1bf525c4d">i2c_DeInit</link> (void)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para>static int <link linkend="_i2c__driver_8c_1a036e372d7ca72e04852a7ec971981db9">i2c_system_fd</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_i2c__driver_8c_1ae8924623ca601364965e3d88fb7f40fa"/>    <section>
+    <title>DBG</title>
+<indexterm><primary>DBG</primary><secondary>i2c_driver.c</secondary></indexterm>
+<indexterm><primary>i2c_driver.c</primary><secondary>DBG</secondary></indexterm>
+<para><computeroutput>#define DBG( ...)   do { fprintf(stderr, __VA_ARGS__);}while(0)</computeroutput></para>    </section><anchor xml:id="_i2c__driver_8c_1ad72dbcf6d0153db1b8d8a58001feed83"/>    <section>
+    <title>DEBUG</title>
+<indexterm><primary>DEBUG</primary><secondary>i2c_driver.c</secondary></indexterm>
+<indexterm><primary>i2c_driver.c</primary><secondary>DEBUG</secondary></indexterm>
+<para><computeroutput>#define DEBUG</computeroutput></para>    </section><anchor xml:id="_i2c__driver_8c_1a24e93be9c5baa3aeab7021b64e290672"/>    <section>
+    <title>ERR</title>
+<indexterm><primary>ERR</primary><secondary>i2c_driver.c</secondary></indexterm>
+<indexterm><primary>i2c_driver.c</primary><secondary>ERR</secondary></indexterm>
+<para><computeroutput>#define ERR( ...)   do { fprintf(stderr, &quot;Error in (%s), at line (%d) : %s\n&quot;, __FILE__, __LINE__, __VA_ARGS__);}while(0)</computeroutput></para>    </section><anchor xml:id="_i2c__driver_8c_1a8a6c12d0194007da86226886cfce89b4"/>    <section>
+    <title>I2C_DEVICE</title>
+<indexterm><primary>I2C_DEVICE</primary><secondary>i2c_driver.c</secondary></indexterm>
+<indexterm><primary>i2c_driver.c</primary><secondary>I2C_DEVICE</secondary></indexterm>
+<para><computeroutput>#define I2C_DEVICE   &quot;/dev/i2c-1&quot;</computeroutput></para>    </section><anchor xml:id="_i2c__driver_8c_1ae80f7af7f90aca152c5f72aa6aae882e"/>    <section>
+    <title>I2C_TX_REQUEST_PENDING_U8</title>
+<indexterm><primary>I2C_TX_REQUEST_PENDING_U8</primary><secondary>i2c_driver.c</secondary></indexterm>
+<indexterm><primary>i2c_driver.c</primary><secondary>I2C_TX_REQUEST_PENDING_U8</secondary></indexterm>
+<para><computeroutput>#define I2C_TX_REQUEST_PENDING_U8   ((uint8_t)0x02U)</computeroutput></para></section>
+</section>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_i2c__driver_8c_1a0634e57ddd8b3c52d29d21a1bf525c4d"/>    <section>
+    <title>i2c_DeInit()</title>
+<indexterm><primary>i2c_DeInit</primary><secondary>i2c_driver.c</secondary></indexterm>
+<indexterm><primary>i2c_driver.c</primary><secondary>i2c_DeInit</secondary></indexterm>
+<para><computeroutput><link linkend="_i2c__driver_8h_1a7ef78b55fc83cfdc2167e4bd97464736">i2c_state_t</link> i2c_DeInit (void )</computeroutput></para>    </section><anchor xml:id="_i2c__driver_8c_1aa3c5b93155437853b375992c5c36e512"/>    <section>
+    <title>i2c_init()</title>
+<indexterm><primary>i2c_init</primary><secondary>i2c_driver.c</secondary></indexterm>
+<indexterm><primary>i2c_driver.c</primary><secondary>i2c_init</secondary></indexterm>
+<para><computeroutput><link linkend="_i2c__driver_8h_1a7ef78b55fc83cfdc2167e4bd97464736">i2c_state_t</link> i2c_init (void )</computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="i2c__driver_8c_aa3c5b93155437853b375992c5c36e512_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_i2c__driver_8c_1ae1c90c161fc1f9e1fc7a551fe03a4e51"/>    <section>
+    <title>i2c_receiveMessage()</title>
+<indexterm><primary>i2c_receiveMessage</primary><secondary>i2c_driver.c</secondary></indexterm>
+<indexterm><primary>i2c_driver.c</primary><secondary>i2c_receiveMessage</secondary></indexterm>
+<para><computeroutput><link linkend="_i2c__driver_8h_1a7ef78b55fc83cfdc2167e4bd97464736">i2c_state_t</link> i2c_receiveMessage (uint8_t * message, const uint8_t expectedlength)</computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="i2c__driver_8c_ae1c90c161fc1f9e1fc7a551fe03a4e51_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_i2c__driver_8c_1afed8687aecbc688accc2aa05442c110a"/>    <section>
+    <title>i2c_sendMessage()</title>
+<indexterm><primary>i2c_sendMessage</primary><secondary>i2c_driver.c</secondary></indexterm>
+<indexterm><primary>i2c_driver.c</primary><secondary>i2c_sendMessage</secondary></indexterm>
+<para><computeroutput><link linkend="_i2c__driver_8h_1a7ef78b55fc83cfdc2167e4bd97464736">i2c_state_t</link> i2c_sendMessage (const uint8_t * message, const uint8_t length)</computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="i2c__driver_8c_afed8687aecbc688accc2aa05442c110a_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Variable Documentation</title>
+<anchor xml:id="_i2c__driver_8c_1a036e372d7ca72e04852a7ec971981db9"/>    <section>
+    <title>i2c_system_fd</title>
+<indexterm><primary>i2c_system_fd</primary><secondary>i2c_driver.c</secondary></indexterm>
+<indexterm><primary>i2c_driver.c</primary><secondary>i2c_system_fd</secondary></indexterm>
+<para><computeroutput>int i2c_system_fd<computeroutput>[static]</computeroutput></computeroutput></para></section>
+</section>
+</section>

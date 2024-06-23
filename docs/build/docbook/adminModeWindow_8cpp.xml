@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_adminModeWindow_8cpp" xml:lang="en-US">
+<title>adminModeWindow.cpp File Reference</title>
+<indexterm><primary>adminModeWindow.cpp</primary></indexterm>
+<programlisting>#include &quot;adminModeWindow.h&quot;
+#include &quot;ui_adminmodewindow.h&quot;
+#include &quot;cameraWidget.h&quot;
+#include &quot;../CameraModule/cameraModule.h&quot;
+#include &quot;../CameraModule/person.h&quot;
+#include &quot;../ApplicationModule/application_utils.h&quot;
+#include &lt;filesystem&gt;
+#include &lt;cstdio&gt;
+#include &lt;iterator&gt;
+</programlisting>Include dependency graph for adminModeWindow.cpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="adminModeWindow_8cpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_adminModeWindow_8cpp_1a1eec239bbf7495543c0bbd159bb82f48">ROUTE_DATABASE_PATH_SECTION</link>   &quot;../RouteDatabase/&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_adminModeWindow_8cpp_1ac5f41b3cefc075e35486583b52712b0d">SECTION</link>   &quot;Section &quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_adminModeWindow_8cpp_1aa63bcaa70750dd3ad805c7f1a9c8c67d">FILE_TERMINATION</link>   &quot;.txt&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_adminModeWindow_8cpp_1a68498fef48c72909679b8e01a15a2cf8">MAX_NO_OF_SUBJECTS</link>   4</para>
+</listitem>
+            <listitem><para>#define <link linkend="_adminModeWindow_8cpp_1a4faa131afca0bdcca3e4c5a514946df2">MINIMUM_IMG_NO_TO_ADD</link>   7</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>void <link linkend="_adminModeWindow_8cpp_1aad622144b7a6ffe27a05fa04e87f9a43">start_GUI</link> (int argc, char *argv[])</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_adminModeWindow_8cpp_1aa63bcaa70750dd3ad805c7f1a9c8c67d"/>    <section>
+    <title>FILE_TERMINATION</title>
+<indexterm><primary>FILE_TERMINATION</primary><secondary>adminModeWindow.cpp</secondary></indexterm>
+<indexterm><primary>adminModeWindow.cpp</primary><secondary>FILE_TERMINATION</secondary></indexterm>
+<para><computeroutput>#define FILE_TERMINATION   &quot;.txt&quot;</computeroutput></para>    </section><anchor xml:id="_adminModeWindow_8cpp_1a68498fef48c72909679b8e01a15a2cf8"/>    <section>
+    <title>MAX_NO_OF_SUBJECTS</title>
+<indexterm><primary>MAX_NO_OF_SUBJECTS</primary><secondary>adminModeWindow.cpp</secondary></indexterm>
+<indexterm><primary>adminModeWindow.cpp</primary><secondary>MAX_NO_OF_SUBJECTS</secondary></indexterm>
+<para><computeroutput>#define MAX_NO_OF_SUBJECTS   4</computeroutput></para>    </section><anchor xml:id="_adminModeWindow_8cpp_1a4faa131afca0bdcca3e4c5a514946df2"/>    <section>
+    <title>MINIMUM_IMG_NO_TO_ADD</title>
+<indexterm><primary>MINIMUM_IMG_NO_TO_ADD</primary><secondary>adminModeWindow.cpp</secondary></indexterm>
+<indexterm><primary>adminModeWindow.cpp</primary><secondary>MINIMUM_IMG_NO_TO_ADD</secondary></indexterm>
+<para><computeroutput>#define MINIMUM_IMG_NO_TO_ADD   7</computeroutput></para>    </section><anchor xml:id="_adminModeWindow_8cpp_1a1eec239bbf7495543c0bbd159bb82f48"/>    <section>
+    <title>ROUTE_DATABASE_PATH_SECTION</title>
+<indexterm><primary>ROUTE_DATABASE_PATH_SECTION</primary><secondary>adminModeWindow.cpp</secondary></indexterm>
+<indexterm><primary>adminModeWindow.cpp</primary><secondary>ROUTE_DATABASE_PATH_SECTION</secondary></indexterm>
+<para><computeroutput>#define ROUTE_DATABASE_PATH_SECTION   &quot;../RouteDatabase/&quot;</computeroutput></para>    </section><anchor xml:id="_adminModeWindow_8cpp_1ac5f41b3cefc075e35486583b52712b0d"/>    <section>
+    <title>SECTION</title>
+<indexterm><primary>SECTION</primary><secondary>adminModeWindow.cpp</secondary></indexterm>
+<indexterm><primary>adminModeWindow.cpp</primary><secondary>SECTION</secondary></indexterm>
+<para><computeroutput>#define SECTION   &quot;Section &quot;</computeroutput></para></section>
+</section>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_adminModeWindow_8cpp_1aad622144b7a6ffe27a05fa04e87f9a43"/>    <section>
+    <title>start_GUI()</title>
+<indexterm><primary>start_GUI</primary><secondary>adminModeWindow.cpp</secondary></indexterm>
+<indexterm><primary>adminModeWindow.cpp</primary><secondary>start_GUI</secondary></indexterm>
+<para><computeroutput>void start_GUI (int argc, char * argv[])</computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="adminModeWindow_8cpp_aad622144b7a6ffe27a05fa04e87f9a43_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+</section>

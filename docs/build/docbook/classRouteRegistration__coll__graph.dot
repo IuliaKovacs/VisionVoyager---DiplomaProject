@@ -1,0 +1,15 @@
+digraph "RouteRegistration"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="12",labelfontname="Helvetica",labelfontsize="12"];
+  node [fontname="Helvetica",fontsize="12",shape=record];
+  Node1 [label="{RouteRegistration\n||+  RouteRegistration()\l+ static void set_moving_state(MovingState moving_state)\l+ static void set_register_enabled_true()\l+ static vector\< string \> & get_route_paths()\l+ static string get_route_database_directory_path()\l+ static void initialize_route_registration()\l+ static void display_possible_routes()\land 8 more...\l- static string get_current_timestamp()\l- static bool create_route_file()\l- static int extract_the_miliseconds_between_two_commands(string command_1, string command_2)\l- static void delete_duplicate_line_commands()\l- static void create_record_for_route()\l- static string compute_new_route_name()\l- static vector\< string \> split_path(const string &path)\l- static string get_section_from_path(const string &path)\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [color="grey25",fontsize="12",style="solid",label=" -current_route_name\n-route_database_directory_path" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node2 [label="{string\n||}",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node3 -> Node1 [color="grey25",fontsize="12",style="solid",label=" -moving_state" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node3 [label="{static MovingState\n||}",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node4 -> Node1 [color="grey25",fontsize="12",style="solid",label=" -register_enabled" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node4 [label="{bool\n||}",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node5 -> Node1 [color="grey25",fontsize="12",style="solid",label=" -route_paths\n-section_A_routes\n-section_B_routes\n-section_C_routes" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node5 [label="{static vector\< string \>\n||}",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+}

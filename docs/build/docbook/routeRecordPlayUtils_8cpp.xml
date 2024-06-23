@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_routeRecordPlayUtils_8cpp" xml:lang="en-US">
+<title>routeRecordPlayUtils.cpp File Reference</title>
+<indexterm><primary>routeRecordPlayUtils.cpp</primary></indexterm>
+<programlisting>#include &quot;routeRecordPlayUtils.h&quot;
+#include &quot;../RouteRegistration/routeRegistrationUtils.h&quot;
+#include &lt;fstream&gt;
+#include &lt;chrono&gt;
+#include &lt;ctime&gt;
+#include &quot;../LineFollower/lineFollower.h&quot;
+#include &quot;../ApplicationModule/application.h&quot;
+</programlisting>Include dependency graph for routeRecordPlayUtils.cpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="routeRecordPlayUtils_8cpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_routeRecordPlayUtils_8cpp_1a549e888c13ea9a681c1a55bef1941c77">OBSTACLE_RIGHT_AVOID_FILE</link>   &quot;../RouteDatabase/avoid_obstacle.txt&quot;</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_routeRecordPlayUtils_8cpp_1a549e888c13ea9a681c1a55bef1941c77"/>    <section>
+    <title>OBSTACLE_RIGHT_AVOID_FILE</title>
+<indexterm><primary>OBSTACLE_RIGHT_AVOID_FILE</primary><secondary>routeRecordPlayUtils.cpp</secondary></indexterm>
+<indexterm><primary>routeRecordPlayUtils.cpp</primary><secondary>OBSTACLE_RIGHT_AVOID_FILE</secondary></indexterm>
+<para><computeroutput>#define OBSTACLE_RIGHT_AVOID_FILE   &quot;../RouteDatabase/avoid_obstacle.txt&quot;</computeroutput></para></section>
+</section>
+</section>

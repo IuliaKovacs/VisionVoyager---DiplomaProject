@@ -8,7 +8,10 @@ A
        Secretariat.
 
 
-       Secretariat AC.
+       Auditorium.
+
+
+       Rectorat.
 
 
    for the Section A say "ONE"
@@ -21,7 +24,10 @@ B
 
 
    This section comprises the following rooms: 
-       Rectorat.
+       B527.
+
+
+       B528.
 
 
    for the Section B say "TWO"
@@ -34,7 +40,7 @@ C
 
 
    This section comprises the following rooms: 
-       Secretariat ETC.
+       Secretariat AC.
 
 
    for the Section C say "THREE"

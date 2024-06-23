@@ -8,7 +8,10 @@ A
        Secretariat.
 
 
-       Secretariat AC.
+       Auditorium.
+
+
+       Rectorat.
 
 
    Pentru Secțiunea A rostește "ONE"
@@ -21,7 +24,10 @@ B
 
 
    Această secțiune cuprinde următoarele săli: 
-       Rectorat.
+       B527.
+
+
+       B528.
 
 
    Pentru Secțiunea B rostește "TWO"
@@ -34,7 +40,7 @@ C
 
 
    Această secțiune cuprinde următoarele săli: 
-       Secretariat ETC.
+       Secretariat AC.
 
 
    Pentru Secțiunea C rostește "THREE"

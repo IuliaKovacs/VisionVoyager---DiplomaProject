@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_obstacleAvoidanceUtils_8h" xml:lang="en-US">
+<title>obstacleAvoidanceUtils.h File Reference</title>
+<indexterm><primary>obstacleAvoidanceUtils.h</primary></indexterm>
+<programlisting>#include &quot;../ApplicationModule/application_utils.h&quot;
+#include &quot;../VisionVoyagerMoves/visionVoyager.h&quot;
+#include &lt;chrono&gt;
+#include &lt;fstream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+</programlisting>Include dependency graph for obstacleAvoidanceUtils.h:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="obstacleAvoidanceUtils_8h__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+This graph shows which files directly or indirectly include this file:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="obstacleAvoidanceUtils_8h__dep__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>class <link linkend="_classObstacleAvoidance">ObstacleAvoidance</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_obstacleAvoidanceUtils_8h_1ad7315d0faee0140b45d9eb34358f580b">DANGER_DISTANCE_THRESHOLD</link>   35</para>
+</listitem>
+            <listitem><para>#define <link linkend="_obstacleAvoidanceUtils_8h_1a17c2383ebefe35186bca0b8d1c622088">SEVERE_DISTANCE_THRESHOLD</link>   15</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Enumerations    </title>
+        <itemizedlist>
+            <listitem><para>enum class <link linkend="_obstacleAvoidanceUtils_8h_1a224b9163917ac32fc95a60d8c1eec3aa">Direction</link> { <link linkend="_obstacleAvoidanceUtils_8h_1a224b9163917ac32fc95a60d8c1eec3aaa684d325a7303f52e64011467ff5c5758">LEFT</link>
+, <link linkend="_obstacleAvoidanceUtils_8h_1a224b9163917ac32fc95a60d8c1eec3aaa21507b40c80068eda19865706fdc2403">RIGHT</link>
+, <link linkend="_obstacleAvoidanceUtils_8h_1a224b9163917ac32fc95a60d8c1eec3aaa696b031073e74bf2cb98e5ef201d4aa3">UNKNOWN</link>
+ }</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_obstacleAvoidanceUtils_8h_1ad7315d0faee0140b45d9eb34358f580b"/>    <section>
+    <title>DANGER_DISTANCE_THRESHOLD</title>
+<indexterm><primary>DANGER_DISTANCE_THRESHOLD</primary><secondary>obstacleAvoidanceUtils.h</secondary></indexterm>
+<indexterm><primary>obstacleAvoidanceUtils.h</primary><secondary>DANGER_DISTANCE_THRESHOLD</secondary></indexterm>
+<para><computeroutput>#define DANGER_DISTANCE_THRESHOLD   35</computeroutput></para>    </section><anchor xml:id="_obstacleAvoidanceUtils_8h_1a17c2383ebefe35186bca0b8d1c622088"/>    <section>
+    <title>SEVERE_DISTANCE_THRESHOLD</title>
+<indexterm><primary>SEVERE_DISTANCE_THRESHOLD</primary><secondary>obstacleAvoidanceUtils.h</secondary></indexterm>
+<indexterm><primary>obstacleAvoidanceUtils.h</primary><secondary>SEVERE_DISTANCE_THRESHOLD</secondary></indexterm>
+<para><computeroutput>#define SEVERE_DISTANCE_THRESHOLD   15</computeroutput></para></section>
+</section>
+<section>
+<title>Enumeration Type Documentation</title>
+<anchor xml:id="_obstacleAvoidanceUtils_8h_1a224b9163917ac32fc95a60d8c1eec3aa"/>    <section>
+    <title>Direction</title>
+<indexterm><primary>Direction</primary><secondary>obstacleAvoidanceUtils.h</secondary></indexterm>
+<indexterm><primary>obstacleAvoidanceUtils.h</primary><secondary>Direction</secondary></indexterm>
+<para><computeroutput>enum <link linkend="_obstacleAvoidanceUtils_8h_1a224b9163917ac32fc95a60d8c1eec3aa">Direction</link><computeroutput>[strong]</computeroutput></computeroutput></para><informaltable frame="all">
+<title>Enumerator</title>
+    <tgroup cols="2" align="left" colsep="1" rowsep="1">
+      <colspec colname='c1'/>
+      <colspec colname='c2'/>
+<tbody>
+<row><entry><indexterm><primary>LEFT</primary><secondary>obstacleAvoidanceUtils.h</secondary></indexterm>
+<indexterm><primary>obstacleAvoidanceUtils.h</primary><secondary>LEFT</secondary></indexterm>
+<anchor xml:id="_obstacleAvoidanceUtils_8h_1a224b9163917ac32fc95a60d8c1eec3aaa684d325a7303f52e64011467ff5c5758"/>LEFT</entry><entry></entry></row><row><entry><indexterm><primary>RIGHT</primary><secondary>obstacleAvoidanceUtils.h</secondary></indexterm>
+<indexterm><primary>obstacleAvoidanceUtils.h</primary><secondary>RIGHT</secondary></indexterm>
+<anchor xml:id="_obstacleAvoidanceUtils_8h_1a224b9163917ac32fc95a60d8c1eec3aaa21507b40c80068eda19865706fdc2403"/>RIGHT</entry><entry></entry></row><row><entry><indexterm><primary>UNKNOWN</primary><secondary>obstacleAvoidanceUtils.h</secondary></indexterm>
+<indexterm><primary>obstacleAvoidanceUtils.h</primary><secondary>UNKNOWN</secondary></indexterm>
+<anchor xml:id="_obstacleAvoidanceUtils_8h_1a224b9163917ac32fc95a60d8c1eec3aaa696b031073e74bf2cb98e5ef201d4aa3"/>UNKNOWN</entry><entry></entry></row>    </tbody>
+    </tgroup>
+</informaltable>
+</section>
+</section>
+</section>

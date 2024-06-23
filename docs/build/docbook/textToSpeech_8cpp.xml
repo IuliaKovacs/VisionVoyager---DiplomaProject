@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_textToSpeech_8cpp" xml:lang="en-US">
+<title>textToSpeech.cpp File Reference</title>
+<indexterm><primary>textToSpeech.cpp</primary></indexterm>
+<programlisting>#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &quot;textToSpeech.h&quot;
+#include &quot;../RouteRegistration/routeRegistrationUtils.h&quot;
+</programlisting>Include dependency graph for textToSpeech.cpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="textToSpeech_8cpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Macros    </title>
+        <itemizedlist>
+            <listitem><para>#define <link linkend="_textToSpeech_8cpp_1a8008efd54a3950ad011c6749f167b621">VISION_VOYAGER_RO_VOICE</link>   &quot;vv&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_textToSpeech_8cpp_1af95df1fe43f777efc3b65955863414e2">VISION_VOYAGER_EN_VOICE</link>   &quot;mb-en1&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_textToSpeech_8cpp_1afb425de69d6f61baf84959b8e895cfda">LANGUAGE_FILE_PATH</link>   &quot;../TextToSpeech/language.txt&quot;</para>
+</listitem>
+            <listitem><para>#define <link linkend="_textToSpeech_8cpp_1a08de242f14404c8025da063c30afc303">MODE_OPTIONS_FILE</link>(arg)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_textToSpeech_8cpp_1a81d4a61563815e23ee131019b8dcbc83">OPTION1_MESSAGE_FILE</link>(arg)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_textToSpeech_8cpp_1a4d210b08cb9049d7842cbffee2459968">OPTION2_MESSAGE_FILE</link>(arg)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_textToSpeech_8cpp_1a47421296dec0660e28a7e864d798a554">OPTION_DEFAULT_MESSAGE_FILE</link>(arg)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_textToSpeech_8cpp_1a345053d0f31db9c0e308bd8faf554956">HELLO_MESSAGE_FILE</link>(arg)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_textToSpeech_8cpp_1a24fb686508252d57b7a77c7038f1c621">SECTION_A_MESSAGE_FILE</link>(arg)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_textToSpeech_8cpp_1a18fda9588412170e199877963fc49ed5">SECTION_B_MESSAGE_FILE</link>(arg)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_textToSpeech_8cpp_1a3be5f828488692d077310788ab6f7755">SECTION_C_MESSAGE_FILE</link>(arg)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_textToSpeech_8cpp_1a124e1db57c4d36f874d4b7a7c6314c34">REPEAT_MESSAGE_FILE</link>(arg)</para>
+</listitem>
+            <listitem><para>#define <link linkend="_textToSpeech_8cpp_1aa5556cf3688f1aad8583a6ce8a2d8fc6">CHOOSE_LANGUAGE</link>(lang)   ((lang == <link linkend="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705af5b15f58cabad73d1bf2de7bcb89db6c">Language::RO</link>) ? <link linkend="_textToSpeech_8cpp_1a8008efd54a3950ad011c6749f167b621">VISION_VOYAGER_RO_VOICE</link> : <link linkend="_textToSpeech_8cpp_1af95df1fe43f777efc3b65955863414e2">VISION_VOYAGER_EN_VOICE</link>)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Macro Definition Documentation</title>
+<anchor xml:id="_textToSpeech_8cpp_1aa5556cf3688f1aad8583a6ce8a2d8fc6"/>    <section>
+    <title>CHOOSE_LANGUAGE</title>
+<indexterm><primary>CHOOSE_LANGUAGE</primary><secondary>textToSpeech.cpp</secondary></indexterm>
+<indexterm><primary>textToSpeech.cpp</primary><secondary>CHOOSE_LANGUAGE</secondary></indexterm>
+<para><computeroutput>#define CHOOSE_LANGUAGE( lang)   ((lang == <link linkend="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705af5b15f58cabad73d1bf2de7bcb89db6c">Language::RO</link>) ? <link linkend="_textToSpeech_8cpp_1a8008efd54a3950ad011c6749f167b621">VISION_VOYAGER_RO_VOICE</link> : <link linkend="_textToSpeech_8cpp_1af95df1fe43f777efc3b65955863414e2">VISION_VOYAGER_EN_VOICE</link>)</computeroutput></para>    </section><anchor xml:id="_textToSpeech_8cpp_1a345053d0f31db9c0e308bd8faf554956"/>    <section>
+    <title>HELLO_MESSAGE_FILE</title>
+<indexterm><primary>HELLO_MESSAGE_FILE</primary><secondary>textToSpeech.cpp</secondary></indexterm>
+<indexterm><primary>textToSpeech.cpp</primary><secondary>HELLO_MESSAGE_FILE</secondary></indexterm>
+<para><computeroutput>#define HELLO_MESSAGE_FILE( arg)</computeroutput></para><emphasis role="strong">Value:</emphasis><programlisting>&#32;&#32;&#32;&#32;(&#32;\
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;(arg&#32;==&#32;<link linkend="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705af5b15f58cabad73d1bf2de7bcb89db6c">Language::RO</link>)&#32;?&#32;&#32;<emphasis role="stringliteral">&quot;\&quot;../TextToSpeech/RO/hello_message.txt\&quot;&quot;</emphasis>&#32;:&#32;\
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;\&quot;../TextToSpeech/EN/hello_message.txt\&quot;&quot;</emphasis>&#32;&#32;\
+&#32;&#32;&#32;&#32;)
+</programlisting>    </section><anchor xml:id="_textToSpeech_8cpp_1afb425de69d6f61baf84959b8e895cfda"/>    <section>
+    <title>LANGUAGE_FILE_PATH</title>
+<indexterm><primary>LANGUAGE_FILE_PATH</primary><secondary>textToSpeech.cpp</secondary></indexterm>
+<indexterm><primary>textToSpeech.cpp</primary><secondary>LANGUAGE_FILE_PATH</secondary></indexterm>
+<para><computeroutput>#define LANGUAGE_FILE_PATH   &quot;../TextToSpeech/language.txt&quot;</computeroutput></para>    </section><anchor xml:id="_textToSpeech_8cpp_1a08de242f14404c8025da063c30afc303"/>    <section>
+    <title>MODE_OPTIONS_FILE</title>
+<indexterm><primary>MODE_OPTIONS_FILE</primary><secondary>textToSpeech.cpp</secondary></indexterm>
+<indexterm><primary>textToSpeech.cpp</primary><secondary>MODE_OPTIONS_FILE</secondary></indexterm>
+<para><computeroutput>#define MODE_OPTIONS_FILE( arg)</computeroutput></para><emphasis role="strong">Value:</emphasis><programlisting>&#32;&#32;&#32;&#32;(&#32;\
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;(arg&#32;==&#32;<link linkend="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705af5b15f58cabad73d1bf2de7bcb89db6c">Language::RO</link>)&#32;?&#32;&#32;<emphasis role="stringliteral">&quot;\&quot;../TextToSpeech/RO/mode_options.txt\&quot;&quot;</emphasis>&#32;:&#32;\
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;\&quot;../TextToSpeech/EN/mode_options.txt\&quot;&quot;</emphasis>&#32;&#32;\
+&#32;&#32;&#32;&#32;)
+</programlisting>    </section><anchor xml:id="_textToSpeech_8cpp_1a81d4a61563815e23ee131019b8dcbc83"/>    <section>
+    <title>OPTION1_MESSAGE_FILE</title>
+<indexterm><primary>OPTION1_MESSAGE_FILE</primary><secondary>textToSpeech.cpp</secondary></indexterm>
+<indexterm><primary>textToSpeech.cpp</primary><secondary>OPTION1_MESSAGE_FILE</secondary></indexterm>
+<para><computeroutput>#define OPTION1_MESSAGE_FILE( arg)</computeroutput></para><emphasis role="strong">Value:</emphasis><programlisting>&#32;&#32;&#32;&#32;(&#32;\
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;(arg&#32;==&#32;<link linkend="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705af5b15f58cabad73d1bf2de7bcb89db6c">Language::RO</link>)&#32;?&#32;&#32;<emphasis role="stringliteral">&quot;\&quot;../TextToSpeech/RO/option1.txt\&quot;&quot;</emphasis>&#32;:&#32;\
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;\&quot;../TextToSpeech/EN/option1.txt\&quot;&quot;</emphasis>&#32;&#32;\
+&#32;&#32;&#32;&#32;)
+</programlisting>    </section><anchor xml:id="_textToSpeech_8cpp_1a4d210b08cb9049d7842cbffee2459968"/>    <section>
+    <title>OPTION2_MESSAGE_FILE</title>
+<indexterm><primary>OPTION2_MESSAGE_FILE</primary><secondary>textToSpeech.cpp</secondary></indexterm>
+<indexterm><primary>textToSpeech.cpp</primary><secondary>OPTION2_MESSAGE_FILE</secondary></indexterm>
+<para><computeroutput>#define OPTION2_MESSAGE_FILE( arg)</computeroutput></para><emphasis role="strong">Value:</emphasis><programlisting>&#32;&#32;&#32;&#32;(&#32;\
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;(arg&#32;==&#32;<link linkend="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705af5b15f58cabad73d1bf2de7bcb89db6c">Language::RO</link>)&#32;?&#32;&#32;<emphasis role="stringliteral">&quot;\&quot;../TextToSpeech/RO/option2.txt\&quot;&quot;</emphasis>&#32;:&#32;\
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;\&quot;../TextToSpeech/EN/option2.txt\&quot;&quot;</emphasis>&#32;&#32;\
+&#32;&#32;&#32;&#32;)
+</programlisting>    </section><anchor xml:id="_textToSpeech_8cpp_1a47421296dec0660e28a7e864d798a554"/>    <section>
+    <title>OPTION_DEFAULT_MESSAGE_FILE</title>
+<indexterm><primary>OPTION_DEFAULT_MESSAGE_FILE</primary><secondary>textToSpeech.cpp</secondary></indexterm>
+<indexterm><primary>textToSpeech.cpp</primary><secondary>OPTION_DEFAULT_MESSAGE_FILE</secondary></indexterm>
+<para><computeroutput>#define OPTION_DEFAULT_MESSAGE_FILE( arg)</computeroutput></para><emphasis role="strong">Value:</emphasis><programlisting>&#32;&#32;&#32;&#32;(&#32;\
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;(arg&#32;==&#32;<link linkend="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705af5b15f58cabad73d1bf2de7bcb89db6c">Language::RO</link>)&#32;?&#32;&#32;<emphasis role="stringliteral">&quot;\&quot;../TextToSpeech/RO/default_guide_mode.txt\&quot;&quot;</emphasis>&#32;:&#32;\
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;\&quot;../TextToSpeech/EN/default_guide_mode.txt\&quot;&quot;</emphasis>&#32;&#32;\
+&#32;&#32;&#32;&#32;)
+</programlisting>    </section><anchor xml:id="_textToSpeech_8cpp_1a124e1db57c4d36f874d4b7a7c6314c34"/>    <section>
+    <title>REPEAT_MESSAGE_FILE</title>
+<indexterm><primary>REPEAT_MESSAGE_FILE</primary><secondary>textToSpeech.cpp</secondary></indexterm>
+<indexterm><primary>textToSpeech.cpp</primary><secondary>REPEAT_MESSAGE_FILE</secondary></indexterm>
+<para><computeroutput>#define REPEAT_MESSAGE_FILE( arg)</computeroutput></para><emphasis role="strong">Value:</emphasis><programlisting>&#32;&#32;&#32;&#32;(&#32;\
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;(arg&#32;==&#32;<link linkend="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705af5b15f58cabad73d1bf2de7bcb89db6c">Language::RO</link>)&#32;?&#32;&#32;<emphasis role="stringliteral">&quot;\&quot;../TextToSpeech/RO/repeat_selection.txt\&quot;&quot;</emphasis>&#32;:&#32;\
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;\&quot;../TextToSpeech/EN/repeat_selection.txt\&quot;&quot;</emphasis>&#32;&#32;\
+&#32;&#32;&#32;&#32;)
+</programlisting>    </section><anchor xml:id="_textToSpeech_8cpp_1a24fb686508252d57b7a77c7038f1c621"/>    <section>
+    <title>SECTION_A_MESSAGE_FILE</title>
+<indexterm><primary>SECTION_A_MESSAGE_FILE</primary><secondary>textToSpeech.cpp</secondary></indexterm>
+<indexterm><primary>textToSpeech.cpp</primary><secondary>SECTION_A_MESSAGE_FILE</secondary></indexterm>
+<para><computeroutput>#define SECTION_A_MESSAGE_FILE( arg)</computeroutput></para><emphasis role="strong">Value:</emphasis><programlisting>&#32;&#32;&#32;&#32;(&#32;\
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;(arg&#32;==&#32;<link linkend="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705af5b15f58cabad73d1bf2de7bcb89db6c">Language::RO</link>)&#32;?&#32;&#32;<emphasis role="stringliteral">&quot;\&quot;../TextToSpeech/RO/section_A_options.txt\&quot;&quot;</emphasis>&#32;:&#32;\
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;\&quot;../TextToSpeech/EN/section_A_options.txt\&quot;&quot;</emphasis>&#32;&#32;\
+&#32;&#32;&#32;&#32;)
+</programlisting>    </section><anchor xml:id="_textToSpeech_8cpp_1a18fda9588412170e199877963fc49ed5"/>    <section>
+    <title>SECTION_B_MESSAGE_FILE</title>
+<indexterm><primary>SECTION_B_MESSAGE_FILE</primary><secondary>textToSpeech.cpp</secondary></indexterm>
+<indexterm><primary>textToSpeech.cpp</primary><secondary>SECTION_B_MESSAGE_FILE</secondary></indexterm>
+<para><computeroutput>#define SECTION_B_MESSAGE_FILE( arg)</computeroutput></para><emphasis role="strong">Value:</emphasis><programlisting>&#32;&#32;&#32;&#32;(&#32;\
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;(arg&#32;==&#32;<link linkend="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705af5b15f58cabad73d1bf2de7bcb89db6c">Language::RO</link>)&#32;?&#32;&#32;<emphasis role="stringliteral">&quot;\&quot;../TextToSpeech/RO/section_B_options.txt\&quot;&quot;</emphasis>&#32;:&#32;\
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;\&quot;../TextToSpeech/EN/section_B_options.txt\&quot;&quot;</emphasis>&#32;&#32;\
+&#32;&#32;&#32;&#32;)
+</programlisting>    </section><anchor xml:id="_textToSpeech_8cpp_1a3be5f828488692d077310788ab6f7755"/>    <section>
+    <title>SECTION_C_MESSAGE_FILE</title>
+<indexterm><primary>SECTION_C_MESSAGE_FILE</primary><secondary>textToSpeech.cpp</secondary></indexterm>
+<indexterm><primary>textToSpeech.cpp</primary><secondary>SECTION_C_MESSAGE_FILE</secondary></indexterm>
+<para><computeroutput>#define SECTION_C_MESSAGE_FILE( arg)</computeroutput></para><emphasis role="strong">Value:</emphasis><programlisting>&#32;&#32;&#32;&#32;(&#32;\
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;(arg&#32;==&#32;<link linkend="_textToSpeech_8h_1a315ca917ad583797f709ea477dd28705af5b15f58cabad73d1bf2de7bcb89db6c">Language::RO</link>)&#32;?&#32;&#32;<emphasis role="stringliteral">&quot;\&quot;../TextToSpeech/RO/section_C_options.txt\&quot;&quot;</emphasis>&#32;:&#32;\
+&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="stringliteral">&quot;\&quot;../TextToSpeech/EN/section_C_options.txt\&quot;&quot;</emphasis>&#32;&#32;\
+&#32;&#32;&#32;&#32;)
+</programlisting>    </section><anchor xml:id="_textToSpeech_8cpp_1af95df1fe43f777efc3b65955863414e2"/>    <section>
+    <title>VISION_VOYAGER_EN_VOICE</title>
+<indexterm><primary>VISION_VOYAGER_EN_VOICE</primary><secondary>textToSpeech.cpp</secondary></indexterm>
+<indexterm><primary>textToSpeech.cpp</primary><secondary>VISION_VOYAGER_EN_VOICE</secondary></indexterm>
+<para><computeroutput>#define VISION_VOYAGER_EN_VOICE   &quot;mb-en1&quot;</computeroutput></para>    </section><anchor xml:id="_textToSpeech_8cpp_1a8008efd54a3950ad011c6749f167b621"/>    <section>
+    <title>VISION_VOYAGER_RO_VOICE</title>
+<indexterm><primary>VISION_VOYAGER_RO_VOICE</primary><secondary>textToSpeech.cpp</secondary></indexterm>
+<indexterm><primary>textToSpeech.cpp</primary><secondary>VISION_VOYAGER_RO_VOICE</secondary></indexterm>
+<para><computeroutput>#define VISION_VOYAGER_RO_VOICE   &quot;vv&quot;</computeroutput></para></section>
+</section>
+</section>

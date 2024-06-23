@@ -1,0 +1,276 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classApplicationModule" xml:lang="en-US">
+<title>ApplicationModule Class Reference</title>
+<indexterm><primary>ApplicationModule</primary></indexterm>
+<para>
+<computeroutput>#include &lt;application.h&gt;</computeroutput>
+</para>
+Collaboration diagram for ApplicationModule:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classApplicationModule__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static bool <link linkend="_classApplicationModule_1aac8fe86ca66a0312b5e25e3381207b56">TASK_LINE_FOLLOWING</link> ()</para>
+</listitem>
+            <listitem><para>static bool <link linkend="_classApplicationModule_1aea49f394bf8a78a8e0eb763fb25386ad">TASK_ROUTE_PLAYING</link> (string route_name)</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classApplicationModule_1aa496f6ae29a50213ae8791864abf6fb1">TASK_CAMERA_MODULE</link> ()</para>
+</listitem>
+            <listitem><para>static bool <link linkend="_classApplicationModule_1a25e8041073cdddae0c8718771624617b">TASK_RFID_READER_COMM</link> (optional&lt; string &gt; route_name)</para>
+</listitem>
+            <listitem><para>static bool <link linkend="_classApplicationModule_1a0728178f408b9774e041b07bfe8e78b4">TASK_ADMIN_MODE_WINDOW</link> (int argc, char *argv[])</para>
+</listitem>
+            <listitem><para>static bool <link linkend="_classApplicationModule_1a1fb13ba044f7d88ca5953b639ac0db5b">TASK_VOICE_RECOGNITION_WAIT</link> ()</para>
+</listitem>
+            <listitem><para>static bool <link linkend="_classApplicationModule_1a7478b1902c67265833910367f98af0e7">TASK_SAFETY_MEASURES</link> ()</para>
+</listitem>
+            <listitem><para>static bool <link linkend="_classApplicationModule_1a2ccc6ccd88a60af05ee5006ff75b2170">TASK_SPEAKING</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classApplicationModule_1ab6acb824765c059aa19e55a233855942">MODE_1_ROUTE_PLAYING</link> (string route_path)</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classApplicationModule_1adfcaf57051e24f5d200b10906297d5c3">MODE_2_LINE_FOLLOWER</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Private Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static void <link linkend="_classApplicationModule_1a129332dabe5e4022a726f6a3b9294ca3">capture_photo_and_send_to_process</link> ()</para>
+</listitem>
+            <listitem><para>static void <link linkend="_classApplicationModule_1ad9237d45f92535e55b5d5452d8dda3fc">increment_excel_route_count</link> (string route_path)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classApplicationModule_1a129332dabe5e4022a726f6a3b9294ca3"/>    <section>
+    <title>capture_photo_and_send_to_process()</title>
+<indexterm><primary>capture_photo_and_send_to_process</primary><secondary>ApplicationModule</secondary></indexterm>
+<indexterm><primary>ApplicationModule</primary><secondary>capture_photo_and_send_to_process</secondary></indexterm>
+<para><computeroutput>void ApplicationModule::capture_photo_and_send_to_process ( )<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classApplicationModule_a129332dabe5e4022a726f6a3b9294ca3_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classApplicationModule_1ad9237d45f92535e55b5d5452d8dda3fc"/>    <section>
+    <title>increment_excel_route_count()</title>
+<indexterm><primary>increment_excel_route_count</primary><secondary>ApplicationModule</secondary></indexterm>
+<indexterm><primary>ApplicationModule</primary><secondary>increment_excel_route_count</secondary></indexterm>
+<para><computeroutput>void ApplicationModule::increment_excel_route_count (string route_path)<computeroutput>[static]</computeroutput>, <computeroutput>[private]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classApplicationModule_ad9237d45f92535e55b5d5452d8dda3fc_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classApplicationModule_1ab6acb824765c059aa19e55a233855942"/>    <section>
+    <title>MODE_1_ROUTE_PLAYING()</title>
+<indexterm><primary>MODE_1_ROUTE_PLAYING</primary><secondary>ApplicationModule</secondary></indexterm>
+<indexterm><primary>ApplicationModule</primary><secondary>MODE_1_ROUTE_PLAYING</secondary></indexterm>
+<para><computeroutput>void ApplicationModule::MODE_1_ROUTE_PLAYING (string route_path)<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classApplicationModule_ab6acb824765c059aa19e55a233855942_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classApplicationModule_ab6acb824765c059aa19e55a233855942_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classApplicationModule_1adfcaf57051e24f5d200b10906297d5c3"/>    <section>
+    <title>MODE_2_LINE_FOLLOWER()</title>
+<indexterm><primary>MODE_2_LINE_FOLLOWER</primary><secondary>ApplicationModule</secondary></indexterm>
+<indexterm><primary>ApplicationModule</primary><secondary>MODE_2_LINE_FOLLOWER</secondary></indexterm>
+<para><computeroutput>void ApplicationModule::MODE_2_LINE_FOLLOWER ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classApplicationModule_adfcaf57051e24f5d200b10906297d5c3_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classApplicationModule_1a0728178f408b9774e041b07bfe8e78b4"/>    <section>
+    <title>TASK_ADMIN_MODE_WINDOW()</title>
+<indexterm><primary>TASK_ADMIN_MODE_WINDOW</primary><secondary>ApplicationModule</secondary></indexterm>
+<indexterm><primary>ApplicationModule</primary><secondary>TASK_ADMIN_MODE_WINDOW</secondary></indexterm>
+<para><computeroutput>bool ApplicationModule::TASK_ADMIN_MODE_WINDOW (int argc, char * argv[])<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classApplicationModule_a0728178f408b9774e041b07bfe8e78b4_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classApplicationModule_a0728178f408b9774e041b07bfe8e78b4_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classApplicationModule_1aa496f6ae29a50213ae8791864abf6fb1"/>    <section>
+    <title>TASK_CAMERA_MODULE()</title>
+<indexterm><primary>TASK_CAMERA_MODULE</primary><secondary>ApplicationModule</secondary></indexterm>
+<indexterm><primary>ApplicationModule</primary><secondary>TASK_CAMERA_MODULE</secondary></indexterm>
+<para><computeroutput>void ApplicationModule::TASK_CAMERA_MODULE ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classApplicationModule_aa496f6ae29a50213ae8791864abf6fb1_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classApplicationModule_1aac8fe86ca66a0312b5e25e3381207b56"/>    <section>
+    <title>TASK_LINE_FOLLOWING()</title>
+<indexterm><primary>TASK_LINE_FOLLOWING</primary><secondary>ApplicationModule</secondary></indexterm>
+<indexterm><primary>ApplicationModule</primary><secondary>TASK_LINE_FOLLOWING</secondary></indexterm>
+<para><computeroutput>bool ApplicationModule::TASK_LINE_FOLLOWING ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classApplicationModule_aac8fe86ca66a0312b5e25e3381207b56_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classApplicationModule_aac8fe86ca66a0312b5e25e3381207b56_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classApplicationModule_1a25e8041073cdddae0c8718771624617b"/>    <section>
+    <title>TASK_RFID_READER_COMM()</title>
+<indexterm><primary>TASK_RFID_READER_COMM</primary><secondary>ApplicationModule</secondary></indexterm>
+<indexterm><primary>ApplicationModule</primary><secondary>TASK_RFID_READER_COMM</secondary></indexterm>
+<para><computeroutput>bool ApplicationModule::TASK_RFID_READER_COMM (optional&lt; string &gt; route_name)<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classApplicationModule_a25e8041073cdddae0c8718771624617b_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classApplicationModule_1aea49f394bf8a78a8e0eb763fb25386ad"/>    <section>
+    <title>TASK_ROUTE_PLAYING()</title>
+<indexterm><primary>TASK_ROUTE_PLAYING</primary><secondary>ApplicationModule</secondary></indexterm>
+<indexterm><primary>ApplicationModule</primary><secondary>TASK_ROUTE_PLAYING</secondary></indexterm>
+<para><computeroutput>bool ApplicationModule::TASK_ROUTE_PLAYING (string route_name)<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classApplicationModule_aea49f394bf8a78a8e0eb763fb25386ad_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classApplicationModule_aea49f394bf8a78a8e0eb763fb25386ad_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classApplicationModule_1a7478b1902c67265833910367f98af0e7"/>    <section>
+    <title>TASK_SAFETY_MEASURES()</title>
+<indexterm><primary>TASK_SAFETY_MEASURES</primary><secondary>ApplicationModule</secondary></indexterm>
+<indexterm><primary>ApplicationModule</primary><secondary>TASK_SAFETY_MEASURES</secondary></indexterm>
+<para><computeroutput>bool ApplicationModule::TASK_SAFETY_MEASURES ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classApplicationModule_a7478b1902c67265833910367f98af0e7_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classApplicationModule_a7478b1902c67265833910367f98af0e7_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classApplicationModule_1a2ccc6ccd88a60af05ee5006ff75b2170"/>    <section>
+    <title>TASK_SPEAKING()</title>
+<indexterm><primary>TASK_SPEAKING</primary><secondary>ApplicationModule</secondary></indexterm>
+<indexterm><primary>ApplicationModule</primary><secondary>TASK_SPEAKING</secondary></indexterm>
+<para><computeroutput>bool ApplicationModule::TASK_SPEAKING ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classApplicationModule_a2ccc6ccd88a60af05ee5006ff75b2170_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classApplicationModule_a2ccc6ccd88a60af05ee5006ff75b2170_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classApplicationModule_1a1fb13ba044f7d88ca5953b639ac0db5b"/>    <section>
+    <title>TASK_VOICE_RECOGNITION_WAIT()</title>
+<indexterm><primary>TASK_VOICE_RECOGNITION_WAIT</primary><secondary>ApplicationModule</secondary></indexterm>
+<indexterm><primary>ApplicationModule</primary><secondary>TASK_VOICE_RECOGNITION_WAIT</secondary></indexterm>
+<para><computeroutput>bool ApplicationModule::TASK_VOICE_RECOGNITION_WAIT ( )<computeroutput>[static]</computeroutput></computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classApplicationModule_a1fb13ba044f7d88ca5953b639ac0db5b_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classApplicationModule_a1fb13ba044f7d88ca5953b639ac0db5b_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+<para>
+The documentation for this class was generated from the following files:</para>
+<link linkend="_application_8h">application.h</link><link linkend="_application_8cpp">application.cpp</link></section>
+</section>

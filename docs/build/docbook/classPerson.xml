@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_classPerson" xml:lang="en-US">
+<title>Person Class Reference</title>
+<indexterm><primary>Person</primary></indexterm>
+<para>
+<computeroutput>#include &lt;person.h&gt;</computeroutput>
+</para>
+Collaboration diagram for Person:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classPerson__coll__graph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_classPerson_1a88e2b39227c41a0f15899100e16fb208">Person</link> (string i, string f, string l, <link linkend="_person_8h_1acdd79a1a4f81dd6ee5cddcb21149b951">Role</link> r)</para>
+</listitem>
+            <listitem><para><link linkend="_classPerson_1a166bdb0cffc23ece15e36b67670a64ae">Person</link> (string i, string f, string l, string r)</para>
+</listitem>
+            <listitem><para>string <link linkend="_classPerson_1a6d4909b1084f65c9ebacb060995d5338">get_id</link> ()</para>
+</listitem>
+            <listitem><para>string <link linkend="_classPerson_1a130d762729bb4835325d70a1ec0672e7">get_first_name</link> ()</para>
+</listitem>
+            <listitem><para>string <link linkend="_classPerson_1ab59dfd49f95c62eefe43a38504019bd5">get_last_name</link> ()</para>
+</listitem>
+            <listitem><para>string <link linkend="_classPerson_1ad38bf7fefb0946f0262cb9ec5369c243">get_role</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Private Attributes    </title>
+        <itemizedlist>
+            <listitem><para>string <link linkend="_classPerson_1aba3701614d4a07376abd529f2d401603">id</link></para>
+</listitem>
+            <listitem><para>string <link linkend="_classPerson_1ada3d08944d33633b4a590c0aba29d95e">first_name</link></para>
+</listitem>
+            <listitem><para>string <link linkend="_classPerson_1afa7c2043eefb89ed03396c94d45b4c31">last_name</link></para>
+</listitem>
+            <listitem><para><link linkend="_person_8h_1acdd79a1a4f81dd6ee5cddcb21149b951">Role</link> <link linkend="_classPerson_1a629ae1ad39e4c234d09ee479ca3570ce">role</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_classPerson_1a88e2b39227c41a0f15899100e16fb208"/>    <section>
+    <title>Person()<computeroutput>[1/2]</computeroutput></title>
+<indexterm><primary>Person</primary><secondary>Person</secondary></indexterm>
+<indexterm><primary>Person</primary><secondary>Person</secondary></indexterm>
+<para><computeroutput>Person::Person (string i, string f, string l, <link linkend="_person_8h_1acdd79a1a4f81dd6ee5cddcb21149b951">Role</link> r)<computeroutput>[inline]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classPerson_1a166bdb0cffc23ece15e36b67670a64ae"/>    <section>
+    <title>Person()<computeroutput>[2/2]</computeroutput></title>
+<indexterm><primary>Person</primary><secondary>Person</secondary></indexterm>
+<indexterm><primary>Person</primary><secondary>Person</secondary></indexterm>
+<para><computeroutput>Person::Person (string i, string f, string l, string r)<computeroutput>[inline]</computeroutput></computeroutput></para></section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_classPerson_1a130d762729bb4835325d70a1ec0672e7"/>    <section>
+    <title>get_first_name()</title>
+<indexterm><primary>get_first_name</primary><secondary>Person</secondary></indexterm>
+<indexterm><primary>Person</primary><secondary>get_first_name</secondary></indexterm>
+<para><computeroutput>string Person::get_first_name ( )<computeroutput>[inline]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classPerson_a130d762729bb4835325d70a1ec0672e7_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classPerson_1a6d4909b1084f65c9ebacb060995d5338"/>    <section>
+    <title>get_id()</title>
+<indexterm><primary>get_id</primary><secondary>Person</secondary></indexterm>
+<indexterm><primary>Person</primary><secondary>get_id</secondary></indexterm>
+<para><computeroutput>string Person::get_id ( )<computeroutput>[inline]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classPerson_a6d4909b1084f65c9ebacb060995d5338_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classPerson_1ab59dfd49f95c62eefe43a38504019bd5"/>    <section>
+    <title>get_last_name()</title>
+<indexterm><primary>get_last_name</primary><secondary>Person</secondary></indexterm>
+<indexterm><primary>Person</primary><secondary>get_last_name</secondary></indexterm>
+<para><computeroutput>string Person::get_last_name ( )<computeroutput>[inline]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classPerson_ab59dfd49f95c62eefe43a38504019bd5_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_classPerson_1ad38bf7fefb0946f0262cb9ec5369c243"/>    <section>
+    <title>get_role()</title>
+<indexterm><primary>get_role</primary><secondary>Person</secondary></indexterm>
+<indexterm><primary>Person</primary><secondary>get_role</secondary></indexterm>
+<para><computeroutput>string Person::get_role ( )<computeroutput>[inline]</computeroutput></computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="classPerson_ad38bf7fefb0946f0262cb9ec5369c243_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Member Data Documentation</title>
+<anchor xml:id="_classPerson_1ada3d08944d33633b4a590c0aba29d95e"/>    <section>
+    <title>first_name</title>
+<indexterm><primary>first_name</primary><secondary>Person</secondary></indexterm>
+<indexterm><primary>Person</primary><secondary>first_name</secondary></indexterm>
+<para><computeroutput>string Person::first_name<computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classPerson_1aba3701614d4a07376abd529f2d401603"/>    <section>
+    <title>id</title>
+<indexterm><primary>id</primary><secondary>Person</secondary></indexterm>
+<indexterm><primary>Person</primary><secondary>id</secondary></indexterm>
+<para><computeroutput>string Person::id<computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classPerson_1afa7c2043eefb89ed03396c94d45b4c31"/>    <section>
+    <title>last_name</title>
+<indexterm><primary>last_name</primary><secondary>Person</secondary></indexterm>
+<indexterm><primary>Person</primary><secondary>last_name</secondary></indexterm>
+<para><computeroutput>string Person::last_name<computeroutput>[private]</computeroutput></computeroutput></para>    </section><anchor xml:id="_classPerson_1a629ae1ad39e4c234d09ee479ca3570ce"/>    <section>
+    <title>role</title>
+<indexterm><primary>role</primary><secondary>Person</secondary></indexterm>
+<indexterm><primary>Person</primary><secondary>role</secondary></indexterm>
+<para><computeroutput><link linkend="_person_8h_1acdd79a1a4f81dd6ee5cddcb21149b951">Role</link> Person::role<computeroutput>[private]</computeroutput></computeroutput></para></section>
+<para>
+The documentation for this class was generated from the following file:</para>
+<link linkend="_person_8h">person.h</link></section>
+</section>

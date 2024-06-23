@@ -1,0 +1,19 @@
+digraph "RouteRecordPlayer"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="12",labelfontname="Helvetica",labelfontsize="12"];
+  node [fontname="Helvetica",fontsize="12",shape=record];
+  Node1 [label="{RouteRecordPlayer\n||+ static void set_robot(VisionVoyager *robot)\l+ static void set_current_section(Building_Section section)\l+ static void play_route(string route_name)\l+ static void play_route_conditioned(string route_name)\l+ static SevereErrorType check_motors_feedback()\l+ static void avoid_right()\l- static string extract_command_name(string command)\l- static string extract_command_argument(string command)\l- static void play_command(string command_name, int miliseconds, optional\l\< int \> arg_value=nullopt)\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [color="grey25",fontsize="12",style="solid",label=" -avoiding_activated" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node2 [label="{bool\n||}",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node3 -> Node1 [color="grey25",fontsize="12",style="solid",label=" -current_section" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node3 [label="{static Building_Section\n||}",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node4 -> Node1 [color="grey25",fontsize="12",style="solid",label=" -robotVisionVoyager" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node4 [label="{VisionVoyager\n||+  VisionVoyager()\l+ void set_picar_python_object(py::object picar_python_object)\l+ void set_speed(int new_speed)\l+ void set_dir_angle(int new_dir_angle)\l+ void set_camera_tilt_angle(int new_camera_tilt_angle)\l+ void set_cam_pan_angle(int new_camera_pan_angle)\land 26 more...\l- void initialize_python_embedding()\l- vector\< int \> map_python_list_cpp_vector(py::list py_list)\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classVisionVoyager.html",tooltip=" "];
+  Node5 -> Node4 [color="grey25",fontsize="12",style="solid",label=" -angular_velocity\n-linear_velocity" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node5 [label="{float\n||}",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node6 -> Node4 [color="grey25",fontsize="12",style="solid",label=" -DIR_MAX\n-DIR_MIN\n-camera_pan_angle\n-camera_tilt_angle\n-dir_angle\n-speed" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node6 [label="{int\n||}",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node7 -> Node4 [color="grey25",fontsize="12",style="solid",label=" -picar_python_class\n-picar_python_module\n-picar_python_object" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node7 [label="{object\n||}",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+}

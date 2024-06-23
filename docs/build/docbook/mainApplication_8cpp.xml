@@ -1,0 +1,276 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_mainApplication_8cpp" xml:lang="en-US">
+<title>mainApplication.cpp File Reference</title>
+<indexterm><primary>mainApplication.cpp</primary></indexterm>
+<programlisting>#include &quot;ApplicationModule/application.h&quot;
+#include &lt;map&gt;
+</programlisting>Include dependency graph for mainApplication.cpp:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="mainApplication_8cpp__incl.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>atomic&lt; bool &gt; <link linkend="_mainApplication_8cpp_1af8fa54e75d955c22b3cfa27f12b1cffe">should_stop</link> (false)</para>
+</listitem>
+            <listitem><para>atomic&lt; bool &gt; <link linkend="_mainApplication_8cpp_1acd85a7bf0863700c50754f6907bc357a">route_complete</link> (false)</para>
+</listitem>
+            <listitem><para>atomic&lt; bool &gt; <link linkend="_mainApplication_8cpp_1a1e4d59c3f82dd62a8b541b23f7a95c43">severe_error</link> (false)</para>
+</listitem>
+            <listitem><para>atomic&lt; bool &gt; <link linkend="_mainApplication_8cpp_1a31ba41d69f29fe5a57aad090e03f1409">moving</link> (false)</para>
+</listitem>
+            <listitem><para>atomic&lt; bool &gt; <link linkend="_mainApplication_8cpp_1a5dbe2cfa4596fbaf5e9028c42293e308">avoiding</link> (false)</para>
+</listitem>
+            <listitem><para>atomic&lt; bool &gt; <link linkend="_mainApplication_8cpp_1ada1cce6db5e423ed5701f278e7d95a47">speak</link> (false)</para>
+</listitem>
+            <listitem><para>string <link linkend="_mainApplication_8cpp_1a49dec5f7745652d5fb54f79a2981a086">log_time</link> ()</para>
+</listitem>
+            <listitem><para>string <link linkend="_mainApplication_8cpp_1afcbe6269a7d3ba425f4e88a8adaca8fc">generate_log_filename</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_mainApplication_8cpp_1a57ceec33692649047d6863e34acfcd5e">initialize_log_file</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_mainApplication_8cpp_1ad340da2b0553157a441d8374e2d4acf6">initilize_main_app</link> ()</para>
+</listitem>
+            <listitem><para>void <link linkend="_mainApplication_8cpp_1a63c132c88aefeafccceed7b3cc3e9dde">terminate_main_app</link> ()</para>
+</listitem>
+            <listitem><para>string <link linkend="_mainApplication_8cpp_1a06dbd4dc8b6bc06cf5f7b750ba4ccb50">select_route_and_start</link> ()</para>
+</listitem>
+            <listitem><para>int <link linkend="_mainApplication_8cpp_1a0ddf1224851353fc92bfbff6f499fa97">main</link> (int argc, char *argv[])</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Variables    </title>
+        <itemizedlist>
+            <listitem><para>ofstream <link linkend="_mainApplication_8cpp_1af6fd65a690619ab800f6ddc3ff64eebb">logFile</link></para>
+</listitem>
+            <listitem><para>mutex <link linkend="_mainApplication_8cpp_1a29ac681ec3efa9e30e1ab1ab251b47f9">mtx</link></para>
+</listitem>
+            <listitem><para>mutex <link linkend="_mainApplication_8cpp_1a39289a780106bbc65294df3c2fa52c30">log_mutex</link></para>
+</listitem>
+            <listitem><para>mutex <link linkend="_mainApplication_8cpp_1a6419ffdeb191ce5ad1c7a3233df44844">tts_mutex</link></para>
+</listitem>
+            <listitem><para>mutex <link linkend="_mainApplication_8cpp_1a850fcb9a7a5e951eaac0b3a7349eb9cc">speak_mutex</link></para>
+</listitem>
+            <listitem><para>mutex <link linkend="_mainApplication_8cpp_1a6392937081a10e4ae6eb2ae8a4a0c26f">camera_mutex</link></para>
+</listitem>
+            <listitem><para><link linkend="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7c">SevereErrorType</link> <link linkend="_mainApplication_8cpp_1ad7cdb70d366cc0cb91e3c69093ce9d81">error_type</link> = <link linkend="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7cad306b6fdee05fe87455110ddf6501e6c">SevereErrorType::NO_ERROR</link></para>
+</listitem>
+            <listitem><para>map&lt; std::string, int &gt; <link linkend="_mainApplication_8cpp_1a2a6dec5a7596b4dd3fdddf88aa87dc48">route_map_no</link></para>
+</listitem>
+            <listitem><para>condition_variable <link linkend="_mainApplication_8cpp_1ab648739da84e80e6ee5bcdcbc5165ed0">waiting_condition</link></para>
+</listitem>
+            <listitem><para>condition_variable <link linkend="_mainApplication_8cpp_1afc1412b3545e832b73ad34e1025b4230">speaking_condition</link></para>
+</listitem>
+            <listitem><para>condition_variable <link linkend="_mainApplication_8cpp_1a8dee0b2f15c66cd20bd1c5878b9ec8b1">camera_condition</link></para>
+</listitem>
+            <listitem><para>string <link linkend="_mainApplication_8cpp_1aeb4ead7756ee619d8fed0211b6c7fa28">global_message</link></para>
+</listitem>
+            <listitem><para><link linkend="_application__utils_8h_1ae8dbf4356c44d679833a515752ca1d87">GuidingMode</link> <link linkend="_mainApplication_8cpp_1a59b9aba0a00c84dbf1c89ce7049f063d">guiding_mode</link> = <link linkend="_application__utils_8h_1ae8dbf4356c44d679833a515752ca1d87af6c6534586f263af344e4d086fb33095">GuidingMode::NO_GUIDING</link></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_mainApplication_8cpp_1a5dbe2cfa4596fbaf5e9028c42293e308"/>    <section>
+    <title>avoiding()</title>
+<indexterm><primary>avoiding</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>avoiding</secondary></indexterm>
+<para><computeroutput>atomic&lt;bool&gt; avoiding (false )</computeroutput></para>    </section><anchor xml:id="_mainApplication_8cpp_1afcbe6269a7d3ba425f4e88a8adaca8fc"/>    <section>
+    <title>generate_log_filename()</title>
+<indexterm><primary>generate_log_filename</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>generate_log_filename</secondary></indexterm>
+<para><computeroutput>string generate_log_filename ( )</computeroutput></para>Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="mainApplication_8cpp_afcbe6269a7d3ba425f4e88a8adaca8fc_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_mainApplication_8cpp_1a57ceec33692649047d6863e34acfcd5e"/>    <section>
+    <title>initialize_log_file()</title>
+<indexterm><primary>initialize_log_file</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>initialize_log_file</secondary></indexterm>
+<para><computeroutput>void initialize_log_file ( )</computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="mainApplication_8cpp_a57ceec33692649047d6863e34acfcd5e_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="mainApplication_8cpp_a57ceec33692649047d6863e34acfcd5e_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_mainApplication_8cpp_1ad340da2b0553157a441d8374e2d4acf6"/>    <section>
+    <title>initilize_main_app()</title>
+<indexterm><primary>initilize_main_app</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>initilize_main_app</secondary></indexterm>
+<para><computeroutput>void initilize_main_app ( )</computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="mainApplication_8cpp_ad340da2b0553157a441d8374e2d4acf6_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="mainApplication_8cpp_ad340da2b0553157a441d8374e2d4acf6_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_mainApplication_8cpp_1a49dec5f7745652d5fb54f79a2981a086"/>    <section>
+    <title>log_time()</title>
+<indexterm><primary>log_time</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>log_time</secondary></indexterm>
+<para><computeroutput>string log_time ( )</computeroutput></para>    </section><anchor xml:id="_mainApplication_8cpp_1a0ddf1224851353fc92bfbff6f499fa97"/>    <section>
+    <title>main()</title>
+<indexterm><primary>main</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>main</secondary></indexterm>
+<para><computeroutput>int main (int argc, char * argv[])</computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="mainApplication_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_mainApplication_8cpp_1a31ba41d69f29fe5a57aad090e03f1409"/>    <section>
+    <title>moving()</title>
+<indexterm><primary>moving</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>moving</secondary></indexterm>
+<para><computeroutput>atomic&lt;bool&gt; moving (false )</computeroutput></para>    </section><anchor xml:id="_mainApplication_8cpp_1acd85a7bf0863700c50754f6907bc357a"/>    <section>
+    <title>route_complete()</title>
+<indexterm><primary>route_complete</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>route_complete</secondary></indexterm>
+<para><computeroutput>atomic&lt;bool&gt; route_complete (false )</computeroutput></para>    </section><anchor xml:id="_mainApplication_8cpp_1a06dbd4dc8b6bc06cf5f7b750ba4ccb50"/>    <section>
+    <title>select_route_and_start()</title>
+<indexterm><primary>select_route_and_start</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>select_route_and_start</secondary></indexterm>
+<para><computeroutput>string select_route_and_start ( )</computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="mainApplication_8cpp_a06dbd4dc8b6bc06cf5f7b750ba4ccb50_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+    </section><anchor xml:id="_mainApplication_8cpp_1a1e4d59c3f82dd62a8b541b23f7a95c43"/>    <section>
+    <title>severe_error()</title>
+<indexterm><primary>severe_error</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>severe_error</secondary></indexterm>
+<para><computeroutput>atomic&lt;bool&gt; severe_error (false )</computeroutput></para>    </section><anchor xml:id="_mainApplication_8cpp_1af8fa54e75d955c22b3cfa27f12b1cffe"/>    <section>
+    <title>should_stop()</title>
+<indexterm><primary>should_stop</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>should_stop</secondary></indexterm>
+<para><computeroutput>atomic&lt;bool&gt; should_stop (false )</computeroutput></para>    </section><anchor xml:id="_mainApplication_8cpp_1ada1cce6db5e423ed5701f278e7d95a47"/>    <section>
+    <title>speak()</title>
+<indexterm><primary>speak</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>speak</secondary></indexterm>
+<para><computeroutput>atomic&lt;bool&gt; speak (false )</computeroutput></para>    </section><anchor xml:id="_mainApplication_8cpp_1a63c132c88aefeafccceed7b3cc3e9dde"/>    <section>
+    <title>terminate_main_app()</title>
+<indexterm><primary>terminate_main_app</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>terminate_main_app</secondary></indexterm>
+<para><computeroutput>void terminate_main_app ( )</computeroutput></para>Here is the call graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="mainApplication_8cpp_a63c132c88aefeafccceed7b3cc3e9dde_cgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+Here is the caller graph for this function:<para>
+    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="mainApplication_8cpp_a63c132c88aefeafccceed7b3cc3e9dde_icgraph.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+</section>
+</section>
+<section>
+<title>Variable Documentation</title>
+<anchor xml:id="_mainApplication_8cpp_1a8dee0b2f15c66cd20bd1c5878b9ec8b1"/>    <section>
+    <title>camera_condition</title>
+<indexterm><primary>camera_condition</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>camera_condition</secondary></indexterm>
+<para><computeroutput>condition_variable camera_condition</computeroutput></para>    </section><anchor xml:id="_mainApplication_8cpp_1a6392937081a10e4ae6eb2ae8a4a0c26f"/>    <section>
+    <title>camera_mutex</title>
+<indexterm><primary>camera_mutex</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>camera_mutex</secondary></indexterm>
+<para><computeroutput>mutex camera_mutex</computeroutput></para>    </section><anchor xml:id="_mainApplication_8cpp_1ad7cdb70d366cc0cb91e3c69093ce9d81"/>    <section>
+    <title>error_type</title>
+<indexterm><primary>error_type</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>error_type</secondary></indexterm>
+<para><computeroutput><link linkend="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7c">SevereErrorType</link> error_type = <link linkend="_application__utils_8h_1af0986f0409d7b1814a353d5a00d42d7cad306b6fdee05fe87455110ddf6501e6c">SevereErrorType::NO_ERROR</link></computeroutput></para>    </section><anchor xml:id="_mainApplication_8cpp_1aeb4ead7756ee619d8fed0211b6c7fa28"/>    <section>
+    <title>global_message</title>
+<indexterm><primary>global_message</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>global_message</secondary></indexterm>
+<para><computeroutput>string global_message</computeroutput></para>    </section><anchor xml:id="_mainApplication_8cpp_1a59b9aba0a00c84dbf1c89ce7049f063d"/>    <section>
+    <title>guiding_mode</title>
+<indexterm><primary>guiding_mode</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>guiding_mode</secondary></indexterm>
+<para><computeroutput><link linkend="_application__utils_8h_1ae8dbf4356c44d679833a515752ca1d87">GuidingMode</link> guiding_mode = <link linkend="_application__utils_8h_1ae8dbf4356c44d679833a515752ca1d87af6c6534586f263af344e4d086fb33095">GuidingMode::NO_GUIDING</link></computeroutput></para>    </section><anchor xml:id="_mainApplication_8cpp_1a39289a780106bbc65294df3c2fa52c30"/>    <section>
+    <title>log_mutex</title>
+<indexterm><primary>log_mutex</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>log_mutex</secondary></indexterm>
+<para><computeroutput>mutex log_mutex</computeroutput></para>    </section><anchor xml:id="_mainApplication_8cpp_1af6fd65a690619ab800f6ddc3ff64eebb"/>    <section>
+    <title>logFile</title>
+<indexterm><primary>logFile</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>logFile</secondary></indexterm>
+<para><computeroutput>ofstream logFile</computeroutput></para>    </section><anchor xml:id="_mainApplication_8cpp_1a29ac681ec3efa9e30e1ab1ab251b47f9"/>    <section>
+    <title>mtx</title>
+<indexterm><primary>mtx</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>mtx</secondary></indexterm>
+<para><computeroutput>mutex mtx</computeroutput></para>    </section><anchor xml:id="_mainApplication_8cpp_1a2a6dec5a7596b4dd3fdddf88aa87dc48"/>    <section>
+    <title>route_map_no</title>
+<indexterm><primary>route_map_no</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>route_map_no</secondary></indexterm>
+<para><computeroutput>map&lt;std::string, int&gt; route_map_no</computeroutput></para><emphasis role="strong">Initial value:</emphasis><programlisting>=&#32;{
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;ONE&quot;</emphasis>,&#32;0},
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;TWO&quot;</emphasis>,&#32;1},
+&#32;&#32;&#32;&#32;{<emphasis role="stringliteral">&quot;THREE&quot;</emphasis>,&#32;2}
+}
+</programlisting>    </section><anchor xml:id="_mainApplication_8cpp_1a850fcb9a7a5e951eaac0b3a7349eb9cc"/>    <section>
+    <title>speak_mutex</title>
+<indexterm><primary>speak_mutex</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>speak_mutex</secondary></indexterm>
+<para><computeroutput>mutex speak_mutex</computeroutput></para>    </section><anchor xml:id="_mainApplication_8cpp_1afc1412b3545e832b73ad34e1025b4230"/>    <section>
+    <title>speaking_condition</title>
+<indexterm><primary>speaking_condition</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>speaking_condition</secondary></indexterm>
+<para><computeroutput>condition_variable speaking_condition</computeroutput></para>    </section><anchor xml:id="_mainApplication_8cpp_1a6419ffdeb191ce5ad1c7a3233df44844"/>    <section>
+    <title>tts_mutex</title>
+<indexterm><primary>tts_mutex</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>tts_mutex</secondary></indexterm>
+<para><computeroutput>mutex tts_mutex</computeroutput></para>    </section><anchor xml:id="_mainApplication_8cpp_1ab648739da84e80e6ee5bcdcbc5165ed0"/>    <section>
+    <title>waiting_condition</title>
+<indexterm><primary>waiting_condition</primary><secondary>mainApplication.cpp</secondary></indexterm>
+<indexterm><primary>mainApplication.cpp</primary><secondary>waiting_condition</secondary></indexterm>
+<para><computeroutput>condition_variable waiting_condition</computeroutput></para></section>
+</section>
+</section>

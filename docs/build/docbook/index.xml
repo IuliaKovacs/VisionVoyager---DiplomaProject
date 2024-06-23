@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_index" xml:lang="en-US">
+    <info>
+    <title>Sistem robotic pentru ghidare în interiorul unei clădiri</title>
+    </info>
+<chapter>
+    <title>Namespace Documentation</title>
+<xi:include href="namespaceUi.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</chapter>
+<chapter>
+    <title>Class Documentation</title>
+    <xi:include href="classAdminModeWindow.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="classApplicationModule.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="classCameraModule.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="classCameraWidget.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="classFileDropWidget.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="classKeyboardControl.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="classLineFollower.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="classObstacleAvoidance.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="classPerson.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="classQLabel.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="classQMainWindow.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="classQWidget.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="structRFID__Tag__Information.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="classRouteRecordPlayer.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="classRouteRegistration.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="classTextToSpeech.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="classVisionVoyager.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="classVoiceRecognition.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</chapter>
+<chapter>
+    <title>File Documentation</title>
+    <xi:include href="adminModeUtils_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="adminModeWindow_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="adminModeWindow_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="application_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="application_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="application__utils_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="cameraModule_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="cameraModule_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="cameraModuleUtils_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="cameraWidget_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="cameraWidget_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="CMakeLists_8txt.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="crc_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="crc_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="dataCollectionUtils_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="detectLowerbody_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="faceRecognition_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="fileDropWidget_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="fileDropWidget_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="gpio__driver_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="gpio__driver_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="i2c__driver_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="i2c__driver_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="keyboardControl_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="keyboardControl_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="lineFollower_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="lineFollower_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="mainApplication_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="obstacleAvoidanceUtils_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="obstacleAvoidanceUtils_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="person_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="RFID__Manager_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="RFID__Manager_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="routeRecordPlayUtils_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="routeRecordPlayUtils_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="routeRegistrationUtils_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="routeRegistrationUtils_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="textToSpeech_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="textToSpeech_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="visionVoyager_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="visionVoyager_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="voiceRecognition_8cpp.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="voiceRecognition_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</chapter>
+<index/>
+</book>
