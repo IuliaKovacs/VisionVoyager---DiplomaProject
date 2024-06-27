@@ -15,7 +15,7 @@
 typedef enum{
     RFID_SEND_PING_EN,
     RFID_START_SYSTEM_INIT_EN,
-    RFID_STATUS_SYSTEM_INIT_EN,
+    RFID_STATUS_GET_SYSTEM_INIT_EN,
     RFID_START_ROOM_SEARCH_EN,
     RFID_STATUS_ROOM_SEARCH_EN,
     RFID_START_GET_ROOMS_EN,
@@ -194,17 +194,6 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
     strcpy(tag_info.room_name, ""); 
 
     RFID_init();
-    // st = RFID_Send_Ping();
-
-    // if(st == RFID_REQUEST_OK)
-    // {
-    //     logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " [RFID] Ping result: RFID_REQUEST_OK " << endl;
-    //     st = RFID_start_get_System_Init_Status(&system_init_status);
-    // }
-    // else
-    // {
-    //     // @ToDo TTS message
-    // }
 
     log_mutex.lock();
     logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " Route Playing Thread Started" << endl;
@@ -240,14 +229,25 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                 auto start_time = std::chrono::steady_clock::now();
                 auto end_time = start_time + std::chrono::milliseconds(milliseconds_to_count);
 
+                auto end_time_rfid = std::chrono::steady_clock::now();
+
                 while ((std::chrono::steady_clock::now() < end_time)) 
                 {   
-                    RFID_helper(&tag_info);
+
+                    
+                    if((std::chrono::steady_clock::now() > end_time_rfid))
+                    {
+                        RFID_helper(&tag_info);
+                    }
+
 
                     if(strcmp(tag_info.room_name, "") != 0)
-                    {
+                    {   
+
+                        // logFile << log_time() << LOG_RFID_PREFIX << "Found Room: " << tag_info.room_name << endl;
                         if(strcmp(last_room_name, tag_info.room_name) != 0)
                         {   
+                            end_time_rfid = std::chrono::steady_clock::now() + std::chrono::milliseconds(500);
                             string room_description_message;
                             logFile << log_time() << LOG_RFID_PREFIX << " Room name: " << tag_info.room_name << endl;
                             logFile << log_time() << LOG_RFID_PREFIX << " Room description: " << tag_info.room_description << endl;
@@ -296,58 +296,58 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                         }
                     }
 
-                    // if(ObstacleAvoidance::check_forward_safety())
-                    // {
-                    //     if((end_time - std::chrono::steady_clock::now()) > std::chrono::seconds(7))
-                    //     {
-                    //         std::chrono::duration<double> time_skipped = ObstacleAvoidance::obstacle_avoid();
-                    //         robotVisionVoyager->move_forward();
-                    //         end_time = end_time + std::chrono::duration_cast<std::chrono::steady_clock::duration>(time_skipped);
-                    //     }
-                    //     else
-                    //     {
-                    //         log_mutex.lock();
-                    //         logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Interrupted: Obstacle Detected! -> In this moment of route guiding the obstacle cannot be avoided! ---" << endl;
-                    //         logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Displaying acoustical warning ---" << endl;
-                    //         log_mutex.unlock();
-                    //         severe_error.store(true);
-                    //         error_type = SevereErrorType::IN_AIR;
-                    //         play_command("stop", 0);
-                    //         tts_mutex.lock();
-                    //         if(Language::EN == TextToSpeech::get_language())
-                    //         {   
-                    //             TextToSpeech::display_custom_message("In this moment of route guiding the obstacle cannot be avoided! \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
-                    //         }
-                    //         else
-                    //         {
-                    //             TextToSpeech::display_custom_message("În acest moment al rutei nu se poate ocoli obstacolul! \n\n\n Abandonare proces de ghidare! \n\n\n Contactați personalul clădirii!");
-                    //         }
-                    //         tts_mutex.unlock();
-                    //     }
-                    // }
+                    if(ObstacleAvoidance::check_forward_safety())
+                    {
+                        if((end_time - std::chrono::steady_clock::now()) > std::chrono::seconds(7))
+                        {
+                            std::chrono::duration<double> time_skipped = ObstacleAvoidance::obstacle_avoid();
+                            robotVisionVoyager->move_forward();
+                            end_time = end_time + std::chrono::duration_cast<std::chrono::steady_clock::duration>(time_skipped);
+                        }
+                        else
+                        {
+                            log_mutex.lock();
+                            logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Interrupted: Obstacle Detected! -> In this moment of route guiding the obstacle cannot be avoided! ---" << endl;
+                            logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Displaying acoustical warning ---" << endl;
+                            log_mutex.unlock();
+                            severe_error.store(true);
+                            error_type = SevereErrorType::IN_AIR;
+                            play_command("stop", 0);
+                            tts_mutex.lock();
+                            if(Language::EN == TextToSpeech::get_language())
+                            {   
+                                TextToSpeech::display_custom_message("In this moment of route guiding the obstacle cannot be avoided! \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
+                            }
+                            else
+                            {
+                                TextToSpeech::display_custom_message("În acest moment al rutei nu se poate ocoli obstacolul! \n\n\n Abandonare proces de ghidare! \n\n\n Contactați personalul clădirii!");
+                            }
+                            tts_mutex.unlock();
+                        }
+                    }
 
-                    // /* IMPORTANT: The threshold for IN AIR DETECTION must be calibrated before using this feature!
-                    //  * It depends on the surface on which the robot moves! */
-                    // if(true == LineFollower::verify_is_in_air())
-                    // {
-                    //     log_mutex.lock();
-                    //     logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Interrupted: The robot is either in air or on the edge of something! ---" << endl;
-                    //     logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Displaying acoustical warning ---" << endl;
-                    //     log_mutex.unlock();
-                    //     severe_error.store(true);
-                    //     error_type = SevereErrorType::IN_AIR;
-                    //     play_command("stop", 0);
-                    //     tts_mutex.lock();
-                    //     if(Language::EN == TextToSpeech::get_language())
-                    //     {   
-                    //         TextToSpeech::display_custom_message("The robot is in the air or on the edge of something \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
-                    //     }
-                    //     else
-                    //     {
-                    //         TextToSpeech::display_custom_message("Robotul este în aer sau pe marginea unei prăpăstii! \n\n\n Abandonare proces de ghidare \n\n\n Contactați personalul clădirii!");
-                    //     }
-                    //     tts_mutex.unlock();
-                    // }
+                    /* IMPORTANT: The threshold for IN AIR DETECTION must be calibrated before using this feature!
+                     * It depends on the surface on which the robot moves! */
+                    if(true == LineFollower::verify_is_in_air())
+                    {
+                        log_mutex.lock();
+                        logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Route Interrupted: The robot is either in air or on the edge of something! ---" << endl;
+                        logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " --- Displaying acoustical warning ---" << endl;
+                        log_mutex.unlock();
+                        severe_error.store(true);
+                        error_type = SevereErrorType::IN_AIR;
+                        play_command("stop", 0);
+                        tts_mutex.lock();
+                        if(Language::EN == TextToSpeech::get_language())
+                        {   
+                            TextToSpeech::display_custom_message("The robot is in the air or on the edge of something \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
+                        }
+                        else
+                        {
+                            TextToSpeech::display_custom_message("Robotul este în aer sau pe marginea unei prăpăstii! \n\n\n Abandonare proces de ghidare \n\n\n Contactați personalul clădirii!");
+                        }
+                        tts_mutex.unlock();
+                    }
 
                     if(severe_error.load())
                     {
@@ -551,17 +551,19 @@ void RouteRecordPlayer::avoid_right()
 }
 
 
+
 bool RouteRecordPlayer::RFID_helper(RFID_Tag_Information *out_tag_info)
 {
-    static bool result = false;
 
     switch(request_state_en)
     {
         case RFID_SEND_PING_EN:
+            cout << "RFID_SEND_PING_EN" << endl;
             st = RFID_Send_Ping();
             if(st == RFID_REQUEST_OK)
             {
-                request_state_en = RFID_START_SYSTEM_INIT_EN;
+                st = RFID_start_get_System_Init_Status(&system_init_status);
+                request_state_en = RFID_STATUS_GET_SYSTEM_INIT_EN;
             }
             else
             {
@@ -570,101 +572,80 @@ bool RouteRecordPlayer::RFID_helper(RFID_Tag_Information *out_tag_info)
 
         break;
 
-        case RFID_START_SYSTEM_INIT_EN:
-        st = RFID_start_get_System_Init_Status(&system_init_status);
-        if(st == RFID_REQUEST_PENDING)
-        {
-            request_state_en = RFID_STATUS_SYSTEM_INIT_EN;
-        }
-        else if((st == RFID_REQUEST_OK) && (system_init_status == true))
-        {
-            request_state_en = RFID_START_ROOM_SEARCH_EN;
-        }
-        break;
+        case RFID_STATUS_GET_SYSTEM_INIT_EN:
+        cout << "RFID_STATUS_GET_SYSTEM_INIT_EN" << endl;
 
-        case RFID_STATUS_SYSTEM_INIT_EN:
-        st = RFID_status_get_System_Init_Status(&system_init_status);
-        if((st == RFID_REQUEST_OK) && (system_init_status == true))
+        if(st != RFID_REQUEST_PENDING && st != RFID_REQUEST_OK)
         {
-            request_state_en = RFID_START_ROOM_SEARCH_EN;
+            request_state_en = RFID_SEND_PING_EN;
         }
         else if(st == RFID_REQUEST_PENDING)
         {
-            request_state_en = RFID_STATUS_SYSTEM_INIT_EN;
+            st = RFID_status_get_System_Init_Status(&system_init_status);
+            request_state_en = RFID_STATUS_GET_SYSTEM_INIT_EN;
+        }
+        else if((st == RFID_REQUEST_OK) && (system_init_status == true))
+        {
+            st = RFID_start_Room_Search(&op_status);
+            request_state_en = RFID_STATUS_ROOM_SEARCH_EN;
         }
         else 
         {
-            cout << "RFID System not initalized\n";
+            cout << "----- RFID Go back to SEND PING ----" << endl;
             request_state_en = RFID_SEND_PING_EN;
         }
         break;
 
-        case RFID_START_ROOM_SEARCH_EN:
-        st = RFID_start_Room_Search(&op_status);
-        result = false;
-
-        if(st == RFID_REQUEST_PENDING)
-        {
-            request_state_en = RFID_STATUS_ROOM_SEARCH_EN;
-        }
-        else if(st == RFID_REQUEST_OK && op_status == true)
-        {
-            request_state_en = RFID_START_GET_ROOMS_EN;
-        }
-
-        break;
 
         case RFID_STATUS_ROOM_SEARCH_EN:
-        st = RFID_status_Room_Search(&op_status);
-        // cout << "st: " << st << endl;
-        // cout << "op_status: " << op_status << endl;
-        if(st == RFID_REQUEST_PENDING)
+        cout << "RFID_STATUS_ROOM_SEARCH_EN" << endl;
+        
+        if(st != RFID_REQUEST_PENDING && st != RFID_REQUEST_OK)
         {
+            request_state_en = RFID_SEND_PING_EN;
+        }
+        else if(st == RFID_REQUEST_PENDING)
+        {
+            st = RFID_status_Room_Search(&op_status);
             request_state_en = RFID_STATUS_ROOM_SEARCH_EN;
         }
         else if(st == RFID_REQUEST_OK && op_status == true)
         {
-            request_state_en = RFID_START_GET_ROOMS_EN;
+            st = RFID_start_get_Rooms(&op_status);
+            request_state_en = RFID_STATUS_GET_ROOMS_EN;
         }
         else if(st == RFID_REQUEST_OK && op_status == false)
         {
-            request_state_en = RFID_START_ROOM_SEARCH_EN;
+            request_state_en = RFID_SEND_PING_EN;
         }
         break;
 
-        case RFID_START_GET_ROOMS_EN:
-        st=RFID_start_get_Rooms(&op_status);
-        if(st == RFID_REQUEST_PENDING)
-        {
-            request_state_en = RFID_STATUS_GET_ROOMS_EN;
-        }
-        else if(st == RFID_REQUEST_OK && op_status == true)
-        {
-            request_state_en = RFID_STATUS_GET_ROOMS_EN;
-        }
-        break;
 
         case RFID_STATUS_GET_ROOMS_EN:
-        st = RFID_status_get_Rooms(out_tag_info);
-        if(st == RFID_REQUEST_OK || st == RFID_REQUEST_NO_TAGS)
+        cout << "RFID_STATUS_GET_ROOMS_EN" << endl;
+        
+        if(st != RFID_REQUEST_PENDING && st != RFID_REQUEST_OK)
         {
-            // static auto start_rfid = std::chrono::steady_clock::now();
-            // static chrono::time_point<std::chrono::steady_clock> end_rfid_time = start_rfid + std::chrono::milliseconds(1000);
-            
-            /*INSEAMNA CA E OK*/
-            // if(std::chrono::steady_clock::now() > end_rfid_time)
-            // {
-                request_state_en = RFID_START_ROOM_SEARCH_EN;
-                result = true;
-            //     start_rfid = std::chrono::steady_clock::now();
-            //     end_rfid_time = start_rfid + std::chrono::milliseconds(1000);
-            // }
+            request_state_en = RFID_SEND_PING_EN;
+        }
+        else if(st == RFID_REQUEST_PENDING)
+        {
+            st = RFID_status_get_Rooms(out_tag_info);
+            request_state_en = RFID_STATUS_GET_ROOMS_EN;
+        }
+        else if(st == RFID_REQUEST_OK)
+        {
+            request_state_en = RFID_SEND_PING_EN;
+            cout << "---- AVEM TAG ----" << endl;
+        }
+        else if (st == RFID_REQUEST_NO_TAGS)
+        {
+            cout << "---- NUU AVEM TAG ----" << endl;
+            request_state_en = RFID_SEND_PING_EN;
         }
         break;
 
         default:
         break;
     }
-    cout << request_state_en << endl;
-    return result;
 }

@@ -27,11 +27,11 @@ bool ApplicationModule::TASK_LINE_FOLLOWING()
         TextToSpeech::display_custom_message("Rostește ONE dacă vrei să înregistrăm traseul");
     }
     tts_mutex.unlock();
-    // string option = VoiceRecognition::loop_listening_for_choices();
-    // if("ONE" == option)
-    // {
-    //     RouteRegistration::set_register_enabled_true();
-    // }
+    string option = VoiceRecognition::loop_listening_for_choices();
+    if("ONE" == option)
+    {
+        RouteRegistration::set_register_enabled_true();
+    }
     tts_mutex.lock();
     if(Language::EN == TextToSpeech::get_language())
     {   
@@ -225,7 +225,6 @@ void ApplicationModule::capture_photo_and_send_to_process()
 
     if(-1 != result)
     {
-        //@ToDo RO + EN
         Person recognized_person = CameraModule::get_person_by_id("s" + to_string(result));
         string tts_person = "Persoana: \n" + recognized_person.get_first_name() + "  " + recognized_person.get_last_name();
         log_mutex.lock();
@@ -263,13 +262,13 @@ void ApplicationModule::MODE_1_ROUTE_PLAYING(string route_path)
 
     route_path += ".txt";
     thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, route_path);
-    // thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
+    thread voice_recognition_thread(ApplicationModule::TASK_VOICE_RECOGNITION_WAIT);
     thread safety_thread(ApplicationModule::TASK_SAFETY_MEASURES);
     thread speaking_thread(ApplicationModule::TASK_SPEAKING);
     route_player_thread.join();
     safety_thread.join();
     speaking_thread.join();
-    // voice_recognition_thread.join();
+    voice_recognition_thread.join();
 }
 
 void ApplicationModule::MODE_2_LINE_FOLLOWER()

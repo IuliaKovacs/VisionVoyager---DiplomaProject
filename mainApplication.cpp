@@ -212,102 +212,103 @@ int main(int argc, char *argv[])
     /* ---- Start of Normal User Mode part ---- */   
 
 
-    // if(true != Admin_Mode)
-    // {
-    //     thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
+    if(true != Admin_Mode)
+    {
+        thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
 
-    //     log_mutex.lock();
-    //     logFile << log_time() << "[MainApp] --- Starting Normal User Mode ---" << endl;
-    //     log_mutex.unlock();
+        log_mutex.lock();
+        logFile << log_time() << "[MainApp] --- Starting Normal User Mode ---" << endl;
+        log_mutex.unlock();
 
-    //     TextToSpeech::display_hello_message();
+        system("play ../VoiceRecognition/blip_start.wav");
+        TextToSpeech::display_hello_message();
 
-    //     /* StandBy/Sleep state until "start" or "go" is recognized */
-    //     VoiceRecognition::loop_recognition_for_start();
-    //     logFile << log_time() << "[MainApp] Activation keyword recognized " << endl;
+        /* StandBy/Sleep state until "start" or "go" is recognized */
+        VoiceRecognition::loop_recognition_for_start();
+        logFile << log_time() << "[MainApp] Activation keyword recognized " << endl;
         
 
-    //     bool option_flag = false;
-    //     string option;
+        bool option_flag = false;
+        string option;
 
-    //     while(option_flag == false)
-    //     {
-    //         bool line_follow_available = LineFollower::get_line_status();
+        while(option_flag == false)
+        {
+            bool line_follow_available = LineFollower::get_line_status();
 
-    //         if(line_follow_available)
-    //         {
-    //             TextToSpeech::display_menu_options();
-    //             option = VoiceRecognition::loop_listening_for_choices();
+            if(line_follow_available)
+            {
+                TextToSpeech::display_menu_options();
+                option = VoiceRecognition::loop_listening_for_choices();
 
-    //             if((strcmp("UNKNOWN", option.c_str()) != 0) && (strcmp("THREE", option.c_str()) != 0))
-    //             {
-    //                 if(strcmp("ONE", option.c_str()) == 0)
-    //                 {   
-    //                     string route_path = "";
-    //                     logFile << log_time() << "[MainApp] Option 1 was selected (Route Player) " << endl;
-    //                     option_flag = true;                        
+                if((strcmp("UNKNOWN", option.c_str()) != 0) && (strcmp("THREE", option.c_str()) != 0))
+                {
+                    if(strcmp("ONE", option.c_str()) == 0)
+                    {   
+                        string route_path = "";
+                        logFile << log_time() << "[MainApp] Option 1 was selected (Route Player) " << endl;
+                        option_flag = true;                        
 
-    //                     while(true)
-    //                     {   
-    //                         route_path = select_route_and_start();
+                        while(true)
+                        {   
+                            route_path = select_route_and_start();
 
-    //                         if(route_path == "")
-    //                         {
-    //                             TextToSpeech::display_repeat_message();
-    //                         }
-    //                         else
-    //                         {
-    //                             break;
-    //                         }
-    //                     }
+                            if(route_path == "")
+                            {
+                                TextToSpeech::display_repeat_message();
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
 
-    //                     logFile << log_time() << "[MainApp] The selected route is: \"" << route_path << "\"" << endl;
-    //                     /* Start executing in paralell the Route Playing, Safety, Voice Recognition and RFID tag display Tasks */   
-    //                     ApplicationModule::MODE_1_ROUTE_PLAYING(route_path);
-    //                     break;
-    //                 }
-    //                 else if(strcmp("TWO", option.c_str()) == 0)
-    //                 {   
-    //                     logFile << log_time() << "[MainApp] Option 2 was selected (Line Follower) " << endl;
-    //                     TextToSpeech::display_option2_message();
-    //                     option_flag = true;
+                        logFile << log_time() << "[MainApp] The selected route is: \"" << route_path << "\"" << endl;
+                        /* Start executing in paralell the Route Playing, Safety, Voice Recognition and RFID tag display Tasks */   
+                        ApplicationModule::MODE_1_ROUTE_PLAYING(route_path);
+                        break;
+                    }
+                    else if(strcmp("TWO", option.c_str()) == 0)
+                    {   
+                        logFile << log_time() << "[MainApp] Option 2 was selected (Line Follower) " << endl;
+                        TextToSpeech::display_option2_message();
+                        option_flag = true;
 
-    //                     robot.set_direction_limits(DIR_MIN_LF, DIR_MAX_LF);
-    //                     /* Start executing in paralell the Line Following, Sagety, Voice Recognition and RFID Reader Tag Display Tasks */
-    //                     ApplicationModule::MODE_2_LINE_FOLLOWER();
-    //                     break;
-    //                 }
-    //             }
-    //             TextToSpeech::display_repeat_message();   
-    //         }
-    //         else 
-    //         {
-    //             string route_path = "";
-    //             logFile << log_time() << "[MainApp] Option 1 was selected (Route Player) by default (No Line Available) " << endl;
-    //             option_flag = true;
-    //             TextToSpeech::display_default_mode();
+                        robot.set_direction_limits(DIR_MIN_LF, DIR_MAX_LF);
+                        /* Start executing in paralell the Line Following, Sagety, Voice Recognition and RFID Reader Tag Display Tasks */
+                        ApplicationModule::MODE_2_LINE_FOLLOWER();
+                        break;
+                    }
+                }
+                TextToSpeech::display_repeat_message();   
+            }
+            else 
+            {
+                string route_path = "";
+                logFile << log_time() << "[MainApp] Option 1 was selected (Route Player) by default (No Line Available) " << endl;
+                option_flag = true;
+                TextToSpeech::display_default_mode();
  
-    //             while(true)
-    //             {   
-    //                 route_path = select_route_and_start();
+                while(true)
+                {   
+                    route_path = select_route_and_start();
 
-    //                 if(route_path == "")
-    //                 {
-    //                     TextToSpeech::display_repeat_message();
-    //                 }
-    //                 else
-    //                 {
-    //                     break;
-    //                 }
-    //             }
+                    if(route_path == "")
+                    {
+                        TextToSpeech::display_repeat_message();
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
 
-    //             logFile << log_time() << "[MainApp] The selected route is: \"" << route_path << "\"" << endl;
-    //             /* Start executing in paralell the Route Playing, Safety, Voice Recognition and RFID tag display Tasks */
-    //             ApplicationModule::MODE_1_ROUTE_PLAYING(route_path);
-    //         }
-    //     }
-    //     camera_thread.join();
-    // }
+                logFile << log_time() << "[MainApp] The selected route is: \"" << route_path << "\"" << endl;
+                /* Start executing in paralell the Route Playing, Safety, Voice Recognition and RFID tag display Tasks */
+                ApplicationModule::MODE_1_ROUTE_PLAYING(route_path);
+            }
+        }
+        camera_thread.join();
+    }
 
     
     /* ---- End of Normal User Mode part ---- */
@@ -315,7 +316,9 @@ int main(int argc, char *argv[])
 
 
     /* Thread testing part - route player */
-    ApplicationModule::MODE_1_ROUTE_PLAYING("../RouteDatabase/Section A/Secretariat AC");
+    // thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
+    // ApplicationModule::MODE_1_ROUTE_PLAYING("../RouteDatabase/Section A/Secretariat");
+    // camera_thread.join();
     // ApplicationModule::MODE_1_ROUTE_PLAYING("../RouteDatabase/Section B/Rectorat");
 
     /* Thread testing part - line follower */
