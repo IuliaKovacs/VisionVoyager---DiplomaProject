@@ -1,0 +1,3 @@
+[submodule "Digital_Twin_Simulation"]
+	path = Digital_Twin_Simulation
+	url = https://github.com/IuliaKovacs/Vision_Voyager_Digital_Twin
