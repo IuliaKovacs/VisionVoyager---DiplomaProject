@@ -27,8 +27,7 @@ condition_variable camera_condition;
 atomic<bool> speak(false);
 string global_message;
 GuidingMode guiding_mode = GuidingMode::NO_GUIDING;
-std::thread* ros_spin_thread = nullptr;
-std::shared_ptr<rclcpp::Node> ros_node = nullptr;
+
 
 
 
@@ -207,7 +206,7 @@ int main(int argc, char *argv[])
     LineFollower::set_robot(robot);
     ObstacleAvoidance::set_robot(robot);
 
-    int counter = 0; // Variabilă pentru a număra pașii de 100ms
+    int counter = 0; 
 
     rclcpp::TimerBase::SharedPtr timer;
 
@@ -233,7 +232,7 @@ int main(int argc, char *argv[])
                 timer->cancel();
             }
             rclcpp::shutdown();
-        }
+        } 
     });
 
     rclcpp::spin(ros_node);
