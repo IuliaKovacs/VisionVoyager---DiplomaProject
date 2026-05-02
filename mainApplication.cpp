@@ -212,13 +212,15 @@ int main(int argc, char *argv[])
     rclcpp::TimerBase::SharedPtr timer;
 
     timer = ros_node->create_wall_timer(
-    std::chrono::milliseconds(1000),
-    // ADAUGĂ &timer aici în listă ca să poată fi folosit în interior
+    std::chrono::milliseconds(100),
+    
     [robot, &counter, &timer]() { 
         counter++;
 
         if (counter <= 10) {
             robot->move_forward(); 
+            robot->set_cam_pan_angle(CAM_PAN_MAX);
+            robot->set_camera_tilt_angle(CAM_TILT_MAX);
         } 
         else if (counter <= 60) {
             robot->set_dir_angle(20); 
@@ -226,7 +228,6 @@ int main(int argc, char *argv[])
         else {
             robot->stop(); 
             
-            // Acum compilatorul va găsi 'timer'
             if (timer) {
                 timer->cancel();
             }

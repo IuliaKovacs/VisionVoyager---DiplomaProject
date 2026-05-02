@@ -4,14 +4,19 @@
 #include "HardwareInterfaces.h"
 #include <rclcpp/rclcpp.hpp>
 #include <geometry_msgs/msg/twist.hpp>
+#include <std_msgs/msg/float64.hpp>
 
 class SimVisionVoyager : public IVisionVoyagerInterface {
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_pub;
+    rclcpp::Publisher<std_msgs::msg::Float64>::SharedPtr pan_pub;
+    rclcpp::Publisher<std_msgs::msg::Float64>::SharedPtr tilt_pub;
     geometry_msgs::msg::Twist last_cmd;
 
 public:
     SimVisionVoyager(rclcpp::Node::SharedPtr node) {
         cmd_pub = node->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
+        pan_pub = node->create_publisher<std_msgs::msg::Float64>("/model/vision_voyager/joint/pan_joint/cmd_pos", 10);
+        tilt_pub = node->create_publisher<std_msgs::msg::Float64>("/model/vision_voyager/joint/tilt_joint/cmd_pos", 10);
         last_cmd.linear.x = 0.0;
         last_cmd.angular.z = 0.0;
     }
@@ -29,11 +34,17 @@ public:
     }
 
     void set_camera_tilt_angle(int angle) override {
-        // Implementation for setting camera tilt angle in simulation
+        auto msg = std_msgs::msg::Float64();
+        /* Change andgle sign because Gazebo has inverted axis */
+        msg.data = angle * -1.0 * (M_PI / 180.0);     
+        tilt_pub->publish(msg);
     }
 
     void set_cam_pan_angle(int angle) override {
-        // Implementation for setting camera servos in simulation
+        auto msg = std_msgs::msg::Float64();
+        /* Change andgle sign because Gazebo has inverted axis */
+        msg.data = angle * -1.0 * (M_PI / 180.0);
+        pan_pub->publish(msg);
     }
 
     void stop_robot() override {
