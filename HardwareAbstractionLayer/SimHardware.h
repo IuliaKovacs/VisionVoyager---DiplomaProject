@@ -6,10 +6,14 @@
 #include <geometry_msgs/msg/twist.hpp>
 #include <std_msgs/msg/float64.hpp>
 #include <sensor_msgs/msg/laser_scan.hpp>
+#include <sensor_msgs/msg/image.hpp>
 
 #define ULTRASONIC_THRESHOLD_MIN 0.02
 #define ULTRASONIC_THRESHOLD_MAX 3.0
 #define ULTRASONIC_NO_OBJECT_DISTANCE -1.0
+
+using namespace std;
+
 
 class SimVisionVoyager : public IVisionVoyagerInterface {
 
@@ -18,10 +22,15 @@ private:
     rclcpp::Publisher<std_msgs::msg::Float64>::SharedPtr pan_pub;
     rclcpp::Publisher<std_msgs::msg::Float64>::SharedPtr tilt_pub;
     rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr ultrasonic_sub;
+    rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr sub_gs_left;
+    rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr sub_gs_center;
+    rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr sub_gs_right;
+
     geometry_msgs::msg::Twist last_cmd;
     float last_ultrasonic_distance = 0.0;
+    vector<int> last_grayscale_values = {255, 255, 255};
 
-    void set_ultrasonic_communication(rclcpp::Node::SharedPtr node)
+    void setup_ultrasonic_communication(rclcpp::Node::SharedPtr node)
     {
         ultrasonic_sub = node->create_subscription<sensor_msgs::msg::LaserScan>("/ultrasonic/scan", 10, 
         [this](const sensor_msgs::msg::LaserScan::SharedPtr msg) 
@@ -42,12 +51,42 @@ private:
         });
     }
 
+
+    void setup_grayscale_communication(rclcpp::Node::SharedPtr node) {
+        /* Common callback for processing 1x1 image */
+        auto gs_callback = [this](const sensor_msgs::msg::Image::SharedPtr msg, int index) {
+            /* Since the image is 1x1 R8G8B8, msg->data will have 3 bytes (R, G, B) */
+            if (!msg->data.empty()) {
+                /* Calculate an average brightness value (grayscale) from the R, G and B values */
+                int gray = (msg->data[0] + msg->data[1] + msg->data[2]) / 3;
+                this->last_grayscale_values[index] = gray;
+            }
+        };
+        
+
+        sub_gs_left = node->create_subscription<sensor_msgs::msg::Image>(
+            "/line_follower/left", 10, [this, gs_callback](const sensor_msgs::msg::Image::SharedPtr msg) {
+                gs_callback(msg, 0);
+            });
+
+        sub_gs_center = node->create_subscription<sensor_msgs::msg::Image>(
+            "/line_follower/center", 10, [this, gs_callback](const sensor_msgs::msg::Image::SharedPtr msg) {
+                gs_callback(msg, 1);
+            });
+
+        sub_gs_right = node->create_subscription<sensor_msgs::msg::Image>(
+            "/line_follower/right", 10, [this, gs_callback](const sensor_msgs::msg::Image::SharedPtr msg) {
+                gs_callback(msg, 2);
+            });
+    }
+
 public:
     SimVisionVoyager(rclcpp::Node::SharedPtr node) {
         cmd_pub = node->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
         pan_pub = node->create_publisher<std_msgs::msg::Float64>("/model/vision_voyager/joint/pan_joint/cmd_pos", 10);
         tilt_pub = node->create_publisher<std_msgs::msg::Float64>("/model/vision_voyager/joint/tilt_joint/cmd_pos", 10);
-        set_ultrasonic_communication(node);
+        setup_ultrasonic_communication(node);
+        setup_grayscale_communication(node);
         last_cmd.linear.x = 0.0;
         last_cmd.angular.z = 0.0;
     }
@@ -84,9 +123,8 @@ public:
         cmd_pub->publish(last_cmd);
     }
 
-    std::vector<int> get_grayscale() override {
-        // Implementation for getting grayscale sensor data in simulation
-        return {};
+    vector<int> get_grayscale() override {
+        return last_grayscale_values;
     }
 
     float get_ultrasonic() override {
