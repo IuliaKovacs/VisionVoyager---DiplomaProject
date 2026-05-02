@@ -7,21 +7,25 @@
 
 class SimVisionVoyager : public IVisionVoyagerInterface {
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_pub;
+    geometry_msgs::msg::Twist last_cmd;
 
 public:
     SimVisionVoyager(rclcpp::Node::SharedPtr node) {
         cmd_pub = node->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
+        last_cmd.linear.x = 0.0;
+        last_cmd.angular.z = 0.0;
     }
 
     void set_motor_control(int speed, bool forward) override {
-        auto msg = geometry_msgs::msg::Twist();
-        msg.linear.x = forward ? 0.5 : -0.5;
-        cmd_pub->publish(msg);
+        last_cmd.linear.x = ((double)speed / 10.0) * (forward ? 1.0 : -1.0);
+        cmd_pub->publish(last_cmd);
     }
 
-    /* @ToDo */
     void set_steering(int angle) override {
-        // Implementation for setting steering in simulation
+        /* Change andgle sign because Gazebo has inverted axis for steering */
+        double angle_in_radians = angle * -1.0 * (M_PI / 180.0);
+        last_cmd.angular.z = angle_in_radians;
+        cmd_pub->publish(last_cmd);
     }
 
     void set_camera_tilt_angle(int angle) override {
@@ -33,7 +37,9 @@ public:
     }
 
     void stop_robot() override {
-        // Implementation for stopping robot in simulation
+        last_cmd.linear.x = 0.0;
+        last_cmd.angular.z = 0.0;
+        cmd_pub->publish(last_cmd);
     }
 
     std::vector<int> get_grayscale() override {

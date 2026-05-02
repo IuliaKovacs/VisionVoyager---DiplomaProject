@@ -5,7 +5,6 @@ set(SOURCES
 
 add_library(VisionVoyagerMoves STATIC ${SOURCES})
 
-
 target_include_directories(VisionVoyagerMoves PUBLIC 
     ${CMAKE_SOURCE_DIR}/HardwareAbstractionLayer
 )

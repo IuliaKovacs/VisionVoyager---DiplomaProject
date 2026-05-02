@@ -207,16 +207,34 @@ int main(int argc, char *argv[])
     LineFollower::set_robot(robot);
     ObstacleAvoidance::set_robot(robot);
 
-    // timer pentru control
-    auto timer = ros_node->create_wall_timer(
-        std::chrono::milliseconds(100),
-        [robot]() {
-            robot->move_forward();
-        });
+    int counter = 0; // Variabilă pentru a număra pașii de 100ms
+
+    rclcpp::TimerBase::SharedPtr timer;
+
+    timer = ros_node->create_wall_timer(
+    std::chrono::milliseconds(1000),
+    // ADAUGĂ &timer aici în listă ca să poată fi folosit în interior
+    [robot, &counter, &timer]() { 
+        counter++;
+
+        if (counter <= 10) {
+            robot->move_forward(); 
+        } 
+        else if (counter <= 60) {
+            robot->set_dir_angle(20); 
+        } 
+        else {
+            robot->stop(); 
+            
+            // Acum compilatorul va găsi 'timer'
+            if (timer) {
+                timer->cancel();
+            }
+            rclcpp::shutdown();
+        }
+    });
 
     rclcpp::spin(ros_node);
-    
-    rclcpp::shutdown();
     terminate_main_app();
 
     return 0;
