@@ -221,6 +221,7 @@ int main(int argc, char *argv[])
             robot->move_forward(); 
             robot->set_cam_pan_angle(CAM_PAN_MAX);
             robot->set_camera_tilt_angle(CAM_TILT_MAX);
+            logFile << log_time() << "Ultrasonic distance: "<<robot->read_ultrasonic_data()<<endl;
         } 
         else if (counter <= 60) {
             robot->set_dir_angle(20); 

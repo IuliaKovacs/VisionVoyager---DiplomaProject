@@ -19,6 +19,7 @@ find_package(OpenXLSX REQUIRED)
 if(BUILD_FOR_SIM)
     find_package(rclcpp REQUIRED)
     find_package(geometry_msgs REQUIRED)
+    find_package(sensor_msgs REQUIRED)
 endif()
 
 
@@ -44,6 +45,7 @@ if(BUILD_FOR_SIM)
     target_link_libraries(Application PRIVATE 
         rclcpp::rclcpp
         geometry_msgs::geometry_msgs__rosidl_typesupport_cpp
+        sensor_msgs::sensor_msgs__rosidl_generator_cpp
     )
 else()
     # Link VoiceRecognition and Python only for Real Hardware

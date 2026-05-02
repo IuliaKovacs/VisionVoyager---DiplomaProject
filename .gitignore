@@ -4,12 +4,6 @@
 /CameraModule/recognized_persons.txt
 /RouteDatabase
 /RFID
-TextToSpeach/EN/section_A_options.txt
-TextToSpeach/EN/section_B_options.txt
-TextToSpeach/EN/section_C_options.txt
-TextToSpeach/RO/section_A_options.txt
-TextToSpeach/RO/section_B_options.txt
-TextToSpeach/RO/section_C_options.txt
 CameraModule/faces_csv.txt
 CameraModule/recognized_persons.txt
 VisionVoyagerGUI/DataCollection/Logs
@@ -21,3 +15,5 @@ TextToSpeach/language.txt
 VisionVoyagerGUI/DataCollection/RoutesData.xlsx
 Doxygen__Documentation
 build
+TextToSpeech/EN
+TextToSpeech/RO

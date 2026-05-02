@@ -30,6 +30,7 @@ if(BUILD_FOR_SIM)
         ${OpenCV_LIBS}
         rclcpp::rclcpp
         geometry_msgs::geometry_msgs__rosidl_typesupport_cpp
+        sensor_msgs::sensor_msgs__rosidl_typesupport_cpp
     )
 else()
     target_link_libraries(KeyboardControl PRIVATE 

@@ -32,7 +32,8 @@ find_package(OpenXLSX REQUIRED)
 
 if(BUILD_FOR_SIM)
     find_package(rclcpp REQUIRED)
-    find_package(geometry_msgs REQUIRED) # Necesar pentru Twist.hpp
+    find_package(geometry_msgs REQUIRED) 
+    find_package(sensor_msgs REQUIRED)
 endif()
 
 
@@ -51,8 +52,8 @@ target_link_libraries(VisionVoyagerGUI PRIVATE
 if(BUILD_FOR_SIM)
     target_link_libraries(VisionVoyagerGUI PRIVATE 
         rclcpp::rclcpp
-        # Aceasta linie rezolva eroarea geometry_msgs/msg/twist.hpp
         geometry_msgs::geometry_msgs__rosidl_typesupport_cpp
+        sensor_msgs::sensor_msgs__rosidl_typesupport_cpp
     )
 endif()
 
@@ -68,6 +69,7 @@ if(BUILD_FOR_SIM)
     target_include_directories(VisionVoyagerGUI PRIVATE 
         ${rclcpp_INCLUDE_DIRS}
         ${geometry_msgs_INCLUDE_DIRS}
+        ${sensor_msgs_INCLUDE_DIRS}
     )
 else()
     target_include_directories(VisionVoyagerGUI PRIVATE /usr/include/arm-linux-gnueabihf/qt5)

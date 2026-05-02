@@ -1,10 +1,11 @@
 # RouteRecordPlayer/CMakeLists.txt
 
-# 1. Define the source files
+
 set(SOURCES
     routeRecordPlayUtils.cpp
     routeRecordPlayUtils.h
 )
+
 
 add_library(RouteRecordPlayer STATIC ${SOURCES})
 
@@ -57,7 +58,6 @@ target_include_directories(RouteRecordPlayer PRIVATE
     "../RFID"
     "../HardwareAbstractionLayer"
 )
-
 
 if(BUILD_FOR_SIM)
     target_include_directories(RouteRecordPlayer PRIVATE 
