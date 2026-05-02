@@ -1,12 +1,25 @@
 #ifndef VISION_VOYAGER
 #define VISION_VOYAGER
 
-#include <pybind11/embed.h>
-#include <pybind11/pybind11.h>
+#ifndef USE_SIMULATION
+    #include <pybind11/embed.h>
+    #include <pybind11/pybind11.h>
+#else
+    #include "rclcpp/rclcpp.hpp"
+#endif
+
 #include <iostream>
 #include <vector>
 #include "../ApplicationModule/application_utils.h"
+#include "../HardwareAbstractionLayer/HardwareInterfaces.h"
 
+/* Include both Sim and Real hardware headers, but the compiler will only "see" the relevant code
+ based on the USE_SIMULATION flag defined in CMake */
+#ifdef USE_SIMULATION
+    #include "SimHardware.h"
+#else
+    #include "RealHardware.h"
+#endif
 
 #ifdef DEBUG
 #define DEBUG_MSG(str) do { std::cout << str << std::endl; } while( false )
@@ -28,16 +41,20 @@
 #define CAM_TILT_MAX 65
 
 using namespace std;
-namespace py = pybind11;
-
+#ifndef USE_SIMULATION
+    namespace py = pybind11;
+#endif
 
 
 
 class VisionVoyager
 {
+    IVisionVoyagerInterface* hw;
+#ifndef USE_SIMULATION
     py::object picar_python_module;
     py::object picar_python_class;
     py::object picar_python_object;
+#endif
     int DIR_MIN;
     int DIR_MAX;
     int speed;
@@ -47,11 +64,17 @@ class VisionVoyager
     float angular_velocity = 0.0f;
     float linear_velocity = 0.0f;
     void initialize_python_embedding();
-    vector<int> map_python_list_cpp_vector(py::list py_list);
 public:
 
-	VisionVoyager();
+#ifdef USE_SIMULATION
+    /* Constructor used on laptop receives the ROS 2 node */ 
+    VisionVoyager(rclcpp::Node::SharedPtr node); 
+#else
+    /* Constructor used on Pi does not receive any parameters */
+    VisionVoyager();
     void set_picar_python_object(py::object picar_python_object);
+#endif
+
     void set_speed(int new_speed);
     void set_dir_angle(int new_dir_angle);
     void set_camera_tilt_angle(int new_camera_tilt_angle);

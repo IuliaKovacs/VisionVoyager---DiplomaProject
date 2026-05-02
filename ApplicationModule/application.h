@@ -12,8 +12,10 @@
 #include "../TextToSpeech/textToSpeech.h"
 #include "application_utils.h"
 #include <optional>
-#include <pybind11/embed.h>
-#include <pybind11/pybind11.h>
+#ifndef USE_SIMULATION
+    #include <pybind11/embed.h>
+    #include <pybind11/pybind11.h>
+#endif
 
 using namespace std;
 
@@ -21,6 +23,9 @@ extern ofstream logFile;
 
 class ApplicationModule
 {
+
+#ifndef USE_SIMULATION
+
     static void capture_photo_and_send_to_process();
     static void increment_excel_route_count(string route_path);
 
@@ -35,6 +40,8 @@ public:
     static bool TASK_SPEAKING();
     static void MODE_1_ROUTE_PLAYING(string route_path);
     static void MODE_2_LINE_FOLLOWER();
+
+#endif
 
 };
 

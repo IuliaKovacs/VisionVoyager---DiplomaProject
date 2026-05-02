@@ -1,6 +1,8 @@
 #ifndef VOICE_RECOGNITION
 #define VOICE_RECOGNITION
 
+#ifndef USE_SIMULATION
+
 #include "../ApplicationModule/application_utils.h"
 #include <pocketsphinx.h>
 #include <signal.h>
@@ -28,5 +30,7 @@ public:
     static void loop_listening_for_wait();
     static string loop_listening_for_choices();
 };
+
+#endif
 
 #endif //VOICE_RECOGNITION

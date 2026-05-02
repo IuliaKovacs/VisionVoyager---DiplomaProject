@@ -1,10 +1,16 @@
-#include <pybind11/embed.h>
-#include <pybind11/pybind11.h>
+#ifndef USE_SIMULATION
+    #include <pybind11/embed.h>
+    #include <pybind11/pybind11.h>
+#endif
 #include "../VisionVoyagerGUI/adminModeWindow.h"
 #include "application.h"
 #include "../RFID/RFID_Manager.h"
 #include <chrono>
 #include <ctime>
+
+#ifdef border
+    #undef border
+#endif
 #include <OpenXLSX.hpp>
 
 #define CAPTURED_IMAGES_PATH "../CameraModule/CapturedImages"
@@ -13,6 +19,9 @@
 
 using namespace std;
 using namespace OpenXLSX;
+
+#ifndef USE_SIMULATION
+
 
 bool ApplicationModule::TASK_LINE_FOLLOWING()
 {   
@@ -292,3 +301,5 @@ void ApplicationModule::MODE_2_LINE_FOLLOWER()
     speaking_thread.join();
     voice_recognition_thread.join();
 }
+
+#endif

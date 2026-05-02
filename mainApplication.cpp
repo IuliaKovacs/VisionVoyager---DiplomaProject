@@ -27,6 +27,10 @@ condition_variable camera_condition;
 atomic<bool> speak(false);
 string global_message;
 GuidingMode guiding_mode = GuidingMode::NO_GUIDING;
+std::thread* ros_spin_thread = nullptr;
+std::shared_ptr<rclcpp::Node> ros_node = nullptr;
+
+
 
 
 const char* vv_art = R"(                                                                                                                        
@@ -116,7 +120,7 @@ void terminate_main_app()
     logFile.close();
 }
 
-
+/*
 string select_route_and_start()
 {   
     string route_path = "";
@@ -176,156 +180,46 @@ string select_route_and_start()
 
     return route_path;
 }
+*/
 
 
 
 int main(int argc, char *argv[]) 
 {    
     initilize_main_app();
+    
 
+#ifndef USE_SIMULATION    
     /* pybind11 specific - starts the interpreter and maintains it alive */
     py::scoped_interpreter guard{}; 
+    VisionVoyager* robot = new VisionVoyager();
+#else
+    rclcpp::init(argc, argv);
+    auto ros_node = std::make_shared<rclcpp::Node>("vision_voyager_node");
+    VisionVoyager* robot = new VisionVoyager(ros_node);
 
-    VisionVoyager robot = VisionVoyager();
-    robot.set_direction_limits(DIR_MIN_RG, DIR_MAX_RG);
-    RouteRecordPlayer::set_robot(&robot);
-    KeyboardControl::set_robot(&robot);
-    LineFollower::set_robot(&robot);
-    ObstacleAvoidance::set_robot(&robot);
+    std::cout << "[ROS2] Node-ul ROS 2 a fost creat." << std::endl;
+#endif
 
+    robot->set_direction_limits(DIR_MIN_RG, DIR_MAX_RG);
+    RouteRecordPlayer::set_robot(robot);
+    KeyboardControl::set_robot(robot);
+    LineFollower::set_robot(robot);
+    ObstacleAvoidance::set_robot(robot);
 
-    /* ---- Start of Admin Mode part ---- */
+    // timer pentru control
+    auto timer = ros_node->create_wall_timer(
+        std::chrono::milliseconds(100),
+        [robot]() {
+            robot->move_forward();
+        });
+
+    rclcpp::spin(ros_node);
     
-    KeyboardControl::F11_listening_loop();
-    bool Admin_Mode = KeyboardControl::get_F11_pressed();
-
-    if(true == Admin_Mode)
-    {   
-        logFile << log_time() << "[MainApp] --- Starting Admin Mode Window ---" << endl;
-        ApplicationModule::TASK_ADMIN_MODE_WINDOW(argc, argv);
-    }
-
-    /* ---- End of Admin Mode part ---- */
-
-
-
-    /* ---- Start of Normal User Mode part ---- */   
-
-
-    if(true != Admin_Mode)
-    {
-        thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
-
-        log_mutex.lock();
-        logFile << log_time() << "[MainApp] --- Starting Normal User Mode ---" << endl;
-        log_mutex.unlock();
-
-        system("play ../VoiceRecognition/blip_start.wav");
-        TextToSpeech::display_hello_message();
-
-        /* StandBy/Sleep state until "start" or "go" is recognized */
-        VoiceRecognition::loop_recognition_for_start();
-        logFile << log_time() << "[MainApp] Activation keyword recognized " << endl;
-        
-
-        bool option_flag = false;
-        string option;
-
-        while(option_flag == false)
-        {
-            bool line_follow_available = LineFollower::get_line_status();
-
-            if(line_follow_available)
-            {
-                TextToSpeech::display_menu_options();
-                option = VoiceRecognition::loop_listening_for_choices();
-
-                if((strcmp("UNKNOWN", option.c_str()) != 0) && (strcmp("THREE", option.c_str()) != 0))
-                {
-                    if(strcmp("ONE", option.c_str()) == 0)
-                    {   
-                        string route_path = "";
-                        logFile << log_time() << "[MainApp] Option 1 was selected (Route Player) " << endl;
-                        option_flag = true;                        
-
-                        while(true)
-                        {   
-                            route_path = select_route_and_start();
-
-                            if(route_path == "")
-                            {
-                                TextToSpeech::display_repeat_message();
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        }
-
-                        logFile << log_time() << "[MainApp] The selected route is: \"" << route_path << "\"" << endl;
-                        /* Start executing in paralell the Route Playing, Safety, Voice Recognition and RFID tag display Tasks */   
-                        ApplicationModule::MODE_1_ROUTE_PLAYING(route_path);
-                        break;
-                    }
-                    else if(strcmp("TWO", option.c_str()) == 0)
-                    {   
-                        logFile << log_time() << "[MainApp] Option 2 was selected (Line Follower) " << endl;
-                        TextToSpeech::display_option2_message();
-                        option_flag = true;
-
-                        robot.set_direction_limits(DIR_MIN_LF, DIR_MAX_LF);
-                        /* Start executing in paralell the Line Following, Sagety, Voice Recognition and RFID Reader Tag Display Tasks */
-                        ApplicationModule::MODE_2_LINE_FOLLOWER();
-                        break;
-                    }
-                }
-                TextToSpeech::display_repeat_message();   
-            }
-            else 
-            {
-                string route_path = "";
-                logFile << log_time() << "[MainApp] Option 1 was selected (Route Player) by default (No Line Available) " << endl;
-                option_flag = true;
-                TextToSpeech::display_default_mode();
- 
-                while(true)
-                {   
-                    route_path = select_route_and_start();
-
-                    if(route_path == "")
-                    {
-                        TextToSpeech::display_repeat_message();
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-
-                logFile << log_time() << "[MainApp] The selected route is: \"" << route_path << "\"" << endl;
-                /* Start executing in paralell the Route Playing, Safety, Voice Recognition and RFID tag display Tasks */
-                ApplicationModule::MODE_1_ROUTE_PLAYING(route_path);
-            }
-        }
-        camera_thread.join();
-    }
-
-    
-    /* ---- End of Normal User Mode part ---- */
-
-
-
-    /* Thread testing part - route player */
-    // thread camera_thread(ApplicationModule::TASK_CAMERA_MODULE);
-    // ApplicationModule::MODE_1_ROUTE_PLAYING("../RouteDatabase/Section A/Secretariat");
-    // camera_thread.join();
-    // ApplicationModule::MODE_1_ROUTE_PLAYING("../RouteDatabase/Section B/Rectorat");
-
-    /* Thread testing part - line follower */
-    // robot.set_direction_limits(DIR_MIN_LF, DIR_MAX_LF);
-    // ApplicationModule::MODE_2_LINE_FOLLOWER();
-
+    rclcpp::shutdown();
     terminate_main_app();
 
     return 0;
 }
+
+
