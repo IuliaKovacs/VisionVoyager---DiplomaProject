@@ -69,6 +69,7 @@ public:
 #ifdef USE_SIMULATION
     /* Constructor used on laptop receives the ROS 2 node */ 
     VisionVoyager(rclcpp::Node::SharedPtr node); 
+    void publish_all();
 #else
     /* Constructor used on Pi does not receive any parameters */
     VisionVoyager();

@@ -27,6 +27,9 @@ private:
     rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr sub_gs_right;
 
     geometry_msgs::msg::Twist last_cmd;
+    std_msgs::msg::Float64  last_pan;
+    std_msgs::msg::Float64  last_tilt;
+
     float last_ultrasonic_distance = 0.0;
     vector<int> last_grayscale_values = {255, 255, 255};
 
@@ -52,7 +55,8 @@ private:
     }
 
 
-    void setup_grayscale_communication(rclcpp::Node::SharedPtr node) {
+    void setup_grayscale_communication(rclcpp::Node::SharedPtr node) 
+    {
         /* Common callback for processing 1x1 image */
         auto gs_callback = [this](const sensor_msgs::msg::Image::SharedPtr msg, int index) {
             /* Since the image is 1x1 R8G8B8, msg->data will have 3 bytes (R, G, B) */
@@ -80,8 +84,10 @@ private:
             });
     }
 
+
 public:
-    SimVisionVoyager(rclcpp::Node::SharedPtr node) {
+    SimVisionVoyager(rclcpp::Node::SharedPtr node) 
+    {
         cmd_pub = node->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
         pan_pub = node->create_publisher<std_msgs::msg::Float64>("/model/vision_voyager/joint/pan_joint/cmd_pos", 10);
         tilt_pub = node->create_publisher<std_msgs::msg::Float64>("/model/vision_voyager/joint/tilt_joint/cmd_pos", 10);
@@ -91,47 +97,55 @@ public:
         last_cmd.angular.z = 0.0;
     }
 
-    void set_motor_control(int speed, bool forward) override {
-        last_cmd.linear.x = ((double)speed / 10.0) * (forward ? 1.0 : -1.0);
+    void publish_all()
+    {
         cmd_pub->publish(last_cmd);
+        pan_pub->publish(last_pan);
+        tilt_pub->publish(last_tilt);
     }
 
-    void set_steering(int angle) override {
+    void set_motor_control(int speed, bool forward) override 
+    {
+        last_cmd.linear.x = ((double)speed / 10.0) * (forward ? 1.0 : -1.0);
+    }
+
+    void set_steering(int angle) override 
+    {
         /* Change andgle sign because Gazebo has inverted axis for steering */
         double angle_in_radians = angle * -1.0 * (M_PI / 180.0);
         last_cmd.angular.z = angle_in_radians;
-        cmd_pub->publish(last_cmd);
     }
 
-    void set_camera_tilt_angle(int angle) override {
-        auto msg = std_msgs::msg::Float64();
+    void set_camera_tilt_angle(int angle) override 
+    {
         /* Change andgle sign because Gazebo has inverted axis */
-        msg.data = angle * -1.0 * (M_PI / 180.0);     
-        tilt_pub->publish(msg);
+        last_tilt.data = angle * -1.0 * (M_PI / 180.0);     
     }
 
-    void set_cam_pan_angle(int angle) override {
-        auto msg = std_msgs::msg::Float64();
+    void set_cam_pan_angle(int angle) override 
+    {
         /* Change andgle sign because Gazebo has inverted axis */
-        msg.data = angle * -1.0 * (M_PI / 180.0);
-        pan_pub->publish(msg);
+        last_pan.data = angle * -1.0 * (M_PI / 180.0);
     }
 
-    void stop_robot() override {
+    void stop_robot() override 
+    {
         last_cmd.linear.x = 0.0;
         last_cmd.angular.z = 0.0;
-        cmd_pub->publish(last_cmd);
     }
 
-    vector<int> get_grayscale() override {
+    vector<int> get_grayscale() override 
+    {
         return last_grayscale_values;
     }
 
-    float get_ultrasonic() override {
+    float get_ultrasonic() override 
+    {
         return last_ultrasonic_distance;
     }
     
-    SevereErrorType run_hall_checks() override {
+    SevereErrorType run_hall_checks() override 
+    {
         // No hall sensors in simulation, so this can be a no-op or return simulated data
         return SevereErrorType::NO_ERROR;
     }

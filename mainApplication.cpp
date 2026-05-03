@@ -207,35 +207,54 @@ int main(int argc, char *argv[])
     ObstacleAvoidance::set_robot(robot);
 
     int counter = 0; 
-
+    int stop_counter = -1;
+    rclcpp::TimerBase::SharedPtr publish_timer;
     rclcpp::TimerBase::SharedPtr timer;
 
-    timer = ros_node->create_wall_timer(
-    std::chrono::milliseconds(100),
-    
-    [robot, &counter, &timer]() { 
-        counter++;
+    publish_timer = ros_node->create_wall_timer(
+        std::chrono::milliseconds(100),
+        [robot]() 
+        {
+            robot->publish_all(); 
+        });
 
-        if (counter <= 10) {
-            robot->move_forward(); 
-            robot->set_cam_pan_angle(CAM_PAN_MAX);
-            robot->set_camera_tilt_angle(CAM_TILT_MAX);
+
+    timer = ros_node->create_wall_timer(
+        100ms,
+        [robot, &counter, &stop_counter, &timer, &publish_timer]() 
+        {
+
+            counter++;
+
+            if (counter == 1) {
+                robot->move_forward();
+            }
+            else if (counter == 10) {
+                robot->set_dir_angle(20);
+            }
+            else if (counter == 60) {
+                robot->stop();
+                /* Start the shutdown timer */
+                stop_counter = 0;
+            }
+
+            if (stop_counter >= 0) {
+                stop_counter++;
+
+                if (stop_counter >= 40) 
+                { 
+                    publish_timer->cancel();
+                    if (timer) timer->cancel();
+                    rclcpp::shutdown();
+                }
+            }
+
+
             logFile << log_time() << "Ultrasonic distance: "<<robot->read_ultrasonic_data()<<endl;
             std::vector<int> gs = robot->read_grayscale_data();
             logFile << log_time() <<"Grayscale values: [ "<<gs[0]<<", "<< gs[1] <<", "<<gs[2]<<" ]"<<endl;
-        } 
-        else if (counter <= 60) {
-            robot->set_dir_angle(20); 
-        } 
-        else {
-            robot->stop(); 
-            
-            if (timer) {
-                timer->cancel();
-            }
-            rclcpp::shutdown();
-        } 
-    });
+
+        });
 
     rclcpp::spin(ros_node);
     terminate_main_app();

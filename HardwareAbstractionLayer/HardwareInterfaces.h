@@ -20,7 +20,13 @@ public:
     virtual float get_ultrasonic() = 0;
     
     // Hall Sensors (Only real HW robot specific)
-    virtual SevereErrorType run_hall_checks() = 0; 
+    virtual SevereErrorType run_hall_checks() = 0;
+    
+#ifdef USE_SIMULATION
+    /* In simulation, needed a method to publish the cmd_vel and servo angles at a regular interval */
+    virtual void publish_all() = 0;
+#endif
+
 };
 
 #endif

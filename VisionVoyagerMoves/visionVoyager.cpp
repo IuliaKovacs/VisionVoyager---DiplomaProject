@@ -275,3 +275,10 @@ void VisionVoyager::set_direction_limits(int left_max, int right_max)
     DIR_MIN = left_max;
     DIR_MAX = right_max;
 }
+
+#ifdef USE_SIMULATION
+void VisionVoyager::publish_all()
+{
+    hw->publish_all();
+}
+#endif
