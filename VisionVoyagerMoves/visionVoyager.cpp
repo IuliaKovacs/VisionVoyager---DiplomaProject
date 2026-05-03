@@ -34,9 +34,17 @@ VisionVoyager::VisionVoyager()
     this->camera_pan_angle = DEFAULT_PAN_ANGLE;
 
 #ifdef USE_SIMULATION
-    /* Send the node to the simulation hardware in order to create Publishers */
-    this->hw = new SimVisionVoyager(node); 
-    DEBUG_MSG("Compiled for SIMULATION mode");
+    if (node) 
+    {
+        /* Send the node to the simulation hardware in order to create Publishers */
+        this->hw = new SimVisionVoyager(node); 
+        DEBUG_MSG("Compiled for SIMULATION mode");
+        ros_node = node;
+    }
+    else
+    {
+        DEBUG_MSG("ERROR: ROS 2 Node is null!");
+    }
 #else
     /* Original logic for Raspberry Pi */
     initialize_python_embedding();
@@ -44,6 +52,8 @@ VisionVoyager::VisionVoyager()
     DEBUG_MSG("Compiled for REAL hardware mode");
 #endif
 }
+
+rclcpp::Node::SharedPtr VisionVoyager::ros_node = nullptr;
 
 void VisionVoyager::set_speed(int new_speed)
 {
@@ -280,5 +290,10 @@ void VisionVoyager::set_direction_limits(int left_max, int right_max)
 void VisionVoyager::publish_all()
 {
     hw->publish_all();
+}
+
+rclcpp::Node::SharedPtr VisionVoyager::get_ros_node()
+{
+    return ros_node;
 }
 #endif

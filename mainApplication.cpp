@@ -212,51 +212,34 @@ int main(int argc, char *argv[])
     rclcpp::TimerBase::SharedPtr timer;
 
     publish_timer = ros_node->create_wall_timer(
-        std::chrono::milliseconds(100),
+        std::chrono::milliseconds(10),
         [robot]() 
         {
             robot->publish_all(); 
         });
+    
+    std::thread ros_thread([&](){
+        rclcpp::spin(ros_node);
+    });
+    
 
+    // thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, RouteRegistration::get_section_C_routes()[0]);
+    // route_player_thread.join();
 
-    timer = ros_node->create_wall_timer(
-        100ms,
-        [robot, &counter, &stop_counter, &timer, &publish_timer]() 
-        {
+     /* ---- Start of Admin Mode part ---- */
+    
+    KeyboardControl::START_ADMIN_listening_loop();
+    bool Admin_Mode = KeyboardControl::get_ADMIN_START_pressed();
 
-            counter++;
+    if(true == Admin_Mode)
+    {   
+        logFile << log_time() << "[MainApp] --- Starting Admin Mode Window ---" << endl;
+        thread admin_mode_thread(ApplicationModule::TASK_ADMIN_MODE_WINDOW, argc, argv);
+        admin_mode_thread.join();
+    }
 
-            if (counter == 1) {
-                robot->move_forward();
-            }
-            else if (counter == 10) {
-                robot->set_dir_angle(20);
-            }
-            else if (counter == 60) {
-                robot->stop();
-                /* Start the shutdown timer */
-                stop_counter = 0;
-            }
-
-            if (stop_counter >= 0) {
-                stop_counter++;
-
-                if (stop_counter >= 40) 
-                { 
-                    publish_timer->cancel();
-                    if (timer) timer->cancel();
-                    rclcpp::shutdown();
-                }
-            }
-
-
-            logFile << log_time() << "Ultrasonic distance: "<<robot->read_ultrasonic_data()<<endl;
-            std::vector<int> gs = robot->read_grayscale_data();
-            logFile << log_time() <<"Grayscale values: [ "<<gs[0]<<", "<< gs[1] <<", "<<gs[2]<<" ]"<<endl;
-
-        });
-
-    rclcpp::spin(ros_node);
+    rclcpp::shutdown();
+    ros_thread.join();  
     terminate_main_app();
 
     return 0;

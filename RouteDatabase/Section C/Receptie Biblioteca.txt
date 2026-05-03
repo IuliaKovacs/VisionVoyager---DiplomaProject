@@ -1,0 +1,6 @@
+forward(10)
+set_dir_servo_angle(20)
+1050
+set_dir_servo_angle(0)
+4000
+stop()

@@ -5,6 +5,13 @@
 #include <QWidget>
 #include <QTimer>
 
+#ifdef USE_SIMULATION
+    #include <rclcpp/rclcpp.hpp>
+    #include <sensor_msgs/msg/image.hpp>
+    #include <cv_bridge/cv_bridge.hpp>
+#endif
+
+
 
 class CameraWidget : public QWidget
 {
@@ -20,6 +27,11 @@ protected:
 private:
     cv::VideoCapture *videoCapture; 
     cv::Mat frame; 
+
+#ifdef USE_SIMULATION
+    rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr ros_subscription_;
+    std::shared_ptr<rclcpp::Node> ros_node_;
+#endif
 
     bool initCamera();
 };

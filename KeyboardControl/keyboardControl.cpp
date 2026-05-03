@@ -7,7 +7,7 @@
 using namespace std;
 
 VisionVoyager* KeyboardControl::robotVisionVoyager = nullptr;
-bool KeyboardControl::F11_pressed = false;
+bool KeyboardControl::ADMIN_START_pressed = false;
 bool KeyboardControl::keyboard_control_active = false;
 
 void KeyboardControl::set_robot(VisionVoyager* robot)
@@ -31,7 +31,7 @@ void KeyboardControl::initialize_keyboard_control()
     endwin();
  }
 
- void KeyboardControl::F11_listening_loop()
+ void KeyboardControl::START_ADMIN_listening_loop()
  {
     chrono::seconds interval(5);
     logFile << log_time() << "[MainApp] End F11 Interval" << endl;
@@ -45,7 +45,7 @@ void KeyboardControl::initialize_keyboard_control()
     new_settings.c_cc[VTIME] = 0; 
     tcsetattr(0, TCSANOW, &new_settings);
 
-    while((!F11_pressed) && (interval > chrono::steady_clock::now() - start_time))
+    while((!ADMIN_START_pressed) && (interval > chrono::steady_clock::now() - start_time))
     {   
         fd_set fds;
         FD_ZERO(&fds);
@@ -59,9 +59,9 @@ void KeyboardControl::initialize_keyboard_control()
             int ch = getch(); 
             if (ch != ERR) 
             { 
-                if (ch == KEY_F(11)) 
+                if (ch == '1') 
                 {
-                    F11_pressed = true;
+                    ADMIN_START_pressed = true;
                     logFile << log_time() << "F11 Pressed! " << endl;
                 }
             }
@@ -74,9 +74,9 @@ void KeyboardControl::initialize_keyboard_control()
     logFile << log_time() << "[MainApp] End F11 Interval" << endl;
  }
 
- bool KeyboardControl::get_F11_pressed()
+ bool KeyboardControl::get_ADMIN_START_pressed()
  {
-    return F11_pressed;
+    return ADMIN_START_pressed;
  }
 
  const std::unordered_map<std::string, int> key_map 

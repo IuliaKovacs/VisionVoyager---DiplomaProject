@@ -54,6 +54,8 @@ class VisionVoyager
     py::object picar_python_module;
     py::object picar_python_class;
     py::object picar_python_object;
+#else
+    static rclcpp::Node::SharedPtr ros_node;
 #endif
     int DIR_MIN;
     int DIR_MAX;
@@ -81,6 +83,7 @@ public:
     void set_camera_tilt_angle(int new_camera_tilt_angle);
     void set_cam_pan_angle(int new_camera_pan_angle);
     void set_direction_limits(int left_max, int right_max);
+    static rclcpp::Node::SharedPtr get_ros_node();
     int get_speed();
     int get_dir_angle();
     int get_camera_tilt_angle();

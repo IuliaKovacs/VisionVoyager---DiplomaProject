@@ -34,6 +34,7 @@ if(BUILD_FOR_SIM)
     find_package(rclcpp REQUIRED)
     find_package(geometry_msgs REQUIRED) 
     find_package(sensor_msgs REQUIRED)
+    find_package(cv_bridge REQUIRED)
 endif()
 
 
@@ -54,6 +55,7 @@ if(BUILD_FOR_SIM)
         rclcpp::rclcpp
         geometry_msgs::geometry_msgs__rosidl_typesupport_cpp
         sensor_msgs::sensor_msgs__rosidl_typesupport_cpp
+        cv_bridge::cv_bridge
     )
 endif()
 
@@ -70,10 +72,11 @@ if(BUILD_FOR_SIM)
         ${rclcpp_INCLUDE_DIRS}
         ${geometry_msgs_INCLUDE_DIRS}
         ${sensor_msgs_INCLUDE_DIRS}
+        ${cv_bridge_INCLUDE_DIRS}
     )
 else()
     target_include_directories(VisionVoyagerGUI PRIVATE /usr/include/arm-linux-gnueabihf/qt5)
 endif()
 
-add_definitions(-DNCURSES_NOMACROS)
-add_definitions(-DQT_NO_KEYWORDS)
+# add_definitions(-DNCURSES_NOMACROS)
+# add_definitions(-DQT_NO_KEYWORDS)
