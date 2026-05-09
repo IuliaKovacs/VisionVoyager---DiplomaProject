@@ -98,12 +98,19 @@ bool ApplicationModule::TASK_ROUTE_PLAYING(string route_name)
      return true;
 }
 
+#ifdef USE_SIMULATION
+bool ApplicationModule::TASK_ADMIN_MODE_WINDOW(int argc, char *argv[], rclcpp::Node::SharedPtr ros_node) 
+{
+    start_GUI(argc, argv, ros_node);
+    return true;
+}
+#else
 bool ApplicationModule::TASK_ADMIN_MODE_WINDOW(int argc, char *argv[]) 
 {
     start_GUI(argc, argv);
     return true;
 }
-
+#endif
 
 #ifndef USE_SIMULATION
 bool ApplicationModule::TASK_VOICE_RECOGNITION_WAIT()

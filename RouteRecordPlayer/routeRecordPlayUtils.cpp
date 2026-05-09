@@ -166,7 +166,7 @@ void RouteRecordPlayer::play_route(string route_name)
         string command_name = extract_command_name(line);
         string command_arg = extract_command_argument(line);
         
-        if (command_arg == ")")
+        if (command_arg == ")" or command_arg == "")
         {
             play_command(command_name, 0);
         }
@@ -207,14 +207,18 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
     {   
         if(getline(Route_File,line))
         {   
+            line.erase(0, line.find_first_not_of(" \t\r\n"));
+            line.erase(line.find_last_not_of(" \t\r\n") + 1);
             string command_name = extract_command_name(line);
+            logFile << log_time() << command_name << endl;
             string command_arg = extract_command_argument(line);
+            logFile << log_time() << "Command argument: " << command_arg << endl;
             
             if (getline(Route_File,line))
             {
                 int milliseconds_to_count = stoi(line);
 
-                if (command_arg == ")")
+                if (command_arg == ")" or command_arg == "")
                 {
                     play_command(command_name, milliseconds_to_count);
                 }
@@ -395,14 +399,16 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                 }
             }
             else
-            {
-                if (command_arg == ")")
+            { 
+                cout << "ajung aici " << endl;
+                if (command_arg == ")" or command_arg == "")
                 {
                     play_command(command_name, 0);
                 }
                 else 
                 {
                     play_command(command_name, 0, stoi(command_arg));
+                    cout << "ajung aici si apoi dau crash" << endl;
                 }
             }
         }

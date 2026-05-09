@@ -17,17 +17,33 @@ using namespace std;
 #define MAX_NO_OF_SUBJECTS 4
 #define MINIMUM_IMG_NO_TO_ADD 7
 
-void start_GUI(int argc, char *argv[])
+void start_GUI(int argc, char *argv[]
+#ifdef USE_SIMULATION
+, rclcpp::Node::SharedPtr node
+#endif
+)
 {
     QApplication a(argc, argv);
+#ifndef USE_SIMULATION
     AdminModeWindow w;
+#else
+    AdminModeWindow w(node, nullptr);
+#endif
     w.show();
     a.exec(); 
 }
 
-AdminModeWindow::AdminModeWindow(QWidget *parent)
+AdminModeWindow::AdminModeWindow(
+#ifdef USE_SIMULATION
+     rclcpp::Node::SharedPtr node,
+#endif
+    QWidget *parent
+)
     : QMainWindow(parent)
     , ui(new Ui::AdminModeWindow)
+#ifdef USE_SIMULATION
+    , node(node)
+#endif
 {
     ui->setupUi(this);
 
@@ -43,7 +59,11 @@ AdminModeWindow::AdminModeWindow(QWidget *parent)
     populate_logs_list();
     languge_buttons_set();
 
+#ifndef USE_SIMULATION
     camera_widget = new CameraWidget(this);
+#else
+    camera_widget = new CameraWidget(node, this);
+#endif
     ui->layout_2->addWidget(camera_widget);
 
     file_drop_widget_fr = new FileDropWidget(this);

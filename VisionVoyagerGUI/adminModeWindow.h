@@ -16,7 +16,12 @@
 
 using namespace std;
 
+#ifdef USE_SIMULATION
+void start_GUI(int argc, char *argv[], rclcpp::Node::SharedPtr ros_node);
+#else
 void start_GUI(int argc, char *argv[]);
+#endif
+
 
 
 QT_BEGIN_NAMESPACE
@@ -31,7 +36,12 @@ class AdminModeWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    AdminModeWindow(QWidget *parent = nullptr);
+    AdminModeWindow(
+#ifdef USE_SIMULATION
+    rclcpp::Node::SharedPtr node,
+#endif
+    QWidget *parent = nullptr
+);
     ~AdminModeWindow();
 
 protected:
@@ -53,6 +63,7 @@ private Q_SLOTS:
 
 private:
     Ui::AdminModeWindow *ui;
+    rclcpp::Node::SharedPtr node;
     CameraWidget *camera_widget; 
     FileDropWidget *file_drop_widget_fr;
     FileDropWidget *file_drop_route;

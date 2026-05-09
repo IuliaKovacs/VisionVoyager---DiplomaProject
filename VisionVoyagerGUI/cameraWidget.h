@@ -18,7 +18,11 @@ class CameraWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit CameraWidget(QWidget *parent = nullptr);
+    explicit CameraWidget(
+#ifdef USE_SIMULATION
+    rclcpp::Node::SharedPtr node,
+#endif  
+        QWidget *parent = nullptr);
     ~CameraWidget();
 
 protected:

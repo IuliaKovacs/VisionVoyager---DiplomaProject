@@ -15,6 +15,7 @@ atomic<bool> route_complete(false);
 atomic<bool> severe_error(false);
 atomic<bool> moving(false);
 atomic<bool> avoiding(false);
+atomic<bool> ROS_running{true};
 SevereErrorType error_type = SevereErrorType::NO_ERROR;
 map<std::string, int> route_map_no = {
     {"ONE", 0},
@@ -186,61 +187,86 @@ string select_route_and_start()
 int main(int argc, char *argv[]) 
 {    
     initilize_main_app();
-    
+
+    try {
+  
 
 #ifndef USE_SIMULATION    
-    /* pybind11 specific - starts the interpreter and maintains it alive */
-    py::scoped_interpreter guard{}; 
-    VisionVoyager* robot = new VisionVoyager();
+        /* pybind11 specific - starts the interpreter and maintains it alive */
+        py::scoped_interpreter guard{}; 
+        VisionVoyager* robot = new VisionVoyager();
 #else
-    rclcpp::init(argc, argv);
-    auto ros_node = std::make_shared<rclcpp::Node>("vision_voyager_node");
-    VisionVoyager* robot = new VisionVoyager(ros_node);
+        rclcpp::init(argc, argv);
+        auto ros_node = std::make_shared<rclcpp::Node>("vision_voyager_node");
+        auto robot = std::make_shared<VisionVoyager>(ros_node);
 
-    std::cout << "[ROS2] Node-ul ROS 2 a fost creat." << std::endl;
+        std::cout << "[ROS2] Node-ul ROS 2 a fost creat." << std::endl;
 #endif
 
-    robot->set_direction_limits(DIR_MIN_RG, DIR_MAX_RG);
-    RouteRecordPlayer::set_robot(robot);
-    KeyboardControl::set_robot(robot);
-    LineFollower::set_robot(robot);
-    ObstacleAvoidance::set_robot(robot);
+        robot->set_direction_limits(DIR_MIN_RG, DIR_MAX_RG);
+        RouteRecordPlayer::set_robot(robot.get());
+        KeyboardControl::set_robot(robot.get());
+        LineFollower::set_robot(robot.get());
+        ObstacleAvoidance::set_robot(robot.get());
 
-    int counter = 0; 
-    int stop_counter = -1;
-    rclcpp::TimerBase::SharedPtr publish_timer;
-    rclcpp::TimerBase::SharedPtr timer;
+        rclcpp::executors::SingleThreadedExecutor executor;
+        executor.add_node(ros_node);
 
-    publish_timer = ros_node->create_wall_timer(
+        auto publish_timer = ros_node->create_wall_timer(
         std::chrono::milliseconds(10),
-        [robot]() 
-        {
-            robot->publish_all(); 
+            [robot, &ROS_running]() {
+                if (ROS_running.load() && rclcpp::ok() && robot != nullptr) {
+                    robot->publish_all();
+                }
+            }
+        );
+        
+        std::thread ros_thread([&](){
+            executor.spin();
         });
-    
-    std::thread ros_thread([&](){
-        rclcpp::spin(ros_node);
-    });
-    
+        
+        string path = "/home/kovaiu/diplomaproject/RouteDatabase/Section A/Rectorat.txt";
 
-    // thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, RouteRegistration::get_section_C_routes()[0]);
-    // route_player_thread.join();
+        thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, path);
+        route_player_thread.join();
 
-     /* ---- Start of Admin Mode part ---- */
-    
-    KeyboardControl::START_ADMIN_listening_loop();
-    bool Admin_Mode = KeyboardControl::get_ADMIN_START_pressed();
+        cout << "fara eroare dupa thread de route play" << endl;
 
-    if(true == Admin_Mode)
-    {   
-        logFile << log_time() << "[MainApp] --- Starting Admin Mode Window ---" << endl;
-        thread admin_mode_thread(ApplicationModule::TASK_ADMIN_MODE_WINDOW, argc, argv);
-        admin_mode_thread.join();
+        /* ---- Start of Admin Mode part ---- */
+        
+        // KeyboardControl::START_ADMIN_listening_loop();
+        // bool Admin_Mode = KeyboardControl::get_ADMIN_START_pressed();
+
+        // if(true == Admin_Mode)
+        // {   
+        //     logFile << log_time() << "[MainApp] --- Starting Admin Mode Window ---" << endl;
+        //     thread admin_mode_thread(ApplicationModule::TASK_ADMIN_MODE_WINDOW, argc, argv, ros_node);
+        //     admin_mode_thread.join();
+        // }
+
+    ROS_running.store(false);
+
+        executor.cancel();
+
+        if (ros_thread.joinable())
+            ros_thread.join();
+
+        publish_timer.reset();
+
+        robot.reset();
+
+        ros_node.reset();
+
+        rclcpp::shutdown();
+        std::cout << "[MainApp] Închidere completă reușită." << std::endl;
+
+        terminate_main_app();
+
+    } catch (const std::system_error& e) {
+        std::cerr << "System Error: " << e.what() << " Code: " << e.code() << std::endl;
+    } catch (const std::exception& e) {
+        std::cerr << "Exception: " << e.what() << std::endl;
     }
-
-    rclcpp::shutdown();
-    ros_thread.join();  
-    terminate_main_app();
 
     return 0;
 }

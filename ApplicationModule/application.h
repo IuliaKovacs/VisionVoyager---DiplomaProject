@@ -36,7 +36,11 @@ public:
     static bool TASK_ROUTE_PLAYING(string route_name);
     static void TASK_CAMERA_MODULE();
     static bool TASK_RFID_READER_COMM(optional<string> route_name);
+#ifdef USE_SIMULATION
+    static bool TASK_ADMIN_MODE_WINDOW(int argc, char *argv[], rclcpp::Node::SharedPtr ros_node);
+#else
     static bool TASK_ADMIN_MODE_WINDOW(int argc, char *argv[]);
+#endif
 #ifndef USE_SIMULATION
     static bool TASK_VOICE_RECOGNITION_WAIT();
 #endif

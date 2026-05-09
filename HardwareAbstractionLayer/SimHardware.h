@@ -51,6 +51,10 @@ private:
                     this->last_ultrasonic_distance = ULTRASONIC_NO_OBJECT_DISTANCE;
                 }
             }
+            else
+            {
+                std::cout << "[SimVisionVoyager] Empty ultrasonic scan received." << std::endl;
+            }
         });
     }
 
@@ -60,10 +64,15 @@ private:
         /* Common callback for processing 1x1 image */
         auto gs_callback = [this](const sensor_msgs::msg::Image::SharedPtr msg, int index) {
             /* Since the image is 1x1 R8G8B8, msg->data will have 3 bytes (R, G, B) */
-            if (!msg->data.empty()) {
+            if (!msg->data.empty()) 
+            {
                 /* Calculate an average brightness value (grayscale) from the R, G and B values */
                 int gray = (msg->data[0] + msg->data[1] + msg->data[2]) / 3;
                 this->last_grayscale_values[index] = gray;
+            }
+            else
+            {
+                std::cout << "[SimVisionVoyager] Empty grayscale image received." << std::endl;
             }
         };
         
@@ -95,6 +104,19 @@ public:
         setup_grayscale_communication(node);
         last_cmd.linear.x = 0.0;
         last_cmd.angular.z = 0.0;
+    }
+
+    virtual ~SimVisionVoyager() {
+        // Resetăm subscripțiile manual pentru a ne asigura că nu mai vin callback-uri
+        ultrasonic_sub.reset();
+        sub_gs_left.reset();
+        sub_gs_center.reset();
+        sub_gs_right.reset();
+        
+        // Resetăm și publisherii
+        cmd_pub.reset();
+        pan_pub.reset();
+        tilt_pub.reset();
     }
 
     void publish_all()

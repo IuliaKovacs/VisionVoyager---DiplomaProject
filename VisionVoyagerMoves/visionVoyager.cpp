@@ -53,8 +53,6 @@ VisionVoyager::VisionVoyager()
 #endif
 }
 
-rclcpp::Node::SharedPtr VisionVoyager::ros_node = nullptr;
-
 void VisionVoyager::set_speed(int new_speed)
 {
     this->speed = new_speed;
