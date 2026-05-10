@@ -11,6 +11,7 @@
 #define ULTRASONIC_THRESHOLD_MIN 0.02
 #define ULTRASONIC_THRESHOLD_MAX 3.0
 #define ULTRASONIC_NO_OBJECT_DISTANCE -1.0
+#define ULTRASONIC_METERS_TO_CM 100.0
 
 using namespace std;
 
@@ -44,7 +45,7 @@ private:
 
                 if (min_dist > ULTRASONIC_THRESHOLD_MIN && min_dist < ULTRASONIC_THRESHOLD_MAX) 
                 {
-                    this->last_ultrasonic_distance = min_dist;
+                    this->last_ultrasonic_distance = min_dist * ULTRASONIC_METERS_TO_CM;
                 } 
                 else
                 {
