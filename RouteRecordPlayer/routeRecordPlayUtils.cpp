@@ -302,7 +302,7 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                         }
                     }
 
-
+#endif
 
                     if(ObstacleAvoidance::check_forward_safety())
                     {
@@ -333,7 +333,6 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                             tts_mutex.unlock();
                         }
                     }
-#endif
 
                     /* IMPORTANT: The threshold for IN AIR DETECTION must be calibrated before using this feature!
                      * It depends on the surface on which the robot moves! */
@@ -367,15 +366,12 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                         lock_guard<mutex> lock2(mtx);
                         should_stop.store(true);
                         route_complete.store(true);
-#ifndef USE_SIMULATION
                         camera_condition.notify_all();
                         waiting_condition.notify_all();
                         speaking_condition.notify_all();
-#endif
                         return;
                     }
 
-#ifndef USE_SIMULATION
                     if(should_stop.load())
                     {   
                         auto wait_start_time = std::chrono::steady_clock::now();
@@ -395,7 +391,6 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                         logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " Waiting Ended " << endl;
                         log_mutex.unlock();
                     }
-#endif
                 }
             }
             else
@@ -422,11 +417,9 @@ void RouteRecordPlayer::play_route_conditioned(string route_name)
                 lock_guard<mutex> lock2(mtx);
                 should_stop.store(true);
                 route_complete.store(true);
-#ifndef USE_SIMULATION
                 waiting_condition.notify_all();
                 camera_condition.notify_all();
                 speaking_condition.notify_all();
-#endif
                 tts_mutex.lock();
                 TextToSpeech::display_destination();
                 tts_mutex.unlock();

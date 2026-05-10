@@ -30,9 +30,7 @@ class ApplicationModule
     static void increment_excel_route_count(string route_path);
 
 public:
-#ifndef USE_SIMULATION
     static bool TASK_LINE_FOLLOWING();
-#endif
     static bool TASK_ROUTE_PLAYING(string route_name);
     static void TASK_CAMERA_MODULE();
     static bool TASK_RFID_READER_COMM(optional<string> route_name);
@@ -41,15 +39,11 @@ public:
 #else
     static bool TASK_ADMIN_MODE_WINDOW(int argc, char *argv[]);
 #endif
-#ifndef USE_SIMULATION
     static bool TASK_VOICE_RECOGNITION_WAIT();
-#endif
     static bool TASK_SAFETY_MEASURES();
     static bool TASK_SPEAKING();
-#ifndef USE_SIMULATION
     static void MODE_1_ROUTE_PLAYING(string route_path);
     static void MODE_2_LINE_FOLLOWER();
-#endif
 
 };
 

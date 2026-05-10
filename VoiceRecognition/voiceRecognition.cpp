@@ -1,6 +1,4 @@
 
-#ifndef USE_SIMULATION
-
 #include "voiceRecognition.h"
 #include <pocketsphinx.h>
 #include <signal.h>
@@ -551,5 +549,3 @@ string VoiceRecognition::loop_listening_for_choices()
 
     return recognized_word;
 }
-
-#endif

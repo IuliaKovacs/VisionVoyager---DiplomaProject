@@ -42,6 +42,8 @@ target_link_libraries(Application PRIVATE
     ObstacleAvoidance
 )
 
+target_link_libraries(Application PRIVATE VoiceRecognition)
+
 if(BUILD_FOR_SIM)
     target_link_libraries(Application PRIVATE 
         rclcpp::rclcpp
@@ -50,8 +52,7 @@ if(BUILD_FOR_SIM)
         cv_bridge::cv_bridge
     )
 else()
-    # Link VoiceRecognition and Python only for Real Hardware
-    target_link_libraries(Application PRIVATE VoiceRecognition)
+    # Link Python only for Real Hardware
     find_package(pybind11 REQUIRED)
     target_link_libraries(Application PRIVATE pybind11::embed)
 endif()

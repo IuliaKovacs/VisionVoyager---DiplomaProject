@@ -235,6 +235,8 @@ int main(int argc, char *argv[])
         thread line_follower_thread(LineFollower::follow_line);
         line_follower_thread.join();
 
+        // VoiceRecognition::loop_recognition_for_start();
+
         /* ---- Start of Admin Mode part ---- */
         
         // KeyboardControl::START_ADMIN_listening_loop();

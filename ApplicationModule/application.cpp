@@ -20,7 +20,6 @@
 using namespace std;
 using namespace OpenXLSX;
 
-#ifndef USE_SIMULATION
 bool ApplicationModule::TASK_LINE_FOLLOWING()
 {   
 
@@ -54,7 +53,6 @@ bool ApplicationModule::TASK_LINE_FOLLOWING()
     LineFollower::follow_line();
     return true;
 }
-#endif
 
 void ApplicationModule::TASK_CAMERA_MODULE()
 {
@@ -112,7 +110,6 @@ bool ApplicationModule::TASK_ADMIN_MODE_WINDOW(int argc, char *argv[])
 }
 #endif
 
-#ifndef USE_SIMULATION
 bool ApplicationModule::TASK_VOICE_RECOGNITION_WAIT()
 {
     log_mutex.lock();
@@ -133,7 +130,6 @@ bool ApplicationModule::TASK_VOICE_RECOGNITION_WAIT()
 
     return true;
 }
-#endif
 
 bool ApplicationModule::TASK_SAFETY_MEASURES()
 {
@@ -261,7 +257,6 @@ void ApplicationModule::capture_photo_and_send_to_process()
 }
 
 
-#ifndef USE_SIMULATION
 void ApplicationModule::MODE_1_ROUTE_PLAYING(string route_path)
 {
     guiding_mode = GuidingMode::ROUTE_PLAYER_MODE;
@@ -288,9 +283,7 @@ void ApplicationModule::MODE_1_ROUTE_PLAYING(string route_path)
     speaking_thread.join();
     voice_recognition_thread.join();
 }
-#endif
 
-#ifndef USE_SIMULATION
 void ApplicationModule::MODE_2_LINE_FOLLOWER()
 {
     guiding_mode = GuidingMode::LINE_FOLLOWER_MODE;
@@ -312,4 +305,3 @@ void ApplicationModule::MODE_2_LINE_FOLLOWER()
     speaking_thread.join();
     voice_recognition_thread.join();
 }
-#endif

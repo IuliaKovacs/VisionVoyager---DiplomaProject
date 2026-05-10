@@ -44,9 +44,18 @@ add_subdirectory(VisionVoyagerGUI)
 add_subdirectory(RFID)
 
 # PocketSphinx configuration
-set(Pocketsphinx_LIBRARY_DIRS "/home/kovaiu1/SRE/pocketsphinx/build")
-#set(Pocketsphinx_LIBRARIES "${Pocketsphinx_LIBRARY_DIRS}/libpocketsphinx.a")
-set(POCKETSPHINX_INCLUDE_DIRS "/home/kovaiu1/SRE/pocketsphinx/include")
+if(BUILD_FOR_SIM)
+    set(POCKETSPHINX_BASE "/home/kovaiu/pocketsphinx")
+    set(Pocketsphinx_LIBRARIES "${POCKETSPHINX_BASE}/build/libpocketsphinx.a")
+    set(POCKETSPHINX_INCLUDE_DIRS "${POCKETSPHINX_BASE}/include")
+else()
+    set(Pocketsphinx_LIBRARY_DIRS "/home/kovaiu1/SRE/pocketsphinx/build")
+    set(Pocketsphinx_LIBRARIES "${Pocketsphinx_LIBRARY_DIRS}/libpocketsphinx.a")
+    set(POCKETSPHINX_INCLUDE_DIRS "/home/kovaiu1/SRE/pocketsphinx/include")
+endif()
+
+include_directories(${POCKETSPHINX_INCLUDE_DIRS})
+
 set(OpenXLSX_DIR "~/OpenXLSX/build")
 
 add_executable(VisionVoyager mainApplication.cpp)
