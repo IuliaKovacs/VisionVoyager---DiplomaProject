@@ -40,7 +40,7 @@ private:
         {
             if (!msg->ranges.empty()) 
             {
-                float min_dist = *std::min_element(msg->ranges.begin(), msg->ranges.end());
+                float min_dist = *min_element(msg->ranges.begin(), msg->ranges.end());
 
                 if (min_dist > ULTRASONIC_THRESHOLD_MIN && min_dist < ULTRASONIC_THRESHOLD_MAX) 
                 {
@@ -53,7 +53,7 @@ private:
             }
             else
             {
-                std::cout << "[SimVisionVoyager] Empty ultrasonic scan received." << std::endl;
+                cout << "[SimVisionVoyager] Empty ultrasonic scan received." << endl;
             }
         });
     }
@@ -72,23 +72,25 @@ private:
             }
             else
             {
-                std::cout << "[SimVisionVoyager] Empty grayscale image received." << std::endl;
+                cout << "[SimVisionVoyager] Empty grayscale image received." << endl;
             }
         };
+
+        auto qos = rclcpp::SensorDataQoS();
         
 
         sub_gs_left = node->create_subscription<sensor_msgs::msg::Image>(
-            "/line_follower/left", 10, [this, gs_callback](const sensor_msgs::msg::Image::SharedPtr msg) {
+            "/line_follower/left", qos, [this, gs_callback](const sensor_msgs::msg::Image::SharedPtr msg) {
                 gs_callback(msg, 0);
             });
 
         sub_gs_center = node->create_subscription<sensor_msgs::msg::Image>(
-            "/line_follower/center", 10, [this, gs_callback](const sensor_msgs::msg::Image::SharedPtr msg) {
+            "/line_follower/center", qos, [this, gs_callback](const sensor_msgs::msg::Image::SharedPtr msg) {
                 gs_callback(msg, 1);
             });
 
         sub_gs_right = node->create_subscription<sensor_msgs::msg::Image>(
-            "/line_follower/right", 10, [this, gs_callback](const sensor_msgs::msg::Image::SharedPtr msg) {
+            "/line_follower/right", qos, [this, gs_callback](const sensor_msgs::msg::Image::SharedPtr msg) {
                 gs_callback(msg, 2);
             });
     }

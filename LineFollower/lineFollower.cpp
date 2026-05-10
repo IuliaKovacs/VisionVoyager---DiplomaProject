@@ -45,6 +45,22 @@ bool LineFollower::get_line_status()
 
 void LineFollower::follow_line()
 {
+#ifdef USE_SIMULATION
+    bool sensors_ready = false;
+    while(!sensors_ready && rclcpp::ok()) 
+    {
+        get_grayscale_data();
+        if (grayscale_data[0] < 250 || grayscale_data[1] < 250 || grayscale_data[2] < 250) 
+        {
+            sensors_ready = true;
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    }
+
+    logFile << log_time() << LOG_THREAD_LINE_FOLLOWER_PREFIX << " Grayscale sensors are ready. Starting line following..." << endl;
+#endif
+
+
     State current_state = State::UNKNOWN;
     State last_direction = State::UNKNOWN;
     std::chrono::time_point<std::chrono::steady_clock> direction_timer;
@@ -55,32 +71,32 @@ void LineFollower::follow_line()
     while(true)
     {   
 
-        if(ObstacleAvoidance::check_forward_safety())
-        {
-            if(get_line_status())
-            {
-                (void)ObstacleAvoidance::obstacle_avoid();
-            }
-            else 
-            {
-                log_mutex.lock();
-                logFile << log_time() << LOG_THREAD_LINE_FOLLOWER_PREFIX << " --- Line Follow Interrupted: Obstacle Detected! -> In this moment of route guiding the obstacle cannot be avoided! ---" << endl;
-                logFile << log_time() << LOG_THREAD_LINE_FOLLOWER_PREFIX << " --- Displaying acoustical warning ---" << endl;
-                log_mutex.unlock();
-                severe_error.store(true);
-                error_type = SevereErrorType::ROUTE_ERROR;
-                tts_mutex.lock();
-                if(Language::EN == TextToSpeech::get_language())
-                {   
-                    TextToSpeech::display_custom_message("In this moment of route guiding the obstacle cannot be avoided! \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
-                }
-                else
-                {
-                    TextToSpeech::display_custom_message("În acest moment al rutei nu se poate ocoli obstacolul! \n\n\n Abandonare proces de ghidare! \n\n\n Contactați personalul clădirii!");
-                }
-                tts_mutex.unlock();
-            }
-        }
+        // if(ObstacleAvoidance::check_forward_safety())
+        // {
+        //     if(get_line_status())
+        //     {
+        //         (void)ObstacleAvoidance::obstacle_avoid();
+        //     }
+        //     else 
+        //     {
+        //         log_mutex.lock();
+        //         logFile << log_time() << LOG_THREAD_LINE_FOLLOWER_PREFIX << " --- Line Follow Interrupted: Obstacle Detected! -> In this moment of route guiding the obstacle cannot be avoided! ---" << endl;
+        //         logFile << log_time() << LOG_THREAD_LINE_FOLLOWER_PREFIX << " --- Displaying acoustical warning ---" << endl;
+        //         log_mutex.unlock();
+        //         severe_error.store(true);
+        //         error_type = SevereErrorType::ROUTE_ERROR;
+        //         tts_mutex.lock();
+        //         if(Language::EN == TextToSpeech::get_language())
+        //         {   
+        //             TextToSpeech::display_custom_message("In this moment of route guiding the obstacle cannot be avoided! \n\n\n Aborting the guiding process! \n\n\n Please contact the building staff!");
+        //         }
+        //         else
+        //         {
+        //             TextToSpeech::display_custom_message("În acest moment al rutei nu se poate ocoli obstacolul! \n\n\n Abandonare proces de ghidare! \n\n\n Contactați personalul clădirii!");
+        //         }
+        //         tts_mutex.unlock();
+        //     }
+        // }
 
         if (verify_is_in_air())
         {   
@@ -103,37 +119,37 @@ void LineFollower::follow_line()
             tts_mutex.unlock();
         }
 
-        /* check for severe error. e.g. robot is in the air, motor issue etc */
-        if(severe_error.load())
-        {
-            robotVisionVoyager->stop(); 
-            log_mutex.lock();
-            logFile << log_time() << LOG_THREAD_LINE_FOLLOWER_PREFIX << " ...Aborting due to severe error..." << endl;
-            log_mutex.unlock();
-            lock_guard<mutex> lock2(mtx);
-            should_stop.store(true);
-            route_complete.store(true);
-            waiting_condition.notify_all();
-            speaking_condition.notify_all();
-            camera_condition.notify_all();
-            return;
-        }
+        // /* check for severe error. e.g. robot is in the air, motor issue etc */
+        // if(severe_error.load())
+        // {
+        //     robotVisionVoyager->stop(); 
+        //     log_mutex.lock();
+        //     logFile << log_time() << LOG_THREAD_LINE_FOLLOWER_PREFIX << " ...Aborting due to severe error..." << endl;
+        //     log_mutex.unlock();
+        //     lock_guard<mutex> lock2(mtx);
+        //     should_stop.store(true);
+        //     route_complete.store(true);
+        //     waiting_condition.notify_all();
+        //     speaking_condition.notify_all();
+        //     camera_condition.notify_all();
+        //     return;
+        // }
 
         /* check if waiting command was given */
-        if(should_stop.load())
-        {   
-            robotVisionVoyager->stop();
-            RouteRegistration::set_moving_state(MovingState::STATIONARY);
-            log_mutex.lock();
-            logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " ...Waiting... - Intervention from user - must wait the start signal" << endl;
-            log_mutex.unlock();
-            std::unique_lock<std::mutex> lock(mtx);
-            waiting_condition.wait(lock, []{ return !should_stop.load(); });
-            robotVisionVoyager->move_forward();
-            log_mutex.lock();
-            logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " Waiting Ended " << endl;
-            log_mutex.unlock();
-        }     
+        // if(should_stop.load())
+        // {   
+        //     robotVisionVoyager->stop();
+        //     RouteRegistration::set_moving_state(MovingState::STATIONARY);
+        //     log_mutex.lock();
+        //     logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " ...Waiting... - Intervention from user - must wait the start signal" << endl;
+        //     log_mutex.unlock();
+        //     std::unique_lock<std::mutex> lock(mtx);
+        //     waiting_condition.wait(lock, []{ return !should_stop.load(); });
+        //     robotVisionVoyager->move_forward();
+        //     log_mutex.lock();
+        //     logFile << log_time() << LOG_THREAD_ROUTE_PLAYER_PREFIX << " Waiting Ended " << endl;
+        //     log_mutex.unlock();
+        // }     
 
         // logFile << log_time() << stop_counter << endl;
 
@@ -214,6 +230,7 @@ bool LineFollower::verify_no_line_available()
     if (stop_counter >= STOP_VALUE)
     {
         robotVisionVoyager->stop();
+        cout << "[LineFollower] No line detected " << endl;
         RouteRegistration::register_current_move("stop");
         return true;
     }    

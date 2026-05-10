@@ -225,12 +225,15 @@ int main(int argc, char *argv[])
             executor.spin();
         });
         
-        string path = "/home/kovaiu/diplomaproject/RouteDatabase/Section A/Rectorat.txt";
+        // string path = "/home/kovaiu/diplomaproject/RouteDatabase/Section A/Rectorat.txt";
+        // thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, path);
+        // route_player_thread.join();
 
-        thread route_player_thread(ApplicationModule::TASK_ROUTE_PLAYING, path);
-        route_player_thread.join();
+     
 
-        cout << "fara eroare dupa thread de route play" << endl;
+        robot->set_speed(1);
+        thread line_follower_thread(LineFollower::follow_line);
+        line_follower_thread.join();
 
         /* ---- Start of Admin Mode part ---- */
         
@@ -244,7 +247,7 @@ int main(int argc, char *argv[])
         //     admin_mode_thread.join();
         // }
 
-    ROS_running.store(false);
+        ROS_running.store(false);
 
         executor.cancel();
 

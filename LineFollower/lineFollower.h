@@ -4,8 +4,12 @@
 #include "../VisionVoyagerMoves/visionVoyager.h"
 #include <vector>
 
+#ifdef USE_SIMULATION
+    #define LINE_THRESHOLD 100
+#else
+    #define LINE_THRESHOLD 80
+#endif
 
-#define LINE_THRESHOLD 80
 #define STOP_VALUE 70
 #define IN_AIR_THRESHOLD 10  /* last value 70 */
 #define TURN_THRESHOLD 1400
