@@ -7,8 +7,13 @@
 #include <std_msgs/msg/float64.hpp>
 #include <sensor_msgs/msg/laser_scan.hpp>
 #include <sensor_msgs/msg/image.hpp>
+#include <algorithm>
+#include <iostream>
+#include <vector>
+#include <string>
+#include <cmath>
 
-#define ULTRASONIC_THRESHOLD_MIN 0.02
+#define ULTRASONIC_THRESHOLD_MIN 0.5
 #define ULTRASONIC_THRESHOLD_MAX 3.0
 #define ULTRASONIC_NO_OBJECT_DISTANCE -1.0
 #define ULTRASONIC_METERS_TO_CM 100.0
@@ -31,12 +36,12 @@ private:
     std_msgs::msg::Float64  last_pan;
     std_msgs::msg::Float64  last_tilt;
 
-    float last_ultrasonic_distance = 0.0;
+    float last_ultrasonic_distance = ULTRASONIC_NO_OBJECT_DISTANCE;
     vector<int> last_grayscale_values = {255, 255, 255};
 
     void setup_ultrasonic_communication(rclcpp::Node::SharedPtr node)
     {
-        ultrasonic_sub = node->create_subscription<sensor_msgs::msg::LaserScan>("/ultrasonic/scan", 10, 
+        ultrasonic_sub = node->create_subscription<sensor_msgs::msg::LaserScan>("ultrasonic/scan", 10, 
         [this](const sensor_msgs::msg::LaserScan::SharedPtr msg) 
         {
             if (!msg->ranges.empty()) 
@@ -77,46 +82,56 @@ private:
             }
         };
 
-        auto qos = rclcpp::SensorDataQoS();
-        
-
+        auto qos = rclcpp::SensorDataQoS(); 
         sub_gs_left = node->create_subscription<sensor_msgs::msg::Image>(
-            "/line_follower/left", qos, [this, gs_callback](const sensor_msgs::msg::Image::SharedPtr msg) {
+            "line_follower/left", qos, [this, gs_callback](const sensor_msgs::msg::Image::SharedPtr msg) {
                 gs_callback(msg, 0);
             });
 
         sub_gs_center = node->create_subscription<sensor_msgs::msg::Image>(
-            "/line_follower/center", qos, [this, gs_callback](const sensor_msgs::msg::Image::SharedPtr msg) {
+            "line_follower/center", qos, [this, gs_callback](const sensor_msgs::msg::Image::SharedPtr msg) {
                 gs_callback(msg, 1);
             });
 
         sub_gs_right = node->create_subscription<sensor_msgs::msg::Image>(
-            "/line_follower/right", qos, [this, gs_callback](const sensor_msgs::msg::Image::SharedPtr msg) {
+            "line_follower/right", qos, [this, gs_callback](const sensor_msgs::msg::Image::SharedPtr msg) {
                 gs_callback(msg, 2);
             });
     }
 
-
 public:
     SimVisionVoyager(rclcpp::Node::SharedPtr node) 
     {
-        cmd_pub = node->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
-        pan_pub = node->create_publisher<std_msgs::msg::Float64>("/model/vision_voyager/joint/pan_joint/cmd_pos", 10);
-        tilt_pub = node->create_publisher<std_msgs::msg::Float64>("/model/vision_voyager/joint/tilt_joint/cmd_pos", 10);
+        cmd_pub = node->create_publisher<geometry_msgs::msg::Twist>("cmd_vel", 10);
+        
+        std::string ns = node->get_namespace(); 
+        std::string robot_id = "1"; 
+        
+        size_t last_dash = ns.find_last_of('_');
+        if (last_dash != std::string::npos) {
+            robot_id = ns.substr(last_dash + 1);
+        }
+
+        std::string model_name = "vision_voyager_" + robot_id;
+        std::string pan_topic = "/model/" + model_name + "/joint/pan_joint/cmd_pos";
+        std::string tilt_topic = "/model/" + model_name + "/joint/tilt_joint/cmd_pos";
+
+        pan_pub = node->create_publisher<std_msgs::msg::Float64>(pan_topic, 10);
+        tilt_pub = node->create_publisher<std_msgs::msg::Float64>(tilt_topic, 10);
+
         setup_ultrasonic_communication(node);
         setup_grayscale_communication(node);
+
         last_cmd.linear.x = 0.0;
         last_cmd.angular.z = 0.0;
     }
 
     virtual ~SimVisionVoyager() {
-        // Resetăm subscripțiile manual pentru a ne asigura că nu mai vin callback-uri
         ultrasonic_sub.reset();
         sub_gs_left.reset();
         sub_gs_center.reset();
         sub_gs_right.reset();
         
-        // Resetăm și publisherii
         cmd_pub.reset();
         pan_pub.reset();
         tilt_pub.reset();
@@ -136,20 +151,20 @@ public:
 
     void set_steering(int angle) override 
     {
-        /* Change andgle sign because Gazebo has inverted axis for steering */
+        /* Change angle sign because Gazebo has inverted axis for steering */
         double angle_in_radians = angle * -1.0 * (M_PI / 180.0);
         last_cmd.angular.z = angle_in_radians;
     }
 
     void set_camera_tilt_angle(int angle) override 
     {
-        /* Change andgle sign because Gazebo has inverted axis */
+        /* Change angle sign because Gazebo has inverted axis */
         last_tilt.data = angle * -1.0 * (M_PI / 180.0);     
     }
 
     void set_cam_pan_angle(int angle) override 
     {
-        /* Change andgle sign because Gazebo has inverted axis */
+        /* Change angle sign because Gazebo has inverted axis */
         last_pan.data = angle * -1.0 * (M_PI / 180.0);
     }
 
@@ -177,4 +192,4 @@ public:
   
 };
 
-#endif
+#endif // SIM_HARDWARE_H

@@ -87,20 +87,33 @@ string generate_log_filename()
     return filename.str();
 }
 
-void initialize_log_file() 
+void initialize_log_file(int argc, char *argv[]) 
 {
-    string log_filename = generate_log_filename();
+    string prefix = "robot_generic_"; 
+
+    for (int i = 1; i < argc; ++i) 
+    {
+        string arg = argv[i];
+        size_t pos = arg.find("__ns:=/");
+        if (pos != string::npos) 
+        {
+            prefix = arg.substr(pos + 7) + "_";
+            break;
+        }
+    }
+
+    string log_filename = prefix + generate_log_filename();
     logFile.open(LOGS_PATH + log_filename + ".txt", ios::out | ios::trunc);
 
     if (!logFile.is_open()) 
     {
-        logFile << log_time() << "Error: Opening the log file for writing failed!" << endl;
+        cerr << "Error: Opening the log file for writing failed! Path: " << LOGS_PATH + log_filename + ".txt" << endl;
     }
 }
 
-void initilize_main_app()
+void initilize_main_app(int argc, char *argv[])
 {   
-    initialize_log_file();
+    initialize_log_file(argc, argv);
     logFile << vv_art;
     logFile << " - START OF MAIN APPLICATION  " << log_time() << endl << endl;
     KeyboardControl::initialize_keyboard_control();
@@ -183,10 +196,9 @@ string select_route_and_start()
 */
 
 
-
 int main(int argc, char *argv[]) 
 {    
-    initilize_main_app();
+    initilize_main_app(argc, argv);
 
     try {
   
@@ -197,10 +209,11 @@ int main(int argc, char *argv[])
         VisionVoyager* robot = new VisionVoyager();
 #else
         rclcpp::init(argc, argv);
-        auto ros_node = std::make_shared<rclcpp::Node>("vision_voyager_node");
+        rclcpp::NodeOptions options;
+        auto ros_node = std::make_shared<rclcpp::Node>("vision_voyager_node", options);
         auto robot = std::make_shared<VisionVoyager>(ros_node);
 
-        std::cout << "[ROS2] Node-ul ROS 2 a fost creat." << std::endl;
+        std::cout << "[ROS2] Node initialized in namespace: " << ros_node->get_namespace() << std::endl;
 #endif
 
         robot->set_direction_limits(DIR_MIN_RG, DIR_MAX_RG);
@@ -275,5 +288,3 @@ int main(int argc, char *argv[])
 
     return 0;
 }
-
-
