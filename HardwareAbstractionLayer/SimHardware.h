@@ -8,7 +8,7 @@
 #include <sensor_msgs/msg/laser_scan.hpp>
 #include <sensor_msgs/msg/image.hpp>
 
-#define ULTRASONIC_THRESHOLD_MIN 0.02
+#define ULTRASONIC_THRESHOLD_MIN 0.5
 #define ULTRASONIC_THRESHOLD_MAX 3.0
 #define ULTRASONIC_NO_OBJECT_DISTANCE -1.0
 #define ULTRASONIC_METERS_TO_CM 100.0
@@ -31,7 +31,7 @@ private:
     std_msgs::msg::Float64  last_pan;
     std_msgs::msg::Float64  last_tilt;
 
-    float last_ultrasonic_distance = 0.0;
+    float last_ultrasonic_distance = ULTRASONIC_NO_OBJECT_DISTANCE;
     vector<int> last_grayscale_values = {255, 255, 255};
 
     void setup_ultrasonic_communication(rclcpp::Node::SharedPtr node)
